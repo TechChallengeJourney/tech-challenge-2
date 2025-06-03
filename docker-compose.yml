@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  next-root:
+    build: ./next-root
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mfe-react
+  mfe-react:
+    build: ./mfe-react
+    ports:
+      - "5173:5173"
