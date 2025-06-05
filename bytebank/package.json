@@ -76,6 +76,7 @@
   },
   "workspaces": [
     "apps/*",
-    "core"
+    "core",
+    "libs/core/*"
   ]
 }
