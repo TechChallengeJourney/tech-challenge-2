@@ -6,7 +6,15 @@ services:
       - "3000:3000"
     depends_on:
       - mfe-react
+      - node-api
   mfe-react:
     build: ./mfe-react
     ports:
       - "5173:5173"
+  node-api:
+    build: ./node-api-project
+    ports:
+      - "4000:3000"
+    environment:
+      NODE_ENV: development
+    restart: always
