@@ -1,0 +1,2020 @@
+{
+  "version": "6.0",
+  "nxVersion": "21.1.2",
+  "pathMappings": {},
+  "nxJsonPlugins": [
+    {
+      "name": "@nx/js/typescript",
+      "options": {
+        "typecheck": {
+          "targetName": "typecheck"
+        },
+        "build": {
+          "targetName": "build",
+          "configName": "tsconfig.lib.json",
+          "buildDepsName": "build-deps",
+          "watchDepsName": "watch-deps"
+        }
+      }
+    },
+    {
+      "name": "@nx/next/plugin",
+      "options": {
+        "startTargetName": "start",
+        "buildTargetName": "build",
+        "devTargetName": "dev",
+        "serveStaticTargetName": "serve-static",
+        "buildDepsTargetName": "build-deps",
+        "watchDepsTargetName": "watch-deps"
+      }
+    },
+    {
+      "name": "@nx/cypress/plugin",
+      "options": {
+        "targetName": "e2e",
+        "openTargetName": "open-cypress",
+        "componentTestingTargetName": "component-test",
+        "ciTargetName": "e2e-ci"
+      }
+    },
+    {
+      "name": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    },
+    {
+      "name": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      }
+    },
+    {
+      "name": "@nx/react/router-plugin",
+      "options": {
+        "buildTargetName": "build",
+        "devTargetName": "dev",
+        "startTargetName": "start",
+        "watchDepsTargetName": "watch-deps",
+        "buildDepsTargetName": "build-deps",
+        "typecheckTargetName": "typecheck"
+      }
+    }
+  ],
+  "fileMap": {
+    "nonProjectFiles": [
+      {
+        "file": "tsconfig.json",
+        "hash": "12306905000928557504"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "9430166341120122740"
+      },
+      {
+        "file": "jest.config.ts",
+        "hash": "6870352021923392442"
+      },
+      {
+        "file": ".github/workflows/ci.yml",
+        "hash": "14440422260697612156"
+      },
+      {
+        "file": ".storybook/theme.ts",
+        "hash": "16328316330693330439"
+      },
+      {
+        "file": "workflows/ci.yml",
+        "hash": "17752148373136604368"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "16267754514737964994"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "74879629532285879"
+      },
+      {
+        "file": ".storybook/manager.ts",
+        "hash": "9287847653826583583"
+      },
+      {
+        "file": ".editorconfig",
+        "hash": "5443105041930014821"
+      },
+      {
+        "file": "db.json",
+        "hash": "1790842818418829407"
+      },
+      {
+        "file": "eslint.config.mjs",
+        "hash": "3462096019013144053"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "14688272390704683536"
+      },
+      {
+        "file": ".storybook/main.ts",
+        "hash": "3973309516195185071"
+      },
+      {
+        "file": "package.json",
+        "hash": "10909296766726071265"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "9213394085107209752"
+      },
+      {
+        "file": ".storybook/preview.tsx",
+        "hash": "8548351246630882037"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "18132073024976155609"
+      },
+      {
+        "file": ".storybook/vitest.setup.ts",
+        "hash": "12611355093019843680"
+      },
+      {
+        "file": ".github/PULL_REQUEST_TEMPLATE.md",
+        "hash": "7664868508784092609"
+      },
+      {
+        "file": "nx.json",
+        "hash": "1610113255004176247"
+      }
+    ],
+    "projectFileMap": {
+      "@bytebank/shared": [
+        {
+          "file": "libs/core/shared/.babelrc",
+          "hash": "2946678488919325452"
+        },
+        {
+          "file": "libs/core/shared/README.md",
+          "hash": "9958481216077125956"
+        },
+        {
+          "file": "libs/core/shared/jest.config.ts",
+          "hash": "878160453890342132"
+        },
+        {
+          "file": "libs/core/shared/package.json",
+          "hash": "16205680893044128488"
+        },
+        {
+          "file": "libs/core/shared/src/index.ts",
+          "hash": "11180342707843477021"
+        },
+        {
+          "file": "libs/core/shared/src/lib/classes/constants/routes.config.ts",
+          "hash": "12754653675257587518"
+        },
+        {
+          "file": "libs/core/shared/src/lib/classes/enums/access-modal-type.enum.ts",
+          "hash": "1717008938855822726"
+        },
+        {
+          "file": "libs/core/shared/src/lib/classes/enums/local-storage.ts",
+          "hash": "15212520603204538488"
+        },
+        {
+          "file": "libs/core/shared/src/lib/classes/models/access-modal.ts",
+          "hash": "14931218367477734331"
+        },
+        {
+          "file": "libs/core/shared/src/lib/classes/models/bank-card.ts",
+          "hash": "13280900129504285748"
+        },
+        {
+          "file": "libs/core/shared/src/lib/classes/models/extract.ts",
+          "hash": "1102928538810912232"
+        },
+        {
+          "file": "libs/core/shared/src/lib/classes/models/modal.ts",
+          "hash": "10220629828812025729"
+        },
+        {
+          "file": "libs/core/shared/src/lib/classes/models/snackbar.ts",
+          "hash": "17969143194069012843"
+        },
+        {
+          "file": "libs/core/shared/src/lib/classes/models/transaction.ts",
+          "hash": "15609328731946237010"
+        },
+        {
+          "file": "libs/core/shared/src/lib/classes/models/user.ts",
+          "hash": "15930236855756224985"
+        },
+        {
+          "file": "libs/core/shared/src/lib/classes/models/wrapper-route.ts",
+          "hash": "15425558403771490359"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/button/button.spec.tsx",
+          "hash": "16811680047051106493",
+          "deps": [
+            "npm:react",
+            "npm:@testing-library/react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/button/button.stories.tsx",
+          "hash": "12441665145276620052",
+          "deps": [
+            "npm:@storybook/blocks",
+            "npm:@storybook/react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/button/index.tsx",
+          "hash": "15961906202266467619"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/card-bank/card-bank.spec.tsx",
+          "hash": "17128788414922198000",
+          "deps": [
+            "npm:@testing-library/react",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/card-bank/card-bank.stories.tsx",
+          "hash": "5922305531229983082",
+          "deps": [
+            "npm:@storybook/react",
+            "npm:@storybook/blocks"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/card-bank/index.tsx",
+          "hash": "10912560352660581203"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/card-bank/style.scss",
+          "hash": "1862377286245825835"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/card/card.module.scss",
+          "hash": "4720737338412992237"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/card/card.spec.tsx",
+          "hash": "7075750176853965974",
+          "deps": [
+            "npm:react",
+            "npm:@testing-library/react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/card/card.stories.tsx",
+          "hash": "13640549518173160538",
+          "deps": [
+            "npm:@storybook/react",
+            "npm:@storybook/blocks"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/card/index.tsx",
+          "hash": "14028365907253751000"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/chart/chart.stories.tsx",
+          "hash": "9947778230051190481",
+          "deps": [
+            "npm:@storybook/react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/chart/index.tsx",
+          "hash": "6370143325156258575",
+          "deps": [
+            "npm:next",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/divider/index.tsx",
+          "hash": "13444349010776952375"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/divider/style.scss",
+          "hash": "4614361358246625185"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/footer/footer.stories.tsx",
+          "hash": "9470555876098101262",
+          "deps": [
+            "npm:@storybook/react",
+            "npm:@storybook/blocks"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/footer/index.tsx",
+          "hash": "14665469583769559700",
+          "deps": [
+            "npm:next"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/footer/style.scss",
+          "hash": "7352670747729996632"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/header/header.stories.tsx",
+          "hash": "208716828187740038",
+          "deps": [
+            "npm:@storybook/react",
+            "npm:@storybook/blocks"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/header/index.tsx",
+          "hash": "5019855423101191975",
+          "deps": [
+            "npm:next",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/header/style.scss",
+          "hash": "11571376688533881663"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/illustration/illustration.spec.tsx",
+          "hash": "15174343768117306904",
+          "deps": [
+            "npm:react",
+            "npm:@testing-library/react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/illustration/illustration.stories.tsx",
+          "hash": "11970514457871395938",
+          "deps": [
+            "npm:@storybook/react",
+            "npm:@storybook/blocks"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/illustration/index.tsx",
+          "hash": "11500986297255742696"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/illustration/style.scss",
+          "hash": "125145030238681982"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/input/ControlledInput/index.tsx",
+          "hash": "2317701754592886754",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/input/index.tsx",
+          "hash": "12096472983568406005"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/input/input.spec.tsx",
+          "hash": "2583135009085420861",
+          "deps": [
+            "npm:react",
+            "npm:@testing-library/react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/input/input.stories.tsx",
+          "hash": "5825135342123352002",
+          "deps": [
+            "npm:react",
+            "npm:@storybook/react",
+            "npm:@storybook/blocks"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/input/style.scss",
+          "hash": "5781054606669851201"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/menu/index.tsx",
+          "hash": "8232640607072149251",
+          "deps": [
+            "npm:next",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/menu/menu.spec.tsx",
+          "hash": "16339893732939518158",
+          "deps": [
+            "npm:react",
+            "npm:@testing-library/react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/menu/style.scss",
+          "hash": "2534941602427040886"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/modal/index.tsx",
+          "hash": "12620824617032063002"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/modal/modal.stories.tsx",
+          "hash": "15744874447281344553",
+          "deps": [
+            "npm:@storybook/react",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/modal/style.scss",
+          "hash": "12013598476277460167"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/select/ControlledSelect/index.tsx",
+          "hash": "11948327563023026023",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/select/index.tsx",
+          "hash": "16295284615344239289"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/select/select.stories.tsx",
+          "hash": "7007401672048435873",
+          "deps": [
+            "npm:react",
+            "npm:@storybook/react",
+            "npm:@storybook/blocks"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/select/style.scss",
+          "hash": "7874165420281610230"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/snackbar/index.tsx",
+          "hash": "9614939775486567539",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/snackbar/snackbar.stories.tsx",
+          "hash": "641953266276397827",
+          "deps": [
+            "npm:@storybook/react",
+            "npm:@storybook/blocks"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/text/index.tsx",
+          "hash": "10936568590969406252"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/text/text.spec.tsx",
+          "hash": "6104378209264221379",
+          "deps": [
+            "npm:react",
+            "npm:@testing-library/react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/text/text.stories.tsx",
+          "hash": "17965369303909710168",
+          "deps": [
+            "npm:@storybook/react",
+            "npm:@storybook/blocks"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/wrapper/index.tsx",
+          "hash": "4460358928063780731"
+        },
+        {
+          "file": "libs/core/shared/src/lib/components/wrapper/wrapper.spec.tsx",
+          "hash": "13628375311346254253",
+          "deps": [
+            "npm:react",
+            "npm:@testing-library/react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/contexts/financial-data.context.tsx",
+          "hash": "10622324881531267546",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/contexts/user.context.tsx",
+          "hash": "3055310518848900792",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/hooks/use-session.tsx",
+          "hash": "4716211436322458593",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/modals/login-modal/index.tsx",
+          "hash": "9396480877653020094",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/modals/register-modal/index.tsx",
+          "hash": "1325186357849626904",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/shared.tsx",
+          "hash": "2774911308309773572"
+        },
+        {
+          "file": "libs/core/shared/src/lib/stories/theme.docs.mdx",
+          "hash": "9082814873627618053"
+        },
+        {
+          "file": "libs/core/shared/src/lib/stories/theme.stories.tsx",
+          "hash": "5854501949578451582",
+          "deps": [
+            "npm:@storybook/react",
+            "npm:@storybook/blocks"
+          ]
+        },
+        {
+          "file": "libs/core/shared/src/lib/styles/index.scss",
+          "hash": "3127464842241302855"
+        },
+        {
+          "file": "libs/core/shared/src/lib/styles/palette.ts",
+          "hash": "17989478097799998289"
+        },
+        {
+          "file": "libs/core/shared/src/lib/styles/variables.scss",
+          "hash": "529568957689179281"
+        },
+        {
+          "file": "libs/core/shared/src/lib/themes/default.theme.tsx",
+          "hash": "10092561930156025774",
+          "deps": [
+            "npm:next"
+          ]
+        },
+        {
+          "file": "libs/core/shared/tsconfig.json",
+          "hash": "12188746804854295505"
+        },
+        {
+          "file": "libs/core/shared/tsconfig.lib.json",
+          "hash": "3506372518800898017"
+        },
+        {
+          "file": "libs/core/shared/tsconfig.spec.json",
+          "hash": "11748738435912843471"
+        }
+      ],
+      "@bytebank/bytebank-e2e": [
+        {
+          "file": "apps/core/bytebank-e2e/cypress.config.ts",
+          "hash": "115029688057383513",
+          "deps": [
+            "npm:@nx/cypress",
+            "npm:cypress"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank-e2e/eslint.config.mjs",
+          "hash": "6786100483972661872",
+          "deps": [
+            "npm:eslint-plugin-cypress"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank-e2e/package.json",
+          "hash": "16338183798726121039"
+        },
+        {
+          "file": "apps/core/bytebank-e2e/src/e2e/app.cy.ts",
+          "hash": "8733793551302344564"
+        },
+        {
+          "file": "apps/core/bytebank-e2e/src/fixtures/example.json",
+          "hash": "11785586596216172004"
+        },
+        {
+          "file": "apps/core/bytebank-e2e/src/support/app.po.ts",
+          "hash": "11157016311132186162"
+        },
+        {
+          "file": "apps/core/bytebank-e2e/src/support/commands.ts",
+          "hash": "7135223079411169068"
+        },
+        {
+          "file": "apps/core/bytebank-e2e/src/support/e2e.ts",
+          "hash": "1054106023200826784"
+        },
+        {
+          "file": "apps/core/bytebank-e2e/tsconfig.json",
+          "hash": "18425408043756450053"
+        }
+      ],
+      "@bytebank/bytebank": [
+        {
+          "file": "apps/core/bytebank/.env",
+          "hash": "4345623043969750220"
+        },
+        {
+          "file": "apps/core/bytebank/.next/app-build-manifest.json",
+          "hash": "18225676575866952055"
+        },
+        {
+          "file": "apps/core/bytebank/.next/build-manifest.json",
+          "hash": "4663320824903172820"
+        },
+        {
+          "file": "apps/core/bytebank/.next/fallback-build-manifest.json",
+          "hash": "644139085570780122"
+        },
+        {
+          "file": "apps/core/bytebank/.next/package.json",
+          "hash": "11338307439248427064"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app-paths-manifest.json",
+          "hash": "17380319836085062910"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/home/page.js",
+          "hash": "3910850962370393576"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/home/page.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/home/page/app-build-manifest.json",
+          "hash": "4917720865915546715"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/home/page/app-paths-manifest.json",
+          "hash": "9473201777822230724"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/home/page/build-manifest.json",
+          "hash": "13967230514047160834"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/home/page/next-font-manifest.json",
+          "hash": "16242442426497661888"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/home/page/react-loadable-manifest.json",
+          "hash": "2398886844993299351"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/home/page/server-reference-manifest.json",
+          "hash": "8204496101908613432"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/home/page_client-reference-manifest.js",
+          "hash": "8568549830976588296"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/investimentos/page.js",
+          "hash": "17047551094690866019"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/investimentos/page.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/investimentos/page/app-build-manifest.json",
+          "hash": "4789456472327962249"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/investimentos/page/app-paths-manifest.json",
+          "hash": "18155838496202990011"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/investimentos/page/build-manifest.json",
+          "hash": "13967230514047160834"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/investimentos/page/next-font-manifest.json",
+          "hash": "16431280729226774710"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/investimentos/page/react-loadable-manifest.json",
+          "hash": "2398886844993299351"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/investimentos/page/server-reference-manifest.json",
+          "hash": "8204496101908613432"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/investimentos/page_client-reference-manifest.js",
+          "hash": "18441228146887884775"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/outros/meus-cartoes/page.js",
+          "hash": "10928676239631482510"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/outros/meus-cartoes/page.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/outros/meus-cartoes/page/app-build-manifest.json",
+          "hash": "17870654089593461558"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/outros/meus-cartoes/page/app-paths-manifest.json",
+          "hash": "754665681656247817"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/outros/meus-cartoes/page/build-manifest.json",
+          "hash": "13967230514047160834"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/outros/meus-cartoes/page/next-font-manifest.json",
+          "hash": "7902626203101007214"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/outros/meus-cartoes/page/react-loadable-manifest.json",
+          "hash": "2398886844993299351"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/outros/meus-cartoes/page/server-reference-manifest.json",
+          "hash": "8204496101908613432"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/outros/meus-cartoes/page_client-reference-manifest.js",
+          "hash": "5088350095769860083"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/outros/page.js",
+          "hash": "15072152111357425612"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/outros/page.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/outros/page/app-build-manifest.json",
+          "hash": "6908656334135186511"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/outros/page/app-paths-manifest.json",
+          "hash": "15756784133450807799"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/outros/page/build-manifest.json",
+          "hash": "13967230514047160834"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/outros/page/next-font-manifest.json",
+          "hash": "9351167223141800406"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/outros/page/react-loadable-manifest.json",
+          "hash": "2398886844993299351"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/outros/page/server-reference-manifest.json",
+          "hash": "8204496101908613432"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/(pages)/(financial-pages)/outros/page_client-reference-manifest.js",
+          "hash": "15429205077711873372"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/bank-card/route.js",
+          "hash": "5757996718299322826"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/bank-card/route.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/bank-card/route/app-build-manifest.json",
+          "hash": "3566592825726629168"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/bank-card/route/app-paths-manifest.json",
+          "hash": "2014714402824042666"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/bank-card/route/build-manifest.json",
+          "hash": "13967230514047160834"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/bank-card/route/next-font-manifest.json",
+          "hash": "8927915864298715861"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/bank-card/route/react-loadable-manifest.json",
+          "hash": "1389868326933519382"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/bank-card/route/server-reference-manifest.json",
+          "hash": "8204496101908613432"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/bank-card/route_client-reference-manifest.js",
+          "hash": "5721157226529471539"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/login/route.js",
+          "hash": "14548143533523190567"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/login/route.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/login/route/app-build-manifest.json",
+          "hash": "8497843099820201952"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/login/route/app-paths-manifest.json",
+          "hash": "8566509412541286607"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/login/route/build-manifest.json",
+          "hash": "13967230514047160834"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/login/route/next-font-manifest.json",
+          "hash": "8927915864298715861"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/login/route/react-loadable-manifest.json",
+          "hash": "1389868326933519382"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/login/route/server-reference-manifest.json",
+          "hash": "8204496101908613432"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/login/route_client-reference-manifest.js",
+          "hash": "13986854734015215208"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/transactions/route.js",
+          "hash": "9001004109489482152"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/transactions/route.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/transactions/route/app-build-manifest.json",
+          "hash": "5278523376688678907"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/transactions/route/app-paths-manifest.json",
+          "hash": "16537139832369315009"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/transactions/route/build-manifest.json",
+          "hash": "13967230514047160834"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/transactions/route/next-font-manifest.json",
+          "hash": "8927915864298715861"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/transactions/route/react-loadable-manifest.json",
+          "hash": "1389868326933519382"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/transactions/route/server-reference-manifest.json",
+          "hash": "8204496101908613432"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/api/transactions/route_client-reference-manifest.js",
+          "hash": "6393584701280898705"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/page/app-build-manifest.json",
+          "hash": "16053253006019233572"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/page/next-font-manifest.json",
+          "hash": "4847672350801264097"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/page/react-loadable-manifest.json",
+          "hash": "12311449315766517347"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/app/page_client-reference-manifest.js",
+          "hash": "9849833191639164681"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/[root of the server]__6d88bbd8._.js",
+          "hash": "1186729557123831543",
+          "deps": [
+            [
+              "npm:next",
+              "dynamic"
+            ]
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/[root of the server]__6d88bbd8._.js.map",
+          "hash": "8886830244292484113"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/[root of the server]__963a0037._.js",
+          "hash": "4527159568362875683",
+          "deps": [
+            [
+              "npm:next",
+              "dynamic"
+            ],
+            [
+              "npm:bcrypt",
+              "dynamic"
+            ]
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/[root of the server]__963a0037._.js.map",
+          "hash": "1266989272718584468"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/[root of the server]__ff48924f._.js",
+          "hash": "5569301411979316549",
+          "deps": [
+            [
+              "npm:next",
+              "dynamic"
+            ]
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/[root of the server]__ff48924f._.js.map",
+          "hash": "2926604651996495895"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/[turbopack]_runtime.js",
+          "hash": "6214003856276595"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/[turbopack]_runtime.js.map",
+          "hash": "146467822370373195"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/node_modules_bb4da4a9._.js",
+          "hash": "9008648628635953427"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/node_modules_bb4da4a9._.js.map",
+          "hash": "9069807379262932160"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/node_modules_next_e0782025._.js",
+          "hash": "3453962152333186709"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/node_modules_next_e0782025._.js.map",
+          "hash": "7196441891678233064"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/node_modules_next_f07b2aa4._.js",
+          "hash": "18294075020151881319"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/node_modules_next_f07b2aa4._.js.map",
+          "hash": "7196441891678233064"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/[root of the server]__00752a00._.js",
+          "hash": "15642946575761579141"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/[root of the server]__00752a00._.js.map",
+          "hash": "8551562234846162937"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/[root of the server]__2fb61200._.js",
+          "hash": "5371516939892819851"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/[root of the server]__2fb61200._.js.map",
+          "hash": "6399843666783276417"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/[root of the server]__689ac2fc._.js",
+          "hash": "5054574000640036184"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/[root of the server]__689ac2fc._.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/[root of the server]__7ffcb336._.js",
+          "hash": "5054574000640036184"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/[root of the server]__7ffcb336._.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/[root of the server]__86e29653._.js",
+          "hash": "5054574000640036184"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/[root of the server]__86e29653._.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/[root of the server]__b5a8c7e7._.js",
+          "hash": "17347439711839822540"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/[root of the server]__b5a8c7e7._.js.map",
+          "hash": "12694009354984202296"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/[root of the server]__b67ff2fc._.js",
+          "hash": "5054574000640036184"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/[turbopack]_browser_dev_hmr-client_hmr-client_ts_0797e8a9._.js",
+          "hash": "2255253794355779208"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/[turbopack]_browser_dev_hmr-client_hmr-client_ts_0797e8a9._.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/[turbopack]_browser_dev_hmr-client_hmr-client_ts_1f5a3b6d._.js",
+          "hash": "2255253794355779208"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/[turbopack]_browser_dev_hmr-client_hmr-client_ts_1f5a3b6d._.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/[turbopack]_browser_dev_hmr-client_hmr-client_ts_78133f84._.js",
+          "hash": "2255253794355779208"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/[turbopack]_browser_dev_hmr-client_hmr-client_ts_78133f84._.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/_18ee6f29._.js",
+          "hash": "1645693205835494175"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/_18ee6f29._.js.map",
+          "hash": "16812400373015253418"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/_3a1413c3._.js",
+          "hash": "18083675332245984967"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/_3a1413c3._.js.map",
+          "hash": "2340143090654584740"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/_6d70d931._.js",
+          "hash": "17641465187874860693"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/_6d70d931._.js.map",
+          "hash": "1748203861606629810"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/_738ee6c6._.js",
+          "hash": "1776389603040379320"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/apps_core_bytebank_src_app_(pages)_(financial-pages)_55b7f916._.js",
+          "hash": "16410807460830825327"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/apps_core_bytebank_src_app_(pages)_(financial-pages)_55b7f916._.js.map",
+          "hash": "17032637446516432939"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/apps_core_bytebank_src_app_(pages)_(financial-pages)_layout_tsx_44c65943._.js",
+          "hash": "12948422984688149352"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/apps_core_bytebank_src_app_(pages)_(financial-pages)_layout_tsx_44c65943._.js.map",
+          "hash": "3111307748557785386"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/apps_core_bytebank_src_app_(pages)_(financial-pages)_outros_5835e91f._.js",
+          "hash": "8716563902094389773"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/apps_core_bytebank_src_app_(pages)_(financial-pages)_outros_5835e91f._.js.map",
+          "hash": "11851938765116302595"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/apps_core_bytebank_src_app_(pages)_(financial-pages)_outros_69e20b80._.js",
+          "hash": "9592844398100095600"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/apps_core_bytebank_src_app_(pages)_(financial-pages)_outros_69e20b80._.js.map",
+          "hash": "7289505335533132793"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/d0b2b_core_bytebank_src_app_(pages)_(financial-pages)_investimentos_page_tsx_282cdd88._.js",
+          "hash": "9569865745185089728"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/d0b2b_core_bytebank_src_app_(pages)_(financial-pages)_investimentos_page_tsx_282cdd88._.js.map",
+          "hash": "3685580757794882708"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/node_modules_0933a129._.js",
+          "hash": "17393416204634577252"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/node_modules_0933a129._.js.map",
+          "hash": "16791745869105197100"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/node_modules_5c16859b._.js",
+          "hash": "8917106719893937736"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/node_modules_5c16859b._.js.map",
+          "hash": "2002373434326975512"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/node_modules_7c20915d._.js",
+          "hash": "6953817492910904623"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/node_modules_7c20915d._.js.map",
+          "hash": "15497178998999099402"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/node_modules_@mui_material_esm_dff2c864._.js",
+          "hash": "3659852771579033349"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/node_modules_@mui_material_esm_dff2c864._.js.map",
+          "hash": "15020357409592004100"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/node_modules_@mui_material_esm_styles_3024a237._.js",
+          "hash": "7429049185189476613"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/node_modules_@mui_material_esm_styles_3024a237._.js.map",
+          "hash": "18332232420649097396"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/node_modules_d387f1d7._.js",
+          "hash": "2923536635821984115"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/node_modules_d387f1d7._.js.map",
+          "hash": "10142579518156788860"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/node_modules_next_dist_client_components_not-found-error_1119763b.js",
+          "hash": "1085552864763467447"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/node_modules_next_dist_client_components_not-found-error_1119763b.js.map",
+          "hash": "15361942956475721017"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/node_modules_react-apexcharts_dist_react-apexcharts_min_8238f0e5.js",
+          "hash": "6901865847627963102"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/chunks/ssr/node_modules_react-apexcharts_dist_react-apexcharts_min_8238f0e5.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/interception-route-rewrite-manifest.js",
+          "hash": "10135913824388381780"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/middleware-build-manifest.js",
+          "hash": "10905237379583512240"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/middleware-manifest.json",
+          "hash": "2076451686705931621"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/next-font-manifest.js",
+          "hash": "9078120219506687551"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/next-font-manifest.json",
+          "hash": "11409542119069954869"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/pages-manifest.json",
+          "hash": "1389868326933519382"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/server-reference-manifest.js",
+          "hash": "2896642350895411246"
+        },
+        {
+          "file": "apps/core/bytebank/.next/server/server-reference-manifest.json",
+          "hash": "10158082121600400506"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/0896a_outros__components_my-bank-cards_my-bank-cards_module_scss_module_5e45b136.css",
+          "hash": "8511601888373430021"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/0896a_outros__components_my-bank-cards_my-bank-cards_module_scss_module_5e45b136.css.map",
+          "hash": "670707401883064824"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/0896a_outros__components_my-bank-cards_my-bank-cards_module_scss_module_b52d8e88.css",
+          "hash": "17074233627671585181"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/0896a_outros__components_my-bank-cards_my-bank-cards_module_scss_module_b52d8e88.css.map",
+          "hash": "14522361788085781532"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/318d6_src_app_(pages)_(financial-pages)_outros_meus-cartoes_page_tsx_747a0c56._.js",
+          "hash": "771431163853563253"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/4b175_bytebank_src_app_(pages)_(financial-pages)_investimentos_style_scss_0053d3a0.css",
+          "hash": "3765127893750313544"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/4b175_bytebank_src_app_(pages)_(financial-pages)_investimentos_style_scss_0053d3a0.css.map",
+          "hash": "12669504874787866009"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/4b175_bytebank_src_app_(pages)_(financial-pages)_investimentos_style_scss_b52d8e88.css",
+          "hash": "8106717108097570437"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/4b175_bytebank_src_app_(pages)_(financial-pages)_investimentos_style_scss_b52d8e88.css.map",
+          "hash": "15570946572188588413"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/4b175_bytebank_src_app_(pages)_(financial-pages)_page_module_scss_module_b52d8e88.css",
+          "hash": "2100613374531523039"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/4b175_bytebank_src_app_(pages)_(financial-pages)_page_module_scss_module_b52d8e88.css.map",
+          "hash": "15508803242365096555"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/9414b_(pages)_(financial-pages)_outros__components_product-card_style_scss_a277f6c4.css",
+          "hash": "4192354627270989626"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/9414b_(pages)_(financial-pages)_outros__components_product-card_style_scss_a277f6c4.css.map",
+          "hash": "6562465776766765762"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/9414b_(pages)_(financial-pages)_outros__components_product-card_style_scss_b52d8e88.css",
+          "hash": "6578435077218313131"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/9414b_(pages)_(financial-pages)_outros__components_product-card_style_scss_b52d8e88.css.map",
+          "hash": "17818614878835952810"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/[root of the server]__44b1eea9._.js",
+          "hash": "8172254009045246537"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/[root of the server]__44b1eea9._.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/[root of the server]__57f6f94b._.js",
+          "hash": "10538727657541167684"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/[root of the server]__57f6f94b._.js.map",
+          "hash": "15642074750462368351"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/[root of the server]__7ae750a7._.js",
+          "hash": "16675188298788361314"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/[root of the server]__7ae750a7._.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/[root of the server]__7db07698._.js",
+          "hash": "6722303178133950299"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/[root of the server]__7db07698._.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/[root of the server]__903d5519._.css",
+          "hash": "7297175532557097342"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/[root of the server]__903d5519._.css.map",
+          "hash": "9410304612552158350"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/[root of the server]__ad075761._.js.map",
+          "hash": "7539194715891439623"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/[root of the server]__ef7655c0._.js",
+          "hash": "8667629641091423421"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/[root of the server]__ef7655c0._.js.map",
+          "hash": "2951466918890683315"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_6042c465._.js",
+          "hash": "1804363878357335217"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_6042c465._.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_6074889a._.js",
+          "hash": "9573779195313382888"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_9f243100._.js",
+          "hash": "8870433145203760662"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_b7a5ac97._.js",
+          "hash": "11495053292454001723"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_b7a5ac97._.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_fe76b092._.js",
+          "hash": "18397625399061669979"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/apps_core_bytebank_src_app_(pages)_(financial-pages)_89111529._.js",
+          "hash": "7238103921496793208"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/apps_core_bytebank_src_app_(pages)_(financial-pages)_89111529._.js.map",
+          "hash": "11511727560333708084"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/apps_core_bytebank_src_app_(pages)_(financial-pages)_home_page_tsx_747a0c56._.js",
+          "hash": "15349974915658655028"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/apps_core_bytebank_src_app_(pages)_(financial-pages)_layout_tsx_2d39c5cc._.js",
+          "hash": "4908648537920581581"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/apps_core_bytebank_src_app_(pages)_(financial-pages)_outros_6885ffc9._.js",
+          "hash": "5286947003906074086"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/apps_core_bytebank_src_app_(pages)_(financial-pages)_outros_6885ffc9._.js.map",
+          "hash": "16723080141585206135"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/apps_core_bytebank_src_app_(pages)_(financial-pages)_outros_a31ee1c4._.js",
+          "hash": "16590716208181091675"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/apps_core_bytebank_src_app_(pages)_(financial-pages)_outros_a31ee1c4._.js.map",
+          "hash": "3590813026834123976"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/apps_core_bytebank_src_app_(pages)_(financial-pages)_outros_page_tsx_747a0c56._.js",
+          "hash": "11192410590845976733"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/apps_core_bytebank_src_app_global_scss_b52d8e88.css",
+          "hash": "8553030595822267026"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/apps_core_bytebank_src_app_global_scss_b52d8e88.css.map",
+          "hash": "4327929499105024528"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/apps_core_bytebank_src_app_global_scss_bdfdf929.css",
+          "hash": "7423936038925535797"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/apps_core_bytebank_src_app_global_scss_bdfdf929.css.map",
+          "hash": "8917048014872301903"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/apps_core_bytebank_src_app_not-found_tsx_2d39c5cc._.js",
+          "hash": "17520720378836435786"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/apps_core_bytebank_src_app_page_tsx_2d39c5cc._.js",
+          "hash": "12276870314903523556"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/c276d_app_(pages)_(financial-pages)__components_card-transaction_style_scss_8cb2f492.css",
+          "hash": "8585417669160762109"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/c276d_app_(pages)_(financial-pages)__components_card-transaction_style_scss_8cb2f492.css.map",
+          "hash": "6480094710828552241"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/c276d_app_(pages)_(financial-pages)__components_card-transaction_style_scss_b52d8e88.css",
+          "hash": "15256214231139724545"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/c276d_app_(pages)_(financial-pages)__components_card-transaction_style_scss_b52d8e88.css.map",
+          "hash": "10306002321493229500"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/d0b2b_core_bytebank_src_app_(pages)_(financial-pages)_investimentos_page_tsx_32645298._.js",
+          "hash": "16879331207948784782"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/d0b2b_core_bytebank_src_app_(pages)_(financial-pages)_investimentos_page_tsx_32645298._.js.map",
+          "hash": "13616420664274402700"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/d0b2b_core_bytebank_src_app_(pages)_(financial-pages)_investimentos_page_tsx_747a0c56._.js",
+          "hash": "8903418186626115467"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/df3d4_(financial-pages)__components_balance-card_page_module_scss_module_b52d8e88.css",
+          "hash": "2216306469805921190"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/df3d4_(financial-pages)__components_balance-card_page_module_scss_module_b52d8e88.css.map",
+          "hash": "12528058208487477164"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/df3d4_(financial-pages)__components_extract-card_page_module_scss_module_b52d8e88.css",
+          "hash": "9721674141549834846"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/df3d4_(financial-pages)__components_extract-card_page_module_scss_module_b52d8e88.css.map",
+          "hash": "13403402002425294002"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_2f5b06f7._.js",
+          "hash": "9861269425518587049"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_2f5b06f7._.js.map",
+          "hash": "17526168527039547682"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_430b2053._.js",
+          "hash": "16823941310498705415"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_430b2053._.js.map",
+          "hash": "10990422546880650142"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_833141f0._.js",
+          "hash": "10266111774350017192"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_833141f0._.js.map",
+          "hash": "11824277058342899483"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_@mui_material_esm_effd0dae._.js",
+          "hash": "3149113929598752573"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_@mui_material_esm_effd0dae._.js.map",
+          "hash": "3937182170099475199"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_@mui_material_esm_styles_7658dc54._.js",
+          "hash": "16130269834181511008"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_@mui_material_esm_styles_7658dc54._.js.map",
+          "hash": "16592872727357447354"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_a66de9ac._.js",
+          "hash": "14020015083824691157"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_a66de9ac._.js.map",
+          "hash": "1572273398012922862"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_react-apexcharts_dist_react-apexcharts_min_4ef041cd.js",
+          "hash": "5143302109513315072"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_react-apexcharts_dist_react-apexcharts_min_4ef041cd.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_react-apexcharts_dist_react-apexcharts_min_5d7dc2a3.js",
+          "hash": "7912020883174772763"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_react-apexcharts_dist_react-apexcharts_min_711179bf.js",
+          "hash": "3235335561566909591"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_react-apexcharts_dist_react-apexcharts_min_ae42a79e.js",
+          "hash": "17440071333459179601"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_react-apexcharts_dist_react-apexcharts_min_b34c5785.js",
+          "hash": "2257459463479528872"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_react-apexcharts_dist_react-apexcharts_min_eb566040.js",
+          "hash": "13393496569980907999"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_react-apexcharts_dist_react-apexcharts_min_eb566040.js.map",
+          "hash": "9770666782172617948"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/chunks/node_modules_react-apexcharts_dist_react-apexcharts_min_ef0ec929.js",
+          "hash": "6968151777601700805"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/development/_buildManifest.js",
+          "hash": "12391210715246286956"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/development/_clientMiddlewareManifest.json",
+          "hash": "9444422325801888874"
+        },
+        {
+          "file": "apps/core/bytebank/.next/static/development/_ssgManifest.js",
+          "hash": "17018243955171961484"
+        },
+        {
+          "file": "apps/core/bytebank/.next/trace",
+          "hash": "11794737829583621232"
+        },
+        {
+          "file": "apps/core/bytebank/.swcrc",
+          "hash": "2742566327615098680"
+        },
+        {
+          "file": "apps/core/bytebank/eslint.config.mjs",
+          "hash": "7367750901613593540",
+          "deps": [
+            "npm:@eslint/eslintrc",
+            "npm:@eslint/js",
+            "npm:@eslint/compat",
+            "npm:@nx/eslint-plugin"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/index.d.ts",
+          "hash": "5498222895072842432"
+        },
+        {
+          "file": "apps/core/bytebank/jest.config.ts",
+          "hash": "10510577428302395687"
+        },
+        {
+          "file": "apps/core/bytebank/next-env.d.ts",
+          "hash": "1320675027584673186"
+        },
+        {
+          "file": "apps/core/bytebank/next.config.js",
+          "hash": "475430195363945754",
+          "deps": [
+            "npm:@nx/next"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/package.json",
+          "hash": "3469930240326413615",
+          "deps": [
+            "npm:next",
+            "npm:react",
+            "npm:react-dom"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/public/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/core/bytebank/public/favicon.ico",
+          "hash": "11911825984599919907"
+        },
+        {
+          "file": "apps/core/bytebank/public/images/Icone_Pix.png",
+          "hash": "15759671651252550956"
+        },
+        {
+          "file": "apps/core/bytebank/public/images/Icone_cartoes.png",
+          "hash": "8947217032520234423"
+        },
+        {
+          "file": "apps/core/bytebank/public/images/Icone_doacoes.png",
+          "hash": "4281408832598938080"
+        },
+        {
+          "file": "apps/core/bytebank/public/images/Icone_emprestimo.png",
+          "hash": "9174367869562655685"
+        },
+        {
+          "file": "apps/core/bytebank/public/images/Icone_emprestimo_1.png",
+          "hash": "10649284797635879701"
+        },
+        {
+          "file": "apps/core/bytebank/public/images/Icone_seguros.png",
+          "hash": "516599581628294301"
+        },
+        {
+          "file": "apps/core/bytebank/public/images/card-holding.png",
+          "hash": "624897435448109237"
+        },
+        {
+          "file": "apps/core/bytebank/public/images/card-saving.png",
+          "hash": "14210298170891679264"
+        },
+        {
+          "file": "apps/core/bytebank/public/images/error.png",
+          "hash": "12091223406322647083"
+        },
+        {
+          "file": "apps/core/bytebank/public/images/graphic.png",
+          "hash": "8107748819778257370"
+        },
+        {
+          "file": "apps/core/bytebank/public/images/login.png",
+          "hash": "17859105821504441836"
+        },
+        {
+          "file": "apps/core/bytebank/public/images/logo.png",
+          "hash": "15109319557527021857"
+        },
+        {
+          "file": "apps/core/bytebank/public/images/my-account.png",
+          "hash": "6826368217661081719"
+        },
+        {
+          "file": "apps/core/bytebank/public/images/my-account.svg",
+          "hash": "7911818978912900652"
+        },
+        {
+          "file": "apps/core/bytebank/public/images/pixels-01.png",
+          "hash": "3070565899565568373"
+        },
+        {
+          "file": "apps/core/bytebank/public/images/pixels-02.png",
+          "hash": "10182690570508026256"
+        },
+        {
+          "file": "apps/core/bytebank/public/images/pixels-03.png",
+          "hash": "6559910175058289057"
+        },
+        {
+          "file": "apps/core/bytebank/public/images/pixels-04.png",
+          "hash": "18063238223455253666"
+        },
+        {
+          "file": "apps/core/bytebank/public/images/platinum.png",
+          "hash": "7462619315081945836"
+        },
+        {
+          "file": "apps/core/bytebank/public/images/register.png",
+          "hash": "10439158899168844820"
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(account-pages)/layout.tsx",
+          "hash": "10165714755188854485",
+          "deps": [
+            "@bytebank/shared"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(account-pages)/minha-conta/page.tsx",
+          "hash": "9322768169539336874",
+          "deps": [
+            "@bytebank/shared",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(account-pages)/minha-conta/style.scss",
+          "hash": "8671619681815163056"
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/_components/balance-card/balance-content.tsx",
+          "hash": "14887836206810347466",
+          "deps": [
+            "@bytebank/shared"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/_components/balance-card/balance-header.tsx",
+          "hash": "9982899867577631867",
+          "deps": [
+            "@bytebank/shared"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/_components/balance-card/card-illustration.tsx",
+          "hash": "4860212346274271124",
+          "deps": [
+            "@bytebank/shared"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/_components/balance-card/index.tsx",
+          "hash": "4037614768139471721",
+          "deps": [
+            "@bytebank/shared",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/_components/balance-card/page.module.scss",
+          "hash": "7882443411648098274"
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/_components/card-transaction/index.tsx",
+          "hash": "9021426472349422664",
+          "deps": [
+            "@bytebank/shared",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/_components/card-transaction/style.scss",
+          "hash": "8756327461418159926"
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/_components/extract-card/index.tsx",
+          "hash": "16358192109668543553"
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/_components/extract-card/page.module.scss",
+          "hash": "7845922166855301250"
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/_components/extract/_components/delete-modal/index.tsx",
+          "hash": "9358967861585657813",
+          "deps": [
+            "npm:react",
+            "@bytebank/shared"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/_components/extract/_components/edit-modal/index.tsx",
+          "hash": "13237991236486336720",
+          "deps": [
+            "npm:react",
+            "@bytebank/shared"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/_components/extract/index.tsx",
+          "hash": "12870629535599058006",
+          "deps": [
+            "@bytebank/shared",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/home/page.tsx",
+          "hash": "2723518997387476663",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/investimentos/page.tsx",
+          "hash": "15064949503924405802",
+          "deps": [
+            "@bytebank/shared"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/investimentos/style.scss",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/layout.tsx",
+          "hash": "3832994897939809249",
+          "deps": [
+            "@bytebank/shared",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/outros/_components/my-bank-cards/index.tsx",
+          "hash": "4264947481085444028",
+          "deps": [
+            "@bytebank/shared",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/outros/_components/my-bank-cards/my-bank-cards.module.scss",
+          "hash": "5307126528564516539"
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/outros/_components/product-card/index.tsx",
+          "hash": "4539116573700385972",
+          "deps": [
+            "@bytebank/shared",
+            "npm:next"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/outros/_components/product-card/style.scss",
+          "hash": "17590031756705160865"
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/outros/meus-cartoes/page.tsx",
+          "hash": "9772359563849787582"
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/outros/page.module.scss",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/outros/page.tsx",
+          "hash": "11962171183286392578"
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/page.module.scss",
+          "hash": "11878038763103423989"
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/(financial-pages)/transferencias/page.tsx",
+          "hash": "18373237671675061703",
+          "deps": [
+            "@bytebank/shared"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/_components/loading-page/auth-redirect/index.tsx",
+          "hash": "2236701604584927307",
+          "deps": [
+            "@bytebank/shared",
+            "npm:react",
+            "npm:next"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/(pages)/_components/loading-page/loading-content/index.tsx",
+          "hash": "12262605353548134215",
+          "deps": [
+            "@bytebank/shared"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/actions/transactions/index.ts",
+          "hash": "11867515223365340328",
+          "deps": [
+            "@bytebank/shared"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/actions/users/index.ts",
+          "hash": "10263384567198015903",
+          "deps": [
+            "@bytebank/shared"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/api/bank-card/route.ts",
+          "hash": "2517824264184312771",
+          "deps": [
+            "npm:next",
+            "@bytebank/shared"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/api/login/route.ts",
+          "hash": "4711812390866435725",
+          "deps": [
+            "npm:next",
+            "npm:bcrypt",
+            "@bytebank/shared"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/api/register/route.ts",
+          "hash": "9779071616406719769",
+          "deps": [
+            "npm:next",
+            "npm:bcrypt"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/api/transactions/[id]/route.ts",
+          "hash": "4109514478227875914",
+          "deps": [
+            "npm:next"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/api/transactions/route.ts",
+          "hash": "9001364830351530848",
+          "deps": [
+            "npm:next",
+            "@bytebank/shared"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/api/users/[id]/route.ts",
+          "hash": "6591047060139090585",
+          "deps": [
+            "npm:next",
+            "npm:bcrypt"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/global.scss",
+          "hash": "9495392915243712435"
+        },
+        {
+          "file": "apps/core/bytebank/src/app/layout.tsx",
+          "hash": "14753487800112196391",
+          "deps": [
+            "npm:next"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/not-found.tsx",
+          "hash": "3761209186490342831",
+          "deps": [
+            "@bytebank/shared",
+            "npm:next"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/page.module.scss",
+          "hash": "13534763716101181907"
+        },
+        {
+          "file": "apps/core/bytebank/src/app/page.spec.tsx",
+          "hash": "3438307026967012160",
+          "deps": [
+            "npm:@testing-library/react"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/src/app/page.tsx",
+          "hash": "2451457968595730859",
+          "deps": [
+            "@bytebank/shared",
+            "npm:react",
+            "npm:next"
+          ]
+        },
+        {
+          "file": "apps/core/bytebank/tsconfig.json",
+          "hash": "5815976534703359091"
+        },
+        {
+          "file": "apps/core/bytebank/tsconfig.spec.json",
+          "hash": "5667077840779508676"
+        }
+      ]
+    }
+  }
+}

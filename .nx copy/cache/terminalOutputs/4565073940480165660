@@ -1,0 +1,80 @@
+> next dev --turbopack
+
+   [1m[38;2;173;127;168m▲ Next.js 15.2.5[39m[22m (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.29:3000
+
+ [32m[1m✓[22m[39m Starting...
+ [32m[1m✓[22m[39m Ready in 1814ms
+ [37m[1m○[22m[39m Compiling / ...
+ [32m[1m✓[22m[39m Compiled / in 610ms
+ GET / [32m200[39m in 753ms
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. Please report the content of /var/folders/vn/ynvf4nln5gs6jfd0_zdw0m0w0000gp/T/next-panic-57521c7f6f167de1a8464174fa16b1a9.log, along with a description of what you were doing when the error occurred, to https://github.com/vercel/next.js/issues/new?template=1.bug_report.yml
+[Error: ENOENT: no such file or directory, scandir '/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'scandir'[39m,
+  path: [32m'/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'[39m
+}
+ [31m[1m⨯[22m[39m unhandledRejection: [Error: ENOENT: no such file or directory, scandir '/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'scandir'[39m,
+  path: [32m'/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'[39m
+}
+ [31m[1m⨯[22m[39m unhandledRejection:  [Error: ENOENT: no such file or directory, scandir '/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'scandir'[39m,
+  path: [32m'/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'[39m
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'scandir'[39m,
+  path: [32m'/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'[39m
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'scandir'[39m,
+  path: [32m'/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'[39m
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'scandir'[39m,
+  path: [32m'/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'[39m
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'scandir'[39m,
+  path: [32m'/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'[39m
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'scandir'[39m,
+  path: [32m'/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'[39m
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'scandir'[39m,
+  path: [32m'/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'[39m
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'scandir'[39m,
+  path: [32m'/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'[39m
+}
+[Error: ENOENT: no such file or directory, scandir '/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'] {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'scandir'[39m,
+  path: [32m'/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/apps/core/bytebank/src/app'[39m
+}
+ [37m[1m [22m[39m Reload env: .env
+^C[?25h

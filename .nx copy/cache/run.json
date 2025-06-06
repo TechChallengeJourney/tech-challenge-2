@@ -1,0 +1,9 @@
+{
+  "run": {
+    "command": "nx dev bytebank --turbopack",
+    "startTime": "2025-06-06T00:15:20.373Z",
+    "endTime": "2025-06-06T00:23:07.185Z",
+    "inner": false
+  },
+  "tasks": []
+}

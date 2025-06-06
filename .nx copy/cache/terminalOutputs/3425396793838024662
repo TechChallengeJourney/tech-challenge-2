@@ -1,0 +1,30 @@
+> next dev --turbopack
+
+   [1m[38;2;173;127;168m▲ Next.js 15.2.5[39m[22m (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.29:3000
+   - Environments: .env
+
+ [32m[1m✓[22m[39m Starting...
+ [32m[1m✓[22m[39m Ready in 753ms
+ [32m[1m✓[22m[39m Compiled /api/login in 288ms
+ POST /api/login [32m200[39m in 741ms
+ [37m[1m○[22m[39m Compiling /home ...
+ [32m[1m✓[22m[39m Compiled /home in 1930ms
+ GET /home [32m200[39m in 1979ms
+ GET /home [32m200[39m in 46ms
+ [32m[1m✓[22m[39m Compiled /api/transactions in 195ms
+ GET /api/transactions?userId=c0d9 [32m200[39m in 219ms
+ [37m[1m○[22m[39m Compiling /investimentos ...
+ [32m[1m✓[22m[39m Compiled /investimentos in 582ms
+ GET /investimentos [32m200[39m in 616ms
+ [32m[1m✓[22m[39m Compiled /outros in 488ms
+ GET /outros [32m200[39m in 514ms
+ [37m[1m○[22m[39m Compiling /outros/meus-cartoes ...
+ [32m[1m✓[22m[39m Compiled /outros/meus-cartoes in 518ms
+ GET /outros/meus-cartoes [32m200[39m in 540ms
+ [32m[1m✓[22m[39m Compiled /api/bank-card in 124ms
+ GET /api/bank-card?userId=c0d9 [32m200[39m in 144ms
+ GET /api/bank-card?userId=c0d9 [32m200[39m in 22ms
+ GET /investimentos [32m200[39m in 29ms
+^C[?25h

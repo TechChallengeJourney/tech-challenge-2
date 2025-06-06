@@ -1,0 +1,89 @@
+> next dev --turbopack
+
+   [1m[38;2;173;127;168m▲ Next.js 15.2.5[39m[22m (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.29:3000
+   - Environments: .env
+
+ [32m[1m✓[22m[39m Starting...
+ [32m[1m✓[22m[39m Ready in 779ms
+ [37m[1m○[22m[39m Compiling / ...
+ [32m[1m✓[22m[39m Compiled / in 2.1s
+ [31m[1m⨯[22m[39m ./apps/core/bytebank/src/app/global.scss
+Error evaluating Node.js code
+Error: Can't find stylesheet to import.
+  ╷
+1 │ @import 'variables.scss';
+  │         ^^^^^^^^^^^^^^^^
+  ╵
+  src/app/global.scss 1:9  root stylesheet
+Caused by: Error: Can't find stylesheet to import.
+  ╷
+1 │ @import 'variables.scss';
+  │         ^^^^^^^^^^^^^^^^
+  ╵
+  src/app/global.scss 1:9  root stylesheet
+    [at Object.wrapException (/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/node_modules/sass/sass.dart.js:1237:17)]
+    [at NodeImporter._handleImportResult$4 (/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/node_modules/sass/sass.dart.js:87729:17)]
+    [at /Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/node_modules/sass/sass.dart.js:87649:50]
+    [at _wrapJsFunctionForAsync_closure.$protected (/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/node_modules/sass/sass.dart.js:3828:15)]
+    [at _wrapJsFunctionForAsync_closure.call$2 (/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/node_modules/sass/sass.dart.js:28886:12)]
+    [at _awaitOnObject_closure.call$1 (/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/node_modules/sass/sass.dart.js:28874:32)]
+    [at Object._rootRunUnary (/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/node_modules/sass/sass.dart.js:4203:18)]
+    [at StaticClosure.<anonymous> (/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/node_modules/sass/sass.dart.js:101628:16)]
+    [at _CustomZone.runUnary$2$2 (/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/node_modules/sass/sass.dart.js:30283:39)]
+    [at _Future__propagateToListeners_handleValueCallback.call$0 (/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/node_modules/sass/sass.dart.js:29355:51)]
+
+
+ [32m[1m✓[22m[39m Compiled /_error in 364ms
+ GET / [31m500[39m in 2561ms
+ [33m[1m⚠[22m[39m Found a change in next.config.js. Restarting the server to apply the changes...
+   [1m[38;2;173;127;168m▲ Next.js 15.2.5[39m[22m (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.29:3000
+   - Environments: .env
+
+ [32m[1m✓[22m[39m Starting...
+ [32m[1m✓[22m[39m Ready in 899ms
+ [37m[1m○[22m[39m Compiling / ...
+ [32m[1m✓[22m[39m Compiled / in 2.1s
+ [31m[1m⨯[22m[39m ./apps/core/bytebank/src/app/global.scss
+Error evaluating Node.js code
+Error: Can't find stylesheet to import.
+  ╷
+1 │ @import 'variables.scss';
+  │         ^^^^^^^^^^^^^^^^
+  ╵
+  src/app/global.scss 1:9  root stylesheet
+Caused by: Error: Can't find stylesheet to import.
+  ╷
+1 │ @import 'variables.scss';
+  │         ^^^^^^^^^^^^^^^^
+  ╵
+  src/app/global.scss 1:9  root stylesheet
+    [at Object.wrapException (/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/node_modules/sass/sass.dart.js:1237:17)]
+    [at NodeImporter._handleImportResult$4 (/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/node_modules/sass/sass.dart.js:87729:17)]
+    [at /Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/node_modules/sass/sass.dart.js:87649:50]
+    [at _wrapJsFunctionForAsync_closure.$protected (/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/node_modules/sass/sass.dart.js:3828:15)]
+    [at _wrapJsFunctionForAsync_closure.call$2 (/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/node_modules/sass/sass.dart.js:28886:12)]
+    [at _awaitOnObject_closure.call$1 (/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/node_modules/sass/sass.dart.js:28874:32)]
+    [at Object._rootRunUnary (/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/node_modules/sass/sass.dart.js:4203:18)]
+    [at StaticClosure.<anonymous> (/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/node_modules/sass/sass.dart.js:101628:16)]
+    [at _CustomZone.runUnary$2$2 (/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/node_modules/sass/sass.dart.js:30283:39)]
+    [at _Future__propagateToListeners_handleValueCallback.call$0 (/Users/daniela.farias/Documents/Studies/tech-challenge-2/bytebank/node_modules/sass/sass.dart.js:29355:51)]
+
+
+ [32m[1m✓[22m[39m Compiled /_error in 348ms
+ GET / [31m500[39m in 2529ms
+ [33m[1m⚠[22m[39m Found a change in next.config.js. Restarting the server to apply the changes...
+   [1m[38;2;173;127;168m▲ Next.js 15.2.5[39m[22m (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.29:3000
+   - Environments: .env
+
+ [32m[1m✓[22m[39m Starting...
+ [32m[1m✓[22m[39m Ready in 743ms
+ [37m[1m○[22m[39m Compiling / ...
+ [32m[1m✓[22m[39m Compiled / in 2s
+ GET / [32m200[39m in 2274ms
+^C[?25h
