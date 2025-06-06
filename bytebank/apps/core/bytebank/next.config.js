@@ -2,6 +2,7 @@
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { composePlugins, withNx } = require('@nx/next');
+const path = require('path');
 
 /**
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
@@ -18,3 +19,9 @@ const plugins = [
 ];
 
 module.exports = composePlugins(...plugins)(nextConfig);
+
+module.exports = {
+  sassOptions: {
+    includePaths: [path.join(__dirname, '../../../libs/core/shared/src/lib/styles')],
+  },
+};

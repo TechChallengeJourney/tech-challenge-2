@@ -1,0 +1,43 @@
+@import '../../styles/variables.scss';
+
+.menu-item {
+  a {
+    padding: 16px 0;
+    min-width: 126px;
+    text-decoration: none !important;
+    cursor: pointer;
+  }
+  
+  &.active a {
+    font-weight: bold;
+  }
+
+  &.disabled {
+    pointer-events: none;
+  }
+}
+
+.menu-desktop {
+  display: flex;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
+}
+
+.menu-mobile {
+  display: none;
+
+  @media (max-width: 900px) {
+    display: flex;
+  }
+}
+
+.mobile {
+  .menu-mobile {
+    display: flex !important;
+  }
+  .menu-desktop {
+    display: none !important;
+  }
+}

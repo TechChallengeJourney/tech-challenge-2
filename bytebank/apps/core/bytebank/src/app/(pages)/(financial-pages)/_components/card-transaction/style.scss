@@ -1,0 +1,17 @@
+.bytebank-card-content {
+  border: none !important;
+  background-image: 
+  url('/images/pixels-04.png'), 
+  url('/images/pixels-03.png') !important;
+  background-position: 
+  right top, 
+  left bottom !important;
+  background-repeat: 
+  no-repeat, no-repeat !important;
+
+  @media (max-width: 675px) {
+    img {
+      padding-top:2rem;
+    }
+  }
+}

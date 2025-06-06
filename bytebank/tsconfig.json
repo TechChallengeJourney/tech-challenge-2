@@ -10,9 +10,6 @@
       "path": "./apps/core/bytebank"
     },
     {
-      "path": "./core"
-    },
-    {
       "path": "./libs/core/shared"
     }
   ]
