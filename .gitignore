@@ -53,3 +53,5 @@ storybook-static
 /scripts
 /bytebank/node_modules
 .vscode
+vite.config.*.timestamp*
+vitest.config.*.timestamp*
