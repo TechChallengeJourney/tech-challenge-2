@@ -26,8 +26,8 @@
     "typeRoots": ["src/types", "node_modules/@types"]
   },
   "include": [
-    "../../apps/bytebank/.next/types/**/*.ts",
-    "../../dist/apps/bytebank/.next/types/**/*.ts",
+    "../../apps/core/bytebank/.next/types/**/*.ts",
+    "../../dist/apps/core/bytebank/.next/types/**/*.ts",
     "next-env.d.ts",
     "src/**/*.js",
     "src/**/*.jsx",

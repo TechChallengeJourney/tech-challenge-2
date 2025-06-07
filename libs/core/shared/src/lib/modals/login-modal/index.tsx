@@ -1,7 +1,8 @@
 import { Box, Link } from "@mui/material";
 import { ReactElement, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
-import { useUser, User, BytebankModal, BytebankInputController, BytebankButton, BytebankText } from "../../shared";
+import { useUser, User, BytebankModal, BytebankInputController, BytebankText } from "../../shared";
+import { BytebankButton } from '@bytebank/design-system';
 import { BytebankAccessModalProps } from "../../classes/models/access-modal";
 import { AccessModalType } from "../../classes/enums/access-modal-type.enum";
 

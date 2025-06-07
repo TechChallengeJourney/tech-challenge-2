@@ -1,6 +1,6 @@
 'use client';
 import { ThemeProvider } from '@mui/material/styles';
-import defaultTheme from '../../themes/default.theme';
+import { defaultTheme } from '@bytebank/design-system';
 import { BytebankHeader } from '../header';
 import { Box } from '@mui/material';
 import { WrapperRouteProps } from '../../classes/models/wrapper-route';

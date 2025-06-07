@@ -1,5 +1,5 @@
 import React from "react";
-import { defaultTheme } from '@bytebank/shared';
+import { defaultTheme } from '@bytebank/design-system';
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import type { Preview } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';

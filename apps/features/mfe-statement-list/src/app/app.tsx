@@ -1,13 +1,17 @@
 // Uncomment this line to use CSS modules
 // import styles from './app.module.scss';
 import NxWelcome from './nx-welcome';
-
+import { BytebankButton, defaultTheme } from '@bytebank/design-system';
+import { ThemeProvider } from '@emotion/react';
 import { Route, Routes, Link } from 'react-router-dom';
 
 export function App() {
   return (
     <div>
-      <NxWelcome title="@bytebank/mfe-statement-list" />
+      <ThemeProvider theme={defaultTheme}>
+        <BytebankButton label={'Teste'} onClick={() => console.log('teste')} color={'primary'} variant={'contained'}></BytebankButton>
+      </ThemeProvider>
+        <NxWelcome title="@bytebank/mfe-statement-list" />
 
       {/* START: routes */}
       {/* These routes and navigation have been generated for you */}

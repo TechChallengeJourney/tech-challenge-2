@@ -1,7 +1,7 @@
 const config = {
   stories: [
-    '../libs/shared/src/**/*.mdx',
-    '../libs/shared/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../libs/design-system/src/**/*.mdx',
+    '../libs/design-system/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
 
   addons: [
@@ -18,7 +18,7 @@ const config = {
     options: {},
   },
 
-  staticDirs: ['../apps/bytebank/public'],
+  staticDirs: ['../apps/core/bytebank/public'],
   typescript: {
     reactDocgen: "react-docgen-typescript"
   }

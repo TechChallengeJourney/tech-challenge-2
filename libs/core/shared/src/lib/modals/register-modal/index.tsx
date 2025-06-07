@@ -1,8 +1,9 @@
 import { Box, Link } from "@mui/material";
 import { ReactElement, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
-import { User, BytebankModal, BytebankInputController, BytebankButton, BytebankText, BytebankAccessModalProps } from "../../shared";
+import { User, BytebankModal, BytebankInputController, BytebankText, BytebankAccessModalProps } from "../../shared";
 import { AccessModalType } from "../../classes/enums/access-modal-type.enum";
+import { BytebankButton } from '@bytebank/design-system';
 
 export function BytebankRegisterModal({ open, onClose, onSubmit, openModal }: BytebankAccessModalProps): ReactElement {
     const [isLoading, setLoading] = useState(false);

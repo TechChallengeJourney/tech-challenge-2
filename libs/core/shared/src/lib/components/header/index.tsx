@@ -20,7 +20,7 @@ import {
 import LoginIcon from '@mui/icons-material/Login';
 import AppRegistrationRoundedIcon from '@mui/icons-material/AppRegistrationRounded';
 import { BytebankMenu } from '../menu';
-import { BytebankButton } from '../button';
+import { BytebankButton } from '@bytebank/design-system';
 import { ReactElement, useState } from 'react';
 import { BytebankText } from '../text';
 import {
