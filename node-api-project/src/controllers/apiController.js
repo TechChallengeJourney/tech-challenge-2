@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const User = require('../models/User');
 
 const dataPath = path.join(__dirname, '../data/data.json');
 
@@ -16,47 +17,82 @@ const writeData = (data) => {
 };
 
 // Get all users
-exports.getUsers = (req, res) => {
-    const data = readData();
-    // Garante que todos os campos estejam presentes e id seja string
-    const users = (data.users || []).map(u => ({
-        id: String(u.id),
-        name: u.name || '',
-        email: u.email || '',
-        password: u.password || ''
-    }));
-    res.json(users);
+exports.getUsers = async (req, res) => {
+    try {
+        const users = await User.find();
+        // Garante que todos os campos estejam presentes e id seja string
+        const formatted = users.map(u => ({
+            id: String(u.id),
+            name: u.name || '',
+            email: u.email || '',
+            password: u.password || ''
+        }));
+        res.json(formatted);
+    } catch (err) {
+        res.status(500).json({ message: 'Erro ao buscar usuários', error: err.message });
+    }
 };
 
 // Update user data
-exports.updateUser = (req, res) => {
+exports.updateUser = async (req, res) => {
     const { id } = req.params;
     const updatedUser = req.body;
-    const data = readData();
-
-    const userIndex = data.users.findIndex(user => user.id === id);
-    if (userIndex === -1) {
-        return res.status(404).json({ message: 'User not found' });
+    try {
+        const user = await User.findOneAndUpdate(
+            { id },
+            updatedUser,
+            { new: true }
+        );
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.json({
+            id: String(user.id),
+            name: user.name,
+            email: user.email,
+            password: user.password
+        });
+    } catch (err) {
+        res.status(500).json({ message: 'Erro ao atualizar usuário', error: err.message });
     }
-
-    data.users[userIndex] = { ...data.users[userIndex], ...updatedUser };
-    writeData(data);
-    res.json(data.users[userIndex]);
 };
 
 // Delete a user
-exports.deleteUser = (req, res) => {
+exports.deleteUser = async (req, res) => {
     const { id } = req.params;
-    const data = readData();
-
-    const userIndex = data.users.findIndex(user => user.id === id);
-    if (userIndex === -1) {
-        return res.status(404).json({ message: 'User not found' });
+    try {
+        const user = await User.findOneAndDelete({ id });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(204).send();
+    } catch (err) {
+        res.status(500).json({ message: 'Erro ao deletar usuário', error: err.message });
     }
+};
 
-    data.users.splice(userIndex, 1);
-    writeData(data);
-    res.status(204).send();
+// POST /users - cria um novo usuário
+exports.createUser = async (req, res) => {
+    try {
+        const { id, name, email, password } = req.body;
+        console.log('POST /users body:', req.body); // LOG
+        if (!id || !name || !email || !password) {
+            console.log('POST /users erro: campos obrigatórios faltando'); // LOG
+            return res.status(400).json({ message: 'Todos os campos são obrigatórios.' });
+        }
+        const exists = await User.findOne({ id });
+        if (exists) {
+            console.log('POST /users erro: usuário já existe'); // LOG
+            return res.status(409).json({ message: 'Usuário com esse id já existe.' });
+        }
+        const user = new User({ id, name, email, password });
+        await user.save();
+        console.log('POST /users sucesso:', user); // LOG
+        res.status(201).json({ id, name, email, password });
+    } catch (err) {
+        console.error('POST /users erro:', err); // LOG
+        res.status(500).json({ message: 'Erro ao criar usuário', error: err.message });
+    }
 };
 
 // Extracts

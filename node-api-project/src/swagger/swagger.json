@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "title": "Node API Project"
   },
-  "host": "localhost:3000",
+  "host": "localhost:4000",
   "basePath": "/api",
   "schemes": [
     "http"
@@ -70,6 +70,23 @@
           "404": {
             "description": "User not found"
           }
+        }
+      },
+      "post": {
+        "summary": "Create a new user",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/User" }
+          }
+        ],
+        "responses": {
+          "201": { "description": "User created successfully" },
+          "400": { "description": "Missing required fields" },
+          "409": { "description": "User already exists" },
+          "500": { "description": "Internal server error" }
         }
       }
     },
