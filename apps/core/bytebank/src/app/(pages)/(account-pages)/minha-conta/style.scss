@@ -1,0 +1,21 @@
+.my-account {
+    &__card {
+        &-image {
+            img {
+                width: 40vw;
+            }
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .my-account {
+        &__card {
+            &-image {
+                img {
+                    width: 100%;
+                }
+            }
+        }
+    }    
+}

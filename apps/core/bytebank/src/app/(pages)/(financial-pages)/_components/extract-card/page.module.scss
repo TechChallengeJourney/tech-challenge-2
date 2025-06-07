@@ -1,0 +1,17 @@
+.extract {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;    
+    
+/* Para desktop, quando a largura é maior que 1024px */
+@media (min-width: 1025px) {
+    top: 0;
+    right: 0;
+}
+
+    /* Para dispositivos entre 768px e 1024px (tablets e iPads) */
+    @media (max-width: 1024px) {
+        margin-top: 39px;
+    }
+}
