@@ -27,5 +27,10 @@
     "src/**/*.spec.ts",
     "src/**/*.test.ts"
   ],
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
+  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
+  "references": [
+    {
+      "path": "../core/shared/tsconfig.lib.json"
+    }
+  ]
 }

@@ -1,7 +1,13 @@
 {
   "files": [],
-  "include": [],
+  "include": [
+    "../../libs/shared/src/lib/themes/theme.tsx",
+    "../../libs/core/shared/src/lib/styles",
+  ],
   "references": [
+    {
+      "path": "../../../libs/core/shared"
+    },
     {
       "path": "./tsconfig.app.json"
     },

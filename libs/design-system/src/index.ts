@@ -1,1 +1,1 @@
-export * from './lib/design-system';
+export { registerAllWebComponents } from './lib/define-all-components';

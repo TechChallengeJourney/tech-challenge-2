@@ -19,7 +19,7 @@ import {
 } from '@mui/icons-material';
 import { Box, useMediaQuery } from '@mui/material';
 import { Theme, useTheme } from '@mui/material/styles';
-import { ReactElement, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import styles from './page.module.scss';
 import { useRouter } from 'next/navigation';
 import BytebankAuthRedirect from './(pages)/_components/loading-page/auth-redirect';
@@ -58,6 +58,13 @@ const BENEFITS: Benefit[] = [
 ];
 
 export default function Index(): ReactElement {
+
+  useEffect(() => {
+    import('@bytebank/design-system').then((module) => {
+      module.registerAllWebComponents();
+    })
+  }, []);
+
   const router = useRouter();
   const theme = useTheme<Theme>();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -196,6 +203,7 @@ export default function Index(): ReactElement {
 
   return (
     <BytebankWrapper>
+      <my-button label="Teste 1" onClick={() => console.log("AAA")} />
       <BytebankAuthRedirect>
         <div className={styles.contentWrapper}>
           {renderBanner()}

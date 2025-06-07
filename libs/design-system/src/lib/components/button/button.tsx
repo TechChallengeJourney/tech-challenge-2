@@ -1,9 +1,12 @@
 import React from 'react';
-
-const MyButton: React.FC<{ label: string; onClick: () => void }> = ({ label, onClick }) => {
+import Button from '@mui/material/Button';
+import { ThemeProvider } from '@mui/material/styles';
+import { defaultTheme } from '@bytebank/shared';
+export const MyButton: React.FC<{ label: string; onClick: () => void }> = ({ label, onClick }) => {
   return (
-    <button onClick={onClick}>{label}</button>
+    // <ThemeProvider theme={defaultTheme}>
+        <button style={{ background: 'red' }} onClick={onClick}>{label}</button>
+    // </ThemeProvider>
   );
 };
 
-export default MyButton;

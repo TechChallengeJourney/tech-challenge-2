@@ -1,11 +1,11 @@
 import ReactDOM from "react-dom/client";
-import Button from "./button";
+import { MyButton } from "./button";
 
 export const normalizeAttribute = (attribute: string) => {
   return attribute.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
 };
 
-class ButtonComponent extends HTMLElement {
+export class MyButtonElement extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
@@ -14,7 +14,7 @@ class ButtonComponent extends HTMLElement {
   connectedCallback() {
     const props = this.getPropsFromAttributes<any>();
     const root = ReactDOM.createRoot(this.shadowRoot as ShadowRoot);
-    root.render(<Button {...props} />);
+    root.render(<MyButton {...props} />);
   }
 
   private getPropsFromAttributes<T>(): T {
@@ -28,5 +28,3 @@ class ButtonComponent extends HTMLElement {
     return props as T;
   }
 }
-
-export default ButtonComponent;
