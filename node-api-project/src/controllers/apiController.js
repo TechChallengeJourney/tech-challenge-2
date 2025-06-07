@@ -18,7 +18,14 @@ const writeData = (data) => {
 // Get all users
 exports.getUsers = (req, res) => {
     const data = readData();
-    res.json(data.users);
+    // Garante que todos os campos estejam presentes e id seja string
+    const users = (data.users || []).map(u => ({
+        id: String(u.id),
+        name: u.name || '',
+        email: u.email || '',
+        password: u.password || ''
+    }));
+    res.json(users);
 };
 
 // Update user data
@@ -86,7 +93,16 @@ exports.deleteExtract = (req, res) => {
 // Cards
 exports.getCards = (req, res) => {
     const data = readData();
-    res.json(data.cards || []);
+    // Garante que todos os campos estejam presentes e id seja string
+    const cards = (data.cards || []).map(c => ({
+        id: String(c.id),
+        userId: String(c.userId),
+        cardNumber: c.cardNumber || '',
+        name: c.name || '',
+        functions: Array.isArray(c.functions) ? c.functions : [],
+        variant: c.variant || ''
+    }));
+    res.json(cards);
 };
 
 exports.updateCard = (req, res) => {
