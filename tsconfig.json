@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": [],
+  "references": [
+    {
+      "path": "./apps/core/bytebank-e2e"
+    },
+    {
+      "path": "./apps/core/bytebank"
+    },
+    {
+      "path": "./libs/core/shared"
+    },
+    {
+      "path": "./apps/features/mfe-statement-list"
+    },
+    {
+      "path": "./libs/design-system"
+    }
+  ]
+}

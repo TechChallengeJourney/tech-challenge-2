@@ -1,0 +1,43 @@
+.pageWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    padding-bottom: 70px;
+}
+
+
+.containerPage {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
+    width: 100%;
+    box-sizing: border-box;
+
+    // Mobile / Tablet
+    @media (max-width: 1023px) {
+        display: block;
+        flex-direction: column;
+    }
+}
+
+.leftColumn {
+    display: flex;
+    flex-direction: column;
+
+    @media (max-width: 1023px) {
+        width: 100% !important;
+        max-width: 100%;
+    }
+}
+
+.rightColumn {
+    @media (max-width: 1023px) {
+        width: 100% !important;
+        max-width: 100%;
+    }
+}

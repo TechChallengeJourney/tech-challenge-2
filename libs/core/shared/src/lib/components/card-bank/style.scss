@@ -1,0 +1,17 @@
+.card-bank {
+    &--container {
+        max-width: 24em;
+        width: 22em;
+        min-width: fit-content;
+        &__card {
+            height: 13em;
+            background-image: url(/images/pixels-01.png) !important;
+            background-position-x: right !important;
+            background-repeat: no-repeat !important;
+        }
+
+        @media (max-width: 720px) {
+            width: 100%;
+        }
+    }
+}

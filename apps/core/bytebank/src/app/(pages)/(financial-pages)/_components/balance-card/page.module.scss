@@ -1,0 +1,111 @@
+.card {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-between;
+    min-height: 400px;
+
+    @media (max-width: 767px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        min-height: 655px
+    }
+}
+
+.balanceContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  
+    /* apenas para telas < 600px */
+    @media (max-width: 599px) {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+    }
+  }
+
+.alignRow {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.leftBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    margin: 32px;
+}
+
+
+.rightBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    @media (max-width: 599px) {
+        margin: 50px;
+    }
+
+    @media (min-width: 600px) {
+        margin-top: 12em;
+    }
+
+}
+
+.greetingBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    @media (max-width: 599px) {
+        margin: 16px;
+    }
+}
+
+
+.balanceAccountWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+}
+
+
+.balanceWrapper {
+    @extend .alignRow;
+    margin-bottom: 16px;
+    margin-top: 16px;
+    justify-content: space-between;
+}
+
+.balanceAccountData {
+    margin-top: 16px;
+}
+
+.text {
+    line-height: 24px;
+}
+
+.desktopOnly {
+    display: none;
+
+    @media (min-width: 600px) {
+        display: block;
+    }
+}
+
+.mobileOnly {
+    display: block;
+    margin-top: 24px;
+
+    @media (min-width: 600px) {
+        display: none;
+    }
+}
