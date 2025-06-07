@@ -1,4 +1,3 @@
-'use client';
 import { Box } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import './style.scss';
@@ -30,11 +29,11 @@ export default function BytebankInput({
   error = false,
   helperText = '',
   autoComplete = '',
-  mask
+  mask,
 }: InputProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newValue = (e.target as HTMLInputElement).value.replace(/\D/g, '');
-    
+
     if (mask === 'currency') {
       newValue = newValue.replace(/^0+/, '');
 
@@ -53,7 +52,11 @@ export default function BytebankInput({
   return (
     <Box className="bytebank-input">
       <TextField
-        value={mask === 'currency' && typeof value === 'string' ? formatCurrency(value) : value}
+        value={
+          mask === 'currency' && typeof value === 'string'
+            ? formatCurrency(value)
+            : value
+        }
         onChange={handleChange}
         label={label}
         type={type}

@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { BytebankButton } from './button';
 
 const meta = {
-  title: 'Components/Button', // O título aqui deve estar correto
+  title: 'Components/BytebankButton', // O título aqui deve estar correto
   component: BytebankButton,
   tags: ['autodocs'],
   parameters: {
