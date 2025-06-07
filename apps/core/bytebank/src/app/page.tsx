@@ -59,12 +59,6 @@ const BENEFITS: Benefit[] = [
 
 export default function Index(): ReactElement {
 
-  useEffect(() => {
-    import('@bytebank/design-system').then((module) => {
-      module.registerAllWebComponents();
-    })
-  }, []);
-
   const router = useRouter();
   const theme = useTheme<Theme>();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -203,7 +197,6 @@ export default function Index(): ReactElement {
 
   return (
     <BytebankWrapper>
-      <my-button label="Teste 1" onClick={() => console.log("AAA")} />
       <BytebankAuthRedirect>
         <div className={styles.contentWrapper}>
           {renderBanner()}

@@ -1,16 +1,28 @@
 {
-  "files": [],
-  "include": [],
-  "references": [
-    {
-      "path": "../core/shared"
-    },
-    {
-      "path": "./tsconfig.lib.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
+  "compilerOptions": {
+    "types": ["jest", "node"],
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "declaration": false,
+    "experimentalDecorators": true,
+    "lib": [
+      "dom",
+      "es2022",
+      "esnext"
+    ],
+    "moduleResolution": "bundler",
+    "module": "esnext",
+    "target": "es2022",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "jsx": "react",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "h.Fragment"
+  },
+  "include": [
+    "src"
   ],
-  "extends": "../../tsconfig.base.json"
+  "exclude": [
+    "node_modules"
+  ]
 }
