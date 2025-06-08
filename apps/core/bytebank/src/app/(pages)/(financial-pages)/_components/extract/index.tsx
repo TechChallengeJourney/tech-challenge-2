@@ -35,7 +35,7 @@ export function BytebankExtract() {
     };
 
     getTransactions();
-  }, [user]);
+  }, [user, fetchTransactions]);
 
   const numberFormat = (value: number) =>
     value.toLocaleString('pt-BR', {

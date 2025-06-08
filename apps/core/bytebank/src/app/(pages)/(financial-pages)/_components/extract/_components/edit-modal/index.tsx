@@ -26,7 +26,7 @@ export default function EditExtractModal({
     
     methods.reset({ value: (Number(item?.value) * 100).toString() || '' });
 
-  }, [item])
+  }, [item, methods])
   return (
     <BytebankModal
       open={open}
