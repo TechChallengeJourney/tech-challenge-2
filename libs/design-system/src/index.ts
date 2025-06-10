@@ -1,1 +1,2 @@
-export * from './lib/design-system/design-system.component';
+export * from './lib/public-api';
+export * from './lib/components';

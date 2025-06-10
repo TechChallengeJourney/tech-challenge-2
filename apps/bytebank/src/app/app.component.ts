@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
 import { initFlowbite } from 'flowbite';
 
 @Component({
@@ -8,11 +7,12 @@ import { initFlowbite } from 'flowbite';
   selector: 'bytebank-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppComponent {
-  title = 'bytebank';
+  title = 'Bytebank';
 
   constructor() {
-    // initFlowbite();
+    initFlowbite();
   }
 }
