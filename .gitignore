@@ -38,20 +38,9 @@ testem.log
 .DS_Store
 Thumbs.db
 
-/bytebank/.nx/cache
-/bytebank/.nx/workspace-data
 .nx/cache
 .nx/workspace-data
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md
 
-# Next.js
-.next
-out
-
-test-output
-storybook-static
-
-/scripts
-/bytebank/node_modules
-.vscode
-vite.config.*.timestamp*
-vitest.config.*.timestamp*
+.angular

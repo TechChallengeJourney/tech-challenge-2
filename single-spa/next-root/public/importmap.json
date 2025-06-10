@@ -1,6 +1,0 @@
-{
-  "imports": {
-    "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.3/lib/system/single-spa.min.js",
-    "mfe-react": "http://localhost:5173/mfe-react.js"
-  }
-}
