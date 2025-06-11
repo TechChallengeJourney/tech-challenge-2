@@ -1,5 +1,1 @@
-import defaultTheme from './lib/styles/default.theme';
-
-export * from './lib/components';
-
-export { defaultTheme };
+export * from './lib/public-api';

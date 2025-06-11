@@ -1,8 +1,8 @@
 export default {
-  displayName: 'design-system',
+  displayName: 'bytebank',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/libs/design-system',
+  coverageDirectory: '../../coverage/apps/bytebank',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
