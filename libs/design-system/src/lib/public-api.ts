@@ -1,3 +1,4 @@
+import { Injector } from '@angular/core';
 import { BytebankButtonElement } from './components';
 import { wrapCustomElement } from './utils/wrapCustomElement';
 
@@ -29,3 +30,18 @@ export const reactComponentMap = Object.fromEntries(
 export const BytebankButton = reactComponentMap['BytebankButton'];
 
 export const registerElements = () => declarations;
+
+
+// const components = [
+//     { tag: 'app-custom-button', component: CustomButtonComponent },
+//   ];
+  
+// export function registerWebComponents(injector: Injector) {
+//     components.forEach(({ tag, component }) => {
+//         console.log(tag)
+//       if (!customElements.get(tag)) {
+//         const elem = createCustomElement(component, { injector });
+//         customElements.define(tag, elem);
+//       }
+//     });
+//   }

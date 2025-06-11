@@ -5,9 +5,28 @@
     <title>bytebank</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  <script type="module">
+    import '@material/web/all.js';
+    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+  </script>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
   </head>
   <body>
+    <md-dialog open>
+      <div slot="content">
+        A dialog that is opened by default.
+      </div>
+    </md-dialog>
     <bytebank-root></bytebank-root>
   </body>
 </html>

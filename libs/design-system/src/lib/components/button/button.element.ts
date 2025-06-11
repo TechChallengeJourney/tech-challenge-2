@@ -1,8 +1,23 @@
-import { LitElement, html } from 'lit';
+import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+ // importa o componente de button
 
 @customElement('bytebank-button')
 export class BytebankButtonElement extends LitElement {
+//   static override styles = css`button {
+//       background-color: var(--color-primary);
+//       color: red;
+//       padding: var(--spacing-medium);
+//       font-size: var(--font-size-medium);
+//       border-radius: var(--border-radius);
+//       border: none;
+//       cursor: pointer;
+//       transition: background-color 0.3s;
+//     }
+//     button:hover {
+//       background-color: var(--color-secondary);
+//     }
+//   `;
   private _name: string = '';
 
   @property()
@@ -15,17 +30,16 @@ export class BytebankButtonElement extends LitElement {
     this.requestUpdate('name', oldValue);
   }
 
-  override createRenderRoot() {
-    return this; // isso faz o componente usar o DOM padrão, não Shadow DOM
+  handleClick() {
+    const evento = new CustomEvent('submit', {
+      detail: { mensagem: 'Botão clicado' },
+      bubbles: true,       // permite que o evento "suba" na árvore DOM
+      composed: true,      // permite atravessar shadow DOM
+    });
+    this.dispatchEvent(evento);
   }
 
   override render() {
-    return html`<button
-      type="button"
-      class="text-white bg-red-700 hover:bg-black-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-    >
-      ${this.name}
-    </button>`;
+    return html`<md-outlined-button type="reset" @click="${this.handleClick}"><slot></slot></md-outlined-button>`;
   }
 }
-

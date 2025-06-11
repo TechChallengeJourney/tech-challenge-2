@@ -6,6 +6,7 @@ import { registerElements } from '@bytebank/design-system';
 import App from './app/app';
 
 registerElements();
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
