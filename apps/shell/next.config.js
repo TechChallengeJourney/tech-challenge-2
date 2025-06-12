@@ -1,0 +1,47 @@
+import NextFederationPlugin from "@module-federation/nextjs-mf";
+
+const PRODUCT_APP_URL =
+  process.env.NEXT_PUBLIC_PRODUCT_APP_URL || "http://localhost:3001";
+
+const CHECKOUT_APP_URL =
+  process.env.NEXT_PUBLIC_CHECKOUT_APP_URL || "http://localhost:3002";
+
+const remotes = (isServer) => {
+  const location = isServer ? "ssr" : "chunks";
+  return {
+    product: `product@${PRODUCT_APP_URL}/_next/static/${location}/remoteEntry.js`,
+    checkout: `checkout@${CHECKOUT_APP_URL}/_next/static/${location}/remoteEntry.js`,
+  };
+};
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  experimental: {
+    scrollRestoration: true,
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.unsplash.com",
+      },
+    ],
+  },
+  transpilePackages: ["@repo/ui"],
+  webpack(config, { isServer }) {
+    config.plugins.push(
+      new NextFederationPlugin({
+        name: "host",
+        remotes: remotes(isServer),
+        filename: "static/chunks/remoteEntry.js",
+        exposes: {},
+      })
+    );
+
+    return config;
+  },
+};
+
+export default nextConfig;

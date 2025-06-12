@@ -1,12 +1,12 @@
 {
-  "name": "web",
+  "name": "shell",
   "version": "0.1.0",
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack --port 3000",
-    "build": "next build",
-    "start": "next start",
+    "dev": "rm -rf .next; next build && NEXT_PRIVATE_LOCAL_WEBPACK=true next dev -p 4000",
+    "build": "next build && NEXT_PRIVATE_LOCAL_WEBPACK=true next build",
+    "start": "NEXT_PRIVATE_LOCAL_WEBPACK=true NODE_ENV=production next start -p 4000",
     "lint": "next lint --max-warnings 0",
     "check-types": "tsc --noEmit"
   },
@@ -17,12 +17,14 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "@module-federation/nextjs-mf": "^8.8.31",
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
     "@types/node": "^22.15.3",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
     "eslint": "^9.28.0",
-    "typescript": "5.8.2"
+    "typescript": "5.8.2",
+    "webpack": "^5.99.9"
   }
 }
