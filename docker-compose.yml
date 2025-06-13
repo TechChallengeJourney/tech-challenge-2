@@ -1,12 +1,12 @@
 version: '3.8'
 services:
-  next-root:
-    build: ./next-root
+  bytebank-shell:
+    build: ./apps/bytebank-shell
     ports:
       - "3000:3000"
     depends_on:
-      - mfe-react
-  mfe-react:
-    build: ./mfe-react
+      - mfe-investments
+  mfe-investments:
+    build: ./apps/mfe-investments
     ports:
-      - "5173:5173"
+      - "3001:3001"
