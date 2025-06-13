@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.scss';
-import Button from './components/button';
+import MfeButton from './components/button';
 
 function App() {
   return (
     <div className="App">
-      <Button />
+      <MfeButton />
       This is my MFE Investments
     </div>
   );

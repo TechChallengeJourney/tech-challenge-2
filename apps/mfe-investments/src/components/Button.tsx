@@ -1,5 +1,7 @@
-const Button = () => (
-    <button style={{ background: 'red' }}>MFE2 Button</button>
+import { Button } from "@mui/material";
+
+const MfeButton = () => (
+    <Button variant={"contained"}>MFE2 Button</Button>
   );
   
-  export default Button;
+  export default MfeButton;

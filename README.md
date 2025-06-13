@@ -17,7 +17,7 @@ This Turborepo includes the following packages/apps:
 ### Apps and Packages
 
 - `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
+- `bytebank-shell`: [Next.js](https://nextjs.org/) app
 - `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
 - `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
 - `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
@@ -76,9 +76,9 @@ npx turbo link
 
 Learn more about the power of Turborepo:
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+- [React](https://react.dev/reference/react)
+- [Material MUI](https://mui.com/material-ui/all-components/)
+- [Module Federation](https://module-federation.io/practice/frameworks/react/index.html)
+- [Rsbuild](https://rsbuild.rs)
+- [Storybook](https://storybook.js.org/docs)
+- [TurboRepo](https://turborepo.com/docs)
