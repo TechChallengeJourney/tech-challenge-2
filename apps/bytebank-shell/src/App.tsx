@@ -1,28 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import Button from 'remote/Button';
-import { Card } from '@repo/ui';
-import './App.css';
+import { BytebankCard } from '@repo/ui';
+import './App.scss';
+import { Box, Typography } from '@mui/material';
 
 function App() {
   return (
     <div className="App">
       <Button />
-      <Card title={'Titulo do card'} />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BytebankCard title={'Titulo do card'}>
+        <Box textAlign="left" minHeight={'10rem'} p={4}>
+          <Box pb={4}>
+            <Typography fontWeight={'bold'} variant="h6" color="black">
+              Nova transação
+            </Typography>
+          </Box>
+        </Box>
+      </BytebankCard>
     </div>
   );
 }
