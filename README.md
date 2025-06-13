@@ -74,7 +74,7 @@ npx turbo link
 
 ## Useful Links
 
-Learn more about the power of Turborepo:
+Learn more:
 
 - [React](https://react.dev/reference/react)
 - [Material MUI](https://mui.com/material-ui/all-components/)
