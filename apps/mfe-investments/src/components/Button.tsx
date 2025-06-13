@@ -1,7 +1,7 @@
-import { Button } from "@mui/material";
+import {BytebankButton} from "@repo/ui";
 
 const MfeButton = () => (
-    <Button variant={"contained"}>MFE2 Button</Button>
+    <BytebankButton variant={"contained"} label={"Botão do MFE Investimentos"}></BytebankButton>
   );
   
   export default MfeButton;

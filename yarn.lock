@@ -1373,6 +1373,14 @@
   resolved "https://registry.yarnpkg.com/@storybook/addon-onboarding/-/addon-onboarding-9.0.9.tgz#4cdd4457b37a8e925d292e6d62d18c97235fa72e"
   integrity sha512-aU8nWRr5HFBCGuScwJvOx3RVN7SkEt5ADzPWY4jwqWJyyLljcge2vO24F3tyh3mifmqb9MoPU/NoaJQTQ1xHmg==
 
+"@storybook/blocks@^8.6.14":
+  version "8.6.14"
+  resolved "https://registry.yarnpkg.com/@storybook/blocks/-/blocks-8.6.14.tgz#9d39e64f4fd0a446d96f1f5d6b220d4812fc05fa"
+  integrity sha512-rBMHAfA39AGHgkrDze4RmsnQTMw1ND5fGWobr9pDcJdnDKWQWNRD7Nrlxj0gFlN3n4D9lEZhWGdFrCbku7FVAQ==
+  dependencies:
+    "@storybook/icons" "^1.2.12"
+    ts-dedent "^2.0.0"
+
 "@storybook/builder-vite@9.0.9":
   version "9.0.9"
   resolved "https://registry.yarnpkg.com/@storybook/builder-vite/-/builder-vite-9.0.9.tgz#3073a191718c42181d6fb00c8de2a9823ece9636"
