@@ -1,8 +1,8 @@
 import { type JSX } from "react";
 import { Card } from '@mui/material';
 
-// import styles from './card.module.scss';
-// import { palette } from '../../shared';
+import './card.module.scss';
+import { palette } from '../../styles/palette';
 
 
 const bgIllustrationConfig = {
@@ -38,8 +38,8 @@ export function BytebankCard({
     let bgClass = '';
 
     if (bgIllustration) {
-        bgcolor = '#333';
-        bgClass = ``
+        bgcolor = palette[bgIllustrationConfig[bgIllustration]];
+        bgClass = `.bgConfig ${`.bgConfig--${bgIllustration}`}`;
     }
 
     return (
