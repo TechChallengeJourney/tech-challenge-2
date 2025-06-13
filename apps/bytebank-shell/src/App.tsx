@@ -1,12 +1,13 @@
 import React from 'react';
 import MfeButton from 'remote/Button';
-import { BytebankCard } from '@repo/ui';
+import { BytebankCard, defaultTheme } from '@repo/ui';
 import './App.scss';
-import { Box, Typography } from '@mui/material';
+import { Box, ThemeProvider, Typography } from '@mui/material';
 
 function App() {
   return (
     <div className="App">
+      <ThemeProvider theme={defaultTheme}>
       <BytebankCard title={'Titulo do card'}>
         <Box textAlign="left" minHeight={'10rem'} p={4}>
           <Box pb={4}>
@@ -17,6 +18,7 @@ function App() {
           </Box>
         </Box>
       </BytebankCard>
+      </ThemeProvider>
     </div>
   );
 }

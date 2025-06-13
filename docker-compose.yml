@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  bytebank-shell:
+    build: ./apps/bytebank-shell
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mfe-investments
+  mfe-investments:
+    build: ./apps/mfe-investments
+    ports:
+      - "3001:3001"
