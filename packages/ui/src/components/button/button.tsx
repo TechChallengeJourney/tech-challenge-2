@@ -2,6 +2,7 @@
 import { styled } from '@mui/material';
 import Button, { ButtonProps } from '@mui/material/Button';
 import { palette } from '../../styles/palette';
+import { JSX } from 'react';
 
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
@@ -37,37 +38,6 @@ export interface BytebankButtonProps extends ButtonProps {
 }
 
 const ButtonColor = styled(Button)<ButtonProps>(() => ([{
-  '&.MuiButton-containedSecondary': {
-    backgroundColor: palette['secondary.main'],
-    color: palette['grey.900'],
-  },
-  '&.MuiButton-containedSecondary:hover': {
-    backgroundColor: palette['primary.light'],
-  },
-  '&.MuiButton-outlinedSecondary': {
-    borderColor: palette['secondary.light'],
-    color: palette['secondary.main'],
-  },
-  '&.MuiButton-textSecondary': {
-    color: palette['secondary.main'],
-  },
-  '&.MuiButton-colorTertiary': {
-    color: palette['tertiary.dark'],
-  },
-  '&.MuiButton-containedTertiary': {
-    backgroundColor: palette['tertiary.light'],
-  },
-  '&.MuiButton-containedPrimary': {
-    backgroundColor: palette['grey.900'],
-    color: palette['primary.light'],
-  },
-  '&.MuiButton-outlinedPrimary': {
-    borderColor: palette['grey.300'],
-    color: palette['grey.900'],
-  },
-  '&.MuiButton-textPrimary': {
-    color: palette['grey.900'],
-  },
   '&.Mui-disabled': {
     color: '#3E3E3E',
     backgroundColor: '#A7A7A7',
@@ -89,7 +59,7 @@ export function BytebankButton({
   variant,
   sendSubmit,
   ...props
-}: BytebankButtonProps) {
+}: BytebankButtonProps): JSX.Element {
   return (
     <ButtonColor
       type="submit"

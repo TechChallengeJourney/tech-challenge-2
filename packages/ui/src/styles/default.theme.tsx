@@ -34,21 +34,21 @@ let defaultTheme = createTheme({
 defaultTheme = createTheme(defaultTheme, {
   palette: {
     primary: {
-      main: palette['primary.main'],
-      light: palette['primary.light'],
-      dark: palette['primary.dark'],
+      main: palette['primary.500'],
+      light: palette['primary.200'],
+      dark: palette['primary.900'],
     },
     secondary: {
       main: palette['secondary.main'],
-      light: palette['secondary.light'],
-      dark: palette['secondary.dark'],
+      light: palette['secondary.200'],
+      dark: palette['secondary.900'],
     },
     tertiary: defaultTheme.palette.augmentColor({
       color: {
         main: palette['tertiary.main'],
-        light: palette['tertiary.light'],
-        dark: palette['tertiary.dark'],
-        contrastText: palette['tertiary.dark'],
+        light: palette['tertiary.200'],
+        dark: palette['tertiary.900'],
+        contrastText: palette['tertiary.900'],
       },
       name: 'tertiary',
     }),

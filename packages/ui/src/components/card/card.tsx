@@ -1,4 +1,4 @@
-import { type JSX } from "react";
+import { JSX } from "react";
 import { Card } from '@mui/material';
 
 import './card.module.scss';
@@ -7,7 +7,7 @@ import { palette } from '../../styles/palette';
 
 const bgIllustrationConfig = {
     primary: 'primary.main',
-    grey: 'grey.300',
+    grey: 'grey.200',
 } as const;
 
 type BgIllustration = keyof typeof bgIllustrationConfig;
