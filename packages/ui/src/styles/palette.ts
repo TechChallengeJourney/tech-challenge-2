@@ -1,10 +1,10 @@
 export const palette = {
   "primary.50": "#F5F9FF",
   "primary.200": "#BECFFF",
-  "primary.500": "#232986",
+  "primary.500": "#3230AE",
   "primary.800": "#495ACD",
   "primary.900": "#1D207D",
-  "primary.main": "#232986",
+  "primary.main": "#3230AE",
   "secondary.50": "#F6F9FF",
   "secondary.200": "#A3C1FA",
   "secondary.500": "#4A82FC",

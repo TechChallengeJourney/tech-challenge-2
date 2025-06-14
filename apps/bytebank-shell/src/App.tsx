@@ -1,14 +1,14 @@
 import React from 'react';
-// @ts-ignore: Module 'remote/Button' might be dynamically loaded via Module Federation
-import MfeButton from 'remote/Button';
-import { BytebankButton, BytebankCard, defaultTheme } from '@repo/ui';
-import './App.scss';
 import { Box, Typography } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
+import { BytebankButton, BytebankCard, BytebankWrapper, defaultTheme } from '@repo/ui';
+// @ts-ignore: Module 'remote/Button' might be dynamically loaded via Module Federation
+import MfeButton from 'remote/Button';
+import './App.scss';
 
 function App() {
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <BytebankWrapper>
       <div className="App">
         <BytebankCard>
           <Box textAlign="left" minHeight={'10rem'} p={4}>
@@ -16,13 +16,13 @@ function App() {
               <Typography fontWeight={'bold'} variant="h6" color="black">
                 Nova transação
               </Typography>
+            </Box>
               <BytebankButton label={'Botão no Bytebank Shell'} variant={'contained'} color={'primary'} />
               <MfeButton />
-            </Box>
           </Box>
         </BytebankCard>
       </div>
-    </ThemeProvider>
+    </BytebankWrapper>
   );
 }
 

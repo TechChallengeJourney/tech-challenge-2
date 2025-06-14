@@ -1,17 +1,17 @@
 import React from 'react';
-import { defaultTheme } from '@repo/ui';
 import './App.scss';
 import MfeButton from './components/Button';
-import { ThemeProvider } from '@mui/material/styles';
+import { BytebankWrapper } from '@repo/ui';
+import { Box } from '@mui/material';
 
 function App() {
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <div className="App">
+    <BytebankWrapper>
+      <Box className="App">
+        This is my MFE Investments <br /><br />
         <MfeButton />
-        This is my MFE Investments
-      </div>
-    </ThemeProvider>
+      </Box>
+    </BytebankWrapper>
   );
 }
 
