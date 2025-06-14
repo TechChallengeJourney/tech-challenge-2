@@ -16,5 +16,6 @@ export default createModuleFederationConfig({
     'react-dom': {
       singleton: true,
     },
+    '@mui/material': { singleton: true, requiredVersion: '7.1.1' },
   },
 });

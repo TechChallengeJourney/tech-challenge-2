@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import MfeButton from './components/button';
+import MfeButton from './components/Button';
 
 function App() {
   return (
