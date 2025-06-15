@@ -2,6 +2,8 @@ import { JSX } from "react";
 import { Card } from '@mui/material';
 
 import './card.module.scss';
+import { colorsPalette } from "../../styles/palette";
+import { useTheme } from "../../contexts/theme.context";
 
 const bgIllustrationConfig = {
     primary: 'primary.main',
@@ -26,20 +28,22 @@ export enum BytebankCardRadius {
 }
 
 export function BytebankCard({
-    bgcolor = '#FFF',
+    bgcolor,
     radius = 'md',
     variant = 'outlined',
     children,
     className,
     bgIllustration
 }: BytebankCardProps): JSX.Element {
-    let bgClass = '';
+    const { isDarkMode } = useTheme();
+    const palette = !isDarkMode ? colorsPalette.light : colorsPalette.dark;
+    const cardColor = bgcolor ?? palette["background.card"];
 
     return (
         <Card
             variant={variant}
-            sx={{ background: bgcolor, borderRadius: BytebankCardRadius[radius] }}
-            className={`${className} ${bgClass && bgClass}`}
+            sx={{ backgroundColor: cardColor, borderRadius: BytebankCardRadius[radius] }}
+            className={`${className}`}
         >
             {children}
         </Card>

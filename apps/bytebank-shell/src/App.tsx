@@ -12,7 +12,7 @@ function App() {
 
   return (
       <Box className="App" bgcolor={background} width={'100%'} minHeight={'100vh'}>
-        <BytebankCard bgcolor=''>
+        <BytebankCard>
           <Box textAlign="left" minHeight={'10rem'} p={4}>
             <Box pb={4} display={'flex'} gap={2}>
               <Typography fontWeight={'bold'} variant="lg" style={{ color: textColor }}>
