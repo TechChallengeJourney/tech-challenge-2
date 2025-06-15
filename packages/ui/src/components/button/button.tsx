@@ -84,8 +84,11 @@ const ButtonColor = styled(Button)<ButtonProps>(() => ([{
     padding: '.6rem 1.2rem',
     boxShadow: 'none',
     textTransform: 'none',
-    fontWeight: 500,
+    fontWeight: 400,
   },
+  '&.MuiButton-contained:hover,&.MuiButton-outlined:hover': {
+    boxShadow: '0px 1px 1px -2px rgba(0,0,0,0.1),0px 1px 1px 0px rgba(0,0,0,0.1),1px 1px 4px 0px rgba(0,0,0,0.1)',
+  }
 }
 ]));
 

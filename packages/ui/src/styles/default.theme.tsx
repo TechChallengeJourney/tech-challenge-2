@@ -54,9 +54,9 @@ export const lightTheme = createTheme(defaultTheme, {
     },
     tertiary: defaultTheme.palette.augmentColor({
       color: {
-        main: lightPalette['lime.100'],
-        light: lightPalette['lime.50'],
-        dark: lightPalette['lime.200'],
+        main: lightPalette['lime.200'],
+        light: lightPalette['lime.100'],
+        dark: lightPalette['lime.300'],
         contrastText: lightPalette['lime.subcontrast'],
       },
       name: 'tertiary',

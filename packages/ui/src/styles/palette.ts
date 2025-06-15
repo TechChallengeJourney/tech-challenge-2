@@ -1,6 +1,6 @@
 const lightPalette = {
   "lime.50": "#F9FAF2",
-  "lime.100": "#F0F7D2",
+  "lime.100": "#F1F7D5",
   "lime.200": "#E6F1B7",
   "lime.300": "#DAE79F",
   "lime.400": "#CBD98A",
