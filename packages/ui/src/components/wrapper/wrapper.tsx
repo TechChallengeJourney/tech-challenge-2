@@ -1,7 +1,5 @@
 'use client';
 import { ThemeProvider } from '@mui/material/styles';
-import { Box } from '@mui/material';
-import { createTheme } from '@mui/material/styles';
 import defaultTheme from '../../styles/default.theme';
 
 export interface WrapperRouteProps {

@@ -1,8 +1,9 @@
 'use client';
 import { styled } from '@mui/material';
 import Button, { ButtonProps } from '@mui/material/Button';
-import { palette } from '../../styles/palette';
 import { JSX } from 'react';
+import { useTheme } from '../../contexts/theme.context';
+import { colorsPalette } from '../../styles/palette';
 
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
@@ -37,22 +38,6 @@ export interface BytebankButtonProps extends ButtonProps {
   sendSubmit?: () => void;
 }
 
-const ButtonColor = styled(Button)<ButtonProps>(() => ([{
-  '&.Mui-disabled': {
-    color: '#3E3E3E',
-    backgroundColor: '#A7A7A7',
-  },
-  '&': {
-    borderWidth: '3px',
-    borderRadius: '10rem',
-    padding: '15px 30px',
-    boxShadow: 'none',
-    textTransform: 'none',
-    fontWeight: 500,
-  },
-}
-]));
-
 export function BytebankButton({
   label,
   color,
@@ -60,6 +45,50 @@ export function BytebankButton({
   sendSubmit,
   ...props
 }: BytebankButtonProps): JSX.Element {
+  const { isDarkMode } = useTheme();
+  const palette = !isDarkMode ? colorsPalette.light : colorsPalette.dark;
+
+const ButtonColor = styled(Button)<ButtonProps>(() => ([{
+  '&.MuiButton-outlinedSecondary': {
+    borderColor: palette['lime.700'],
+    color: palette['lime.800'],
+  },
+  '&.MuiButton-textSecondary': {
+    color: palette['lime.800'],
+  },
+  '&.MuiButton-colorTertiary': {
+    color: palette['lime.900'],
+  },
+  '&.MuiButton-textTertiary': {
+    color: palette['lime.700'],
+  },
+  '&.MuiButton-outlinedTertiary': {
+    borderColor: palette['lime.400'],
+    color: palette['lime.700'],
+  },
+  '&.MuiButton-outlinedPrimary': {
+    backgroundColor: palette['lime.50'],
+    borderColor: palette['lime.800'],
+    color: palette['lime.900'],
+  },
+  '&.MuiButton-textPrimary': {
+    color: palette['lime.900'],
+  },
+  '&.Mui-disabled': {
+    color: '#3E3E3E',
+    backgroundColor: '#A7A7A7',
+  },
+  '&': {
+    borderWidth: '1px',
+    borderRadius: '0.5rem',
+    padding: '.6rem 1.2rem',
+    boxShadow: 'none',
+    textTransform: 'none',
+    fontWeight: 500,
+  },
+}
+]));
+
   return (
     <ButtonColor
       type="submit"

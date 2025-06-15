@@ -2,8 +2,6 @@ import { JSX } from "react";
 import { Card } from '@mui/material';
 
 import './card.module.scss';
-import { palette } from '../../styles/palette';
-
 
 const bgIllustrationConfig = {
     primary: 'primary.main',
@@ -36,11 +34,6 @@ export function BytebankCard({
     bgIllustration
 }: BytebankCardProps): JSX.Element {
     let bgClass = '';
-
-    if (bgIllustration) {
-        bgcolor = palette[bgIllustrationConfig[bgIllustration]];
-        bgClass = `.bgConfig ${`.bgConfig--${bgIllustration}`}`;
-    }
 
     return (
         <Card

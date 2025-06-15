@@ -1,28 +1,41 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { ThemeProvider } from '@mui/material/styles';
-import { BytebankButton, BytebankCard, BytebankWrapper, defaultTheme } from '@repo/ui';
-// @ts-ignore: Module 'remote/Button' might be dynamically loaded via Module Federation
+import { BytebankButton, BytebankToggleButton, BytebankCard, useTheme } from '@repo/ui';
+// @ts-ignore
 import MfeButton from 'remote/Button';
 import './App.scss';
 
 function App() {
+  const { theme } = useTheme();
+  const background = theme.palette.background.default;
+  const textColor = theme.palette.text.primary;
+
   return (
-    <BytebankWrapper>
-      <div className="App">
-        <BytebankCard>
+      <Box className="App" bgcolor={background} width={'100%'} minHeight={'100vh'}>
+        <BytebankCard bgcolor=''>
           <Box textAlign="left" minHeight={'10rem'} p={4}>
-            <Box pb={4} display={'flex'} flexDirection={'column'} gap={2}>
-              <Typography fontWeight={'bold'} variant="h6" color="black">
+            <Box pb={4} display={'flex'} gap={2}>
+              <Typography fontWeight={'bold'} variant="lg" style={{ color: textColor }}>
                 Nova transação
               </Typography>
+              <BytebankToggleButton />
             </Box>
+              <BytebankButton label={'Botão no Bytebank Shell'} variant={'outlined'} color={'primary'} />
               <BytebankButton label={'Botão no Bytebank Shell'} variant={'contained'} color={'primary'} />
-              <MfeButton />
+              <BytebankButton label={'Botão no Bytebank Shell'} variant={'text'} color={'primary'} />
+              <br /><br />
+              <BytebankButton label={'Botão no Bytebank Shell'} variant={'outlined'} color={'secondary'} />
+              <BytebankButton label={'Botão no Bytebank Shell'} variant={'contained'} color={'secondary'} />
+              <BytebankButton label={'Botão no Bytebank Shell'} variant={'text'} color={'secondary'} />
+              <br /><br />
+              <BytebankButton label={'Botão no Bytebank Shell'} variant={'outlined'} color={'tertiary'} />
+              <BytebankButton label={'Botão no Bytebank Shell'} variant={'contained'} color={'tertiary'} />
+              <BytebankButton label={'Botão no Bytebank Shell'} variant={'text'} color={'tertiary'} />
+
+              <MfeButton onClick={() => console.log('Clicou no botão')}/>
           </Box>
         </BytebankCard>
-      </div>
-    </BytebankWrapper>
+      </Box>
   );
 }
 

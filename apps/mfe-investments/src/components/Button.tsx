@@ -1,7 +1,7 @@
 import { BytebankButton } from "@repo/ui";
 
-const MfeButton = () => (
-    <BytebankButton variant={"contained"} color={'secondary'} label={"Botão do MFE Investimentos"}></BytebankButton>
+const MfeButton = ({ onClick }: { onClick?: () => void }) => (
+    <BytebankButton variant={"contained"} color={'secondary'} label={"Botão do MFE Investimentos"} sendSubmit={onClick}></BytebankButton>
 );
 
 export default MfeButton;
