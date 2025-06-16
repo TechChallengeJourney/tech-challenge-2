@@ -66,6 +66,10 @@ const ButtonColor = styled(Button)<ButtonProps>(() => ([{
     borderColor: palette['lime.400'],
     color: palette['lime.highcontrast'],
   },
+  '&.MuiButton-containedTertiary': {
+    border: '1px solid',
+    borderColor: palette['lime.200'],
+  },
   '&.MuiButton-outlinedPrimary': {
     backgroundColor: palette['lime.50'],
     borderColor: palette['lime.700'],

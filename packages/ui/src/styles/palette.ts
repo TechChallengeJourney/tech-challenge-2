@@ -1,6 +1,6 @@
 const lightPalette = {
   "lime.50": "#F9FAF2",
-  "lime.100": "#F1F7D5",
+  "lime.100": "#F5FAE0",
   "lime.200": "#E6F1B7",
   "lime.300": "#DAE79F",
   "lime.400": "#CBD98A",
@@ -12,7 +12,7 @@ const lightPalette = {
   "lime.main": "#D5EA49",
   "lime.contrast": "#20240c",
   "lime.subcontrast": "#93a900",
-  "lime.highcontrast": "#5f6826",
+  "lime.highcontrast": "#515921",
   background: "#F3F3F3",
   "navigation": "rgba(255, 255, 255, 0.7)",
   "background.card": "oklch(1 0 0 / 0.8)",
