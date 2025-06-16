@@ -1,12 +1,27 @@
 version: '3.8'
+
 services:
   bytebank-shell:
-    build: ./apps/bytebank-shell
+    build:
+      context: .
+      dockerfile: apps/bytebank-shell/Dockerfile
     ports:
       - "3000:3000"
-    depends_on:
-      - mfe-investments
+    volumes:
+      - ./apps/bytebank-shell/src:/app/src
+      - ./packages/ui/src:/app/packages/ui/src
+    environment:
+      - NODE_ENV=development
+    command: yarn run dev
   mfe-investments:
-    build: ./apps/mfe-investments
+    build:
+      context: .
+      dockerfile: apps/mfe-investments/Dockerfile
     ports:
       - "3001:3001"
+    volumes:
+      - ./apps/mfe-investments/src:/app/src
+      - ./packages/ui/src:/app/packages/ui/src
+    environment:
+      - NODE_ENV=development
+    command: yarn run dev
