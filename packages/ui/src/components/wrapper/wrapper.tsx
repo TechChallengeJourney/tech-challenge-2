@@ -1,4 +1,3 @@
-'use client';
 import { BytebankHeader } from '../header/header';
 import { Box, Container, CssBaseline } from '@mui/material';
 import { BytebankThemeProvider } from '../../contexts/theme.context';
