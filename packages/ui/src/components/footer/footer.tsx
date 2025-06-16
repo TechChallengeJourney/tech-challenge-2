@@ -8,7 +8,7 @@ export function BytebankFooter() {
     const { colors } = useTheme();
     const footerColor = colors['navigation'];
     const isLogged = true;
-    const loggedTemplate = () => (<><Box display={'flex'} justifyContent={'center'}><Typography>© 2025 Bytebank. Todos os direitos reservados.<br />Construindo seu futuro financeiro, um byte de cada vez.</Typography></Box></>);
+    const loggedTemplate = () => (<><Box display={'flex'} justifyContent={'center'} width={'100%'} textAlign={'center'}><Typography>© 2025 Bytebank. Todos os direitos reservados.<br />Construindo seu futuro financeiro, um byte de cada vez.</Typography></Box></>);
     const unloggedTemplate = () => (<>
         <Box
             display={'flex'}
