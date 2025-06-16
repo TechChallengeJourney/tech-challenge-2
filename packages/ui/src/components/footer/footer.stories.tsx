@@ -27,6 +27,7 @@ type Story = StoryObj<typeof BytebankFooter>;
 
 export const Desktop: Story = {
     parameters: {
+        layout: 'fullscreen',
         viewport: {
             defaultViewport: 'desktop',
         }
@@ -35,8 +36,9 @@ export const Desktop: Story = {
 
 export const Mobile: Story = {
     parameters: {
+        layout: 'fullscreen',
         viewport: {
-            defaultViewport: 'mobile2',
+            defaultViewport: 'mobile',
         }
     }
 }
