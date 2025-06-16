@@ -50,11 +50,11 @@ export function BytebankButton({
 
 const ButtonColor = styled(Button)<ButtonProps>(() => ([{
   '&.MuiButton-outlinedSecondary': {
-    borderColor: palette['lime.600'],
-    color: palette['lime.600'],
+    borderColor: palette['lime.800'],
+    color: palette['lime.800'],
   },
   '&.MuiButton-textSecondary': {
-  color: palette['lime.600'],
+  color: palette['lime.800'],
   },
   '&.MuiButton-colorTertiary': {
     color: palette['lime.highcontrast'],
@@ -65,6 +65,10 @@ const ButtonColor = styled(Button)<ButtonProps>(() => ([{
   '&.MuiButton-outlinedTertiary': {
     borderColor: palette['lime.400'],
     color: palette['lime.highcontrast'],
+  },
+  '&.MuiButton-containedTertiary': {
+    border: '1px solid',
+    borderColor: palette['lime.200'],
   },
   '&.MuiButton-outlinedPrimary': {
     backgroundColor: palette['lime.50'],
@@ -97,6 +101,7 @@ const ButtonColor = styled(Button)<ButtonProps>(() => ([{
       type="submit"
       variant={variant}
       color={color}
+      aria-label={label} 
       onClick={sendSubmit}
       {...props}
     >

@@ -1,18 +1,18 @@
 const lightPalette = {
   "lime.50": "#F9FAF2",
-  "lime.100": "#F1F7D5",
+  "lime.100": "#F5FAE0",
   "lime.200": "#E6F1B7",
   "lime.300": "#DAE79F",
   "lime.400": "#CBD98A",
   "lime.500": "#D5EA49",
   "lime.600": "#c9df39",
   "lime.700": "#A2B247",
-  "lime.800": "#6D791D",
+  "lime.800": "#40460d",
   "lime.900": "#3A3F1C",
   "lime.main": "#D5EA49",
   "lime.contrast": "#20240c",
-  "lime.subcontrast": "#6b7919",
-  "lime.highcontrast": "#7c8835",
+  "lime.subcontrast": "#93a900",
+  "lime.highcontrast": "#515921",
   background: "#F3F3F3",
   "navigation": "rgba(255, 255, 255, 0.7)",
   "background.card": "oklch(1 0 0 / 0.8)",
@@ -57,3 +57,6 @@ const darkPalette = {
 };
 
 export const colorsPalette = { light: lightPalette, dark: darkPalette };
+
+// color: #b8cc00;
+//   background: #b8cc0014;

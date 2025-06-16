@@ -5,20 +5,12 @@ import './card.module.scss';
 import { colorsPalette } from "../../styles/palette";
 import { useTheme } from "../../contexts/theme.context";
 
-const bgIllustrationConfig = {
-    primary: 'primary.main',
-    grey: 'grey.200',
-} as const;
-
-type BgIllustration = keyof typeof bgIllustrationConfig;
-
 export interface BytebankCardProps {
     bgcolor?: string;
     radius?: 'sm' | 'md' | 'lg';
     variant?: 'elevation' | 'outlined';
     className?: string;
     children?: React.ReactNode;
-    bgIllustration?: BgIllustration;
 }
 
 export enum BytebankCardRadius {
@@ -33,7 +25,6 @@ export function BytebankCard({
     variant = 'outlined',
     children,
     className,
-    bgIllustration
 }: BytebankCardProps): JSX.Element {
     const { isDarkMode } = useTheme();
     const palette = !isDarkMode ? colorsPalette.light : colorsPalette.dark;

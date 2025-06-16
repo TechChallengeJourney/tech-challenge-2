@@ -1,8 +1,8 @@
-import { Meta } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { Box, Typography } from '@mui/material';
 import * as DocBlock from '@storybook/blocks';
 import { BytebankCard, BytebankCardProps } from './card';
-import { palette } from '../../styles/palette';
+import { colorsPalette } from '../../styles/palette';
 
 export default {
   title: 'Components/Card',
@@ -21,11 +21,11 @@ export default {
           <Box>
             <Typography variant="h5" gutterBottom>Variações</Typography>
             <Box width="100%" display="flex" flexDirection="column" flexWrap="wrap" alignItems="flex-start" gap={4}>
-              {[{ name: 'Titulo do card', variant: 'elevation', bgcolor: 'secondary.dark' }, { name: 'Titulo do card', variant: 'outlined', bgcolor: 'primary.dark' }].map((item, index) => (
+              {[{ name: 'Titulo do card', variant: 'elevation', bgcolor: 'lime.900' }, { name: 'Titulo do card', variant: 'outlined', bgcolor: 'lime.700' }].map((item, index) => (
                 <>
                   <Typography variant="h5" gutterBottom>Exemplo #{index + 1}</Typography>
                   <Box width="50%" key={item.name} display="flex" flexDirection="column" alignItems="flex-start">
-                    <BytebankCard variant={item.variant} bgcolor={palette[item.bgcolor]}>
+                    <BytebankCard variant={item.variant} bgcolor={colorsPalette.light[item.bgcolor]}>
                       <Box p={2} gap={4}  color='#FFF'>
                         <Typography variant="h4" color='#FFF' style={{ marginTop: '8px' }}>
                           {item.name}
@@ -57,7 +57,7 @@ export default {
   },
 } as Meta;
 
-const CardTemplate: Story<BytebankCardProps> = ({ variant, radius }: BytebankCardProps) => (
+const CardTemplate: StoryFn<BytebankCardProps> = ({ variant, radius }: BytebankCardProps) => (
   <BytebankCard variant={variant} radius={radius}>
     <Box p={2} gap={4}>
       <Typography variant="h4" style={{ marginTop: '8px' }}>

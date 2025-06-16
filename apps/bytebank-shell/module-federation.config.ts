@@ -14,5 +14,6 @@ export default createModuleFederationConfig({
     },
     '@repo/ui': {singleton: true},
     '@mui/material': { singleton: true, strictVersion: true, requiredVersion: '7.0.2', version: '7.0.2' },
+    '@mui/icons-material': { singleton: true, strictVersion: true, requiredVersion: '7.0.2', version: '7.0.2' },
   },
 });

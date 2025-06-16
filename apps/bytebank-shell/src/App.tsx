@@ -30,7 +30,6 @@ function App() {
               <br /><br />
               <BytebankButton label={'Botão no Bytebank Shell'} variant={'outlined'} color={'tertiary'} />
               <BytebankButton label={'Botão no Bytebank Shell'} variant={'contained'} color={'tertiary'} />
-              <BytebankButton label={'Botão no Bytebank Shell'} variant={'text'} color={'tertiary'} />
 
               <MfeButton onClick={() => console.log('Clicou no botão')}/>
           </Box>
