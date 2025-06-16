@@ -1,9 +1,11 @@
 import React, { createContext, useState, useContext, useMemo, useEffect } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { lightTheme, darkTheme } from '../styles/default.theme';
+import { colorsPalette } from '../styles/palette';
 
 const ThemeContext = createContext({
   theme: lightTheme,
+  colors: colorsPalette.light,
   toggleTheme: () => {},
   isDarkMode: false,
 });
@@ -18,7 +20,7 @@ export const BytebankThemeProvider = ({ children }: { children: React.ReactNode 
   }, [isDarkMode]);
   
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, isDarkMode }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, isDarkMode, colors: colorsPalette[!isDarkMode ? 'light': 'dark'] }}>
       <ThemeProvider theme={theme}>
         {children}
       </ThemeProvider>

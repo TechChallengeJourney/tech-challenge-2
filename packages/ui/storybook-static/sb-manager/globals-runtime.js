@@ -8887,7 +8887,7 @@ var le, Fo, Wr, kp = D(() => {
         "ui-monospace",
         "Menlo",
         "Monaco",
-        '"Roboto Mono"',
+        '"Inter Mono"',
         '"Oxygen Mono"',
         '"Ubuntu Monospace"',
         '"Source Code Pro"',

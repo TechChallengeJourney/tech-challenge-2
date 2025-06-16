@@ -7,11 +7,11 @@ import './App.scss';
 
 function App() {
   const { theme } = useTheme();
-  const background = theme.palette.background.default;
   const textColor = theme.palette.text.primary;
 
   return (
-      <Box className="App" bgcolor={background} width={'100%'} minHeight={'100vh'}>
+    <>
+      <Box className="App">
         <BytebankCard>
           <Box textAlign="left" minHeight={'10rem'} p={4}>
             <Box pb={4} display={'flex'} gap={2}>
@@ -36,6 +36,7 @@ function App() {
           </Box>
         </BytebankCard>
       </Box>
+    </>
   );
 }
 

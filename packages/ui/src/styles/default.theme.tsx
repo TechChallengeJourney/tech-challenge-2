@@ -1,5 +1,6 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 import { colorsPalette } from '../styles/palette';
+import { Theme } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
   interface TypographyVariantsOptions {
@@ -17,24 +18,23 @@ declare module '@mui/material/Typography' {
     lg: true;
   }
 }
+const lightPalette = colorsPalette.light;
+const darkPalette = colorsPalette.dark;
 
 let defaultTheme = createTheme({
   typography: {
-    fontFamily: 'Roboto, sans-serif',
+    fontFamily: 'Inter, sans-serif',
     h1: { fontSize: 25, fontWeight: 600 },
-    xs: { fontSize: 13, fontFamily: 'Roboto, sans-serif', },
-    sm: { fontSize: 16, fontFamily: 'Roboto, sans-serif', },
-    md: { fontSize: 22, fontFamily: 'Roboto, sans-serif', },
-    lg: { fontSize: 26, fontFamily: 'Roboto, sans-serif', fontWeight: 500 },
-    button: { fontSize: 16 },
+    xs: { fontSize: 13, fontFamily: 'Inter, sans-serif', },
+    sm: { fontSize: 16, fontFamily: 'Inter, sans-serif', },
+    md: { fontSize: 22, fontFamily: 'Inter, sans-serif', },
+    lg: { fontSize: 26, fontFamily: 'Inter, sans-serif', fontWeight: 500 },
+    button: { fontSize: 15 },
   },
   spacing: [0, 8, 16, 24, 32, 64],
 });
 
 defaultTheme = responsiveFontSizes(defaultTheme);
-
-const lightPalette = colorsPalette.light;
-const darkPalette = colorsPalette.dark;
 
 export const lightTheme = createTheme(defaultTheme, {
   palette: {
@@ -78,7 +78,28 @@ export const lightTheme = createTheme(defaultTheme, {
     text: {
       primary: lightPalette['lime.900'],
       secondary: lightPalette['lime.500'],
-    }
+    },
+  },
+  components: {
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: lightPalette['navigation'],
+          color: lightPalette['lime.contrast'],
+        },
+      },
+    },
+    MuiCssBaseline: {
+      styleOverrides: {
+        ':root': {
+          '--Paper-overlay': 'none !important'
+        },
+        body: {
+          backgroundColor: (theme: Theme) =>
+            theme.palette.mode === 'dark' ? darkPalette.background : lightPalette.background
+        },
+      },
+    },
   },
   cssVariables: true,
 });
@@ -126,6 +147,27 @@ export const darkTheme = createTheme(defaultTheme, {
       primary: darkPalette['lime.900'],
       secondary: darkPalette['lime.500'],
     }
+  },
+  components: {
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: darkPalette['navigation'],
+          color: darkPalette['lime.contrast'],
+        },
+      },
+    },
+    MuiCssBaseline: {
+      styleOverrides: {
+        '.MuiPaper-root': {
+          '--Paper-overlay': 'none !important'
+        },
+        body: {
+          backgroundColor: (theme: Theme) =>
+            theme.palette.mode === 'dark' ? darkPalette.background : lightPalette.background
+        },
+      },
+    },
   },
   cssVariables: true,
 });

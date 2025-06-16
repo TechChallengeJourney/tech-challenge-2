@@ -80,7 +80,7 @@ const ButtonColor = styled(Button)<ButtonProps>(() => ([{
   },
   '&': {
     borderWidth: '1px',
-    borderRadius: '0.5rem',
+    borderRadius: '5rem',
     padding: '.6rem 1.2rem',
     boxShadow: 'none',
     textTransform: 'none',
