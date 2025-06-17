@@ -4,7 +4,7 @@ import BytebankSelect, { SelectOption } from './select';
 import * as DocBlock from '@storybook/blocks';
 
 export default {
-  title: 'Components/BytebankSelect',
+  title: 'Components/Select',
   component: BytebankSelect,
   tags: ['autodocs'],
   parameters: {

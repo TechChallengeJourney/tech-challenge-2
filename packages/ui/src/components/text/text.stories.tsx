@@ -5,7 +5,7 @@ import { BytebankText, BytebankTextProps } from './text';
 const SIMPLE_TEXT = 'The quick brown fox jumps over the lazy dog';
 
 const meta = {
-  title: 'Components/BytebankText',
+  title: 'Components/Text',
   component: BytebankText,
   tags: ['autodocs'],
   parameters: {

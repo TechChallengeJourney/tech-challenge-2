@@ -4,7 +4,7 @@ import BytebankInput from './input';
 import * as DocBlock from '@storybook/blocks';
 
 export default {
-  title: 'Components/BytebankInput',
+  title: 'Components/Input',
   component: BytebankInput,
   tags: ['autodocs'],
   parameters: {

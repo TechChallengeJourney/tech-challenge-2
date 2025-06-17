@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { BytebankDivider } from './divider';
 
 const meta = {
-  title: 'Components/BytebankDivider', // O título aqui deve estar correto
+  title: 'Components/Divider', // O título aqui deve estar correto
   component: BytebankDivider,
   tags: ['autodocs'],
   parameters: {
