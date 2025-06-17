@@ -30,7 +30,7 @@ export default function BytebankSelect({
   helperText = '',
 }: SelectProps) {
   return (
-    <FormControl variant='filled' fullWidth margin="normal" error={error}>
+    <FormControl variant='outlined' fullWidth margin="normal" error={error}>
       <InputLabel>{label}</InputLabel>
       <Select
         value={value ?? ''}
