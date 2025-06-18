@@ -21,7 +21,7 @@ export interface SelectProps {
   helperText?: string;
 }
 
-export default function BytebankSelect({
+export function BytebankSelect({
   value,
   onChange,
   label,

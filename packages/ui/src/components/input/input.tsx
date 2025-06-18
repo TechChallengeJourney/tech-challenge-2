@@ -12,6 +12,7 @@ export interface InputProps {
   helperText?: string;
   autoComplete?: string;
   mask?: 'currency';
+  color?: 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning';
 }
 
 function formatCurrency(value: string) {
@@ -20,7 +21,7 @@ function formatCurrency(value: string) {
   return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
-export default function BytebankInput({
+export function BytebankInput({
   value,
   onChange,
   label,
@@ -30,6 +31,7 @@ export default function BytebankInput({
   helperText = '',
   autoComplete = '',
   mask,
+  color,
 }: InputProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newValue = (e.target as HTMLInputElement).value.replace(/\D/g, '');
@@ -67,6 +69,7 @@ export default function BytebankInput({
         margin="normal"
         variant={'outlined'}
         fullWidth
+        color={color}
       />
     </Box>
   );
