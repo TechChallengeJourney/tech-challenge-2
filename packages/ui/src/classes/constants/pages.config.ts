@@ -14,7 +14,7 @@ export const unloggedPages: WrapperRouteProps[] = [
 export const loggedPages: WrapperRouteProps[] = [
     {
         name: 'início',
-        route: '/home'
+        route: '/dashboard'
     },
     {
         name: 'investimentos',
