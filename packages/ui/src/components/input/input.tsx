@@ -31,7 +31,7 @@ export function BytebankInput({
   helperText = '',
   autoComplete = '',
   mask,
-  color,
+  color = 'primary',
 }: InputProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newValue = (e.target as HTMLInputElement).value.replace(/\D/g, '');

@@ -101,7 +101,6 @@ function App() {
               helperText="Digite o valor da transação"
               autoComplete="off"
               mask="currency"
-              color="primary"
             />
             <br />
             <BytebankSelect
