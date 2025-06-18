@@ -57,6 +57,3 @@ const darkPalette = {
 };
 
 export const colorsPalette = { light: lightPalette, dark: darkPalette };
-
-// color: #b8cc00;
-//   background: #b8cc0014;
