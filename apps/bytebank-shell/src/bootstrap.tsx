@@ -3,17 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BytebankWrapper } from '@repo/ui';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { BytebankWrapper } from './components/wrapper/wrapper';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-     <Router>
-          <App />
-     </Router>
+    <Router>
+      <BytebankWrapper>
+        <App />
+      </BytebankWrapper>
+
+    </Router>
   </React.StrictMode>
 );
 

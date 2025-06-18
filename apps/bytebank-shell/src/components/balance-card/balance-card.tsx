@@ -7,79 +7,80 @@ import { useState } from "react";
 
 export const BytebankBalanceCard = () => {
     const [visible, setVisible] = useState(false);
-  const { colors } = useTheme();
-  const { user } = { user: { name: "João Silva" } };
-  const today = new Date();
-  const formattedDate = format(today, "EEEE',' dd/MM/yyyy", { locale: ptBR });
+    const { colors } = useTheme();
+    const { user } = { user: { name: "João Silva" } };
+    const today = new Date();
+    const formattedDate = format(today, "EEEE',' dd/MM/yyyy", { locale: ptBR });
 
-  
-  const totalValue = 12356.78;
-  const isLoading = false;
-  const totalBalanceFormatted = totalValue.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  });
+    const totalValue = 12356.78;
+    const isLoading = false;
+    const totalBalanceFormatted = totalValue.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+    });
 
-  const backgroundStyle = {
-    border: "none",
-    backgroundImage: `
+    const backgroundStyle = {
+        border: "none",
+        backgroundImage: `
         url('/images/pixels.svg'),
         ${colors["background.gradient"]}
         
       `,
-    backgroundPosition: "right top, left bottom",
-    backgroundRepeat: "no-repeat, no-repeat",
-    backgroundSize: "contain",
-  };
+        backgroundPosition: "right top, left bottom",
+        backgroundRepeat: "no-repeat, no-repeat",
+        backgroundSize: "contain",
+    };
 
-  return (
-    <Box display={"block"} width={"100%"} minHeight={"15em"}>
-      <BytebankCard styles={backgroundStyle}>
-        <Box display={"flex"} flexDirection={"column"} p={4}>
-          <Typography color={"textPrimary"} fontWeight={"bold"} variant="lg">
-            {`Bem-vindo(a), ${user?.name?.split(" ")[0] ?? "usuário"}!`}
-          </Typography>
-          <Typography color={"textPrimary"} variant="xs">
-            {formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1)}
-          </Typography>
+    return (
+        <Box display={"block"} width={"100%"} minHeight={"15em"}>
+            <BytebankCard styles={backgroundStyle}>
+                <Box display={"flex"} flexDirection={"column"} p={4}>
+                    <Typography color={"textPrimary"} fontWeight={"bold"} variant="lg">
+                        {`Bem-vindo(a), ${user?.name?.split(" ")[0] ?? "usuário"}!`}
+                    </Typography>
+                    <Typography color={"textPrimary"} variant="xs">
+                        {formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1)}
+                    </Typography>
+                </Box>
+
+                <Box display={"flex"} flexDirection={"column"} p={4}>
+                    <Box display={"flex"} alignContent={"center"} gap={1}>
+                        <Typography
+                            color={"textPrimary"}
+                            sx={{ fontWeight: 600 }}
+                            variant="md"
+                        >
+                            Saldo
+                        </Typography>
+                        <Box
+                            onClick={() => (setVisible(!visible))}
+                            style={{ cursor: "pointer" }}
+                            display={'flex'}
+                            alignItems={'center'}
+                        >
+
+                            {visible ? <VisibilityRounded /> : <VisibilityOff />}
+                        </Box>
+                    </Box>
+                    <Box display={"flex"} flexDirection={"column"}>
+                        {isLoading ? (
+                            <Skeleton width={100} height={32} animation="wave" />
+                        ) : (
+                            <Typography
+                                color={"textPrimary"}
+                                sx={{ fontWeight: 600 }}
+                                variant="xxl"
+                            >
+                                {visible ? `${totalBalanceFormatted}` : "R$ ****"}
+                            </Typography>
+                        )}
+
+                        <Typography color={"textTertiary"} fontSize={"xs"}>
+                            Conta Corrente
+                        </Typography>
+                    </Box>
+                </Box>
+            </BytebankCard>
         </Box>
-
-        <Box display={"flex"} flexDirection={"column"} p={4}>
-          <Box display={"flex"} alignContent={"center"} gap={1}>
-            <Typography
-              color={"textPrimary"}
-              sx={{ fontWeight: 600 }}
-              variant="md"
-            >
-              Saldo
-            </Typography>
-            <div
-              onClick={() => (setVisible(!visible))}
-              style={{ cursor: "pointer" }}
-            >
-            
-              {visible ? <VisibilityRounded /> : <VisibilityOff />}
-            </div>
-          </Box>
-          <Box display={"flex"} flexDirection={"column"}>
-            {isLoading ? (
-              <Skeleton width={100} height={32} animation="wave" />
-            ) : (
-              <Typography
-                color={"textPrimary"}
-                sx={{ fontWeight: 600 }}
-                variant="xxl"
-              >
-                {visible ? `${totalBalanceFormatted}` : "R$ ****"}
-              </Typography>
-            )}
-
-            <Typography color={"textTertiary"} fontSize={"xs"}>
-              Conta Corrente
-            </Typography>
-          </Box>
-        </Box>
-      </BytebankCard>
-    </Box>
-  );
+    );
 };
