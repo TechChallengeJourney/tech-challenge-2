@@ -18,14 +18,14 @@ export function BytebankWrapper({
   canNavigate?: boolean;
   children: React.ReactNode;
 }) {
+
   return (
-    <>
+    <> 
       <BytebankThemeProvider>
         <CssBaseline />
-        {canNavigate ? <BytebankHeader /> : ''}
+        {canNavigate ? <BytebankHeader />: ''}
         <Container maxWidth="xl" sx={{
           display: 'flex',
-          flexDirection: 'column',
           minHeight: '100vh'
         }}>
           <Box py={2} display={'flex'} flex={1}>

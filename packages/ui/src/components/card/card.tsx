@@ -1,16 +1,15 @@
 import { JSX } from "react";
 import { Card } from '@mui/material';
-
-import './card.module.scss';
 import { colorsPalette } from "../../styles/palette";
 import { useTheme } from "../../contexts/theme.context";
 
 export interface BytebankCardProps {
     bgcolor?: string;
     radius?: 'sm' | 'md' | 'lg';
-    variant?: 'elevation' | 'outlined';
+    variant?: "elevation" | "outlined" | undefined;
     className?: string;
     children?: React.ReactNode;
+    styles?: React.CSSProperties;
 }
 
 export enum BytebankCardRadius {
@@ -25,6 +24,7 @@ export function BytebankCard({
     variant = 'outlined',
     children,
     className,
+    styles
 }: BytebankCardProps): JSX.Element {
     const { isDarkMode } = useTheme();
     const palette = !isDarkMode ? colorsPalette.light : colorsPalette.dark;
@@ -33,7 +33,7 @@ export function BytebankCard({
     return (
         <Card
             variant={variant}
-            sx={{ backgroundColor: cardColor, borderRadius: BytebankCardRadius[radius] }}
+            sx={{ background: cardColor, borderRadius: BytebankCardRadius[radius], ...styles }}
             className={`${className}`}
         >
             {children}

@@ -2,9 +2,11 @@
   "name": "mfe-investments",
   "version": "0.1.0",
   "private": true,  "dependencies": {
-    "@emotion/react": "^11.14.0",    "@emotion/styled": "^11.14.0",    "@mui/icons-material": "^7.0.2",
+    "@emotion/react": "^11.14.0",    
+    "@emotion/styled": "^11.14.0",    
+    "@mui/icons-material": "^7.0.2",
     "@mui/material": "^7.0.2",
-    "@repo/ui": "file:../../packages/ui",
+    "@repo/ui": "*",
     "@rsbuild/plugin-eslint": "^1.1.1",
     "@rsbuild/plugin-sass": "^1.3.2",
     "@rsbuild/plugin-svgr": "^1.2.0",
@@ -36,7 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },  "devDependencies": {
+  },  
+  "devDependencies": {
     "@module-federation/rsbuild-plugin": "^0.15.0",
     "@rsbuild/core": "^1.3.22",
     "@rsbuild/plugin-react": "^1.3.2",

@@ -8,6 +8,7 @@ declare module '@mui/material/styles' {
     sm?: TypographyVariantsOptions['h1'];
     md?: TypographyVariantsOptions['h1'];
     lg?: TypographyVariantsOptions['h1'];
+    xxl?: TypographyVariantsOptions['h1'];
   }
 }
 declare module '@mui/material/Typography' {
@@ -16,6 +17,7 @@ declare module '@mui/material/Typography' {
     sm: true;
     md: true;
     lg: true;
+    xxl: true;
   }
 }
 const lightPalette = colorsPalette.light;
@@ -29,6 +31,7 @@ let defaultTheme = createTheme({
     sm: { fontSize: 16, fontFamily: 'Inter, sans-serif', },
     md: { fontSize: 22, fontFamily: 'Inter, sans-serif', },
     lg: { fontSize: 26, fontFamily: 'Inter, sans-serif', fontWeight: 500 },
+    xxl: { fontSize: 34, fontFamily: 'Inter, sans-serif', fontWeight: 500 },
     button: { fontSize: 15 },
   },
   spacing: [0, 8, 16, 24, 32, 64],
@@ -95,8 +98,7 @@ export const lightTheme = createTheme(defaultTheme, {
           '--Paper-overlay': 'none !important'
         },
         body: {
-          backgroundColor: (theme: Theme) =>
-            theme.palette.mode === 'dark' ? darkPalette.background : lightPalette.background
+          backgroundColor: lightPalette.background
         },
       },
     },
@@ -163,8 +165,7 @@ export const darkTheme = createTheme(defaultTheme, {
           '--Paper-overlay': 'none !important'
         },
         body: {
-          backgroundColor: (theme: Theme) =>
-            theme.palette.mode === 'dark' ? darkPalette.background : lightPalette.background
+          backgrounNColor: darkPalette.background 
         },
       },
     },
