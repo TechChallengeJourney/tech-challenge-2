@@ -10,6 +10,7 @@
     "./*": "./src/*.tsx"
   },
   "scripts": {
+    "build": "tsc",
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component",
     "check-types": "tsc --noEmit"
@@ -32,6 +33,6 @@
     "@storybook/blocks": "^8.6.14",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.58.0"
+    "react-router-dom": "^7.6.2"
   }
 }
