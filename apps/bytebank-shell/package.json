@@ -17,12 +17,16 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/express": "^5.0.3",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.126",
+    "@types/react-dom": "^19.1.6",
     "date-fns": "^4.1.0",
+    "express": "^5.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.6.2",
+    "ts-node": "^10.9.2",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
@@ -31,7 +35,11 @@
     "build": "rsbuild build",
     "preview": "rsbuild preview",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:ssr": "rsbuild build && cross-env IS_SERVER=true rsbuild build -c rsbuild.server.config.ts",
+    "start:ssr": "node dist/server.js",
+    "generate:static": "node -r ts-node/register static-generator.tsx",
+    "build:ssg": "rsbuild build && yarn generate:static"
   },
   "eslintConfig": {
     "extends": [
@@ -55,6 +63,8 @@
     "@rsbuild/core": "^1.3.22",
     "@rsbuild/plugin-react": "^1.3.2",
     "@types/react": "19.0.0",
-    "@types/react-dom": "19.0.0"
+    "@types/react-dom": "19.0.0",
+    "@types/react-router-dom": "5.3.3",
+    "cross-env": "^7.0.3"
   }
 }
