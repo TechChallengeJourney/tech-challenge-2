@@ -1,6 +1,6 @@
-import React from 'react';
-import { Controller, useFormContext, RegisterOptions } from 'react-hook-form';
-import Input from '../input';
+import React from "react";
+import { Controller, useFormContext, RegisterOptions } from "react-hook-form";
+import { BytebankInput } from "../input";
 
 interface ControlledInputProps {
   name: string;
@@ -8,7 +8,7 @@ interface ControlledInputProps {
   type?: string;
   placeholder?: string;
   autoComplete?: string;
-  mask?: 'currency';
+  mask?: "currency";
   rules?: RegisterOptions;
   field: string;
 }
@@ -16,7 +16,7 @@ interface ControlledInputProps {
 export const BytebankInputController: React.FC<ControlledInputProps> = ({
   name,
   label,
-  type = 'text',
+  type = "text",
   placeholder,
   autoComplete,
   mask,
@@ -29,7 +29,7 @@ export const BytebankInputController: React.FC<ControlledInputProps> = ({
       rules={rules}
       control={control}
       render={({ field, fieldState: { error } }) => (
-        <Input
+        <BytebankInput
           {...field}
           label={label}
           type={type}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Controller, RegisterOptions, useFormContext } from 'react-hook-form';
-import BytebankSelect, { SelectOption } from '../select';
+import { SelectOption, BytebankSelect } from '../select';
 
 interface ControlledSelectProps {
   name: string;

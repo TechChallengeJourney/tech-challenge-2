@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import type { Meta, StoryFn } from '@storybook/react';
-import BytebankInput from './input';
-import * as DocBlock from '@storybook/blocks';
+import { useState } from "react";
+import type { Meta, StoryFn } from "@storybook/react";
+import { BytebankInput } from "./input";
+import * as DocBlock from "@storybook/blocks";
 
 export default {
-  title: 'Components/Input',
+  title: "Components/Input",
   component: BytebankInput,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   parameters: {
     docs: {
       page: () => (
@@ -23,31 +23,29 @@ export default {
 } as Meta<typeof BytebankInput>;
 
 const Template: StoryFn<typeof BytebankInput> = (args) => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
 
   const handleChange = (e: any) => {
     setValue(e.target.value);
   };
 
-  return (
-      <BytebankInput {...args} value={value} onChange={handleChange} />
-  );
+  return <BytebankInput {...args} value={value} onChange={handleChange} />;
 };
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'Nome',
-  placeholder: 'Digite seu nome',
-  type: 'text',
+  label: "Nome",
+  placeholder: "Digite seu nome",
+  type: "text",
   error: false,
-  helperText: '',
+  helperText: "",
 };
 
 export const WithError = Template.bind({});
 WithError.args = {
-  label: 'Email',
-  placeholder: 'Digite seu email',
-  type: 'email',
+  label: "Email",
+  placeholder: "Digite seu email",
+  type: "email",
   error: true,
-  helperText: 'Email inválido',
+  helperText: "Email inválido",
 };
