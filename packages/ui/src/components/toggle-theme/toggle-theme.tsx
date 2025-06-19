@@ -11,9 +11,11 @@ export const BytebankToggleButton = (): JSX.Element => {
   return (
     <>
       <ToggleButton
+        sx={{ borderRadius: '10rem', padding: '9px' }}
         value="check"
+        size={"medium"}
         selected={selected}
-        aria-label={'Alterar para modelo escuro'} 
+        aria-label={'Alterar para o modo escuro'} 
         onChange={() => {
           toggleTheme();
           setSelected((prev) => !prev);

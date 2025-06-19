@@ -1,10 +1,15 @@
-# Dockerfile para aplicação React (Vite)
+# Dockerfile para aplicação React (Bytebank-Shell)
 FROM node:20-alpine
-WORKDIR /src
-COPY package*.json ./
+WORKDIR /app
+COPY packages/ui /app/packages/ui
+COPY apps/bytebank-shell/package*.json ./
+COPY apps/bytebank-shell .
+
+# Remover a referência ao pacote local do arquivo package.json
+RUN sed -i 's/"@repo\/ui": "file:..\/..\/packages\/ui"/"@repo\/ui": "\/app\/packages\/ui"/g' package.json
+
 RUN yarn install
-COPY . .
+RUN yarn add typescript --dev
 RUN yarn run build
-RUN yarn install -g serve
-EXPOSE 5173
-CMD ["serve", "dist", "-l", "3000"]
+EXPOSE 3000
+CMD ["yarn", "run", "dev"]

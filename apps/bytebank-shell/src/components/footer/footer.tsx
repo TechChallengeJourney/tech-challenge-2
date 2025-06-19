@@ -1,7 +1,5 @@
-'use client';
-import { useTheme } from '../../contexts/theme.context';
-import './style.scss';
-
+import { useTheme } from '@repo/ui';
+import './footer.module.scss';
 import { Box, Container, Link, Typography } from '@mui/material';
 
 export function BytebankFooter() {
