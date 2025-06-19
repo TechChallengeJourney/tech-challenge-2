@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import BytebankSelect, { SelectOption } from './select';
+import { SelectOption, BytebankSelect } from './select';
 import * as DocBlock from '@storybook/blocks';
 
 export default {
