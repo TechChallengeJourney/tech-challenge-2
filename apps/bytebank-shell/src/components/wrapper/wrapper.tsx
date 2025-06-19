@@ -1,6 +1,6 @@
 
 import { BytebankThemeProvider } from '@repo/ui';
-import { Box, Container, CssBaseline } from '@mui/material';
+import { Box, CssBaseline } from '@mui/material';
 import { BytebankHeader } from '../header/header';
 import { BytebankFooter } from '../footer/footer';
 
@@ -23,14 +23,11 @@ export function BytebankWrapper({
       <BytebankThemeProvider>
         <CssBaseline />
         {canNavigate ? <BytebankHeader /> : ''}
-        <Container maxWidth="xl" sx={{
-          display: 'flex',
-          minHeight: '100vh'
-        }}>
-          <Box py={2} display={'flex'} flex={1}>
+        <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+          <Box pt={2} display={'flex'} flex={1}>
             {children}
           </Box>
-        </Container>
+        </Box>
         {canNavigate ? <BytebankFooter /> : ''}
       </BytebankThemeProvider>
     </>

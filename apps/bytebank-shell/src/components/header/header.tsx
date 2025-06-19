@@ -47,6 +47,7 @@ export function BytebankHeader() {
 
   return (
     <AppBar
+      id="bytebank-header"
       position={"sticky"}
       sx={{
         transition: "all 0.3s ease",
@@ -64,7 +65,12 @@ export function BytebankHeader() {
               display: { xs: "none", md: "flex" },
             }}
           >
-            <img src="/logo.svg" className="logo" alt="Bytebank logo" />
+            <img
+              src="/logo.svg"
+              className="logo"
+              id="bytebank-logo"
+              alt="Bytebank logo"
+            />
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -121,7 +127,12 @@ export function BytebankHeader() {
               justifyContent: "center",
             }}
           >
-            <img src="/logo.svg" className="logo" alt="Bytebank logo" />
+            <img
+              src="/logo.svg"
+              className="logo"
+              id="bytebank-logo"
+              alt="Bytebank logo"
+            />
           </Box>
           <Box
             sx={{
@@ -172,7 +183,6 @@ export function BytebankHeader() {
                 </MenuItem>
               ))}
             </Menu>
-
             <BytebankToggleButton />
           </Box>
         </Toolbar>

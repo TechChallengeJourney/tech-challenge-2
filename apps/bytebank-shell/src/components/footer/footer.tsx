@@ -70,7 +70,7 @@ export function BytebankFooter() {
     </>);
     return (
         <footer className="bytebank-footer">
-            <Box width={'100%'} bgcolor={footerColor} sx={{ borderTop: '1px solid rgb(134 134 132 / 15%)' }}>
+            <Box width={'100%'} id="bytebank-bg-footer" bgcolor={footerColor} sx={{ borderTop: '1px solid rgb(134 134 132 / 15%)' }}>
                 <Container className="container">
                     <Box
                         display={'flex'}
