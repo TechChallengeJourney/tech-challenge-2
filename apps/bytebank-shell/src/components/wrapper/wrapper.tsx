@@ -1,4 +1,4 @@
-'use client';
+
 import { BytebankThemeProvider } from '@repo/ui';
 import { Box, CssBaseline } from '@mui/material';
 import { BytebankHeader } from '../header/header';
