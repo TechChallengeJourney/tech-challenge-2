@@ -13,7 +13,7 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
 
   return (
     <>
-      <Box width={'100%'} display={'flex'} flexDirection={'column'} gap={2}>
+      <Box width={'100%'} px={4} pb={2} display={'flex'} flexDirection={'column'} gap={2}>
         <Box>
           <BytebankBalanceCard />
         </Box>
