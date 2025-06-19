@@ -9,13 +9,15 @@ const lightPalette = {
   "lime.700": "#A2B247",
   "lime.800": "#40460d",
   "lime.900": "#3A3F1C",
+  "lime.dark": "#151808",
   "lime.main": "#D5EA49",
-  "lime.contrast": "#20240c",
+  "lime.contrast": "#121407f2",
   "lime.subcontrast": "#93a900",
   "lime.highcontrast": "#515921",
   background: "#F3F3F3",
   "navigation": "rgba(255, 255, 255, 0.7)",
   "background.card": "oklch(1 0 0 / 0.8)",
+  "background.accent": "#474c3224",
   "background.gradient": "linear-gradient(90deg, #D4E55A 0%, #8f9c17 100%)",
   "grey.50": "#fafafa",
   "grey.200": "#eeeeee",
@@ -25,11 +27,12 @@ const lightPalette = {
   "grey.main": "#9e9e9e",
   "black.main": "#000000",
   "white.main": "#ffffff",
+  "logo.filter": "brightness(1.9) contrast(0.7) saturate(0.7)"
 };
 
 const darkPalette = {
   "lime.50": "#17190D",
-  "lime.100": "#24280F",
+  "lime.100": "#191c0a",
   "lime.200": "#303510",
   "lime.300": "#3B4211",
   "lime.400": "#485014",
@@ -38,13 +41,15 @@ const darkPalette = {
   "lime.700": "#565F16",
   "lime.800": "#CDE333",
   "lime.900": "#E8F6AB",
+  "lime.dark": "#151808",
   "lime.main": "#B8CC00",
-  "lime.contrast": "#E8F6AB",
+  "lime.contrast": "#f0f6abe8",
   "lime.subcontrast": "#17190d",
   "lime.highcontrast": "#e8f6ab",
   background: "#0c0d06",
   "navigation": "rgb(16 18 9 / 90%)",
   "background.card": "oklch(0.26 0 0 / 0.3)",
+  "background.accent": "#474c3224",
   "background.gradient": "linear-gradient(90deg, #3c430c 0%, #8f9c17 100%)",
   "grey.50": "#fafafa",
   "grey.200": "#eeeeee",
@@ -54,6 +59,7 @@ const darkPalette = {
   "grey.main": "#9e9e9e",
   "black.main": "#000000",
   "white.main": "#ffffff",
+  "logo.filter": "brightness(1.9) contrast(0.7) saturate(0.7)"
 };
 
 export const colorsPalette = { light: lightPalette, dark: darkPalette };
