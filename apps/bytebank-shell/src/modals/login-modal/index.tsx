@@ -2,92 +2,120 @@ import { Box, Link } from "@mui/material";
 import { ReactElement, useState } from "react";
 import { useForm, FormProvider, useFormContext } from "react-hook-form";
 import { User, useUser } from "@repo/data-access";
-import { BytebankAccessModalProps, BytebankModal, BytebankInputController, BytebankButton, BytebankText, AccessModalType, BytebankInput } from "@repo/ui";
+import {
+  BytebankAccessModalProps,
+  BytebankModal,
+  BytebankInputController,
+  BytebankButton,
+  BytebankText,
+  AccessModalType,
+  BytebankInput,
+} from "@repo/ui";
 
-export function BytebankLoginModal({ open, onClose, onSubmit, openModal }: BytebankAccessModalProps): ReactElement {
-    const [isLoading, setLoading] = useState(false);
-    const { setUser } = useUser();
+export function BytebankLoginModal({
+  open,
+  onClose,
+  onSubmit,
+  openModal,
+}: BytebankAccessModalProps): ReactElement {
+  const [isLoading, setLoading] = useState(false);
+  const { setUser } = useUser();
 
-    const loginMethods = useForm<{ email: string; password: string }>({
-        defaultValues: {
-            email: '',
-            password: '',
-        },
+  const loginMethods = useForm<{ email: string; password: string }>({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const handleLogin = async (data: { email: string; password: string }) => {
+    setLoading(true);
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
     });
 
-    const handleLogin = async (data: { email: string; password: string }) => {
-        setLoading(true);
-        const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        });
+    if (response.ok) {
+      const userData = (await response.json()) as User;
+      setUser(userData);
+      loginMethods.reset();
+      onSubmit({ status: "success" });
+    } else {
+      const responseError = (await response.json()) as { error: string };
+      onSubmit({ status: "error", message: responseError.error });
+      setLoading(false);
+    }
+    setLoading(false);
+  };
 
-        if (response.ok) {
-            const userData = (await response.json()) as User;
-            setUser(userData);
-            loginMethods.reset();
-            onSubmit({ status: 'success'});
-        } else {
-            const responseError = (await response.json()) as { error: string };
-            onSubmit({ status: 'error', message: responseError.error });
-            setLoading(false);
-        }
-        setLoading(false);
-    };
-
-    return (
+  return (
+    <>
+      <BytebankModal
+        title={"Login"}
+        open={open}
+        illustrationShow
+        onClose={() => onClose()}
+      >
         <>
-            <BytebankModal
-                title={'Login'}
-                open={open}
-                illustrationShow
-                onClose={() => onClose()}
-                fullHeight
+          <FormProvider {...loginMethods}>
+            <form onSubmit={loginMethods.handleSubmit(handleLogin)}>
+              <BytebankInputController
+                name="email"
+                autoComplete="email"
+                type="email"
+                label="E-mail"
+                placeholder="Digite seu e-mail"
+              />
+              <BytebankInputController
+                name="password"
+                autoComplete="current-password"
+                type="password"
+                label="Senha"
+                placeholder="Digite sua senha"
+              />
+
+              <Box
+              mt={1}
+                display={"flex"}
+                gap={4}
+                flexDirection={"column"}
+                justifyContent={"center"}
+              >
+                <Link component="button" variant="sm" color={"secondary"}>
+                  Esqueceu sua senha?
+                </Link>
+                <BytebankButton
+                  label={"Entrar"}
+                  color={"secondary"}
+                  variant={"contained"}
+                  loading={isLoading}
+                  fullWidth
+                ></BytebankButton>
+              </Box>
+            </form>
+          </FormProvider>
+          <Box
+            pt={4}
+            display={"flex"}
+            gap={1}
+            justifyContent={"center"}
+            flexWrap={"wrap"}
+          >
+            <BytebankText>Não tem uma conta?</BytebankText>
+            <Link
+              component="button"
+              variant="sm"
+              color={"secondary"}
+              onClick={() => openModal(AccessModalType.REGISTER)}
             >
-                <>
-                    <FormProvider {...loginMethods}>
-                        <form onSubmit={loginMethods.handleSubmit(handleLogin)}>
-                            <BytebankInputController
-                                name="email"
-                                autoComplete="email"
-                                type="email"
-                                label="E-mail"
-                                placeholder="Digite seu e-mail" />
-                            <Box
-                                display={'flex'}
-                                gap={2}
-                                flexDirection={'column'}
-                                justifyContent={'center'}
-                            >
-                                <Link component="button" variant="sm" color={'secondary'}>
-                                    Esqueceu sua senha?
-                                </Link>
-                                <BytebankButton
-                                    label={'Entrar'}
-                                    color={'secondary'}
-                                    variant={'contained'}
-                                    loading={isLoading}
-                                    fullWidth
-                                ></BytebankButton>
-                            </Box>
-                        </form>
-                    </FormProvider>
-                    <Box pt={4} display={'flex'} gap={1} justifyContent={'center'} flexWrap={'wrap'}>
-                        <BytebankText>Não tem uma conta?</BytebankText>
-                        <Link
-                            component="button"
-                            variant="sm"
-                            color={'secondary'}
-                            onClick={() => openModal(AccessModalType.REGISTER)}
-                        >
-                            Crie uma agora!
-                        </Link>
-                    </Box>
-                </>
-            </BytebankModal>
+              Crie uma agora!
+            </Link>
+          </Box>
         </>
-    );
+      </BytebankModal>
+    </>
+  );
 }

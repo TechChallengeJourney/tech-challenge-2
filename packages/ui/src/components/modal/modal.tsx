@@ -12,15 +12,13 @@ export function BytebankModal({
   // illustration,
   // illustrationSize,
   illustrationShow,
-  fullHeight = false,
 }: BytebankModalProps) {
   const { isDarkMode, colors } = useTheme();
   const bgColor = isDarkMode ? colors['lime.50'] : colors['white.main'];
   return (
     <Modal open={open} onClose={onClose} aria-labelledby={title}>
       <Box
-        className={`bytebank-modal ${fullHeight && 'bytebank-modal-full-height'
-          }`}
+        className={`bytebank-modal`}
         sx={{ backgroundColor: bgColor, borderColor: colors['lime.200'], borderWidth: 1, borderStyle: 'solid' }}
       >
         <Box

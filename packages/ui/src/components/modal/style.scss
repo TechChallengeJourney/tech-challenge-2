@@ -4,27 +4,16 @@
   left: 50%;
   transform: translate(-50%, -50%);
   height: auto;
-  padding: 2rem 2rem;
+  padding: 2rem;
   min-width: 35%;
   border-radius: 1rem;
 
   @media (max-width: 720px) {
-    padding: 1.5rem 3rem;
+    padding: 2rem;
+    min-width: 85%;
   }
   @media (max-width: 360px) {
     padding: 3.5rem 1.5rem;
-  }
-
-  &-full-height {
-    padding: 2em;
-
-    @media (max-width: 720px) {
-      padding: 2rem 4.75rem 0px 4.75rem;
-    }
-    @media (max-width: 360px) {
-      padding: 3.5rem 1.5rem 0px 1.5rem;
-    }
-
   }
 }
 
