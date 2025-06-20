@@ -10,7 +10,7 @@
     "./*": "./src/*.tsx"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc  --outDir dist",
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component",
     "check-types": "tsc --noEmit"
@@ -26,6 +26,7 @@
     "typescript": "5.8.2"
   },
   "dependencies": {
+    "@repo/data-access": "*",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^7.0.2",
