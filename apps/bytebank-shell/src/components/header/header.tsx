@@ -9,9 +9,12 @@ import {
     IconButton,
     Menu,
     MenuItem,
+    Theme,
     Toolbar,
     Tooltip,
     Typography,
+    useMediaQuery,
+    useTheme,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
@@ -23,6 +26,8 @@ import {
     AccessModalType,
     BytebankSnackbar,
 } from "@repo/ui";
+import AppRegistrationRoundedIcon from "@mui/icons-material/AppRegistrationRounded";
+import LoginIcon from "@mui/icons-material/Login";
 import { useUser } from "@repo/data-access";
 import { BytebankRegisterModal } from "../../modals/register-modal";
 import { BytebankLoginModal } from "../../modals/login-modal";
@@ -46,6 +51,8 @@ export function BytebankHeader() {
     const [openRegisterModal, setOpenRegisterModal] = useState(false);
     const { user, setUser, loading } = useUser();
     const isLogged = !!user;
+    const theme = useTheme<Theme>();
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const pages = isLogged ? loggedPages : unloggedPages;
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) =>
@@ -218,18 +225,31 @@ export function BytebankHeader() {
 
                         <Box display={'flex'} flex={'none'} gap={1}>
                             {!isLogged ? (<>
-                                <BytebankButton
-                                    sendSubmit={() => setOpenRegisterModal(true)}
-                                    label="Crie uma conta"
-                                    color="primary"
-                                    variant="contained"
-                                />
-                                <BytebankButton
-                                    sendSubmit={() => setOpenLoginModal(true)}
-                                    label="Entre"
-                                    color="primary"
-                                    variant="outlined"
-                                />
+                                <Box sx={{ display: { xs: "none", md: "flex" } }}  gap={1}>
+                                    <BytebankButton
+                                        sendSubmit={() => setOpenRegisterModal(true)}
+                                        label="Crie uma conta"
+                                        color="primary"
+                                        variant="contained"
+                                    />
+                                    <BytebankButton
+                                        sendSubmit={() => setOpenLoginModal(true)}
+                                        label="Entre"
+                                        color="primary"
+                                        variant="outlined"
+                                    />
+                                </Box>
+                                <Box sx={{ display: { xs: "flex", md: "none" } }}>
+                                    <Box display={'flex'}>
+                                        <IconButton size="large" color="inherit" onClick={() => setOpenRegisterModal(true)}>
+                                            <AppRegistrationRoundedIcon></AppRegistrationRoundedIcon>
+                                        </IconButton>
+                                        <IconButton size="large" color="inherit" onClick={() => setOpenLoginModal(true)}>
+                                            <LoginIcon></LoginIcon>
+                                        </IconButton>
+                                    </Box>
+
+                                </Box>
                             </>
                             ) : (
                                 <>

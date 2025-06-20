@@ -11,9 +11,9 @@ export const BytebankToggleButton = (): JSX.Element => {
   return (
     <>
       <ToggleButton
-        sx={{ borderRadius: '10rem', padding: '9px' }}
+        sx={{ borderRadius: '10rem', padding: '10px' }}
         value="check"
-        size={"medium"}
+        size={"small"}
         selected={selected}
         aria-label={'Alterar para o modo escuro'} 
         onChange={() => {
