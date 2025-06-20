@@ -1,7 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { BytebankModal, BytebankModalProps } from './modal';
+import { BytebankModal } from './modal';
 import { useState } from 'react';
 import { BytebankButton } from '../button/button';
+import { BytebankModalProps } from '../../classes';
 
 const meta: Meta<BytebankModalProps> = {
   title: 'Components/Modal',

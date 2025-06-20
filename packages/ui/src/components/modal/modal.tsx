@@ -1,19 +1,8 @@
-// import {
-//   BytebankIllustration,
-//   BytebankIllustrationProps,
-// } from '../illustration';
 import './style.scss';
-import { Box, Modal, ModalProps, Typography } from '@mui/material';
+import { Box, Modal, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useTheme } from '../../contexts/theme.context';
-
-export interface BytebankModalProps extends ModalProps {
-  title: string;
-  // illustration: BytebankIllustrationProps['name'];
-  // illustrationSize: BytebankIllustrationProps['variant'];
-  illustrationShow?: boolean;
-  fullHeight?: boolean;
-}
+import { BytebankModalProps } from '../../classes';
 
 export function BytebankModal({
   onClose,

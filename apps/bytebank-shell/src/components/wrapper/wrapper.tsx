@@ -3,6 +3,8 @@ import { BytebankThemeProvider } from '@repo/ui';
 import { Box, CssBaseline } from '@mui/material';
 import { BytebankHeader } from '../header/header';
 import { BytebankFooter } from '../footer/footer';
+import { UserProvider } from '@repo/data-access';
+import ErrorBoundary from '../../error-boundary';
 
 export interface WrapperRouteProps {
   name: string;
@@ -20,16 +22,20 @@ export function BytebankWrapper({
 }) {
   return (
     <>
-      <BytebankThemeProvider>
-        <CssBaseline />
-        {canNavigate ? <BytebankHeader /> : ''}
-        <Box sx={{ display: 'flex', minHeight: '100vh' }}>
-          <Box pt={2} display={'flex'} flex={1}>
-            {children}
-          </Box>
-        </Box>
-        {canNavigate ? <BytebankFooter /> : ''}
-      </BytebankThemeProvider>
+      <ErrorBoundary>
+          <UserProvider>
+        <BytebankThemeProvider>
+            <CssBaseline />
+            {canNavigate ? <BytebankHeader /> : ''}
+            <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+              <Box pt={2} display={'flex'} flex={1}>
+                {children}
+              </Box>
+            </Box>
+            {canNavigate ? <BytebankFooter /> : ''}
+        </BytebankThemeProvider>
+          </UserProvider>
+      </ErrorBoundary>
     </>
   );
 }

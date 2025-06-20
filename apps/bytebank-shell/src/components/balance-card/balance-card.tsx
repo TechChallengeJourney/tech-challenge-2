@@ -64,14 +64,14 @@ export const BytebankBalanceCard = () => {
                     </Box>
                     <Box display={"flex"} flexDirection={"column"}>
                         {isLoading ? (
-                            <Skeleton width={100} height={32} animation="wave" />
+                            <Skeleton width={200} height={50} animation="wave" />
                         ) : (
                             <Typography
                                 color={"textPrimary"}
                                 sx={{ fontWeight: 600 }}
                                 variant="xxl"
                             >
-                                {visible ? `${totalBalanceFormatted}` : "R$ ****"}
+                                {visible ? `${totalBalanceFormatted}` : <Skeleton width={200} height={50} animation={false} />}
                             </Typography>
                         )}
 

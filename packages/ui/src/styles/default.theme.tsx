@@ -1,6 +1,5 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 import { colorsPalette } from '../styles/palette';
-import { Theme } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
   interface TypographyVariantsOptions {

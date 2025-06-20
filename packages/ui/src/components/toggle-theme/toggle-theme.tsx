@@ -1,5 +1,5 @@
-import React, { JSX, useState } from 'react';
-import { Button, ToggleButton } from '@mui/material';
+import { JSX, useState } from 'react';
+import { ToggleButton } from '@mui/material';
 import { useTheme } from '../../contexts/theme.context';
 import { DarkMode } from '@mui/icons-material';
 

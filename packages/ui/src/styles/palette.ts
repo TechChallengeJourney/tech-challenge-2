@@ -32,7 +32,7 @@ const lightPalette = {
 
 const darkPalette = {
   "lime.50": "#17190D",
-  "lime.100": "#191c0a",
+  "lime.100": "#0f1106",
   "lime.200": "#303510",
   "lime.300": "#3B4211",
   "lime.400": "#485014",
