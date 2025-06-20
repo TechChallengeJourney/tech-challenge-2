@@ -1,7 +1,7 @@
 import './style.scss';
 import { Box, Modal, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { useTheme } from '../../contexts/theme.context';
+import { useTheme } from '@repo/utils';
 import { BytebankModalProps } from '../../classes';
 
 export function BytebankModal({
@@ -17,7 +17,7 @@ export function BytebankModal({
   const { isDarkMode, colors } = useTheme();
   const bgColor = isDarkMode ? colors['lime.50'] : colors['white.main'];
   return (
-    <Modal open={open} onClose={onClose}>
+    <Modal open={open} onClose={onClose} aria-labelledby={title}>
       <Box
         className={`bytebank-modal ${fullHeight && 'bytebank-modal-full-height'
           }`}

@@ -1,6 +1,7 @@
 import { VisibilityRounded, VisibilityOff } from "@mui/icons-material";
 import { Box, Typography, Skeleton } from "@mui/material";
-import { BytebankCard, useTheme } from "@repo/ui";
+import { BytebankCard } from "@repo/ui";
+import { useTheme } from "@repo/utils";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useState } from "react";

@@ -1,12 +1,13 @@
 import { ReactElement, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
-import { BytebankCard, useTheme } from "@repo/ui";
+import { BytebankCard } from "@repo/ui";
 import {
   CardGiftcardOutlined,
   AssuredWorkload,
   StarBorderOutlined,
   DevicesOtherOutlined,
 } from "@mui/icons-material";
+import { useTheme } from "@repo/utils";
 
 type Benefit = {
   icon: ReactElement;

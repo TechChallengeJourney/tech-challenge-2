@@ -1,6 +1,6 @@
 import { JSX, useState } from 'react';
 import { ToggleButton } from '@mui/material';
-import { useTheme } from '../../contexts/theme.context';
+import { useTheme } from '@repo/utils';
 import { DarkMode } from '@mui/icons-material';
 
 export const BytebankToggleButton = (): JSX.Element => {

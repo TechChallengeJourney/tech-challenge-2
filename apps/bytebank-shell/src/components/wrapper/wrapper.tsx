@@ -1,5 +1,5 @@
 
-import { BytebankThemeProvider } from '@repo/ui';
+import { BytebankThemeProvider } from '@repo/utils';
 import { Box, CssBaseline } from '@mui/material';
 import { BytebankHeader } from '../header/header';
 import { BytebankFooter } from '../footer/footer';
@@ -23,8 +23,8 @@ export function BytebankWrapper({
   return (
     <>
       <ErrorBoundary>
-          <UserProvider>
-        <BytebankThemeProvider>
+        <UserProvider>
+          <BytebankThemeProvider>
             <CssBaseline />
             {canNavigate ? <BytebankHeader /> : ''}
             <Box sx={{ display: 'flex', minHeight: '100vh' }}>
@@ -33,8 +33,8 @@ export function BytebankWrapper({
               </Box>
             </Box>
             {canNavigate ? <BytebankFooter /> : ''}
-        </BytebankThemeProvider>
-          </UserProvider>
+          </BytebankThemeProvider>
+        </UserProvider>
       </ErrorBoundary>
     </>
   );

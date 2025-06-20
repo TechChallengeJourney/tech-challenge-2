@@ -1,9 +1,10 @@
 import { FC, useState } from 'react';
 import { BytebankBalanceCard } from '../../components/balance-card/balance-card';
 import { Box, Typography } from '@mui/material';
-import { BytebankCard, BytebankButton, useTheme, BytebankSnackbar, BytebankModal } from '@repo/ui';
+import { BytebankCard, BytebankButton, BytebankSnackbar, BytebankModal } from '@repo/ui';
 // @ts-ignore
 import MfeButton from 'remote/Button';
+import { useTheme } from '@repo/utils';
 
 interface BytebankDashboardProps { }
 

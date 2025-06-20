@@ -91,13 +91,82 @@ export const lightTheme = createTheme(defaultTheme, {
         },
       },
     },
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          color: lightPalette['lime.900'],
+        },
+      },
+    },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: lightPalette['lime.800'],
+        },
+      },
+    },
     MuiCssBaseline: {
       styleOverrides: {
         ':root': {
+          '--variant-textColor': lightPalette['lime.800'],
+          '--variant-outlinedBorder': lightPalette['lime.700'],
           '--Paper-overlay': 'none !important'
         },
         body: {
           backgroundColor: lightPalette.background
+        },
+      },
+    },
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          color: lightPalette['lime.900'],
+        },
+        underline: {
+          '&:before': {
+            borderBottomColor: lightPalette['lime.400'],
+          },
+          '&:hover:not(.Mui-disabled):before': {
+            borderBottomColor: lightPalette['lime.700'],
+          },
+          '&:after': {
+            borderBottomColor: lightPalette['lime.900'],
+          },
+        },
+      },
+    },
+    MuiSelect: {
+      styleOverrides: {
+        root: {
+          color: lightPalette['lime.900'],
+        },
+        icon: {
+          color: lightPalette['lime.900'],
+        },
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          color: lightPalette['lime.900'],
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderColor: lightPalette['lime.400'],
+          },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: lightPalette['lime.700'],
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: lightPalette['lime.500'], // Focus color
+          },
+        },
+        input: {
+          color: lightPalette['lime.900'],
         },
       },
     },
@@ -158,13 +227,83 @@ export const darkTheme = createTheme(defaultTheme, {
         },
       },
     },
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          color: darkPalette['lime.900'],
+        },
+      },
+    },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: darkPalette['lime.600'],
+        },
+      },
+    },
     MuiCssBaseline: {
       styleOverrides: {
+        ':root': {
+          '--variant-textColor': darkPalette['lime.highcontrast'],
+        },
         '.MuiPaper-root': {
           '--Paper-overlay': 'none !important'
         },
         body: {
-          backgrounNColor: darkPalette.background 
+          backgrounColor: darkPalette.background 
+        },
+      },
+    },
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          color: darkPalette['lime.900'],
+        },
+        underline: {
+          '&:before': {
+            borderBottomColor: darkPalette['lime.400'],
+          },
+          '&:hover:not(.Mui-disabled):before': {
+            borderBottomColor: darkPalette['lime.700'],
+          },
+          '&:after': {
+            borderBottomColor: darkPalette['lime.800'],
+          },
+        },
+      },
+    },
+    MuiSelect: {
+      styleOverrides: {
+        select: {
+          color: darkPalette['lime.900'],
+        },
+        icon: {
+          color: darkPalette['lime.900'],
+        },
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          color: darkPalette['lime.900'],
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderColor: darkPalette['lime.400'],
+          },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: darkPalette['lime.700'],
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: darkPalette['lime.500'], // Focus color
+          },
+        },
+        input: {
+          color: darkPalette['lime.50'],
         },
       },
     },

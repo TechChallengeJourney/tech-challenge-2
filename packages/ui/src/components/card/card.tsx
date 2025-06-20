@@ -1,7 +1,6 @@
 import { JSX } from "react";
 import { Card } from '@mui/material';
-import { colorsPalette } from "../../styles/palette";
-import { useTheme } from "../../contexts/theme.context";
+import { colorsPalette, useTheme } from "@repo/utils";
 
 export interface BytebankCardProps {
     bgcolor?: string;
