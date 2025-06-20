@@ -90,8 +90,8 @@ const BytebankHomePage = () => {
     const footerOriginal = footer.style.cssText;
 
     if (!isDarkMode) {
-      footer.style.backgroundColor = colors["lime.dark"];
-      footer.style.color = colors["lime.100"];
+      footer.style.backgroundColor = colors["lime.50"];
+      footer.style.color = colors["lime.900"];
       document.body.style.background =
         "radial-gradient(100% 244.46% at 0% 0%, rgb(232, 234, 105) 0%, rgb(243, 245, 196) 100%) 0% 0% / 110% 110%, radial-gradient(50% 122.23% at 50% 50%, rgb(245, 255, 177) 0%, rgb(48, 108, 0) 100%), radial-gradient(100.45% 245.58% at 0% 0%, rgb(119, 239, 0) 0%, rgb(126, 177, 86) 100%), linear-gradient(127.43deg, rgb(99, 0, 0) 0%, rgb(143, 115, 255) 100%)";
       document.body.style.backgroundBlendMode =

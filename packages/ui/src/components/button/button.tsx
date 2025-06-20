@@ -105,7 +105,7 @@ export function BytebankButton({
   return (
     <ButtonColor
       {...props}
-      type="button"
+      type="submit"
       variant={variant}
       color={color}
       aria-label={label}
