@@ -9,9 +9,6 @@ export function BytebankModal({
   open,
   children,
   title,
-  // illustration,
-  // illustrationSize,
-  illustrationShow,
 }: BytebankModalProps) {
   const { isDarkMode, colors } = useTheme();
   const bgColor = isDarkMode ? colors['lime.50'] : colors['white.main'];
@@ -27,15 +24,6 @@ export function BytebankModal({
         >
           <CloseIcon />
         </Box>
-        {/* <Box display="flex" justifyContent="center">
-          {illustrationShow && (
-            <BytebankIllustration
-              variant={illustrationSize}
-              name={illustration}
-            />
-          )}
-        </Box> */}
-
         <Box pb={2}>
           <Typography alignContent="center" fontWeight="700" color="textPrimary" variant={'md'} >
             {title}

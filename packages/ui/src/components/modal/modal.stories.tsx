@@ -11,18 +11,6 @@ const meta: Meta<BytebankModalProps> = {
   argTypes: {
     open: { control: 'boolean' },
     title: { control: 'text' },
-    // illustration: {
-    //   control: {
-    //     type: 'select',
-    //   },
-    //   options: ['register', 'login'],
-    // },
-    // illustrationSize: {
-    //   control: {
-    //     type: 'radio',
-    //   },
-    //   options: ['auto', 'sm', 'md', 'lg'],
-    // },
     onClose: { description: '' },
   },
 };
@@ -51,8 +39,6 @@ export const Default: Story = {
         />
         <BytebankModal
           title={args.title}
-          // illustration={args.illustration}
-          // illustrationSize={args.illustrationSize}
           open={open}
           onClose={() => setOpen(false)}
         >
