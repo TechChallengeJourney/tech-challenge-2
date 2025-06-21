@@ -32,16 +32,6 @@ import { useUser } from "@repo/data-access";
 import { BytebankRegisterModal } from "../../modals/register-modal";
 import { BytebankLoginModal } from "../../modals/login-modal";
 
-const settings = [
-    {
-        name: "Minha conta",
-        action: () => {
-            console.log("minha conta");
-        },
-    },
-    { name: "Sair", action: () => console.log("logout") },
-];
-
 export function BytebankHeader() {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -51,9 +41,15 @@ export function BytebankHeader() {
     const [openRegisterModal, setOpenRegisterModal] = useState(false);
     const { user, setUser, loading } = useUser();
     const isLogged = !!user;
-    const theme = useTheme<Theme>();
-    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const pages = isLogged ? loggedPages : unloggedPages;
+
+    const settings = [
+        {
+            name: "Minha conta",
+            action: () => navigate('/minha-conta'),
+        },
+        { name: "Sair", action: () => handleLogout() },
+    ];
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) =>
         setAnchorElNav(event.currentTarget);
@@ -67,17 +63,12 @@ export function BytebankHeader() {
     const closeLoginModal = () => setOpenLoginModal(false);
     const closeRegisterModal = () => setOpenRegisterModal(false);
 
-    const closeSnackbar = () => {
-        setSnackbarOpen(false);
-        setSnackbarData(null)
-    };
+    const closeSnackbar = () => { setSnackbarOpen(false); setSnackbarData(null);};
 
     const handleLoginModal = ({ status, message }: SnackbarData) => {
         if (status === 'success') {
-            navigate('/home');
-            setTimeout(() => {
-                closeLoginModal();
-            }, 20000);
+            navigate('/dashboard');
+            setTimeout(() => closeLoginModal(), 1000);
         } else {
             closeRegisterModal();
             setSnackbarData({ status, message });
@@ -110,8 +101,7 @@ export function BytebankHeader() {
         setUser(null);
         navigate('/');
     };
-
-
+    
     return (
         <>
             <AppBar
@@ -275,7 +265,7 @@ export function BytebankHeader() {
                                         onClose={handleCloseUserMenu}
                                     >
                                         {settings.map((setting) => (
-                                            <MenuItem key={setting.name} onClick={handleCloseUserMenu}>
+                                            <MenuItem key={setting.name} onClick={setting.action}>
                                                 <Typography sx={{ textAlign: "center" }}>
                                                     {setting.name}
                                                 </Typography>

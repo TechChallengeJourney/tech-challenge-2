@@ -16,9 +16,9 @@ export function BytebankRegisterModal({ open, onClose, onSubmit, openModal }: By
     });
 
     const handleRegister = async (data: Partial<User>) => {
-        console.log('Registering user:', data);
         setLoading(true);
-        const response = await fetch('http://localhost:8080/users', {
+        const apiUrl = import.meta.env.PUBLIC_API_URL;
+        const response = await fetch(`${apiUrl}/users`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -29,11 +29,12 @@ export function BytebankRegisterModal({ open, onClose, onSubmit, openModal }: By
         if (response.ok) {
             const res = (await response.json()) as { message: string };
             registerMethods.reset();
-            onSubmit({ status: 'success', message: res.message });
+            onSubmit({ status: 'success', message: 'Cadastro realizado com sucesso!' });
         } else {
             const responseError = (await response.json()) as { error: string };
-            onSubmit({ status: 'error', message: responseError.error });
+            onSubmit({ status: 'error', message: 'Ocorreu um erro, o cadastro não foi concluído.' });
         }
+
         setLoading(false);
     };
 

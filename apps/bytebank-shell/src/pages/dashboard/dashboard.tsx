@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { BytebankBalanceCard } from '../../components/balance-card/balance-card';
 import { Box, Typography } from '@mui/material';
-import { BytebankCard, BytebankButton, BytebankSnackbar, BytebankModal } from '@repo/ui';
+import { BytebankCard, BytebankButton, BytebankModal } from '@repo/ui';
 // @ts-ignore
 import MfeButton from 'remote/Button';
 import { useTheme } from '@repo/utils';
@@ -9,7 +9,6 @@ import { useTheme } from '@repo/utils';
 interface BytebankDashboardProps { }
 
 const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
-  const [snackbar, setSnackbar] = useState(false);
   const [open, setOpen] = useState(false);
   const { theme } = useTheme();
   const textColor = theme.palette.text.primary;
@@ -42,17 +41,11 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
 
               <MfeButton onClick={() => console.log('Clicou no botão')} />
 
-              <BytebankButton onClick={() => setSnackbar(true)} label={'Abrir SnackBar'} variant={'contained'} color={'primary'} />
               <BytebankButton label="Abrir modal" sendSubmit={() => setOpen(true)} color={'primary'}></BytebankButton>
 
             </Box>
           </BytebankCard>
         </Box>
-        <BytebankSnackbar open={snackbar} onClose={() => setSnackbar(false)} data={{ status: "success", message: "Mensagem do snackbar." }} />
-
-
-
-       
         <BytebankModal
           open={open}
           title="Confirmar exclusão"
