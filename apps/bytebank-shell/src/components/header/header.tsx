@@ -9,12 +9,9 @@ import {
     IconButton,
     Menu,
     MenuItem,
-    Theme,
     Toolbar,
     Tooltip,
     Typography,
-    useMediaQuery,
-    useTheme,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
@@ -29,8 +26,7 @@ import {
 import AppRegistrationRoundedIcon from "@mui/icons-material/AppRegistrationRounded";
 import LoginIcon from "@mui/icons-material/Login";
 import { useUser } from "@repo/data-access";
-import { BytebankRegisterModal } from "../../modals/register-modal";
-import { BytebankLoginModal } from "../../modals/login-modal";
+import { BytebankRegisterModal, BytebankLoginModal } from "../../modals";
 
 export function BytebankHeader() {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
