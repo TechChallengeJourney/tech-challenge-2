@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <AppRoutes />
-      <Box display="flex" flexDirection="column" gap={2} p={2}>
+      {/* <Box display="flex" flexDirection="column" gap={2} p={2}>
         <BytebankText variant="h1" color="primary">
           Componente de texto da ui
         </BytebankText>
@@ -46,7 +46,7 @@ function App() {
           error={false}
           helperText="Selecione uma opção"
         />
-      </Box>
+      </Box> */}
     </>
   );
 }

@@ -1,5 +1,5 @@
 
-import { useTheme } from '@repo/ui';
+import { useTheme } from '@repo/utils';
 import './footer.module.scss';
 import { Box, Container, Link, Typography } from '@mui/material';
 

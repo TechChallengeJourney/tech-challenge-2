@@ -1,6 +1,6 @@
+import { createModuleFederationConfig } from '@module-federation/rsbuild-plugin';
 import pkg from './package.json';
 const { dependencies } = pkg;
-import { createModuleFederationConfig } from '@module-federation/rsbuild-plugin';
 
 export default createModuleFederationConfig({
   name: 'remote',
@@ -16,7 +16,7 @@ export default createModuleFederationConfig({
     'react-dom': {
       singleton: true,
     },
-    '@repo/ui': {singleton: true},
+    '@repo/utils': {singleton: true, requiredVersion: '0.0.0' },
     '@mui/material': { singleton: true, strictVersion: true, requiredVersion: '7.0.2', version: '7.0.2' },
     '@mui/icons-material': { singleton: true, strictVersion: true, requiredVersion: '7.0.2', version: '7.0.2' },
   },

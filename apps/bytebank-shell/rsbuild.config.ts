@@ -5,9 +5,12 @@ import { pluginModuleFederation } from "@module-federation/rsbuild-plugin";
 import { pluginSass } from "@rsbuild/plugin-sass";
 import mfConfig from "./module-federation.config";
 
-const { publicVars } = loadEnv({ prefixes: ["REACT_APP_"] });
+const { publicVars } = loadEnv({ prefixes: ["REACT_APP_", "PUBLIC_"] });
 
 export default defineConfig({
+  env: {
+    PUBLIC_API_URL: process.env.PUBLIC_API_URL,
+  },
   html: {
     template: "./public/index.html",
   },

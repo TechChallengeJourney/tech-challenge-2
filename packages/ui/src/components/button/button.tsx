@@ -1,8 +1,7 @@
+import { JSX } from 'react';
 import { styled } from '@mui/material';
 import Button, { ButtonProps } from '@mui/material/Button';
-import { JSX } from 'react';
-import { useTheme } from '../../contexts/theme.context';
-import { colorsPalette } from '../../styles/palette';
+import { useTheme } from '@repo/utils';
 
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
@@ -44,65 +43,73 @@ export function BytebankButton({
   sendSubmit,
   ...props
 }: BytebankButtonProps): JSX.Element {
-  const { isDarkMode } = useTheme();
-  const palette = !isDarkMode ? colorsPalette.light : colorsPalette.dark;
+  const { colors } = useTheme();
+  const palette = colors;
 
-const ButtonColor = styled(Button)<ButtonProps>(() => ([{
-  '&.MuiButton-outlinedSecondary': {
-    borderColor: palette['lime.800'],
-    color: palette['lime.800'],
-  },
-  '&.MuiButton-textSecondary': {
-  color: palette['lime.800'],
-  },
-  '&.MuiButton-colorTertiary': {
-    color: palette['lime.highcontrast'],
-  },
-  '&.MuiButton-textTertiary': {
-    color: palette['lime.highcontrast'],
-  },
-  '&.MuiButton-outlinedTertiary': {
-    borderColor: palette['lime.400'],
-    color: palette['lime.highcontrast'],
-  },
-  '&.MuiButton-containedTertiary': {
-    border: '1px solid',
-    borderColor: palette['lime.200'],
-  },
-  '&.MuiButton-outlinedPrimary': {
-    backgroundColor: palette['lime.50'],
-    borderColor: palette['lime.700'],
-    color: palette['lime.900'],
-  },
-  '&.MuiButton-textPrimary': {
-    color: palette['lime.900'],
-  },
-  '&.Mui-disabled': {
-    color: '#3E3E3E',
-    backgroundColor: '#A7A7A7',
-  },
-  '&': {
-    borderWidth: '1px',
-    borderRadius: '5rem',
-    padding: '.6rem 1.2rem',
-    boxShadow: 'none',
-    textTransform: 'none',
-    fontWeight: 400,
-  },
-  '&.MuiButton-contained:hover,&.MuiButton-outlined:hover': {
-    boxShadow: '0px 1px 1px -2px rgba(0,0,0,0.1),0px 1px 1px 0px rgba(0,0,0,0.1),1px 1px 4px 0px rgba(0,0,0,0.1)',
+  const ButtonColor = styled(Button)<ButtonProps>(() => ([{
+    '&.MuiButton-containedSecondary': {
+      backgroundColor: palette['lime.500'],
+      color: palette['lime.subcontrast']
+    },
+    '&.MuiButton-outlinedSecondary': {
+      borderColor: palette['lime.800'],
+      color: palette['lime.800'],
+    },
+    '&.MuiButton-textSecondary': {
+      color: palette['lime.800'],
+    },
+    '&.MuiButton-textTertiary': {
+      color: palette['lime.highcontrast'],
+    },
+    '&.MuiButton-outlinedTertiary': {
+      borderColor: palette['lime.400'],
+      color: palette['lime.highcontrast'],
+    },
+    '&.MuiButton-containedTertiary': {
+      border: '1px solid',
+      borderColor: palette['lime.200'],
+      backgroundColor: palette['lime.50'],
+    },
+    '&.MuiButton-containedPrimary': {
+      backgroundColor: palette['lime.900'],
+      color: palette['lime.50'],
+    },
+    '&.MuiButton-outlinedPrimary': {
+      borderColor: palette['lime.700'],
+      color: palette['lime.900'],
+    },
+    '&.MuiButton-textPrimary': {
+      color: palette['lime.900'],
+    },
+    '&.Mui-disabled': {
+      color: '#3E3E3E',
+      backgroundColor: '#A7A7A7',
+    },
+    '&': {
+      borderWidth: '1px',
+      borderRadius: '5rem !important',
+      padding: '.6rem 1.2rem !important',
+      boxShadow: 'none !important',
+      textTransform: 'none !important',
+      fontWeight: 400,
+    },
+    '&.MuiButton-contained:hover,&.MuiButton-outlined:hover': {
+      boxShadow: '0px 1px 1px -2px rgba(0,0,0,0.1),0px 1px 1px 0px rgba(0,0,0,0.1),1px 1px 4px 0px rgba(0,0,0,0.1)',
+    },
+    '&.MuiButton-outlined:hover,&.MuiButton-text:hover': {
+      backgroundColor: 'rgba(211, 217, 184, 0.2)',
+    }
   }
-}
-]));
+  ]));
 
   return (
     <ButtonColor
+      {...props}
       type="submit"
       variant={variant}
       color={color}
-      aria-label={label} 
+      aria-label={label}
       onClick={sendSubmit}
-      {...props}
     >
       {label}
     </ButtonColor>

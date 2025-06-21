@@ -2,7 +2,6 @@ import { Meta, StoryFn } from "@storybook/react";
 import { Box, Typography } from "@mui/material";
 import * as DocBlock from "@storybook/blocks";
 import { BytebankCard, BytebankCardProps } from "./card";
-import { colorsPalette } from "../../styles/palette";
 
 const cards: (BytebankCardProps & { name: string })[] = [
   { name: "Titulo do card", variant: "elevation", bgcolor: "lime.900" },
