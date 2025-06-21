@@ -29,7 +29,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "dev": "rsbuild dev --port 3000 --env-mode development",
+    "dev": "rsbuild dev --port 3000",
     "build": "rsbuild build",
     "preview": "rsbuild preview",
     "test": "react-scripts test",
