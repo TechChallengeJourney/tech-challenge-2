@@ -1,7 +1,6 @@
-import React from "react";
-import { BytebankThemeProvider } from "@repo/ui";
+import  defaultTheme  from "../../../packages/utils/src/styles/default.theme.tsx";
 import type { Preview } from "@storybook/react-vite";
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 
 const preview: Preview = {
   parameters: {
@@ -18,10 +17,10 @@ export default preview;
 
 export const withTheme = (Story) => {
   return (
-    <BytebankThemeProvider>
+    <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
       <Story />
-    </BytebankThemeProvider>
+    </ThemeProvider>
   );
 };
 
