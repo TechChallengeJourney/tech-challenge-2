@@ -1,7 +1,7 @@
 
 import type { Preview } from "@storybook/react-vite";
 import { CssBaseline } from "@mui/material";
-import { BytebankThemeProvider } from "../../../packages/utils/src/contexts/theme.context.tsx";
+import { BytebankThemeProvider } from '@repo/utils';
 
 const preview: Preview = {
   parameters: {
