@@ -5,7 +5,7 @@ import { createModuleFederationConfig } from '@module-federation/rsbuild-plugin'
 export default createModuleFederationConfig({
   name: 'remote',
   exposes: {
-    './Button': './src/components/Button',
+    './Components': './src/components/index.ts',
   },
   filename: 'remoteEntry.js',
   shared: {

@@ -3,11 +3,7 @@ import { BytebankBalanceCard } from '../../components/balance-card/balance-card'
 import { Box, Typography } from '@mui/material';
 import { BytebankCard, BytebankButton, useTheme, BytebankSnackbar } from '@repo/ui';
 // @ts-ignore
-import MfeButton from 'remote/Button';
-import BytebankMobility from '../../components/mobility-card/mobility-card';
-import BytebankSalary from '../../components/salary-card/salary-card';
-import BytebankSpend from '../../components/spend-card/spend-card';
-import BytebankMonthlyResume from '../../components/monthly-resume/monthly-resume';
+import * as MfeComponent from 'remote/Components';
 
 interface BytebankDashboardProps { }
 
@@ -42,7 +38,7 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
               <BytebankButton label={'Botão no Bytebank Shell'} variant={'outlined'} color={'tertiary'} />
               <BytebankButton label={'Botão no Bytebank Shell'} variant={'contained'} color={'tertiary'} />
 
-              <MfeButton onClick={() => console.log('Clicou no botão')} />
+              <MfeComponent.Button onClick={() => console.log('Clicou no botão')} />
 
               <BytebankButton onClick={() => setSnackbar(true)} label={'SnackBar'} variant={'contained'} color={'primary'} />
             </Box>
@@ -50,11 +46,15 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
         </Box>
         <BytebankSnackbar open={snackbar} onClose={() => setSnackbar(false)} data={{status: "success", message: "n sei"}} />
         <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap="30px">
-          <BytebankMobility value='12356.123' />
-          <BytebankSalary value='13' />
-          <BytebankSpend value='1827' />
+          <MfeComponent.MobilityCard />
+          <MfeComponent.SalaryCard />
+          <MfeComponent.SpendCard />
         </Box>
-        <BytebankMonthlyResume />
+        <Box display="grid" gridTemplateColumns="1fr 1fr" gap="30px">
+          <MfeComponent.MonthlyResume />
+          <MfeComponent.AnalyticsCard />
+          
+        </Box>
       </Box>
     </>
   );
