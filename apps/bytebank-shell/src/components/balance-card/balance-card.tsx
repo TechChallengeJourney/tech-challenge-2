@@ -1,6 +1,7 @@
 import { VisibilityRounded, VisibilityOff } from "@mui/icons-material";
 import { Box, Typography, Skeleton } from "@mui/material";
-import { BytebankCard, useTheme } from "@repo/ui";
+import { BytebankCard } from "@repo/ui";
+import { useTheme } from "@repo/utils";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useState } from "react";
@@ -64,14 +65,14 @@ export const BytebankBalanceCard = () => {
                     </Box>
                     <Box display={"flex"} flexDirection={"column"}>
                         {isLoading ? (
-                            <Skeleton width={100} height={32} animation="wave" />
+                            <Skeleton width={200} height={50} animation="wave" />
                         ) : (
                             <Typography
                                 color={"textPrimary"}
                                 sx={{ fontWeight: 600 }}
                                 variant="xxl"
                             >
-                                {visible ? `${totalBalanceFormatted}` : "R$ ****"}
+                                {visible ? `${totalBalanceFormatted}` : <Skeleton width={200} height={50} animation={false} />}
                             </Typography>
                         )}
 

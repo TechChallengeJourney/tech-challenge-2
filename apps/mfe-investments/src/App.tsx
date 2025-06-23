@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 import MfeButton from './components/Button';
-import { BytebankThemeProvider } from '@repo/ui';
+import { BytebankThemeProvider } from '@repo/utils';
 import { Box } from '@mui/material';
 
 function App() {

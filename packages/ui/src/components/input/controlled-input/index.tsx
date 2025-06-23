@@ -10,7 +10,6 @@ interface ControlledInputProps {
   autoComplete?: string;
   mask?: "currency";
   rules?: RegisterOptions;
-  field: string;
 }
 
 export const BytebankInputController: React.FC<ControlledInputProps> = ({

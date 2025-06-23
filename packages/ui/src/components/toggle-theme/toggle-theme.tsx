@@ -1,6 +1,6 @@
-import React, { JSX, useState } from 'react';
-import { Button, ToggleButton } from '@mui/material';
-import { useTheme } from '../../contexts/theme.context';
+import { JSX, useState } from 'react';
+import { ToggleButton } from '@mui/material';
+import { useTheme } from '@repo/utils';
 import { DarkMode } from '@mui/icons-material';
 
 export const BytebankToggleButton = (): JSX.Element => {
@@ -11,9 +11,9 @@ export const BytebankToggleButton = (): JSX.Element => {
   return (
     <>
       <ToggleButton
-        sx={{ borderRadius: '10rem', padding: '9px' }}
+        sx={{ borderRadius: '10rem', padding: '10px' }}
         value="check"
-        size={"medium"}
+        size={"small"}
         selected={selected}
         aria-label={'Alterar para o modo escuro'} 
         onChange={() => {
