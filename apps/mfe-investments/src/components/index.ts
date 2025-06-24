@@ -1,6 +1,8 @@
-export { default as AnalyticsCard } from './analytics-card/analytics-card';
-export { default as MobilityCard } from './mobility-card/mobility-card';
-export { default as MonthlyResume } from './monthly-resume/monthly-resume';
-export { default as SalaryCard } from './salary-card/salary-card';
-export { default as SpendCard } from './spend-card/spend-card';
-export { default as Button } from './Button';
+import Button from './Button'
+import MfeBytebankMobility from "./mobility-card/mobility-card"
+import MfeBytebankMonthlyResume from "./monthly-resume/monthly-resume"
+import MfeBytebankSalary from "./salary-card/salary-card"
+import MfeBytebankAnalytics from "./analytics-card/analytics-card"
+import MfeBytebankSpend from "./spend-card/spend-card"
+
+export {Button, MfeBytebankMobility, MfeBytebankMonthlyResume, MfeBytebankSpend, MfeBytebankAnalytics, MfeBytebankSalary}

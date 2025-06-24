@@ -3,7 +3,9 @@ import { BytebankBalanceCard } from '../../components/balance-card/balance-card'
 import { Box, Typography } from '@mui/material';
 import { BytebankCard, BytebankButton, BytebankModal } from '@repo/ui';
 // @ts-ignore
-import MfeButton from 'remote/Button';
+import {MfeBytebankMobility, MfeBytebankMonthlyResume, MfeBytebankSpend, MfeBytebankAnalytics, MfeBytebankSalary} from 'remote/Components'
+// import AnalyticsCard from 'remote/Components';
+// import MfeButton from 'remote/Button';
 import { useTheme } from '@repo/utils';
 
 interface BytebankDashboardProps { }
@@ -39,12 +41,19 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
               <BytebankButton label={'Botão no Bytebank Shell'} variant={'outlined'} color={'tertiary'} />
               <BytebankButton label={'Botão no Bytebank Shell'} variant={'contained'} color={'tertiary'} />
 
-              <MfeButton onClick={() => console.log('Clicou no botão')} />
-
               <BytebankButton label="Abrir modal" sendSubmit={() => setOpen(true)} color={'primary'}></BytebankButton>
 
             </Box>
           </BytebankCard>
+          <Box display="grid" marginTop="2rem" gridTemplateColumns="1fr 1fr 1fr" gap="30px">
+            <MfeBytebankMobility />
+            <MfeBytebankSalary />
+            <MfeBytebankSpend />
+          </Box>
+          <Box display="grid" marginTop="2rem" gridTemplateColumns="1fr 1fr" gap="30px">
+            <MfeBytebankMonthlyResume />
+            <MfeBytebankAnalytics />
+          </Box>
         </Box>
         <BytebankModal
           open={open}

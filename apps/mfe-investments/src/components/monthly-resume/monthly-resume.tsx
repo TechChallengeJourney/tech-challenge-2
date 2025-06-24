@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
-import { BytebankCard, BytebankText, useTheme } from "@repo/ui";
+import { BytebankCard, BytebankText } from "@repo/ui";
+import { useTheme } from "@repo/utils";
 import Chart from "react-apexcharts";
 
 
@@ -98,7 +99,7 @@ interface BytebankMonthlyResumeProps {
 }
 
 
-export default function BytebankMonthlyResume({
+export default function MfeBytebankMonthlyResume({
   data,
 }: BytebankMonthlyResumeProps) {
   const { colors } = useTheme();

@@ -7,7 +7,7 @@ interface BytebankMobilityProps {
   value?: string;
 }
 
-export default function BytebankSalary({ value } : BytebankMobilityProps) {
+export default function MfeBytebankSalary({ value } : BytebankMobilityProps) {
   return (
     <BytebankCard>
       <Box padding='1.25rem'>
