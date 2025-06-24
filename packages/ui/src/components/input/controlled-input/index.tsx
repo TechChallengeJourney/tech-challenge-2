@@ -10,6 +10,16 @@ interface ControlledInputProps {
   autoComplete?: string;
   mask?: "currency";
   rules?: RegisterOptions;
+  color:
+    | "primary"
+    | "secondary"
+    | "tertiary"
+    | "success"
+    | "error"
+    | "info"
+    | "warning"
+    | "black"
+    | "white";
 }
 
 export const BytebankInputController: React.FC<ControlledInputProps> = ({
@@ -20,6 +30,7 @@ export const BytebankInputController: React.FC<ControlledInputProps> = ({
   autoComplete,
   mask,
   rules,
+  color,
 }) => {
   const { control } = useFormContext();
   return (
@@ -37,6 +48,7 @@ export const BytebankInputController: React.FC<ControlledInputProps> = ({
           helperText={error?.message}
           autoComplete={autoComplete}
           mask={mask}
+          color={color}
         />
       )}
     />

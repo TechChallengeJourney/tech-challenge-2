@@ -15,7 +15,7 @@ const lightPalette = {
   "lime.subcontrast": "#151808",
   "lime.highcontrast": "#515921",
   background: "#F3F3F3",
-  "navigation": "rgba(255, 255, 255, 0.85)",
+  navigation: "rgba(255, 255, 255, 0.85)",
   "background.card": "oklch(1 0 0 / 0.8)",
   "background.accent": "#474c3224",
   "background.gradient": "linear-gradient(90deg, #D4E55A 0%, #8f9c17 100%)",
@@ -27,7 +27,8 @@ const lightPalette = {
   "grey.main": "#9e9e9e",
   "black.main": "#000000",
   "white.main": "#ffffff",
-  "logo.filter": "brightness(1.9) contrast(0.7) saturate(0.7)"
+  "red.700": "#B00020",
+  "logo.filter": "brightness(1.9) contrast(0.7) saturate(0.7)",
 };
 
 const darkPalette = {
@@ -47,7 +48,7 @@ const darkPalette = {
   "lime.subcontrast": "#17190d",
   "lime.highcontrast": "#e8f6ab",
   background: "#0c0d06",
-  "navigation": "rgb(16 18 9 / 90%)",
+  navigation: "rgb(16 18 9 / 90%)",
   "background.card": "oklch(0.26 0 0 / 0.3)",
   "background.accent": "#474c3224",
   "background.gradient": "linear-gradient(90deg, #3c430c 0%, #8f9c17 100%)",
@@ -59,7 +60,8 @@ const darkPalette = {
   "grey.main": "#9e9e9e",
   "black.main": "#000000",
   "white.main": "#ffffff",
-  "logo.filter": "brightness(1.9) contrast(0.7) saturate(0.7)"
+  "red.700": "#B00020",
+  "logo.filter": "brightness(1.9) contrast(0.7) saturate(0.7)",
 };
 
 export const colorsPalette = { light: lightPalette, dark: darkPalette };
