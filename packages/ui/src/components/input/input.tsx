@@ -1,8 +1,9 @@
 import { Box } from "@mui/material";
 import { TextFieldProps } from "@mui/material/TextField";
 import { useTheme } from "@repo/utils";
-import { StyledInput } from "./styled-input";
 import "./style.scss";
+
+import { StyledInput } from "./styled-input";
 
 declare module "@mui/material/TextField" {
   interface TextFieldPropsColorOverrides {
