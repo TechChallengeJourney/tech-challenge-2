@@ -30,8 +30,4 @@ export const StyledInput = styled(TextField, {
   "&.Mui-focused fieldset": {
     borderColor: palette["lime.800"] + " !important", // <-- Força a borda no foco!
   },
-  "&.Mui-disabled": {
-    color: "#3E3E3E",
-    backgroundColor: "#A7A7A7",
-  },
 }));
