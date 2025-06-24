@@ -1,6 +1,7 @@
-import { Box, styled } from "@mui/material";
-import TextField, { TextFieldProps } from "@mui/material/TextField";
+import { Box } from "@mui/material";
+import { TextFieldProps } from "@mui/material/TextField";
 import { useTheme } from "@repo/utils";
+import { StyledInput } from "./styled-input";
 import "./style.scss";
 
 declare module "@mui/material/TextField" {
@@ -58,38 +59,6 @@ export function BytebankInput({
 }: BytebankInputProps) {
   const { colors: palette } = useTheme();
 
-  const StyledInput = styled(TextField)<BytebankInputProps>(() => ({
-    "& .MuiOutlinedInput-root": {
-      "& .MuiOutlinedInput-input": {
-        color: palette["lime.800"],
-      },
-      "& fieldset": {
-        borderColor: palette["lime.700"],
-      },
-      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        borderColor: palette["lime.800"] + " !important",
-      },
-      "& .MuiOutlinedInput-notchedOutline": {
-        borderColor: palette["lime.700"],
-      },
-    },
-    "& .MuiInputLabel-root": {
-      color: palette["lime.900"],
-    },
-    "& .MuiInputLabel-root.Mui-focused": {
-      color: palette["lime.800"] + " !important",
-    },
-    "& .MuiFormHelperText-root": {
-      color: error ? palette["red.700"] : palette["lime.800"],
-    },
-    "&.Mui-focused fieldset": {
-      borderColor: palette["lime.800"] + " !important", // <-- Força a borda no foco!
-    },
-    "&.Mui-disabled": {
-      color: "#3E3E3E",
-      backgroundColor: "#A7A7A7",
-    },
-  }));
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newValue = (e.target as HTMLInputElement).value.replace(/\D/g, "");
@@ -129,6 +98,7 @@ export function BytebankInput({
         variant={"outlined"}
         fullWidth
         color={color}
+        palette={palette}
       />
     </Box>
   );
