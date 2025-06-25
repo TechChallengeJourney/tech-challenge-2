@@ -46,7 +46,7 @@ const darkPalette = {
   "lime.main": "#B8CC00",
   "lime.contrast": "#f0f6abe8",
   "lime.subcontrast": "#17190d",
-  "lime.highcontrast": "#e8f6ab",
+  "lime.highcontrast": "#f8ffd8",
   "background": "#0c0d06",
   "navigation": "rgb(16 18 9 / 90%)",
   "background.card": "oklch(0.26 0 0 / 0.3)",
