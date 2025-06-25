@@ -6,7 +6,7 @@ export default createModuleFederationConfig({
   name: 'remote',
   exposes: {
     './Button': './src/components/Button',
-    './BytebankExtract': './src/components/extract/extract',
+    './BytebankExtract': 'localhost:3002/extract',
   },
   filename: 'remoteEntry.js',
   shared: {
