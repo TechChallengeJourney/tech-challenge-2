@@ -24,7 +24,7 @@ const lightPalette = {
   "grey.500": "#9e9e9e",
   "grey.800": "#424242",
   "grey.900": "#303030",
-  "grey.main": "#9e9e9e",
+  "grey.main": "#3f3f3f",
   "black.main": "#000000",
   "white.main": "#ffffff",
   "red.700": "#B00020",

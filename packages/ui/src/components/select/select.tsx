@@ -4,9 +4,10 @@ import {
   InputLabel,
   FormHelperText,
   SelectProps,
+  styled,
+  Select,
 } from "@mui/material";
 import "./style.scss";
-import { StyledSelect } from "./styled-select";
 import { useTheme } from "@repo/utils";
 
 export interface SelectOption {
@@ -53,7 +54,44 @@ export function BytebankSelect({
   helperText = "",
   color,
 }: BytebankSelectProps) {
-  const { colors: palette } = useTheme();
+  const { colors } = useTheme();
+  const palette = colors;
+
+  const StyledSelect = styled(Select)(({ error }: { error?: boolean }) => ({
+    "&.MuiOutlinedInput-root": {
+      "& .MuiSelect-select": {
+        color: palette["grey.main"],
+      },
+      "& fieldset": {
+        borderColor: palette["grey.main"], 
+      },
+      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+        borderColor: `${palette["grey.main"]} !important`, 
+      },
+      "& .MuiOutlinedInput-notchedOutline": {
+        borderColor: palette["grey.main"],
+      },
+    },
+    "& .MuiInputLabel-root": {
+      color: palette["grey.main"], 
+    },
+    "& .MuiInputLabel-root.Mui-focused": {
+      color: `${palette["grey.main"]} !important`,
+    },
+    "& .MuiFormHelperText-root": {
+      color: error ? palette["red.700"] : palette["grey.main"],
+    },
+
+    "& .MuiMenu-paper .MuiMenu-list .MuiMenuItem-root": {
+      color: palette["grey.main"], 
+    },
+    "& .MuiMenu-paper .MuiMenu-list .MuiMenuItem-root.Mui-selected": {
+      color: palette["grey.900"], 
+    },
+    "& .MuiMenu-paper .MuiMenu-list .MuiMenuItem-root:hover": {
+      backgroundColor: palette["grey.200"], 
+    },
+  }));
 
   return (
     <FormControl variant="outlined" fullWidth margin="normal" error={error}>
@@ -63,7 +101,6 @@ export function BytebankSelect({
         onChange={(e: any) => onChange(e.target.value)}
         label={label}
         color={color}
-        palette={palette}
       >
         {options.map((option) => (
           <MenuItem key={option.value} value={option.value}>

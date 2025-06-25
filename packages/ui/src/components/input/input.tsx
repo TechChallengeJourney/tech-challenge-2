@@ -1,9 +1,7 @@
-import { Box } from "@mui/material";
+import { Box, styled, TextField } from "@mui/material";
 import { TextFieldProps } from "@mui/material/TextField";
 import { useTheme } from "@repo/utils";
 import "./style.scss";
-
-import { StyledInput } from "./styled-input";
 
 declare module "@mui/material/TextField" {
   interface TextFieldPropsColorOverrides {
@@ -58,8 +56,34 @@ export function BytebankInput({
   color,
   ...props
 }: BytebankInputProps) {
-  const { colors: palette } = useTheme();
+  const { colors } = useTheme();
+  const palette = colors;
 
+  const StyledInput = styled(TextField)(({ error }: { error?: boolean }) => ({
+    "& .MuiOutlinedInput-root": {
+      "& .MuiOutlinedInput-input": {
+        color: palette["grey.main"],
+      },
+      "& fieldset": {
+        borderColor: palette["grey.main"],
+      },
+      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+        borderColor: `${palette["grey.main"]} !important`,
+      },
+      "& .MuiOutlinedInput-notchedOutline": {
+        borderColor: palette["grey.main"],
+      },
+    },
+    "& .MuiInputLabel-root": {
+      color: palette["grey.main"],
+    },
+    "& .MuiInputLabel-root.Mui-focused": {
+      color: `${palette["grey.main"]} !important`,
+    },
+    "& .MuiFormHelperText-root": {
+      color: error ? palette["red.700"] : palette["grey.main"],
+    },
+  }));
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newValue = (e.target as HTMLInputElement).value.replace(/\D/g, "");
@@ -99,7 +123,6 @@ export function BytebankInput({
         variant={"outlined"}
         fullWidth
         color={color}
-        palette={palette}
       />
     </Box>
   );
