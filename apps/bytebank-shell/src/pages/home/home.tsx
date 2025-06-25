@@ -83,15 +83,16 @@ const BytebankHomePage = () => {
 
   useEffect(() => {
     const footer = document.getElementById("bytebank-bg-footer");
-
-    if (!footer) return;
+    const footerText = document.getElementById('bytebank-footer-text');
+    if (!footer || !footerText) return;
 
     const bodyOriginal = document.body.style.cssText;
     const footerOriginal = footer.style.cssText;
+    const footerTextOriginal = footerText.style.cssText;
 
     if (!isDarkMode) {
-      footer.style.backgroundColor = colors["lime.50"];
-      footer.style.color = colors["lime.900"];
+      footer.style.backgroundColor = colors["lime.dark"];
+      footerText.style.color = colors["lime.100"] ;
       document.body.style.background =
         "radial-gradient(100% 244.46% at 0% 0%, rgb(232, 234, 105) 0%, rgb(243, 245, 196) 100%) 0% 0% / 110% 110%, radial-gradient(50% 122.23% at 50% 50%, rgb(245, 255, 177) 0%, rgb(48, 108, 0) 100%), radial-gradient(100.45% 245.58% at 0% 0%, rgb(119, 239, 0) 0%, rgb(126, 177, 86) 100%), linear-gradient(127.43deg, rgb(99, 0, 0) 0%, rgb(143, 115, 255) 100%)";
       document.body.style.backgroundBlendMode =
@@ -108,6 +109,7 @@ const BytebankHomePage = () => {
     return () => {
       document.body.style.cssText = bodyOriginal;
       footer.style.cssText = footerOriginal;
+      footerText.style.cssText = footerTextOriginal;
     };
   }, [isDarkMode]);
 
