@@ -139,7 +139,7 @@ const BytebankHomePage = () => {
 
         <Box
           minWidth={"100vw"}
-          bgcolor={colors["lime.100"]}
+          bgcolor={colors["lime.50"]}
           py={5}
           minHeight={"35em"}
           width={"100%"}

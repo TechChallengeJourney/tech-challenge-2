@@ -67,7 +67,7 @@ export function BytebankButton({
     },
     '&.MuiButton-containedTertiary': {
       border: '1px solid',
-      borderColor: 'rgb(199 201 145 / 20%)',
+      borderColor: 'rgb(199 201 145 / 15%)',
       backgroundColor: palette['lime.100'],
     },
     '&.MuiButton-containedPrimary': {
