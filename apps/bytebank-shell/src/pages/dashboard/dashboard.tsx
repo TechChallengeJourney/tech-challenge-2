@@ -1,9 +1,10 @@
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { BytebankBalanceCard } from '../../components/balance-card/balance-card';
 import { Box, Typography } from '@mui/material';
 import { BytebankCard, BytebankButton, BytebankModal } from '@repo/ui';
 // @ts-ignore
 import MfeButton from 'remote/Button';
+const BytebankExtract = React.lazy(() => import('remote/BytebankExtract'));
 import { useTheme } from '@repo/utils';
 
 interface BytebankDashboardProps { }
@@ -46,6 +47,13 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
             </Box>
           </BytebankCard>
         </Box>
+
+        <Box>
+          <React.Suspense fallback={<div>Loading Extract...</div>}>
+            <BytebankExtract />
+          </React.Suspense>
+        </Box>
+
         <BytebankModal
           open={open}
           title="Confirmar exclusão"
