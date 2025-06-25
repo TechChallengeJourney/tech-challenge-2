@@ -10,7 +10,7 @@ interface ControlledInputProps {
   autoComplete?: string;
   mask?: "currency";
   rules?: RegisterOptions;
-  color:
+  color?:
     | "primary"
     | "secondary"
     | "tertiary"
