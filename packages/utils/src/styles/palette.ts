@@ -27,7 +27,7 @@ const lightPalette = {
   "grey.main": "#9e9e9e",
   "black.main": "#000000",
   "white.main": "#ffffff",
-  "logo.filter": "brightness(1.9) contrast(0.7) saturate(0.7)"
+  "logo.filter": "brightness(0.4)"
 };
 
 const darkPalette = {
@@ -59,7 +59,7 @@ const darkPalette = {
   "grey.main": "#9e9e9e",
   "black.main": "#000000",
   "white.main": "#ffffff",
-  "logo.filter": "brightness(1.9) contrast(0.7) saturate(0.7)"
+  "logo.filter": "brightness(3) contrast(0.8) saturate(0.75)"
 };
 
 export const colorsPalette = { light: lightPalette, dark: darkPalette };

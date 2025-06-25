@@ -27,8 +27,10 @@ import AppRegistrationRoundedIcon from "@mui/icons-material/AppRegistrationRound
 import LoginIcon from "@mui/icons-material/Login";
 import { useUser } from "@repo/data-access";
 import { BytebankRegisterModal, BytebankLoginModal } from "../../modals";
+import { useTheme } from "@repo/utils";
 
 export function BytebankHeader() {
+  const { colors } = useTheme();
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
     const [snackbarData, setSnackbarData] = useState<SnackbarData | null>(null);
@@ -117,6 +119,7 @@ export function BytebankHeader() {
                             onClick={() => navigate("/")}
                             sx={{
                                 display: { xs: "none", md: "flex" },
+                                filter: `${colors['logo.filter']}`
                             }}
                         >
                             <img
@@ -180,6 +183,7 @@ export function BytebankHeader() {
                                 display: { xs: "flex", md: "none" },
                                 width: "80%",
                                 justifyContent: "center",
+                                filter: `${colors['logo.filter']}`
                             }}
                         >
                             <img

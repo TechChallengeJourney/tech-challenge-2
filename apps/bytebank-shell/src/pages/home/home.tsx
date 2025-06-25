@@ -47,12 +47,10 @@ const BytebankHomePage = () => {
   
   useEffect(() => {
     const header = document.getElementById("bytebank-header");
-    const logo = document.getElementById("bytebank-logo");
     
-    if (!header || !logo) return;
+    if (!header) return;
 
     const headerOriginal = header.style.cssText;
-    const logoOriginal = logo.style.cssText;
 
     const setHeaderStyle = () => {
       if (!isDarkMode) {
@@ -60,7 +58,6 @@ const BytebankHomePage = () => {
           header.style.background = "rgb(255 255 255 / 85%)";
         } else {
           header.style.background = "transparent";
-          logo.style.filter = "brightness(0.5)";
         }
       } else {
         if (window.scrollY > 50) {
@@ -68,7 +65,6 @@ const BytebankHomePage = () => {
         } else {
           header.style.background = "transparent";
         }
-        logo.style.filter = "brightness(1.9) contrast(0.7) saturate(0.7)";
       }
     };
 
@@ -76,7 +72,6 @@ const BytebankHomePage = () => {
     window.addEventListener("scroll", setHeaderStyle);
     return () => {
       header.style.cssText = headerOriginal;
-      logo.style.cssText = logoOriginal;
       window.removeEventListener("scroll", setHeaderStyle);
     };
   }, [isDarkMode]);
