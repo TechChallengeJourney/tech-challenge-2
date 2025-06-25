@@ -67,8 +67,8 @@ export function BytebankButton({
     },
     '&.MuiButton-containedTertiary': {
       border: '1px solid',
-      borderColor: palette['lime.200'],
-      backgroundColor: palette['lime.50'],
+      borderColor: 'rgb(199 201 145 / 20%)',
+      backgroundColor: palette['lime.100'],
     },
     '&.MuiButton-containedPrimary': {
       backgroundColor: palette['lime.900'],
@@ -91,6 +91,7 @@ export function BytebankButton({
       padding: '.6rem 1.2rem !important',
       boxShadow: 'none !important',
       textTransform: 'none !important',
+      fontSize: '15px !important',
       fontWeight: 400,
     },
     '&.MuiButton-contained:hover,&.MuiButton-outlined:hover': {

@@ -106,7 +106,7 @@ export function BytebankHeader() {
                 sx={{
                     transition: "all 0.3s ease",
                     boxShadow: "none",
-                    borderBottom: "1px solid rgb(134 134 132 / 15%)",
+                    borderBottom: "1px solid rgb(199 201 145 / 20%)",
                     backdropFilter: "blur(8px)",
                 }}
             >
