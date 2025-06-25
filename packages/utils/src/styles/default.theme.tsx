@@ -253,7 +253,6 @@ export const darkTheme = createTheme(defaultTheme, {
         root: {
           color: darkPalette["grey.main"],
           backgroundColor: darkPalette["lime.700"],
-          color: darkPalette["lime.50"],
         },
         "&.Mui-selected:hover": {
           backgroundColor: darkPalette["lime.600"],
