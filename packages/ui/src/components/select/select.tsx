@@ -15,14 +15,6 @@ export interface SelectOption {
   value: string;
 }
 
-declare module "@mui/material/Select" {
-  interface SelectPropsColorOverrides {
-    tertiary: true;
-    black: true;
-    white: true;
-  }
-}
-
 export type BytebankSelectProps = SelectProps & {
   value: string;
   onChange: (value: string) => void;
@@ -36,13 +28,10 @@ export type BytebankSelectProps = SelectProps & {
   color:
     | "primary"
     | "secondary"
-    | "tertiary"
     | "success"
     | "error"
     | "info"
     | "warning"
-    | "black"
-    | "white";
 };
 
 export function BytebankSelect({
