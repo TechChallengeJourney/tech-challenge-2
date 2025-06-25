@@ -3,9 +3,7 @@ import { BytebankBalanceCard } from '../../components/balance-card/balance-card'
 import { Box, Typography } from '@mui/material';
 import { BytebankCard, BytebankButton, BytebankModal } from '@repo/ui';
 // @ts-ignore
-import {MfeBytebankMobility, MfeBytebankMonthlyResume, MfeBytebankSpend, MfeBytebankAnalytics, MfeBytebankSalary} from 'remote/Components'
-// import AnalyticsCard from 'remote/Components';
-// import MfeButton from 'remote/Button';
+import {BytebankAnalytics, BytebankMobility, BytebankSalary, BytebankSpend, BytebankMonthlyResume} from 'remote/components'
 import { useTheme } from '@repo/utils';
 
 interface BytebankDashboardProps { }
@@ -46,13 +44,13 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
             </Box>
           </BytebankCard>
           <Box display="grid" marginTop="2rem" gridTemplateColumns="1fr 1fr 1fr" gap="30px">
-            <MfeBytebankMobility />
-            <MfeBytebankSalary />
-            <MfeBytebankSpend />
+            <BytebankMobility />
+            <BytebankSalary />
+            <BytebankSpend />
           </Box>
           <Box display="grid" marginTop="2rem" gridTemplateColumns="1fr 1fr" gap="30px">
-            <MfeBytebankMonthlyResume />
-            <MfeBytebankAnalytics />
+            <BytebankMonthlyResume />
+            <BytebankAnalytics />
           </Box>
         </Box>
         <BytebankModal

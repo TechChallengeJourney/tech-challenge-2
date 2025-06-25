@@ -5,7 +5,7 @@ const { dependencies } = pkg;
 export default createModuleFederationConfig({
   name: 'remote',
   exposes: {
-    './Components': './src/components/index.ts',
+    './components': './src/components/index.ts',
   },
   filename: 'remoteEntry.js',
   shared: {
