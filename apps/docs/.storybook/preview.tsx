@@ -1,7 +1,9 @@
-
+import React from "react";
 import type { Preview } from "@storybook/react-vite";
 import { CssBaseline } from "@mui/material";
-import { BytebankThemeProvider } from '@repo/utils';
+import { BrowserRouter as Router } from "react-router-dom";
+import { BytebankThemeProvider } from "@repo/utils";
+import { UserProvider } from "@repo/data-access";
 
 const preview: Preview = {
   parameters: {
@@ -18,10 +20,14 @@ export default preview;
 
 export const withTheme = (Story) => {
   return (
-    <BytebankThemeProvider>
-      <CssBaseline />
-      <Story />
-    </BytebankThemeProvider>
+    <Router>
+      <BytebankThemeProvider>
+        <UserProvider>
+          <CssBaseline />
+          <Story />
+        </UserProvider>
+      </BytebankThemeProvider>
+    </Router>
   );
 };
 

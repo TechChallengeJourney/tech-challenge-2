@@ -47,12 +47,10 @@ const BytebankHomePage = () => {
   
   useEffect(() => {
     const header = document.getElementById("bytebank-header");
-    const logo = document.getElementById("bytebank-logo");
     
-    if (!header || !logo) return;
+    if (!header) return;
 
     const headerOriginal = header.style.cssText;
-    const logoOriginal = logo.style.cssText;
 
     const setHeaderStyle = () => {
       if (!isDarkMode) {
@@ -60,7 +58,6 @@ const BytebankHomePage = () => {
           header.style.background = "rgb(255 255 255 / 85%)";
         } else {
           header.style.background = "transparent";
-          logo.style.filter = "brightness(0.5)";
         }
       } else {
         if (window.scrollY > 50) {
@@ -68,7 +65,6 @@ const BytebankHomePage = () => {
         } else {
           header.style.background = "transparent";
         }
-        logo.style.filter = "brightness(1.9) contrast(0.7) saturate(0.7)";
       }
     };
 
@@ -76,22 +72,22 @@ const BytebankHomePage = () => {
     window.addEventListener("scroll", setHeaderStyle);
     return () => {
       header.style.cssText = headerOriginal;
-      logo.style.cssText = logoOriginal;
       window.removeEventListener("scroll", setHeaderStyle);
     };
   }, [isDarkMode]);
 
   useEffect(() => {
     const footer = document.getElementById("bytebank-bg-footer");
-
-    if (!footer) return;
+    const footerText = document.getElementById('bytebank-footer-text');
+    if (!footer || !footerText) return;
 
     const bodyOriginal = document.body.style.cssText;
     const footerOriginal = footer.style.cssText;
+    const footerTextOriginal = footerText.style.cssText;
 
     if (!isDarkMode) {
-      footer.style.backgroundColor = colors["lime.50"];
-      footer.style.color = colors["lime.900"];
+      footer.style.backgroundColor = colors["lime.dark"];
+      footerText.style.color = colors["lime.100"] ;
       document.body.style.background =
         "radial-gradient(100% 244.46% at 0% 0%, rgb(232, 234, 105) 0%, rgb(243, 245, 196) 100%) 0% 0% / 110% 110%, radial-gradient(50% 122.23% at 50% 50%, rgb(245, 255, 177) 0%, rgb(48, 108, 0) 100%), radial-gradient(100.45% 245.58% at 0% 0%, rgb(119, 239, 0) 0%, rgb(126, 177, 86) 100%), linear-gradient(127.43deg, rgb(99, 0, 0) 0%, rgb(143, 115, 255) 100%)";
       document.body.style.backgroundBlendMode =
@@ -108,6 +104,7 @@ const BytebankHomePage = () => {
     return () => {
       document.body.style.cssText = bodyOriginal;
       footer.style.cssText = footerOriginal;
+      footerText.style.cssText = footerTextOriginal;
     };
   }, [isDarkMode]);
 
@@ -142,7 +139,7 @@ const BytebankHomePage = () => {
 
         <Box
           minWidth={"100vw"}
-          bgcolor={colors["lime.100"]}
+          bgcolor={colors["lime.50"]}
           py={5}
           minHeight={"35em"}
           width={"100%"}
