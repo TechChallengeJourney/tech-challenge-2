@@ -1,7 +1,8 @@
-import { Box, styled, TextField } from "@mui/material";
+import { Box } from "@mui/material";
 import { TextFieldProps } from "@mui/material/TextField";
 import { useTheme } from "@repo/utils";
 import "./style.scss";
+import { StyledInput } from "./styled-input";
 
 declare module "@mui/material/TextField" {
   interface TextFieldPropsColorOverrides {
@@ -11,20 +12,17 @@ declare module "@mui/material/TextField" {
   }
 }
 
-export type BytebankInputProps = TextFieldProps & {
+export type BytebankInputProps = Omit<TextFieldProps, "onChange" | "value"> & {
   label: string;
   value?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (value: string) => void;
   type?: string;
   placeholder?: string;
   error?: boolean;
   helperText?: string;
   autoComplete?: string;
   mask?: "currency";
-  /**
-   * As cores do input
-   */
-  color:
+  color?:
     | "primary"
     | "secondary"
     | "tertiary"
@@ -59,59 +57,27 @@ export function BytebankInput({
   const { colors } = useTheme();
   const palette = colors;
 
-  const StyledInput = styled(TextField)(({ error }: { error?: boolean }) => ({
-    "& .MuiOutlinedInput-root": {
-      "& .MuiOutlinedInput-input": {
-        color: palette["grey.main"],
-      },
-      "& fieldset": {
-        borderColor: palette["grey.main"],
-      },
-      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        borderColor: `${palette["grey.main"]} !important`,
-      },
-      "& .MuiOutlinedInput-notchedOutline": {
-        borderColor: palette["grey.main"],
-      },
-    },
-    "& .MuiInputLabel-root": {
-      color: palette["grey.main"],
-    },
-    "& .MuiInputLabel-root.Mui-focused": {
-      color: `${palette["grey.main"]} !important`,
-    },
-    "& .MuiFormHelperText-root": {
-      color: error ? palette["red.700"] : palette["grey.main"],
-    },
-  }));
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let newValue = (e.target as HTMLInputElement).value.replace(/\D/g, "");
+    let newValue = e.target.value;
 
     if (mask === "currency") {
-      newValue = newValue.replace(/^0+/, "");
-
-      const event = {
-        ...e,
-        target: {
-          ...e.target,
-          value: newValue,
-        },
-      };
-      onChange(event as React.ChangeEvent<HTMLInputElement>);
-    } else {
-      onChange(e);
+      newValue = newValue.replace(/\D/g, "");
+      newValue = newValue.replace(/^0+/, ""); // Remove zeros à esquerda
     }
+
+    onChange(newValue);
   };
+
+  const displayValue =
+    mask === "currency" && typeof value === "string"
+      ? formatCurrency(value)
+      : value || "";
+
   return (
     <Box className="bytebank-input">
       <StyledInput
         {...props}
-        value={
-          mask === "currency" && typeof value === "string"
-            ? formatCurrency(value)
-            : value
-        }
+        value={displayValue}
         onChange={handleChange}
         label={label}
         type={type}
@@ -123,6 +89,7 @@ export function BytebankInput({
         variant={"outlined"}
         fullWidth
         color={color}
+        palette={palette}
       />
     </Box>
   );

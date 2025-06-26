@@ -4,11 +4,10 @@ import {
   InputLabel,
   FormHelperText,
   SelectProps,
-  styled,
-  Select,
 } from "@mui/material";
 import "./style.scss";
 import { useTheme } from "@repo/utils";
+import { StyledSelect } from "./styled-select";
 
 export interface SelectOption {
   label: string;
@@ -25,13 +24,7 @@ export type BytebankSelectProps = SelectProps & {
   /**
    * As cores do select
    */
-  color:
-    | "primary"
-    | "secondary"
-    | "success"
-    | "error"
-    | "info"
-    | "warning"
+  color?: "primary" | "secondary" | "success" | "error" | "info" | "warning";
 };
 
 export function BytebankSelect({
@@ -46,42 +39,6 @@ export function BytebankSelect({
   const { colors } = useTheme();
   const palette = colors;
 
-  const StyledSelect = styled(Select)(({ error }: { error?: boolean }) => ({
-    "&.MuiOutlinedInput-root": {
-      "& .MuiSelect-select": {
-        color: palette["grey.main"],
-      },
-      "& fieldset": {
-        borderColor: palette["grey.main"], 
-      },
-      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        borderColor: `${palette["grey.main"]} !important`, 
-      },
-      "& .MuiOutlinedInput-notchedOutline": {
-        borderColor: palette["grey.main"],
-      },
-    },
-    "& .MuiInputLabel-root": {
-      color: palette["grey.main"], 
-    },
-    "& .MuiInputLabel-root.Mui-focused": {
-      color: `${palette["grey.main"]} !important`,
-    },
-    "& .MuiFormHelperText-root": {
-      color: error ? palette["red.700"] : palette["grey.main"],
-    },
-
-    "& .MuiMenu-paper .MuiMenu-list .MuiMenuItem-root": {
-      color: palette["grey.main"], 
-    },
-    "& .MuiMenu-paper .MuiMenu-list .MuiMenuItem-root.Mui-selected": {
-      color: palette["grey.900"], 
-    },
-    "& .MuiMenu-paper .MuiMenu-list .MuiMenuItem-root:hover": {
-      backgroundColor: palette["grey.200"], 
-    },
-  }));
-
   return (
     <FormControl variant="outlined" fullWidth margin="normal" error={error}>
       <InputLabel>{label}</InputLabel>
@@ -90,6 +47,7 @@ export function BytebankSelect({
         onChange={(e: any) => onChange(e.target.value)}
         label={label}
         color={color}
+        palette={palette}
       >
         {options.map((option) => (
           <MenuItem key={option.value} value={option.value}>
