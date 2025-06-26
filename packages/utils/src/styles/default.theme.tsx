@@ -190,7 +190,7 @@ export const lightTheme = createTheme(defaultTheme, {
 });
 
 export const darkTheme = createTheme(defaultTheme, {
-  ...getTypographyDefinition(darkPalette['grey.50']),
+  ...getTypographyDefinition(darkPalette['lime.highcontrast']),
   palette: {
     mode: 'dark',
     background: { paper: darkPalette['background'], default: darkPalette['background'], gradient: darkPalette['background.gradient'] },
@@ -246,7 +246,7 @@ export const darkTheme = createTheme(defaultTheme, {
     MuiTypography: {
       styleOverrides: {
         root: {
-          color: darkPalette['grey.50'],
+          color: darkPalette['lime.highcontrast'],
         },
       },
     },
