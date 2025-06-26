@@ -1,7 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-
-import { fn } from 'storybook/test';
-
 import { BytebankHeader } from './header';
 
 const meta = {
@@ -11,22 +8,10 @@ const meta = {
   parameters: {
     layout: 'fullscreen',
   },
-  args: {
-    onLogin: fn(),
-    onLogout: fn(),
-    onCreateAccount: fn(),
-  },
+  args: {},
 } satisfies Meta<typeof BytebankHeader>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-
-export const LoggedIn: Story = {
-  args: {
-    user: {
-      name: 'Jane Doe',
-    },
-  },
-};
 
 export const LoggedOut: Story = {};
