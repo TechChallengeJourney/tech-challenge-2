@@ -10,10 +10,12 @@
     "json-server": "json-server --watch db.json --port 8080"
   },
   "devDependencies": {
+    "concurrently": "^9.2.0",
+    "json-server": "^1.0.0-beta.3",
+    "nodemon": "^3.1.10",
     "prettier": "^3.5.3",
     "turbo": "^2.5.4",
-    "typescript": "5.8.2",
-    "json-server": "^1.0.0-beta.3"
+    "typescript": "5.8.2"
   },
   "engines": {
     "node": ">=18"
@@ -22,5 +24,8 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "express": "^5.1.0"
+  }
 }
