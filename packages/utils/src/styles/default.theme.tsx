@@ -23,25 +23,29 @@ const lightPalette = colorsPalette.light;
 const darkPalette = colorsPalette.dark;
 
 let defaultTheme = createTheme({
+  spacing: [0, 8, 16, 24, 32, 64],
+});
+
+const getTypographyDefinition = (color: string) => ({
   typography: {
     fontFamily: 'Inter, sans-serif',
-    h1: { fontSize: 25, fontWeight: 600 },
-    xs: { fontSize: 13, fontFamily: 'Inter, sans-serif', },
-    sm: { fontSize: 16, fontFamily: 'Inter, sans-serif', },
-    md: { fontSize: 22, fontFamily: 'Inter, sans-serif', },
+    xs: { fontSize: 13, fontFamily: 'Inter, sans-serif', color },
+    sm: { fontSize: 16, fontFamily: 'Inter, sans-serif', color },
+    md: { fontSize: 22, fontFamily: 'Inter, sans-serif', color },
     lg: { fontSize: 26, fontFamily: 'Inter, sans-serif', fontWeight: 500 },
     xxl: { fontSize: 34, fontFamily: 'Inter, sans-serif', fontWeight: 500 },
-    button: { fontSize: 15 },
-  },
-  spacing: [0, 8, 16, 24, 32, 64],
+    h1: { fontSize: 25, fontWeight: 600 },
+    button: { fontSize: 16 },
+  }
 });
 
 defaultTheme = responsiveFontSizes(defaultTheme);
 
 export const lightTheme = createTheme(defaultTheme, {
+  ...getTypographyDefinition(lightPalette['grey.900']),
   palette: {
     mode: 'light',
-    background: {paper: lightPalette['background'], default: lightPalette['background'], gradient: lightPalette['background.gradient']},
+    background: { paper: lightPalette['background'], default: lightPalette['background'], gradient: lightPalette['background.gradient'] },
     primary: {
       main: lightPalette['lime.contrast'],
       light: lightPalette['lime.700'],
@@ -102,14 +106,16 @@ export const lightTheme = createTheme(defaultTheme, {
       styleOverrides: {
         root: {
           color: lightPalette['lime.800'],
+          textDecorationColor: lightPalette['lime.800'],
         },
       },
     },
     MuiCssBaseline: {
       styleOverrides: {
         ':root': {
-          '--variant-textColor': lightPalette['lime.800'],
-          '--variant-outlinedBorder': lightPalette['lime.700'],
+          '--variant-containedColor': lightPalette['grey.800'],
+          '--variant-textColor': lightPalette['grey.900'],
+          '--variant-outlinedBorder': lightPalette['grey.500'],
           '--Paper-overlay': 'none !important'
         },
         body: {
@@ -138,35 +144,44 @@ export const lightTheme = createTheme(defaultTheme, {
     MuiSelect: {
       styleOverrides: {
         root: {
-          color: lightPalette['lime.900'],
+          color: lightPalette['grey.800'],
         },
         icon: {
-          color: lightPalette['lime.900'],
+          color: lightPalette['grey.800'],
         },
       },
     },
     MuiFormHelperText: {
       styleOverrides: {
         root: {
-          color: lightPalette['lime.900'],
+          color: lightPalette['grey.800'],
         },
       },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          '&': {
+            color: lightPalette['grey.400'],
+          }
+        }
+      }
     },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
           '& .MuiOutlinedInput-notchedOutline': {
-            borderColor: lightPalette['lime.400'],
+            borderColor: lightPalette['grey.500'],
           },
           '&:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: lightPalette['lime.700'],
+            borderColor: lightPalette['lime.800'],
           },
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-            borderColor: lightPalette['lime.500'], // Focus color
+            borderColor: lightPalette['lime.700'], // Focus color
           },
         },
         input: {
-          color: lightPalette['lime.900'],
+          color: lightPalette['grey.900'],
         },
       },
     },
@@ -175,9 +190,10 @@ export const lightTheme = createTheme(defaultTheme, {
 });
 
 export const darkTheme = createTheme(defaultTheme, {
+  ...getTypographyDefinition(darkPalette['grey.50']),
   palette: {
     mode: 'dark',
-    background: {paper: darkPalette['background'], default: darkPalette['background'], gradient: darkPalette['background.gradient']},
+    background: { paper: darkPalette['background'], default: darkPalette['background'], gradient: darkPalette['background.gradient'] },
     primary: {
       main: darkPalette['lime.contrast'],
       light: darkPalette['lime.700'],
@@ -192,9 +208,9 @@ export const darkTheme = createTheme(defaultTheme, {
     },
     tertiary: defaultTheme.palette.augmentColor({
       color: {
-        main: darkPalette['lime.100'],
-        light: darkPalette['lime.50'],
-        dark: darkPalette['lime.200'],
+        main: darkPalette['lime.800'],
+        light: darkPalette['lime.900'],
+        dark: darkPalette['lime.600'],
         contrastText: darkPalette['lime.subcontrast'],
       },
       name: 'tertiary',
@@ -214,8 +230,8 @@ export const darkTheme = createTheme(defaultTheme, {
       name: 'white',
     }),
     text: {
-      primary: darkPalette['lime.900'],
-      secondary: darkPalette['lime.500'],
+      primary: darkPalette['grey.50'],
+      secondary: darkPalette['lime.900'],
     }
   },
   components: {
@@ -230,27 +246,35 @@ export const darkTheme = createTheme(defaultTheme, {
     MuiTypography: {
       styleOverrides: {
         root: {
-          color: darkPalette['lime.900'],
+          color: darkPalette['grey.50'],
         },
       },
     },
     MuiLink: {
       styleOverrides: {
         root: {
-          color: darkPalette['lime.600'],
+          color: darkPalette['lime.900'],
+          textDecorationColor: darkPalette['lime.900'],
         },
       },
     },
     MuiCssBaseline: {
       styleOverrides: {
         ':root': {
-          '--variant-textColor': darkPalette['lime.highcontrast'],
+          '--variant-textColor': darkPalette['grey.50'] + ' !important',
+          '--variant-containedColor': darkPalette['grey.50'] + ' !important',
+          '--variant-outlinedBorder': darkPalette['grey.200'] + ' !important',
+        },
+        '.MuiButtonBase-root': {
+          '--variant-textColor': darkPalette['grey.50'] + ' !important',
+          '--variant-containedColor': darkPalette['lime.900'] + ' !important',
+          '--variant-outlinedBorder': lightPalette['grey.200'] + ' !important',
         },
         '.MuiPaper-root': {
           '--Paper-overlay': 'none !important'
         },
         body: {
-          backgrounColor: darkPalette.background 
+          backgrounColor: darkPalette.background
         },
       },
     },
@@ -289,26 +313,34 @@ export const darkTheme = createTheme(defaultTheme, {
         },
       },
     },
+
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          '&': {
+            color: lightPalette['grey.50'],
+          }
+        }
+      }
+    },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          '& .MuiOutlinedInput-notchedOutline': {
+          '&.MuiOutlinedInput-notchedOutline': {
             borderColor: darkPalette['lime.400'],
           },
           '&:hover .MuiOutlinedInput-notchedOutline': {
             borderColor: darkPalette['lime.700'],
           },
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-            borderColor: darkPalette['lime.500'], // Focus color
+            borderColor: darkPalette['lime.600'], // Focus color
           },
         },
         input: {
-          color: darkPalette['lime.50'],
+          color: darkPalette['grey.50'],
         },
       },
     },
   },
   cssVariables: true,
 });
-
-export default defaultTheme;
