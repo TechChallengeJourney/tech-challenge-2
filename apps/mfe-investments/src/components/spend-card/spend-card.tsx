@@ -9,14 +9,14 @@ interface BytebankMobilityProps {
 
 export function BytebankSpend({ value } : BytebankMobilityProps) {
   return (
-    <BytebankCard>
-      <Box padding='1.25rem'>
-        <Box display='flex' alignItems="center" gap="1rem">
-          <PaymentsIcon fontSize='large' />
-          <BytebankText variant='sm' color='primary'>Sua maior receita neste mês foi:</BytebankText>
+      <BytebankCard>
+        <Box padding='1.25rem'>
+          <Box display='flex' alignItems="center" gap="1rem">
+            <PaymentsIcon fontSize='large' />
+            <BytebankText variant='sm' color='primary'>Média de gastos diários:</BytebankText>
+          </Box>
+            <BytebankText variant='lg' fontWeight='bold'>{formatCurrencyBRL(value ? value : '00')}</BytebankText>
         </Box>
-          <BytebankText variant='lg' fontWeight='bold'>{formatCurrencyBRL(value ? value : '00')}</BytebankText>
-      </Box>
-    </BytebankCard>
+      </BytebankCard>
   )
 }

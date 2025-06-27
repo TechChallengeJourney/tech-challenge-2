@@ -102,12 +102,24 @@ const options: ApexCharts.ApexOptions = {
   },
   responsive: [
     {
-      breakpoint: 480,
+      breakpoint: 600, // abaixo de 600px (celular)
       options: {
-        chart: { width: 300 },
-        legend: { position: "bottom" },
-      },
-    },
+        plotOptions: {
+          bar: {
+            columnWidth: "70%", // barras um pouco mais largas para celular
+          }
+        },
+        xaxis: {
+          labels: {
+            style: { fontSize: '10px' }
+          }
+        },
+        legend: {
+          position: 'bottom',
+          fontSize: '12px',
+        },
+      }
+    }
   ],
 };
 
@@ -116,12 +128,14 @@ const options: ApexCharts.ApexOptions = {
 
   return (
     <BytebankCard>
-      <Box padding='1.25rem'>
-        <BytebankText variant='lg' fontWeight='bold'>Resumo Financeiro Mensal</BytebankText>
-        <Box marginTop="1rem">
-          <Chart options={options} series={series} type="bar" width="100%" />
-        </Box>
+    <Box padding="1.25rem" width="100%">
+      <BytebankText variant="lg" fontWeight="bold">
+        Resumo Financeiro Mensal
+      </BytebankText>
+      <Box marginTop="1rem" width="100%">
+        <Chart options={options} series={series} type="bar" width="100%" height={300} />
       </Box>
+    </Box>
     </BytebankCard>
   );
 }
