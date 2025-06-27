@@ -24,7 +24,7 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
           <BytebankCard>
             <Box textAlign="left" minHeight={'10rem'} p={4}>
               <Box pb={4} display={'flex'} gap={2}>
-                <Typography fontWeight={'bold'} variant="lg" style={{ color: textColor }}>
+                <Typography fontWeight={'bold'} variant="lg">
                   Nova transação
                 </Typography>
               </Box>

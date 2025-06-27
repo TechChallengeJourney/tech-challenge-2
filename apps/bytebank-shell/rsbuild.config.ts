@@ -8,17 +8,14 @@ import mfConfig from "./module-federation.config";
 const { publicVars } = loadEnv({ prefixes: ["REACT_APP_", "PUBLIC_"] });
 
 export default defineConfig({
-  env: {
-    PUBLIC_API_URL: process.env.PUBLIC_API_URL,
-  },
   html: {
     template: "./public/index.html",
   },
   plugins: [
     pluginReact(),
+    pluginSass(),
     pluginSvgr({ mixedImport: true }),
     pluginModuleFederation(mfConfig),
-    pluginSass(),
   ],
   source: {
     // Compile all JS files and exclude core-js
