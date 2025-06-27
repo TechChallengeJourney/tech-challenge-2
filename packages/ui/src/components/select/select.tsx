@@ -4,10 +4,9 @@ import {
   InputLabel,
   FormHelperText,
   SelectProps,
+  Select,
 } from "@mui/material";
-import "./style.scss";
-import { useTheme } from "@repo/utils";
-import { StyledSelect } from "./styled-select";
+import { useId } from "react";
 
 export interface SelectOption {
   label: string;
@@ -36,26 +35,34 @@ export function BytebankSelect({
   helperText = "",
   color,
 }: BytebankSelectProps) {
-  const { colors } = useTheme();
-  const palette = colors;
+  const reactId = useId();
+  const selectId = `select-${reactId}`;
 
   return (
     <FormControl variant="outlined" fullWidth margin="normal" error={error}>
-      <InputLabel>{label}</InputLabel>
-      <StyledSelect
+      <InputLabel id={`${selectId}-label`} htmlFor={selectId}>
+        {label}
+      </InputLabel>
+      <Select
+        id={selectId}
+        labelId={`${selectId}-label`}
         value={value ?? ""}
         onChange={(e: any) => onChange(e.target.value)}
         label={label}
         color={color}
-        palette={palette}
+        aria-describedby={helperText ? `${selectId}-helper` : undefined}
       >
         {options.map((option) => (
           <MenuItem key={option.value} value={option.value}>
             {option.label}
           </MenuItem>
         ))}
-      </StyledSelect>
-      {helperText && <FormHelperText>{helperText}</FormHelperText>}
+      </Select>
+      {helperText && (
+        <FormHelperText id={`${selectId}-helper`}>
+          {helperText}
+        </FormHelperText>
+      )}
     </FormControl>
   );
 }

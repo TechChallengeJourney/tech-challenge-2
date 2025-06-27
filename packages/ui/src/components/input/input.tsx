@@ -1,8 +1,7 @@
-import { Box } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import { TextFieldProps } from "@mui/material/TextField";
-import { useTheme } from "@repo/utils";
+import { useId } from "react";
 import "./style.scss";
-import { StyledInput } from "./styled-input";
 
 declare module "@mui/material/TextField" {
   interface TextFieldPropsColorOverrides {
@@ -38,7 +37,10 @@ export type BytebankInputProps = Omit<TextFieldProps, "onChange" | "value"> & {
 function formatCurrency(value: string) {
   const numeric = value.replace(/\D/g, "");
   const number = Number(numeric) / 100;
-  return number.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  return number.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
 }
 
 export function BytebankInput({
@@ -52,17 +54,19 @@ export function BytebankInput({
   autoComplete = "",
   mask,
   color,
+  id,
   ...props
 }: BytebankInputProps) {
-  const { colors } = useTheme();
-  const palette = colors;
+  const reactId = useId();
+  const inputId = id || `input-${reactId}`;
+  const helperId = helperText ? `${inputId}-helper` : undefined;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newValue = e.target.value;
 
     if (mask === "currency") {
       newValue = newValue.replace(/\D/g, "");
-      newValue = newValue.replace(/^0+/, ""); // Remove zeros à esquerda
+      newValue = newValue.replace(/^0+/, "");
     }
 
     onChange(newValue);
@@ -75,8 +79,9 @@ export function BytebankInput({
 
   return (
     <Box className="bytebank-input">
-      <StyledInput
+      <TextField
         {...props}
+        id={inputId}
         value={displayValue}
         onChange={handleChange}
         label={label}
@@ -86,10 +91,10 @@ export function BytebankInput({
         helperText={helperText}
         autoComplete={autoComplete}
         margin="normal"
-        variant={"outlined"}
+        variant="outlined"
         fullWidth
         color={color}
-        palette={palette}
+        aria-describedby={helperId}
       />
     </Box>
   );
