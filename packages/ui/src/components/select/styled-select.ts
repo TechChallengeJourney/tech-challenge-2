@@ -1,4 +1,4 @@
-import { Select, SelectProps } from "@mui/material";
+import { Select, SelectProps, OutlinedInput } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 type CustomProps = {
@@ -9,17 +9,17 @@ export const StyledSelect = styled(Select, {
   shouldForwardProp: (prop) => prop !== "palette",
 })<SelectProps & CustomProps>(({ palette, error }) => ({
   "& .MuiOutlinedInput-root": {
-    "& .MuiSelect-select": {
+    "& .MuiOutlinedInput-input, & .MuiSelect-select": {
       color: palette["grey.main"],
     },
-    "& fieldset": {
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: palette["grey.main"],
+    },
+    "&:hover .MuiOutlinedInput-notchedOutline": {
       borderColor: palette["grey.main"],
     },
     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
       borderColor: `${palette["grey.main"]} !important`,
-    },
-    "& .MuiOutlinedInput-notchedOutline": {
-      borderColor: palette["grey.main"],
     },
   },
   "& .MuiInputLabel-root": {
@@ -31,7 +31,6 @@ export const StyledSelect = styled(Select, {
   "& .MuiFormHelperText-root": {
     color: error ? palette["red.700"] : palette["grey.main"],
   },
-  // Customização do menu dropdown
   "& .MuiMenu-paper .MuiMenuItem-root": {
     color: palette["grey.main"],
   },
