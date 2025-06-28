@@ -10,8 +10,14 @@ services:
     volumes:
       - ./apps/bytebank-shell/src:/app/src
       - ./packages/ui/src:/app/packages/ui/src
+      - ./packages/utils/src:/app/packages/utils/src
+      - ./packages/data-access/src:/app/packages/data-access/src
+      - ./packages/eslint-config/src:/app/packages/eslint-config/src
+      - ./packages/typescript-config/src:/app/packages/typescript-config/src
     environment:
       - NODE_ENV=development
+    depends_on:
+      - mfe-investments
     command: yarn run dev
   mfe-investments:
     build:
@@ -22,6 +28,10 @@ services:
     volumes:
       - ./apps/mfe-investments/src:/app/src
       - ./packages/ui/src:/app/packages/ui/src
+      - ./packages/utils/src:/app/packages/utils/src
+      - ./packages/data-access/src:/app/packages/data-access/src
+      - ./packages/eslint-config/src:/app/packages/eslint-config/src
+      - ./packages/typescript-config/src:/app/packages/typescript-config/src
     environment:
       - NODE_ENV=development
     command: yarn run dev
