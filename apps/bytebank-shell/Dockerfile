@@ -11,9 +11,6 @@ COPY package*.json .
 COPY turbo.json .
 COPY yarn.lock .
 
-# # Remover a referência ao pacote local do arquivo package.json
-# RUN sed -i 's/"@repo\/ui": "file:..\/..\/packages\/ui"/"@repo\/ui": "\/app\/packages\/ui"/g' package.json
-
 RUN yarn install
 RUN yarn run build
 EXPOSE 3000
