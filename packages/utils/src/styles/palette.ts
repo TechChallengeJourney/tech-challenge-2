@@ -25,11 +25,11 @@ const lightPalette = {
   "grey.500": "#9e9e9e",
   "grey.800": "#424242",
   "grey.900": "#303030",
-  "grey.main": "#3f3f3f",
+  "grey.main": "#9e9e9e",
   "black.main": "#000000",
   "white.main": "#ffffff",
   "red.700": "#B00020",
-  "logo.filter": "brightness(1.9) contrast(0.7) saturate(0.7)",
+  "logo.filter": "brightness(0.4)",
 };
 
 const darkPalette = {
@@ -63,7 +63,7 @@ const darkPalette = {
   "black.main": "#000000",
   "white.main": "#ffffff",
   "red.700": "#B00020",
-  "logo.filter": "brightness(1.9) contrast(0.7) saturate(0.7)",
+  "logo.filter": "brightness(3.9) contrast(1) saturate(1)",
 };
 
 export const colorsPalette = { light: lightPalette, dark: darkPalette };

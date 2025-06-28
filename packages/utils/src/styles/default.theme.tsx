@@ -148,10 +148,10 @@ export const lightTheme = createTheme(defaultTheme, {
     MuiSelect: {
       styleOverrides: {
         root: {
-          color: lightPalette["grey.800"],
+          color: lightPalette["grey.400"],
         },
         icon: {
-          color: lightPalette["grey.800"],
+          color: lightPalette["grey.400"],
         },
       },
     },
@@ -178,10 +178,13 @@ export const lightTheme = createTheme(defaultTheme, {
             borderColor: lightPalette["grey.500"],
           },
           "&:hover .MuiOutlinedInput-notchedOutline": {
-            borderColor: lightPalette["grey.500"],
+            borderColor: lightPalette["lime.800"],
           },
           "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: lightPalette["grey.500"],
+            borderColor: lightPalette["lime.700"],
+          },
+          "&.Mui-error .MuiOutlinedInput-notchedOutline": {
+            borderColor: lightPalette["red.700"],
           },
         },
         input: {
@@ -341,7 +344,7 @@ export const darkTheme = createTheme(defaultTheme, {
             color: lightPalette["grey.50"],
           },
           "&.Mui-focused": {
-            color: darkPalette["grey.main"], // Força manter a cor no foco
+            color: darkPalette["lime.600"],
           },
           "&.Mui-error": {
             color: darkPalette["red.700"],
@@ -356,10 +359,13 @@ export const darkTheme = createTheme(defaultTheme, {
             borderColor: darkPalette["grey.500"],
           },
           "&:hover .MuiOutlinedInput-notchedOutline": {
-            borderColor: darkPalette["grey.500"],
+            borderColor: darkPalette["lime.700"],
           },
           "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: darkPalette["grey.500"],
+            borderColor: darkPalette["lime.600"],
+          },
+          "&.Mui-error .MuiOutlinedInput-notchedOutline": {
+            borderColor: lightPalette["red.700"],
           },
         },
         input: {
