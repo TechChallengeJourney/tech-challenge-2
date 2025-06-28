@@ -8,3 +8,5 @@ export * from "./select";
 export * from "./text/text";
 export * from "./modal/modal";
 export * from "./toggle-theme/toggle-theme";
+export * from "./illustration/illustration";
+
