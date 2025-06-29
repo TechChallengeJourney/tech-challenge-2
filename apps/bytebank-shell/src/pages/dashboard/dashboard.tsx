@@ -5,6 +5,7 @@ import { BytebankCard, BytebankButton, BytebankModal } from '@repo/ui';
 // @ts-ignore
 import MfeButton from 'remote/Button';
 import { useTheme } from '@repo/utils';
+import { BytebankTransactionCard } from '../../components/transaction-card/transaction-card';
 
 interface BytebankDashboardProps { }
 
@@ -45,6 +46,9 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
 
             </Box>
           </BytebankCard>
+          <Box width="515px" marginTop={3}>
+            <BytebankTransactionCard />
+          </Box>
         </Box>
         <BytebankModal
           open={open}
