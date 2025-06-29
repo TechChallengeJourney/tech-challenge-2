@@ -1,64 +1,88 @@
-import { Box } from '@mui/material';
-import TextField from '@mui/material/TextField';
-import './style.scss';
+import { Box, TextField } from "@mui/material";
+import { TextFieldProps } from "@mui/material/TextField";
+import { useId } from "react";
+import "./style.scss";
 
-export interface InputProps {
-  value?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+declare module "@mui/material/TextField" {
+  interface TextFieldPropsColorOverrides {
+    tertiary: true;
+    black: true;
+    white: true;
+  }
+}
+
+export type BytebankInputProps = Omit<TextFieldProps, "onChange" | "value"> & {
   label: string;
+  value?: string;
+  onChange: (value: string) => void;
   type?: string;
   placeholder?: string;
   error?: boolean;
   helperText?: string;
   autoComplete?: string;
-  mask?: 'currency';
-  color?: 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning';
-}
+  mask?: "currency";
+  color?:
+    | "primary"
+    | "secondary"
+    | "tertiary"
+    | "success"
+    | "error"
+    | "info"
+    | "warning"
+    | "black"
+    | "white";
+  variant?: "contained" | "text" | "outlined";
+};
 
 function formatCurrency(value: string) {
-  const numeric = value.replace(/\D/g, '');
+  const numeric = value.replace(/\D/g, "");
   const number = Number(numeric) / 100;
-  return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  return number.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
 }
 
 export function BytebankInput({
   value,
   onChange,
   label,
-  type = 'text',
+  type = "text",
   placeholder,
   error = false,
-  helperText = '',
-  autoComplete = '',
+  helperText = "",
+  autoComplete = "",
   mask,
-  color = 'primary',
-}: InputProps) {
+  color,
+  id,
+  ...props
+}: BytebankInputProps) {
+  const reactId = useId();
+  const inputId = id || `input-${reactId}`;
+  const helperId = helperText ? `${inputId}-helper` : undefined;
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let newValue = (e.target as HTMLInputElement).value.replace(/\D/g, '');
+    let newValue = e.target.value;
 
-    if (mask === 'currency') {
-      newValue = newValue.replace(/^0+/, '');
-
-      const event = {
-        ...e,
-        target: {
-          ...e.target,
-          value: newValue,
-        },
-      };
-      onChange(event as React.ChangeEvent<HTMLInputElement>);
-    } else {
-      onChange(e);
+    if (mask === "currency") {
+      newValue = newValue.replace(/\D/g, "");
+      newValue = newValue.replace(/^0+/, "");
     }
+
+    onChange(newValue);
   };
+
+  const displayValue =
+    mask === "currency" && typeof value === "string"
+      ? formatCurrency(value)
+      : value || "";
+
   return (
     <Box className="bytebank-input">
       <TextField
-        value={
-          mask === 'currency' && typeof value === 'string'
-            ? formatCurrency(value)
-            : value
-        }
+        {...props}
+        id={inputId}
+        value={displayValue}
         onChange={handleChange}
         label={label}
         type={type}
@@ -67,9 +91,10 @@ export function BytebankInput({
         helperText={helperText}
         autoComplete={autoComplete}
         margin="normal"
-        variant={'outlined'}
+        variant="outlined"
         fullWidth
         color={color}
+        aria-describedby={helperId}
       />
     </Box>
   );

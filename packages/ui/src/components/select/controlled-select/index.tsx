@@ -7,6 +7,13 @@ interface ControlledSelectProps {
   label: string;
   options: SelectOption[];
   rules?: RegisterOptions;
+  color:
+    | "primary"
+    | "secondary"
+    | "success"
+    | "error"
+    | "info"
+    | "warning"
 }
 
 export const BytebankSelectController: React.FC<ControlledSelectProps> = ({
@@ -14,6 +21,7 @@ export const BytebankSelectController: React.FC<ControlledSelectProps> = ({
   label,
   rules,
   options,
+  color,
 }) => {
   const { control } = useFormContext();
   return (
@@ -29,6 +37,7 @@ export const BytebankSelectController: React.FC<ControlledSelectProps> = ({
           options={options}
           error={!!error}
           helperText={error?.message}
+          color={color}
         />
       )}
     />
