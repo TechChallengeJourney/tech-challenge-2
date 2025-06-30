@@ -7,7 +7,7 @@ import {
   BytebankTabs,
   BytebankText,
 } from "@repo/ui";
-import { useState } from "react";
+import PublishRoundedIcon from '@mui/icons-material/PublishRounded';
 
 
 interface categoriesProps {
@@ -51,49 +51,58 @@ const incomingCategories = [
 ];
 
 function formRender(categories: categoriesProps[]) {
-  const [teste, setTeste] = useState('')
   return (
-    <form>
-      <BytebankSelect
-        value="seila1"
-        onChange={() => null}
-        label="Selecione o tipo da transação"
-        options={[
-          {
-            label: "DOC/TED",
-            value: "seila1",
-          },
-          {
-            label: "PIX",
-            value: "seila2",
-          },
-          {
-            label: "BOLETO",
-            value: "seila3",
-          },
-        ]}
-      />
-      <BytebankInput
-        onChange={() => null}
-        name="date"
-        type="date"
-        label="Data da transação"
-        value="1900-12-27"
-      />
-      <BytebankInput
-        onChange={(e) => null}
-        name="value"
-        type="number"
-        label="Valor"
-        placeholder="R$ 00,00"
-      />
-      <BytebankSelect
-        value={categories[0].value}
-        onChange={() => null}
-        label="Categoria"
-        options={categories}
-      />
-    </form>
+    <>
+      <form>
+        <BytebankSelect
+          value="seila1"
+          onChange={() => null}
+          label="Selecione o tipo da transação"
+          options={[
+            {
+              label: "DOC/TED",
+              value: "seila1",
+            },
+            {
+              label: "PIX",
+              value: "seila2",
+            },
+            {
+              label: "BOLETO",
+              value: "seila3",
+            },
+          ]}
+        />
+        <BytebankInput
+          onChange={() => null}
+          name="date"
+          type="date"
+          label="Data da transação"
+          value="1900-12-27"
+        />
+        <BytebankInput
+          onChange={(e) => null}
+          name="value"
+          type="number"
+          label="Valor"
+          placeholder="R$ 00,00"
+        />
+        <BytebankSelect
+          value={categories[0].value}
+          onChange={() => null}
+          label="Categoria"
+          options={categories}
+        />
+      </form>
+      <Box display="flex" justifyContent="space-around" gap="1rem" alignItems="center" flexWrap="wrap">
+        {categories.map((e) => {
+          return <>
+            <BytebankButton sx={{borderRadius:"4px"}} label={e.label} variant={'contained'} color={'tertiary'}/>
+          </>
+        })}
+      
+      </Box>
+    </>
   );
 }
 
@@ -116,7 +125,7 @@ export function BytebankTransactionCard() {
         <Box marginTop={2}>
           <BytebankTabs options={options} />
             <Box marginBottom="1.5rem">
-              <BytebankButton fullWidth label={'Botão no Bytebank Shell'} variant={'outlined'} color={'tertiary'} />
+              <BytebankButton borderRadius="6px" startIcon={<PublishRoundedIcon/>} fullWidth label={'Botão no Bytebank Shell'} variant={'outlined'} color={'tertiary'} />
             </Box>
             <BytebankButton label={'Concluir'} variant={'contained'} color={'primary'} />
         </Box>
