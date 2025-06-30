@@ -1,106 +1,111 @@
 import { Box } from "@mui/material";
 import {
+  BytebankButton,
   BytebankCard,
   BytebankInput,
-  BytebankInputController,
   BytebankSelect,
   BytebankTabs,
   BytebankText,
 } from "@repo/ui";
-import { useForm, FormProvider, useFormContext } from "react-hook-form";
-
-  const loginMethods = useForm<{ email: string; password: string }>({
-      defaultValues: {
-          email: "",
-          password: "",
-      },
-  });
+import { useState } from "react";
 
 
-    
+interface categoriesProps {
+  label: string,
+  value: string,
+}
+
+
+const expanseCategories = [
+  {
+    label: "Categoria1",
+    value: "categoria1",
+  },
+  {
+    label: "Categoria2",
+    value: "categoria2",
+  },
+  {
+    label: "Categoria3",
+    value: "categoria3",
+  },
+];
+
+const incomingCategories = [
+  {
+    label: "Transporte",
+    value: "transporte",
+  },
+  {
+    label: "Alimentação",
+    value: "alimentacao",
+  },
+  {
+    label: "Lazer",
+    value: "lazer",
+  },
+    {
+    label: "Saúde",
+    value: "saude",
+  },
+];
+
+function formRender(categories: categoriesProps[]) {
+  const [teste, setTeste] = useState('')
+  return (
+    <form>
+      <BytebankSelect
+        value="seila1"
+        onChange={() => null}
+        label="Selecione o tipo da transação"
+        options={[
+          {
+            label: "DOC/TED",
+            value: "seila1",
+          },
+          {
+            label: "PIX",
+            value: "seila2",
+          },
+          {
+            label: "BOLETO",
+            value: "seila3",
+          },
+        ]}
+      />
+      <BytebankInput
+        onChange={() => null}
+        name="date"
+        type="date"
+        label="Data da transação"
+        value="1900-12-27"
+      />
+      <BytebankInput
+        onChange={(e) => null}
+        name="value"
+        type="number"
+        label="Valor"
+        placeholder="R$ 00,00"
+      />
+      <BytebankSelect
+        value={categories[0].value}
+        onChange={() => null}
+        label="Categoria"
+        options={categories}
+      />
+    </form>
+  );
+}
+
 export function BytebankTransactionCard() {
-  function renderExpenseContent() {
-    return (
-      <>
-      <FormProvider {...loginMethods}>
-                        <form onSubmit={loginMethods.handleSubmit(() => null)}>
-                            <BytebankInputController
-                                name="email"
-                                autoComplete="email"
-                                type="email"
-                                label="E-mail"
-                                placeholder="Digite seu e-mail"
-                            />
-                            <BytebankInputController
-                                name="password"
-                                autoComplete="current-password"
-                                type="password"
-                                label="Senha"
-                                placeholder="Digite sua senha"
-                            />
-<BytebankSelect value="seila1"
-          onChange={() => null}
-          label="Selecione o tipo da transação"
-          options={[
-            {
-              label: "DOC/TED",
-              value: "seila1",
-            },
-            {
-              label: "PIX",
-              value: "seila2",
-            },
-            {
-              label: "BOlETO",
-              value: "seila3",
-            },
-          ]}
-        />
-        <BytebankInput label="Data da transação" onChange={() => null} type="date"/>
-
-                        </form>
-                    </FormProvider>
-
-
-        <BytebankSelect value="seila1"
-          onChange={() => null}
-          label="Selecione o tipo da transação"
-          options={[
-            {
-              label: "DOC/TED",
-              value: "seila1",
-            },
-            {
-              label: "PIX",
-              value: "seila2",
-            },
-            {
-              label: "BOlETO",
-              value: "seila3",
-            },
-          ]}
-        />
-        <BytebankInput label="Data da transação" onChange={() => null} type="date"/>
-      </>
-    );
-  }
-
-  function renderIncommingContent() {
-    return (
-      <>
-        <h1>Entrada</h1>
-      </>
-    );
-  }
-
   const options = [
     {
       label: "Entrada",
-      content: renderIncommingContent(),
+      content: formRender(incomingCategories),
     },
     {
       label: "Saída",
-      content: renderExpenseContent(),
+      content: formRender(expanseCategories),
     },
   ];
 
@@ -110,6 +115,10 @@ export function BytebankTransactionCard() {
         <BytebankText variant="lg">Nova Transação</BytebankText>
         <Box marginTop={2}>
           <BytebankTabs options={options} />
+            <Box marginBottom="1.5rem">
+              <BytebankButton fullWidth label={'Botão no Bytebank Shell'} variant={'outlined'} color={'tertiary'} />
+            </Box>
+            <BytebankButton label={'Concluir'} variant={'contained'} color={'primary'} />
         </Box>
       </Box>
     </BytebankCard>
