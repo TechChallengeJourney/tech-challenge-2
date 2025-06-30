@@ -25,3 +25,15 @@ services:
     environment:
       - NODE_ENV=development
     command: yarn run dev
+  mfe-transactions:
+    build:
+      context: .
+      dockerfile: apps/mfe-transactions/Dockerfile
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./apps/mfe-transactions/src:/app/src
+      - ./packages/ui/src:/app/packages/ui/src
+    environment:
+      - NODE_ENV=development
+    command: yarn run dev
