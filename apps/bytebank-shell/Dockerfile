@@ -12,6 +12,7 @@ COPY turbo.json .
 COPY yarn.lock .
 
 RUN yarn install
-RUN yarn run build
+WORKDIR /app/apps/bytebank-shell
+RUN yarn build
 EXPOSE 3000
-CMD ["yarn", "run", "dev"]
+CMD ["yarn", "dev"]

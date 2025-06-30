@@ -1,24 +1,18 @@
-FROM node:20-alpine as builder
-
+# Dockerfile para aplicação React (mfe-transactions)
+FROM node:20.16.0-alpine
 WORKDIR /app
+COPY apps/mfe-transactions /app/apps/mfe-transactions
+COPY packages/data-access /app/packages/data-access
+COPY packages/eslint-config /app/packages/eslint-config
+COPY packages/typescript-config /app/packages/typescript-config
+COPY packages/ui /app/packages/ui
+COPY packages/utils /app/packages/utils
+COPY package*.json .
+COPY turbo.json .
+COPY yarn.lock .
 
-COPY package*.json ./
-COPY turbo.json ./
-
-RUN npm install
-
-COPY . .
-
-RUN npm run build -- --filter=mfe-transactions
-
-FROM node:20-alpine
-
-WORKDIR /app
-
-COPY --from=builder /app/apps/mfe-transactions/dist /app/dist
-
-RUN npm install -g serve
-
-CMD ["serve", "-s", "dist", "-p", "3002"]
-
+RUN yarn install
+WORKDIR /app/apps/mfe-transactions
+RUN yarn build
 EXPOSE 3002
+CMD ["yarn", "dev"]

@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   bytebank-shell:
     build:
@@ -8,7 +6,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./apps/bytebank-shell/src:/app/src
+      - ./apps/bytebank-shell/src:/app/apps/bytebank-shell/src
       - ./packages/ui/src:/app/packages/ui/src
       - ./packages/utils/src:/app/packages/utils/src
       - ./packages/data-access/src:/app/packages/data-access/src
@@ -18,7 +16,8 @@ services:
       - NODE_ENV=development
     depends_on:
       - mfe-investments
-    command: yarn run dev
+    command: yarn dev
+    mem_limit: 1g
   mfe-investments:
     build:
       context: .
@@ -26,7 +25,7 @@ services:
     ports:
       - "3001:3001"
     volumes:
-      - ./apps/mfe-investments/src:/app/src
+      - ./apps/mfe-investments/src:/app/apps/mfe-investments/src
       - ./packages/ui/src:/app/packages/ui/src
       - ./packages/utils/src:/app/packages/utils/src
       - ./packages/data-access/src:/app/packages/data-access/src
@@ -34,7 +33,8 @@ services:
       - ./packages/typescript-config/src:/app/packages/typescript-config/src
     environment:
       - NODE_ENV=development
-    command: yarn run dev
+    command: yarn dev
+    mem_limit: 1g
   mfe-transactions:
     build:
       context: .
@@ -42,8 +42,13 @@ services:
     ports:
       - "3002:3002"
     volumes:
-      - ./apps/mfe-transactions/src:/app/src
+      - ./apps/mfe-transactions/src:/app/apps/mfe-transactions/src
       - ./packages/ui/src:/app/packages/ui/src
+      - ./packages/utils/src:/app/packages/utils/src
+      - ./packages/data-access/src:/app/packages/data-access/src
+      - ./packages/eslint-config/src:/app/packages/eslint-config/src
+      - ./packages/typescript-config/src:/app/packages/typescript-config/src
     environment:
       - NODE_ENV=development
-    command: yarn run dev
+    command: yarn dev
+    mem_limit: 1g
