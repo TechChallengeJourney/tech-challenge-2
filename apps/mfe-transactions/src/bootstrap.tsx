@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 
 // Lazy load the App to create an async boundary for Material UI
 const App = React.lazy(() => import('./App'));
