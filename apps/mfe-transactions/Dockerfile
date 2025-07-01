@@ -12,7 +12,6 @@ COPY turbo.json .
 COPY yarn.lock .
 
 RUN yarn install
-WORKDIR /app/apps/mfe-transactions
-RUN yarn build
+RUN yarn run build
 EXPOSE 3002
-CMD ["yarn", "dev"]
+CMD ["yarn", "run", "dev"]
