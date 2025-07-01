@@ -17,9 +17,10 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import BytebankExtractWrapper from "./wrapper";
 
 export default function BytebankExtract() {
-//   const { user } = useUser();
+  const { user } = useUser();
   const { fetchTransactions, extract, isLoading } = useFinancialData();
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -27,14 +28,14 @@ export default function BytebankExtract() {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Transaction | null>(null);
 
-//   useEffect(() => {
-//     const getTransactions = async () => {
-//       if (!user) return;
-//       await fetchTransactions(user);
-//     };
+  useEffect(() => {
+    const getTransactions = async () => {
+      if (!user) return;
+      await fetchTransactions(user);
+    };
 
-//     getTransactions();
-//   }, [user]);
+    getTransactions();
+  }, [user]);
 
   const numberFormat = (value: number) =>
     value.toLocaleString('pt-BR', {
@@ -74,18 +75,18 @@ export default function BytebankExtract() {
       body: JSON.stringify(data),
     });
 
-    // if (response.ok) {
-    //   setSnackbarData({
-    //     status: 'success',
-    //     message: 'Transação adicionada com sucesso!',
-    //   });
-    //   setSnackbarOpen(true);
-    //   if (user) {
-    //     fetchTransactions(user);
-    //   }
-    // } else {
-    //   errorSnackBar();
-    // }
+    if (response.ok) {
+      setSnackbarData({
+        status: 'success',
+        message: 'Transação adicionada com sucesso!',
+      });
+      setSnackbarOpen(true);
+      if (user) {
+        fetchTransactions(user);
+      }
+    } else {
+      errorSnackBar();
+    }
   };
   const handleTransactionDelete = async (id: string) => {
     const response = await fetch(`/api/transactions/${id}`, {
@@ -102,9 +103,9 @@ export default function BytebankExtract() {
         message: 'Transação excluída com sucesso!',
       });
       setSnackbarOpen(true);
-    //   if (user) {
-    //     fetchTransactions(user);
-    //   }
+      if (user) {
+        fetchTransactions(user);
+      }
     } else {
       errorSnackBar();
     }
@@ -119,7 +120,8 @@ export default function BytebankExtract() {
   };
 
   return (
-    <>
+    
+    <BytebankExtractWrapper>
       <BytebankCard bgcolor={'#FFF'}>
         <Box pb={4}>
           <Box p={4}>
@@ -301,6 +303,6 @@ export default function BytebankExtract() {
         data={snackbarData}
         onClose={closeSnackbar}
       />
-    </>
+    </BytebankExtractWrapper>
   );
 }
