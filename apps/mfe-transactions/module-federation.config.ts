@@ -5,7 +5,7 @@ const { dependencies } = pkg;
 export default createModuleFederationConfig({
   name: 'transactions',
   exposes: {
-    './Transactions': './src/components/Transactions',
+    './BytebankExtract': './src/components/extract/index',
   },
   filename: 'remoteEntry.js',
   shared: {

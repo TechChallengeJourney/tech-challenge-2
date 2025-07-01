@@ -1,10 +1,16 @@
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { BytebankBalanceCard } from '../../components/balance-card/balance-card';
 import { Box, Typography } from '@mui/material';
 import { BytebankCard, BytebankButton, BytebankModal } from '@repo/ui';
 // @ts-ignore
 import MfeButton from 'remote/Button';
 import { useTheme } from '@repo/utils';
+// @ts-ignore
+const BytebankExtract = React.lazy(() =>
+    import('transactions/BytebankExtract').then((module) => ({
+        default: module.default || module.BytebankExtract,
+    }))
+);
 
 interface BytebankDashboardProps { }
 
@@ -43,6 +49,14 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
 
               <BytebankButton label="Abrir modal" sendSubmit={() => setOpen(true)} color={'primary'}></BytebankButton>
 
+            </Box>
+          </BytebankCard>
+          
+          <BytebankCard >
+            <Box textAlign="left" minHeight={'10rem'} p={4}>
+              <React.Suspense fallback={<div>Loading Extract...</div>}>
+            <BytebankExtract />
+          </React.Suspense>
             </Box>
           </BytebankCard>
         </Box>
