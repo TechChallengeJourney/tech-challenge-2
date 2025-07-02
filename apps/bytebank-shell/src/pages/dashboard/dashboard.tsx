@@ -59,9 +59,7 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
                 Extrato
               </Typography>
               <React.Suspense fallback={<div>Carregando extrato...</div>}>
-                <UserProvider>
                   <BytebankExtract />
-                </UserProvider>
               </React.Suspense>
             </Box>
           </BytebankCard>

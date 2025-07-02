@@ -34,6 +34,10 @@ export default createModuleFederationConfig({
     },
     '@repo/utils': {
       singleton: true
+    },
+    '@repo/data-access': {
+      singleton: true, // ✅ Aqui é a chave para resolver seu problema
+      requiredVersion: dependencies['@repo/data-access']
     }
   }
 });

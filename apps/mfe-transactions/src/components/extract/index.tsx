@@ -17,7 +17,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import BytebankExtractWrapper from "./wrapper";
 
 export default function BytebankExtract() {
   const { user } = useUser();
@@ -121,7 +120,7 @@ export default function BytebankExtract() {
 
   return (
     
-    <BytebankExtractWrapper>
+    <>
       <BytebankCard bgcolor={'#FFF'}>
         <Box pb={4}>
           <Box p={4}>
@@ -303,6 +302,6 @@ export default function BytebankExtract() {
         data={snackbarData}
         onClose={closeSnackbar}
       />
-    </BytebankExtractWrapper>
+    </>
   );
 }

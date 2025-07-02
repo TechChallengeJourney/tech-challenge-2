@@ -6,5 +6,9 @@ export default createModuleFederationConfig({
     remote: 'remote@http://localhost:3001/remoteEntry.js',
     transactions: 'transactions@http://localhost:3002/remoteEntry.js',
   },
-  shared: ['react', 'react-dom']
+  shared: {
+    react: { singleton: true },
+    'react-dom': { singleton: true },
+    '@repo/data-access': { singleton: true }, // ✅ Adicione isto aqui
+  }
 });

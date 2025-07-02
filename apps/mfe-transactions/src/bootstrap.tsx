@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
-import { UserProvider } from '@repo/data-access';
 
 // Lazy load the App to create an async boundary for Material UI
 const App = React.lazy(() => import('./App'));
@@ -12,9 +11,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Suspense fallback={<div>Carregando aplicação...</div>}>
-      <UserProvider>
         <App />
-      </UserProvider>
     </Suspense>
   </React.StrictMode>
 );
