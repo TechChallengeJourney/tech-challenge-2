@@ -1,4 +1,4 @@
-import { Box, LinearProgress, linearProgressClasses } from "@mui/material";
+import { Box } from "@mui/material";
 import {
   BytebankCard,
   BytebankText,
@@ -6,16 +6,19 @@ import {
   BytebankLinearProgress,
 } from "@repo/ui";
 import { useTheme } from "@repo/utils";
-
+import { useUser } from "@repo/data-access";
 
 interface BytebankMobilityProps {
   value?: string;
 }
 
 export function BytebankAnalytics({ value }: BytebankMobilityProps) {
-  const {colors} = useTheme();
+  const { colors } = useTheme();
   const category = "Lazer";
   const percentage = "25%";
+  const { isAuthenticated } = useUser();
+
+  console.log(isAuthenticated);
 
   return (
     <BytebankCard>
