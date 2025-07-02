@@ -1,10 +1,17 @@
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { BytebankBalanceCard } from '../../components/balance-card/balance-card';
 import { Box, Typography } from '@mui/material';
 import { BytebankCard, BytebankButton, BytebankModal, BytebankText } from '@repo/ui';
 // @ts-ignore
 import {BytebankAnalytics, BytebankMobility, BytebankSalary, BytebankSpend, BytebankMonthlyResume} from 'remote/components'
 import { useTheme } from '@repo/utils';
+import { UserProvider } from '@repo/data-access';
+// @ts-ignore
+const BytebankExtract = React.lazy(() =>
+    import('transactions/BytebankExtract').then((module) => ({
+        default: module.default || module.BytebankExtract,
+    }))
+);
 
 interface BytebankDashboardProps { }
 
@@ -40,17 +47,20 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
               <BytebankButton label={'Botão no Bytebank Shell'} variant={'contained'} color={'tertiary'} />
 
               <BytebankButton label="Abrir modal" sendSubmit={() => setOpen(true)} color={'primary'}></BytebankButton>
+
             </Box>
           </BytebankCard>
-          <Box display="grid" marginTop="2rem" gridTemplateColumns="1fr 1fr 1fr" gap="30px" sx={{gridTemplateColumns: {xs: '1fr',sm: '1fr 1fr', md: '1fr 1fr 1fr'}}}>
-            <BytebankMobility />
-            <BytebankSalary />
-            <BytebankSpend />
-          </Box>
-          <Box display="grid" marginTop="2rem" gridTemplateColumns="1fr 1fr" gap="30px" sx={{gridTemplateColumns: {sm: '1fr', md: '1fr 1fr'}}}>
-            <BytebankMonthlyResume />
-            <BytebankAnalytics />
-          </Box>
+          
+          <BytebankCard >
+            <Box textAlign="left" minHeight={'10rem'} p={4}>
+              <Typography fontWeight={'bold'} variant="lg" mb={2}>
+                Extrato
+              </Typography>
+              <React.Suspense fallback={<div>Carregando extrato...</div>}>
+                  <BytebankExtract />
+              </React.Suspense>
+            </Box>
+          </BytebankCard>
         </Box>
         <BytebankModal
           open={open}

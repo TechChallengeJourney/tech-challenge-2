@@ -1,5 +1,3 @@
-'use client';
-
 import { useState, useEffect } from "react";
 
 export const useSession = <T = unknown>(key: string): [T | null, (newValue: T) => void] => {
