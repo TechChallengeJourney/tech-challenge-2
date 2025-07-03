@@ -13,27 +13,40 @@ export interface BytebankIllustrationProps {
   variant?: "sm" | "md" | "lg" | "auto";
   alt?: string;
 }
-enum BytebankIllustrationVariant {
-  "sm" = "60px",
-  "md" = "160px",
-  "lg" = "220px",
-  "auto" = "fit-content",
-}
+
+const BytebankIllustrationSizes = {
+  sm: 60,
+  md: 160,
+  lg: 220,
+};
 
 export function BytebankIllustration({
   name,
   variant = "auto",
   alt,
 }: BytebankIllustrationProps) {
-  const path: string = name ? `/images/${name}.svg` : "";
+  const path = name ? `/images/${name}.svg` : "";
+
+  const fixedWidth = BytebankIllustrationSizes[variant as keyof typeof BytebankIllustrationSizes];
+
   return (
     <Box
       sx={{
-        width: BytebankIllustrationVariant[variant],
-        height: variant === "auto" ? "fit-content" : null,
+        width: variant === "auto" ? "100%" : fixedWidth,
+        maxWidth: "100%",
+        display: "flex",
+        justifyContent: "center",
       }}
     >
-      <img src={path} alt={alt} width={BytebankIllustrationVariant[variant]} />
+      <img
+        src={path}
+        alt={alt}
+        style={{
+          width: variant === "auto" ? "100%" : fixedWidth,
+          height: "auto",
+          maxWidth: "100%",
+        }}
+      />
     </Box>
   );
 }
