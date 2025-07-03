@@ -22,7 +22,7 @@ interface BytebankMonthlyResumeProps {
 export  function BytebankMonthlyResume({
   data,
 }: BytebankMonthlyResumeProps) {
-  const { colors } = useTheme();
+  const { colors, isDarkMode } = useTheme();
 
 const options: ApexCharts.ApexOptions = {
   chart: {
@@ -42,6 +42,10 @@ const options: ApexCharts.ApexOptions = {
   stroke: {
     show: true,
     width: 2,
+    colors: [colors["lime.500"], colors["lime.900"]],
+  },
+  fill: {
+    opacity: 1,
     colors: [colors["lime.500"], colors["lime.900"]],
   },
   xaxis: {
@@ -68,10 +72,6 @@ const options: ApexCharts.ApexOptions = {
       }
     }
   },
-  fill: {
-    opacity: 1,
-    colors: [colors["lime.500"], colors["lime.900"]],
-  },
   legend: {
     position: "top",
     horizontalAlign: "center",
@@ -82,12 +82,10 @@ const options: ApexCharts.ApexOptions = {
   },
   tooltip: {
   theme: "dark",
-
   style: {
     fontSize: "14px",
     fontFamily: "Roboto, sans-serif",
   },
-
   y: {
     formatter: function (val) {
       return val + "%";
@@ -98,15 +96,15 @@ const options: ApexCharts.ApexOptions = {
   },
 },
   grid: {
-    borderColor: colors["grey.200"]
+    borderColor: isDarkMode ? colors["grey.900"] : colors["grey.200"]
   },
   responsive: [
     {
-      breakpoint: 600, // abaixo de 600px (celular)
+      breakpoint: 600,
       options: {
         plotOptions: {
           bar: {
-            columnWidth: "70%", // barras um pouco mais largas para celular
+            columnWidth: "70%",
           }
         },
         xaxis: {

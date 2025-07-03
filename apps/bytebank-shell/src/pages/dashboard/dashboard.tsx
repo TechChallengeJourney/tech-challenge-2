@@ -55,7 +55,7 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
             <BytebankSalary />
             <BytebankSpend />
           </Box>
-          <Box display="grid" marginTop="2rem" gridTemplateColumns="1fr 1fr" gap="30px" sx={{gridTemplateColumns: {sm: '1fr', md: '1fr 1fr'}}}>
+          <Box display="grid" marginY="2rem" gridTemplateColumns="1fr 1fr" gap="30px" sx={{gridTemplateColumns: {sm: '1fr', md: '1fr 1fr'}}}>
             <BytebankMonthlyResume />
             <BytebankAnalytics />
           </Box>
