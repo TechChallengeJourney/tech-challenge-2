@@ -1,10 +1,10 @@
 import { BytebankButton, BytebankIllustration, BytebankText } from "@repo/ui";
-import { Box, useTheme, useMediaQuery } from "@mui/material";
-// import { useRouter } from "next/navigation";
+import { Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function NotFound() {
-  // const router = useRouter();
-  const handleRedirect = () => console.log("Redirecting to home page");
+  const navigate = useNavigate();
+  const handleRedirect = () => navigate("/");
 
   console.log("NotFound page loaded");
 
@@ -17,8 +17,8 @@ export default function NotFound() {
       flexGrow={1}
       gap={2}
       minHeight="100vh"
-      px={{ xs: 2, sm: 4, md: 6 }} // padding horizontal responsivo
-      py={4} // padding vertical
+      px={{ xs: 2, sm: 4, md: 6 }}
+      py={4}
       boxSizing="border-box"
       textAlign="center"
     >
