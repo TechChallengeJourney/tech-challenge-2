@@ -3,7 +3,7 @@ import { Box, Typography, TypographyProps } from '@mui/material';
 export interface BytebankTextProps extends TypographyProps {
   children: React.ReactNode;
   color?: string;
-  variant?: 'xs' | 'sm' | 'md' | 'lg' | 'h1';
+  variant?: 'xs' | 'sm' | 'md' | 'lg' | 'h1' | 'xxl';
   fontSize?: string;
 }
 
