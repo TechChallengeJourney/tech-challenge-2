@@ -21,6 +21,10 @@ export default createModuleFederationConfig({
       singleton: true,
       requiredVersion: dependencies['@mui/material']
     },
+    'react-hook-form': {
+      singleton: true,
+      requiredVersion: dependencies['react-hook-form']
+    },
     '@emotion/react': {
       singleton: true,
       requiredVersion: dependencies['@emotion/react']
