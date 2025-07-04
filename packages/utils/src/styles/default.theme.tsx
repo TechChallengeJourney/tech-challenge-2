@@ -241,8 +241,8 @@ export const darkTheme = createTheme(defaultTheme, {
       name: "white",
     }),
     text: {
-      primary: darkPalette["grey.50"],
-      secondary: darkPalette["lime.900"],
+      primary: darkPalette["lime.accent"],
+      secondary: darkPalette["lime.accent"],
     },
   },
   components: {
@@ -270,7 +270,7 @@ export const darkTheme = createTheme(defaultTheme, {
     MuiTypography: {
       styleOverrides: {
         root: {
-          color: darkPalette["lime.highcontrast"],
+          color: darkPalette["lime.accent"],
         },
       },
     },
