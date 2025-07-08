@@ -6,72 +6,103 @@ import {
   BytebankSelect,
   BytebankTabs,
   BytebankText,
+  BytebankChip,
+  BytebankInputFileUpload
 } from "@repo/ui";
-import PublishRoundedIcon from '@mui/icons-material/PublishRounded';
-
 
 interface categoriesProps {
-  label: string,
-  value: string,
+  label: string;
+  value: string;
 }
 
 
-const expanseCategories = [
+interface optionsProps {
+  selectValues: categoriesProps[];
+  categories: categoriesProps[];
+}
+
+
+const expanseOptions = {
+  selectValues: [
+    {
+      label: "Cartão de Crédito",
+      value: "seila1",
+    },
+    {
+      label: "PIX",
+      value: "seila2",
+    },
+    {
+      label: "BOLETO",
+      value: "seila3",
+    },
+  ],
+  categories: [
+    {
+      label: "Transporte",
+      value: "transporte",
+    },
+    {
+      label: "Alimentação",
+      value: "alimentacao",
+    },
+    {
+      label: "Lazer",
+      value: "lazer",
+    },
+    {
+      label: "Saúde",
+      value: "saude",
+    },
+  ],
+};
+
+const incomingOptions = {
+  selectValues: [
+    {
+      label: "DOC/TED",
+      value: "seila1",
+    },
+    {
+      label: "PIX",
+      value: "seila2",
+    },
+    {
+      label: "BOLETO",
+      value: "seila3",
+    },
+  ],
+  categories: [
   {
-    label: "Categoria1",
+    label: "Categoria 1",
     value: "categoria1",
   },
   {
-    label: "Categoria2",
+    label: "Categoria 2",
     value: "categoria2",
   },
   {
-    label: "Categoria3",
+    label: "Categoria 3",
     value: "categoria3",
   },
-];
-
-const incomingCategories = [
-  {
-    label: "Transporte",
-    value: "transporte",
-  },
-  {
-    label: "Alimentação",
-    value: "alimentacao",
-  },
-  {
-    label: "Lazer",
-    value: "lazer",
-  },
     {
-    label: "Saúde",
-    value: "saude",
+    label: "Categoria 4",
+    value: "categoria4",
   },
-];
+  ],
+};
 
-function formRender(categories: categoriesProps[]) {
+
+function formRender(options: optionsProps) {
+  const {selectValues, categories} = options
   return (
     <>
       <form>
         <BytebankSelect
-          value="seila1"
+          value={selectValues[0].value}
           onChange={() => null}
           label="Selecione o tipo da transação"
-          options={[
-            {
-              label: "DOC/TED",
-              value: "seila1",
-            },
-            {
-              label: "PIX",
-              value: "seila2",
-            },
-            {
-              label: "BOLETO",
-              value: "seila3",
-            },
-          ]}
+          options={selectValues}
         />
         <BytebankInput
           onChange={() => null}
@@ -94,13 +125,23 @@ function formRender(categories: categoriesProps[]) {
           options={categories}
         />
       </form>
-      <Box display="flex" justifyContent="space-around" gap="1rem" alignItems="center" flexWrap="wrap">
+      <Box
+        display="flex"
+        justifyContent="space-around"
+        alignItems="center"
+        flexWrap="wrap"
+      >
         {categories.map((e) => {
-          return <>
-            <BytebankButton sx={{borderRadius:"4px"}} label={e.label} variant={'contained'} color={'tertiary'}/>
-          </>
+          return (
+            <>
+              <BytebankChip
+                label={e.label}
+                onClick={() => console.log("clicou aa")}
+                // deleteIcon={<DoneIcon />}
+              />
+            </>
+          );
         })}
-      
       </Box>
     </>
   );
@@ -110,11 +151,11 @@ export function BytebankTransactionCard() {
   const options = [
     {
       label: "Entrada",
-      content: formRender(incomingCategories),
+      content: formRender(incomingOptions),
     },
     {
       label: "Saída",
-      content: formRender(expanseCategories),
+      content: formRender(expanseOptions),
     },
   ];
 
@@ -124,10 +165,14 @@ export function BytebankTransactionCard() {
         <BytebankText variant="lg">Nova Transação</BytebankText>
         <Box marginTop={2}>
           <BytebankTabs options={options} />
-            <Box marginBottom="1.5rem">
-              <BytebankButton borderRadius="6px" startIcon={<PublishRoundedIcon/>} fullWidth label={'Botão no Bytebank Shell'} variant={'outlined'} color={'tertiary'} />
-            </Box>
-            <BytebankButton label={'Concluir'} variant={'contained'} color={'primary'} />
+          <Box marginBottom="1.5rem">
+            <BytebankInputFileUpload  />
+          </Box>
+          <BytebankButton
+            label={"Concluir"}
+            variant={"contained"}
+            color={"primary"}
+          />
         </Box>
       </Box>
     </BytebankCard>

@@ -11,4 +11,6 @@ export * from "./toggle-theme/toggle-theme";
 export * from "./tabs/tabs";
 export * from "./illustration/illustration";
 export * from "./linear-progress/linear-progress";
+export * from "./chip/chip";
+export * from "./file-upload/file-upload";
 
