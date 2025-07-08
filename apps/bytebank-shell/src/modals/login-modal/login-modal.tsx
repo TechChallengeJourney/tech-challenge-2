@@ -32,7 +32,7 @@ export function BytebankLoginModal({
 
         const apiUrl = import.meta.env.PUBLIC_API_URL;
 
-        const response = await fetch(`${apiUrl}/users`, {
+        const response = await fetch(`${apiUrl}/auth/login`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

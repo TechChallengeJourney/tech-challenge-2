@@ -10,4 +10,5 @@ export * from "./modal/modal";
 export * from "./toggle-theme/toggle-theme";
 export * from "./tabs/tabs";
 export * from "./illustration/illustration";
+export * from "./linear-progress/linear-progress";
 

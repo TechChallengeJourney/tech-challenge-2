@@ -1,5 +1,3 @@
-'use client';
-
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useSession } from '../hooks/use-session';
 import { User } from '../classes';

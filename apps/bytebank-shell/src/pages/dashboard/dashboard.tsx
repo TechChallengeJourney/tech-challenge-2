@@ -1,11 +1,17 @@
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { BytebankBalanceCard } from '../../components/balance-card/balance-card';
 import { Box, Typography } from '@mui/material';
-import { BytebankCard, BytebankButton, BytebankModal } from '@repo/ui';
+import { BytebankCard, BytebankButton, BytebankModal, BytebankText } from '@repo/ui';
 // @ts-ignore
-import MfeButton from 'remote/Button';
+import {BytebankAnalytics, BytebankMobility, BytebankSalary, BytebankSpend, BytebankMonthlyResume} from 'remote/components'
 import { useTheme } from '@repo/utils';
 import { BytebankTransactionCard } from '../../components/transaction-card/transaction-card';
+import { UserProvider } from '@repo/data-access';
+// @ts-ignore
+const BytebankExtract = React.lazy(() => import('transactions/BytebankExtract').then((module) => ({
+    default: module.default || module.BytebankExtract,
+  }))
+);
 
 interface BytebankDashboardProps { }
 
@@ -40,8 +46,6 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
               <BytebankButton label={'Botão no Bytebank Shell'} variant={'outlined'} color={'tertiary'} />
               <BytebankButton label={'Botão no Bytebank Shell'} variant={'contained'} color={'tertiary'} />
 
-              <MfeButton onClick={() => console.log('Clicou no botão')} />
-
               <BytebankButton label="Abrir modal" sendSubmit={() => setOpen(true)} color={'primary'}></BytebankButton>
 
             </Box>
@@ -49,6 +53,25 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
           <Box width="515px" marginTop={3}>
             <BytebankTransactionCard />
           </Box>
+          <Box display="grid" marginTop="2rem" gridTemplateColumns="1fr 1fr 1fr" gap="30px" sx={{gridTemplateColumns: {xs: '1fr',sm: '1fr 1fr', md: '1fr 1fr 1fr'}}}>
+            <BytebankMobility />
+            <BytebankSalary />
+            <BytebankSpend />
+          </Box>
+          <Box display="grid" marginY="2rem" gridTemplateColumns="1fr 1fr" gap="30px" sx={{gridTemplateColumns: {sm: '1fr', md: '1fr 1fr'}}}>
+            <BytebankMonthlyResume />
+            <BytebankAnalytics />
+          </Box>
+          <BytebankCard >
+            <Box textAlign="left" minHeight={'10rem'} p={4}>
+              <Typography fontWeight={'bold'} variant="lg" mb={2}>
+                Extrato
+              </Typography>
+              <React.Suspense fallback={<div>Carregando extrato...</div>}>
+                  <BytebankExtract />
+              </React.Suspense>
+            </Box>
+          </BytebankCard>
         </Box>
         <BytebankModal
           open={open}

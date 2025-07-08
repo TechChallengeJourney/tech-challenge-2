@@ -1,13 +1,13 @@
-import { createModuleFederationConfig } from "@module-federation/rsbuild-plugin";
-import pkg from "./package.json";
+import { createModuleFederationConfig } from '@module-federation/rsbuild-plugin';
+import pkg from './package.json';
 const { dependencies } = pkg;
 
 export default createModuleFederationConfig({
-  name: "remote",
+  name: 'transactions',
   exposes: {
-    "./components": "./src/components/index.ts",
+    './BytebankExtract': './src/components/extract/index',
   },
-  filename: "remoteEntry.js",
+  filename: 'remoteEntry.js',
   shared: {
     react: {
       singleton: true,
@@ -16,6 +16,10 @@ export default createModuleFederationConfig({
     'react-dom': {
       singleton: true,
       requiredVersion: dependencies['react-dom']
+    },
+    'react-hook-form': {
+      singleton: true,
+      requiredVersion: dependencies['react-hook-form']
     },
     '@mui/material': {
       singleton: true,
