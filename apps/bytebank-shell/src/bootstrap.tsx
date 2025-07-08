@@ -5,18 +5,23 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { BytebankWrapper } from './components/wrapper/wrapper';
+import { UserProvider } from '@repo/data-access';
+import ErrorBoundary from './error-boundary';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Router>
-      <BytebankWrapper>
-        <App />
-      </BytebankWrapper>
-
-    </Router>
+    <ErrorBoundary>
+      <UserProvider>
+        <Router>
+          <BytebankWrapper>
+            <App />
+          </BytebankWrapper>
+        </Router>
+      </UserProvider>
+    </ErrorBoundary>
   </React.StrictMode>
 );
 

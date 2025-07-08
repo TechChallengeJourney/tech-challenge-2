@@ -8,6 +8,7 @@ import {
   DevicesOtherOutlined,
 } from "@mui/icons-material";
 import { useTheme } from "@repo/utils";
+import { useUser } from "@repo/data-access";
 
 type Benefit = {
   icon: ReactElement;
@@ -44,10 +45,10 @@ const BENEFITS: Benefit[] = [
 
 const BytebankHomePage = () => {
   const { isDarkMode, colors } = useTheme();
-  
+
   useEffect(() => {
     const header = document.getElementById("bytebank-header");
-    
+
     if (!header) return;
 
     const headerOriginal = header.style.cssText;
@@ -87,12 +88,12 @@ const BytebankHomePage = () => {
 
     if (!isDarkMode) {
       footer.style.backgroundColor = colors["lime.dark"];
-      footerText.style.color = colors["lime.100"] ;
+      footerText.style.color = colors["lime.100"];
       document.body.style.background =
-        "radial-gradient(100% 244.46% at 0% 0%, rgb(232, 234, 105) 0%, rgb(243, 245, 196) 100%) 0% 0% / 110% 110%, radial-gradient(50% 122.23% at 50% 50%, rgb(245, 255, 177) 0%, rgb(48, 108, 0) 100%), radial-gradient(100.45% 245.58% at 0% 0%, rgb(119, 239, 0) 0%, rgb(126, 177, 86) 100%), linear-gradient(127.43deg, rgb(99, 0, 0) 0%, rgb(143, 115, 255) 100%)";
+        "radial-gradient(100% 244.46% at 0% 0%, rgb(212 214 110) 0%, rgb(243, 245, 196) 100%) 0% 0% / 120% 120%, radial-gradient(50% 122.23% at 50% 50%, rgb(113 124 38) 0%, rgb(48, 108, 0) 100%), radial-gradient(100.45% 245.58% at 0% 0%, rgb(125 239 13) 0%, rgb(126, 177, 86) 100%), linear-gradient(127.43deg, rgb(99, 0, 0) 0%, rgb(137 118 212) 100%)";
       document.body.style.backgroundBlendMode =
         "lighten, color-burn, color-dodge, difference, normal";
-      document.body.style.backgroundSize = "120% 120%";
+      document.body.style.backgroundSize = "135% 130%";
     } else {
       document.body.style.background =
         "radial-gradient(100% 244.46% at 0% 0%, rgb(68 69 0) 0%, rgb(124, 138, 44) 100%) 0% 0% / 115% 115%, radial-gradient(50% 122.23% at 50% 50%, rgb(91 100 36) 0%, rgb(104, 134, 3) 100%), radial-gradient(100.45% 245.58% at 0% 0%, rgb(44 85 2) 0%, rgb(141, 154, 33) 100%, rgb(141, 154, 33) 100%), linear-gradient(127.43deg, rgb(125 155 3) 0%, rgb(95, 103, 20) 100%)";

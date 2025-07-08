@@ -1,4 +1,4 @@
-import styles from "./header.module.scss";
+import "./header.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -65,8 +65,10 @@ export function BytebankHeader() {
 
     const handleLoginModal = ({ status, message }: SnackbarData) => {
         if (status === 'success') {
-            navigate('/dashboard');
-            setTimeout(() => closeLoginModal(), 500);
+            setTimeout(() => {
+                closeLoginModal();
+                navigate('/dashboard');
+            }, 500);
         } else {
             closeRegisterModal();
             setSnackbarData({ status, message });
@@ -115,7 +117,7 @@ export function BytebankHeader() {
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <Box
-                            className={styles.link}
+                            className={'link'}
                             onClick={() => navigate("/")}
                             sx={{
                                 display: { xs: "none", md: "flex" },
@@ -176,7 +178,7 @@ export function BytebankHeader() {
                         </Box>
 
                         <Box
-                            className={styles.link}
+                            className={'link'}
                             onClick={() => navigate("/")}
                             sx={{
                                 mr: 2,
