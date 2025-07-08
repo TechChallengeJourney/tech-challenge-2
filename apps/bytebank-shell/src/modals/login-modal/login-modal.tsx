@@ -1,7 +1,7 @@
 import { Box, Link } from "@mui/material";
 import { ReactElement, useState } from "react";
-import { useForm, FormProvider, useFormContext } from "react-hook-form";
-import { MOCK_USER, User, useUser } from "@repo/data-access";
+import { useForm, FormProvider } from "react-hook-form";
+import { User, useSession, useUser } from "@repo/data-access";
 import {
     BytebankAccessModalProps,
     BytebankModal,
@@ -19,6 +19,7 @@ export function BytebankLoginModal({
 }: BytebankAccessModalProps): ReactElement {
     const [isLoading, setLoading] = useState(false);
     const { setUser } = useUser();
+    const [, setSessionValue ] = useSession<string | null>("token");
 
     const loginMethods = useForm<{ email: string; password: string }>({
         defaultValues: {
@@ -33,21 +34,24 @@ export function BytebankLoginModal({
         const apiUrl = import.meta.env.PUBLIC_API_URL;
 
         const response = await fetch(`${apiUrl}/auth/login`, {
-            method: "GET",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
+            body: JSON.stringify(data),
         });
 
         if (response.ok) {
-            const userData = MOCK_USER;
-            setUser(userData);
+            const responseData = (await response.json()) as { user: User; accessToken: string; };
+            const userData = responseData.user;
+
             loginMethods.reset();
+            setUser(userData);
+            setSessionValue(responseData.accessToken);
             onSubmit({ status: "success" });
         } else {
-            const responseError = (await response.json()) as { error: string };
-            onSubmit({ status: "error", message: responseError.error });
-            setLoading(false);
+            const responseError = (await response.json()) as { message: string };
+            onSubmit({ status: "error", message: responseError.message });
         }
         setLoading(false);
     };

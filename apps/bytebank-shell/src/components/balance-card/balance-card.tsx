@@ -1,5 +1,6 @@
 import { VisibilityRounded, VisibilityOff } from "@mui/icons-material";
 import { Box, Typography, Skeleton } from "@mui/material";
+import { useUser } from "@repo/data-access";
 import { BytebankCard } from "@repo/ui";
 import { useTheme } from "@repo/utils";
 import { format } from "date-fns";
@@ -9,7 +10,7 @@ import { useState } from "react";
 export const BytebankBalanceCard = () => {
     const [visible, setVisible] = useState(false);
     const { colors } = useTheme();
-    const { user } = { user: { name: "João Silva" } };
+    const { user } = useUser();
     const today = new Date();
     const formattedDate = format(today, "EEEE',' dd/MM/yyyy", { locale: ptBR });
 

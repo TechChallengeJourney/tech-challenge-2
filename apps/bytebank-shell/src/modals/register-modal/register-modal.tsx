@@ -27,7 +27,6 @@ export function BytebankRegisterModal({ open, onClose, onSubmit, openModal }: By
         });
 
         if (response.ok) {
-            const res = (await response.json()) as { message: string };
             registerMethods.reset();
             onSubmit({ status: 'success', message: 'Cadastro realizado com sucesso!' });
         } else {

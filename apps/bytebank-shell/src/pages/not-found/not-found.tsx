@@ -6,8 +6,6 @@ export default function NotFound() {
   const navigate = useNavigate();
   const handleRedirect = () => navigate("/");
 
-  console.log("NotFound page loaded");
-
   return (
     <Box
       display="flex"
