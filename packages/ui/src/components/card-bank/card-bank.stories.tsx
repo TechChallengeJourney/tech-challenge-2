@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { Box, Typography } from '@mui/material';
 import * as DocBlock from '@storybook/blocks';
-import { BytebankCardBank, BytebankCardBankProps } from '.';
+import { BytebankCardBank, BytebankCardBankProps } from './card-bank';
 import { BankCardVariant } from '../../classes';
 
 const cardDetails = {
