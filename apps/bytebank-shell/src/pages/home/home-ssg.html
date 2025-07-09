@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bytebank - Experimente mais liberdade</title>
+  <meta name="description" content="Crie sua conta Bytebank e aproveite todos os benefícios. Conta e cartão gratuitos, saques sem custo e muito mais.">
+  <meta name="keywords" content="banco digital, conta gratuita, cartão sem anuidade, bytebank">
+  <meta property="og:title" content="Bytebank - Experimente mais liberdade">
+  <meta property="og:description" content="Crie sua conta Bytebank e aproveite todos os benefícios.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="/static/css/main.css">
+  <style>
+    body {
+      font-family: 'Nunito Sans', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(100% 244.46% at 0% 0%, rgb(212 214 110) 0%, rgb(243, 245, 196) 100%) 0% 0% / 120% 120%, 
+                radial-gradient(50% 122.23% at 50% 50%, rgb(113 124 38) 0%, rgb(48, 108, 0) 100%), 
+                radial-gradient(100.45% 245.58% at 0% 0%, rgb(125 239 13) 0%, rgb(126, 177, 86) 100%), 
+                linear-gradient(127.43deg, rgb(99, 0, 0) 0%, rgb(137 118 212) 100%);
+      background-blend-mode: lighten, color-burn, color-dodge, difference, normal;
+      background-size: 135% 130%;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      transition: background 0.3s ease;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      gap: 1rem;
+      padding: 5rem 2rem;
+      min-height: 25em;
+      margin-top: 4rem;
+    }
+    .hero h1 {
+      font-size: 40pt;
+      font-weight: bolder;
+      margin: 0;
+      color: #fff;
+    }
+    .hero p {
+      font-size: 18px;
+      margin: 0;
+      color: #fff;
+    }
+    .benefits {
+      background-color: #f7fee7;
+      padding: 3rem 2rem;
+      min-height: 35em;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      gap: 2rem;
+    }
+    .benefits h2 {
+      font-size: 35pt;
+      font-weight: bolder;
+      color: #1a2e05;
+      margin: 0;
+    }
+    .cards-container {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .benefit-card {
+      width: 300px;
+      padding: 2rem;
+      border-radius: 8px;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 21em;
+    }
+    .benefit-card .icon {
+      font-size: 80px;
+      margin-bottom: 1rem;
+      color: #a3e635;
+    }
+    .benefit-card h3 {
+      color: #a3e635;
+      margin: 0.5rem 0;
+    }
+    .benefit-card p {
+      color: #555;
+      margin: 0;
+    }
+    .footer {
+      padding: 2rem;
+      text-align: center;
+      background-color: #4a5d23;
+      color: #f7fee7;
+    }
+  </style>
+  <script defer src="/static/js/103.89c7eb8a.js"></script>
+  <script defer src="/static/js/index.9afa5f49.js"></script>
+</head>
+<body>
+  <div id="root">
+    <header class="header" id="bytebank-header">
+      <img src="/static/images/logo.svg" alt="Bytebank Logo" width="150" />
+      <nav>
+        <a href="/login" style="color: white; text-decoration: none; margin-right: 1rem;">Login</a>
+        <a href="/register" style="color: white; background: #a3e635; padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none;">Registrar</a>
+      </nav>
+    </header>
+    
+    <main>
+      <section class="hero">
+        <h1>Experimente mais liberdade <br>no controle da sua vida financeira.</h1>
+        <p>Crie sua conta Bytebank e aproveite todos os benefícios.</p>
+      </section>
+      
+      <section class="benefits">
+        <h2>Conheça as vantagens do nosso banco</h2>
+        <div class="cards-container">
+          <div class="benefit-card">
+            <div class="icon">💳</div>
+            <h3>Conta e cartão gratuitos</h3>
+            <p>Isso mesmo, nossa conta é digital, sem custo fixo e mais que isso: sem tarifa de manutenção.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="icon">🏧</div>
+            <h3>Saques sem custo</h3>
+            <p>Você pode sacar gratuitamente 4x por mês de qualquer Banco 24h.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="icon">⭐</div>
+            <h3>Programa de pontos</h3>
+            <p>Você pode acumular pontos com suas compras no crédito sem pagar mensalidade!</p>
+          </div>
+          <div class="benefit-card">
+            <div class="icon">📱</div>
+            <h3>Seguro Dispositivos</h3>
+            <p>Seus dispositivos móveis (computador e laptop) protegidos por uma mensalidade simbólica.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    
+    <footer class="footer" id="bytebank-bg-footer">
+      <p id="bytebank-footer-text">&copy; 2025 Bytebank. Todos os direitos reservados.</p>
+    </footer>
+  </div>
+</body>
+</html>
