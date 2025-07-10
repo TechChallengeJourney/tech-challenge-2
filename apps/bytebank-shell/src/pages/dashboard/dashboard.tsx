@@ -6,7 +6,7 @@ import { BytebankCard, BytebankButton, BytebankModal } from '@repo/ui';
 import { BytebankAnalytics, BytebankMobility, BytebankSalary, BytebankSpend, BytebankMonthlyResume } from 'remote/components'
 import { useTheme } from '@repo/utils';
 // @ts-ignore
-const BytebankExtract = React.lazy(() =>
+const BytebankExtract = React.lazy(() => 
   import('transactions/BytebankExtract').then((module) => ({
     default: module.default || module.BytebankExtract,
   }))
@@ -25,6 +25,13 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
         <Box>
           <BytebankBalanceCard />
         </Box>
+        <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap="30px" sx={{ gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1fr 1fr' } }}>
+          <Box textAlign="left" minHeight={'10rem'}>
+            <React.Suspense fallback={<div>Carregando extrato...</div>}>
+              <BytebankExtract />
+            </React.Suspense>
+          </Box>
+        </Box>
 
         <Box>
           <Box display={'flex'} justifyContent={'flex-end'} pb={2}>
@@ -39,16 +46,7 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
             <BytebankMonthlyResume />
             <BytebankAnalytics />
           </Box>
-          <BytebankCard >
-            <Box textAlign="left" minHeight={'10rem'} p={4}>
-              <Typography fontWeight={'bold'} variant="lg" mb={2}>
-                Extrato
-              </Typography>
-              <React.Suspense fallback={<div>Carregando extrato...</div>}>
-                <BytebankExtract />
-              </React.Suspense>
-            </Box>
-          </BytebankCard>
+          
         </Box>
         <BytebankModal
           open={open}
