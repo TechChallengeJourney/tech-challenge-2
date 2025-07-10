@@ -15,10 +15,9 @@ export const BytebankCardsPage: React.FC = () => {
       px={{ xs: "2", sm: "4", md: "6" }}
       p={4}
       boxSizing="border-box"
-      textAlign="center"
+      // textAlign="center"
     >
       <BytebankCardSection />
-      Bytebank Cards Page - rota funcionando!
     </Box>
   );
 };
