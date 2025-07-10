@@ -14,7 +14,7 @@ const VisuallyHiddenInput = styled('input')({
   whiteSpace: 'nowrap',
   width: 1,
 });
-export function BytebankInputFileUpload() {
+export function BytebankInputFileUpload({label}: {label:string}) {
   const { colors } = useTheme();
 
   return (
@@ -38,7 +38,7 @@ export function BytebankInputFileUpload() {
       tabIndex={-1}
       startIcon={<PublishRoundedIcon />}
     >
-      FAZER UPLOAD DE ARQUIVO
+      {label}
       <VisuallyHiddenInput
         type="file"
         onChange={(event) => console.log(event.target.files)}

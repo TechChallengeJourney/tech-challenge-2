@@ -1,7 +1,11 @@
-import { Box, Tabs, Tab } from '@mui/material';
-import { useState } from 'react';
+import { Box, Tabs, Tab } from "@mui/material";
+import { useState } from "react";
 
-function CustomTabPanel(props: { children?: React.ReactNode; value: number; index: number }) {
+function CustomTabPanel(props: {
+  children?: React.ReactNode;
+  value: number;
+  index: number;
+}) {
   const { children, value, index, ...other } = props;
 
   return (
@@ -20,7 +24,7 @@ function CustomTabPanel(props: { children?: React.ReactNode; value: number; inde
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
@@ -31,53 +35,56 @@ interface TabOption {
 
 interface BytebankTabsProps {
   options: TabOption[];
+  onChangeTab?: (index: number) => void;
 }
 
-export function BytebankTabs({options}: BytebankTabsProps) {
+export function BytebankTabs({ options, onChangeTab }: BytebankTabsProps) {
   const [value, setValue] = useState(0);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+    if (onChangeTab) {
+      onChangeTab(newValue);
+    }
   };
-
 
   return (
     <Box>
       <Box
         sx={{
           width: "100%",
-          borderRadius: '6px',
-          overflow: 'hidden',
-          border: '1px solid #D4E157',
-          display: 'inline-block',
+          borderRadius: "6px",
+          overflow: "hidden",
+          border: "1px solid #D4E157",
+          display: "inline-block",
         }}
       >
         <Tabs
           value={value}
           onChange={handleChange}
           aria-label="custom styled tabs"
-          TabIndicatorProps={{ style: { display: 'none' } }}
+          TabIndicatorProps={{ style: { display: "none" } }}
           sx={{
-            '& .MuiTab-root': {
-              width:`${ 100 / options.length}%`,
-              fontWeight: '400',
-              fontSize: '0.875rem',
-              textTransform: 'uppercase',
-              color: '#5B6327',
-              borderRight: '1px solid #D4E157',
-              transition: 'all 0.2s ease-in-out',
+            "& .MuiTab-root": {
+              width: `${100 / options.length}%`,
+              fontWeight: "400",
+              fontSize: "0.875rem",
+              textTransform: "uppercase",
+              color: "#5B6327",
+              borderRight: "1px solid #D4E157",
+              transition: "all 0.2s ease-in-out",
             },
-            '& .MuiTab-root:last-of-type': {
-              borderRight: 'none',
+            "& .MuiTab-root:last-of-type": {
+              borderRight: "none",
             },
-            '& .Mui-selected': {
-              backgroundColor: '#D4E157',
-              color: '#20240c',
+            "& .Mui-selected": {
+              backgroundColor: "#D4E157",
+              color: "#20240c",
             },
           }}
         >
-          {options.map((e,i) => {
-            return <Tab key={i} label={e.label} {...a11yProps(i)} />
+          {options.map((e, i) => {
+            return <Tab key={i} label={e.label} {...a11yProps(i)} />;
           })}
         </Tabs>
       </Box>
