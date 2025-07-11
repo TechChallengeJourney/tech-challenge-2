@@ -4,8 +4,8 @@ import { BytebankCardSection } from "./card-section";
 
 export const BytebankCardsPage: React.FC = () => {
   return (
-    <div>
+    <Box ml={{ xs: "15px", md: "30px" }}>
       <BytebankCardSection />
-    </div>
+    </Box>
   );
 };

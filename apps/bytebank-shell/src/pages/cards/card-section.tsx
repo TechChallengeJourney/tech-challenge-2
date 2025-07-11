@@ -8,13 +8,11 @@ import {
 import { Box } from "@mui/material";
 
 export const BytebankCardSection: React.FC = () => {
-
-
-
   const cardDetails = () => {
     return (
-      <>
-        <Box display="flex" justifyContent="space-between" width="500px">
+      // <Box sx={{ p: { xs: "32px", md: "98px" } }}>
+      <Box>
+        <Box display="flex" justifyContent="space-between" width="350px">
           <BytebankText variant="xs">Cartão de crédito</BytebankText>
           <BytebankText variant="xs">**** **** **** 3251</BytebankText>
         </Box>
@@ -39,13 +37,13 @@ export const BytebankCardSection: React.FC = () => {
             R$1.759,20
           </BytebankText>
         </Box>
-      </>
+      </Box>
     );
   };
 
-   const buttonsWrapper = () => {
+  const buttonsWrapper = () => {
     return (
-      <>
+      <Box>
         <Box
           mt={{ xs: 3, md: 3 }}
           display="flex"
@@ -86,11 +84,10 @@ export const BytebankCardSection: React.FC = () => {
             />
           </Box>
         </Box>
-      </>
+      </Box>
     );
   };
 
- 
   const cards = () => {
     return (
       <BytebankCardBank
@@ -106,8 +103,20 @@ export const BytebankCardSection: React.FC = () => {
 
   return (
     <BytebankCard variant="outlined">
-      <Box display="flex" gap={2} flexDirection={{ xs: "column", md: "row" }}>
-        <Box flex={1} m={{ xs: 1, md: 4 }} alignContent="center">
+      <Box
+        display="flex"
+        gap={2}
+        flexDirection={{ xs: "column", md: "row" }}
+        alignItems={{ xs: "center", md: "stretch" }}
+        justifyContent={{ xs: "center", md: "flex-start" }}
+        maxWidth={{ xs: "98vw" }}
+      >
+        <Box
+          flex={1}
+          m={{ xs: 1, md: 4 }}
+          sx={{ width: "100%", maxWidth: 300 }}
+          mt={{ xs: "20px" }}
+        >
           {cards()}
         </Box>
         <Box flex={1} m={{ xs: 1, md: 4 }}>
