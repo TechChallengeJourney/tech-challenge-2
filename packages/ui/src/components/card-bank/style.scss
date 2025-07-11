@@ -3,10 +3,12 @@
         max-width: 24em;
         width: 22em;
         min-width: fit-content;
+
         &__card {
             height: 13em;
             background-image: url(../../assets/images/pixels.svg) !important;
-            background-position-x: right !important;
+            background-position: right bottom !important;
+            background-size: contain !important;
             background-repeat: no-repeat !important;
         }
 
