@@ -1,25 +1,36 @@
 import React from "react";
 import { Box, IconButton } from "@mui/material";
-import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
+import {
+  ArrowCircleLeftRounded,
+  ArrowCircleRightRounded,
+} from "@mui/icons-material";
 
 export interface BytebankNavigationProps {
   onPrev: () => void;
   onNext: () => void;
-  size?: "inherit" | "large" | "medium" | "small"; 
+  size?: "inherit" | "large" | "medium" | "small";
+  color?:
+    | "primary"
+    | "secondary"
+    | "success"
+    | "error"
+    | "info"
+    | "warning"
 }
 
 export const BytebankNavigation: React.FC<BytebankNavigationProps> = ({
   onPrev,
   onNext,
-  size = "small",
+  size = "large",
+  color = "primary"
 }) => {
   return (
     <Box display="flex" gap={1}>
       <IconButton onClick={onPrev} size="small">
-        <ArrowBackIos fontSize={size} />
+        <ArrowCircleLeftRounded fontSize={size} color={color} />
       </IconButton>
       <IconButton onClick={onNext} size="small">
-        <ArrowForwardIos fontSize={size} />
+        <ArrowCircleRightRounded fontSize={size} color={color} />
       </IconButton>
     </Box>
   );

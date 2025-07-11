@@ -27,7 +27,7 @@ const cardList = [
 ];
 
 export const BytebankCardSection: React.FC = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev > 0 ? prev - 1 : cardList.length - 1));
@@ -37,41 +37,44 @@ export const BytebankCardSection: React.FC = () => {
     setCurrentIndex((prev) => (prev < cardList.length - 1 ? prev + 1 : 0));
   };
 
-const cardDetails = () => {
-  const currentCard = cardList[currentIndex];
+  const cardDetails = () => {
+    const currentCard = cardList[currentIndex];
 
-  return (
-    <Box>
-      <Box display="flex" justifyContent="space-between" width="350px">
-        <BytebankText variant="xs">Cartão de crédito</BytebankText>
-        <BytebankText variant="xs">
-          **** **** **** {currentCard.cardNumber.slice(-4)}
-        </BytebankText>
-      </Box>
+    return (
+      <Box>
+        <Box display="flex" justifyContent="flex-end" mb={1} mt={2}>
+          <BytebankNavigation onPrev={handlePrev} onNext={handleNext} />
+        </Box>
+        <Box display="flex" justifyContent="space-between" width="350px">
+          <BytebankText variant="xs">Cartão de crédito</BytebankText>
+          <BytebankText variant="xs">
+            **** **** **** {currentCard.cardNumber.slice(-4)}
+          </BytebankText>
+        </Box>
 
-      <Box display="flex" justifyContent="space-between">
-        <BytebankText variant="xs">Limite do cartão</BytebankText>
-        <BytebankText variant="xs" fontWeight="bold">
-          {currentCard.limit}
-        </BytebankText>
-      </Box>
+        <Box display="flex" justifyContent="space-between">
+          <BytebankText variant="xs">Limite do cartão</BytebankText>
+          <BytebankText variant="xs" fontWeight="bold">
+            {currentCard.limit}
+          </BytebankText>
+        </Box>
 
-      <Box display="flex" justifyContent="space-between">
-        <BytebankText variant="xs">Data de expiração</BytebankText>
-        <BytebankText variant="xs" fontWeight="bold">
-          {currentCard.expirationDate}
-        </BytebankText>
-      </Box>
+        <Box display="flex" justifyContent="space-between">
+          <BytebankText variant="xs">Data de expiração</BytebankText>
+          <BytebankText variant="xs" fontWeight="bold">
+            {currentCard.expirationDate}
+          </BytebankText>
+        </Box>
 
-      <Box display="flex" justifyContent="space-between">
-        <BytebankText variant="xs">Valor utilizado</BytebankText>
-        <BytebankText variant="xs" fontWeight="bold">
-          {currentCard.expend}
-        </BytebankText>
+        <Box display="flex" justifyContent="space-between">
+          <BytebankText variant="xs">Valor utilizado</BytebankText>
+          <BytebankText variant="xs" fontWeight="bold">
+            {currentCard.expend}
+          </BytebankText>
+        </Box>
       </Box>
-    </Box>
-  );
-};
+    );
+  };
 
   const buttonsWrapper = () => {
     return (
@@ -120,19 +123,13 @@ const cardDetails = () => {
     );
   };
 
-const cards = () => {
-  return (
-    <Box>
-      <BytebankCardBank
-        variant="Físico"
-        details={cardList[currentIndex]}
-      />
-      <Box display="flex" justifyContent="center" mb={1} mt={2}>
-        <BytebankNavigation onPrev={handlePrev} onNext={handleNext} />
+  const cards = () => {
+    return (
+      <Box>
+        <BytebankCardBank variant="Físico" details={cardList[currentIndex]} />
       </Box>
-    </Box>
-  );
-};
+    );
+  };
 
   const cardHeader = () => {
     return (
@@ -145,7 +142,9 @@ const cards = () => {
         mb={4}
       >
         <CreditCard fontSize="large" />
-        <BytebankText variant="md" fontWeight="bold">Byte Platinum</BytebankText>
+        <BytebankText variant="md" fontWeight="bold">
+          Byte Platinum
+        </BytebankText>
       </Box>
     );
   };
