@@ -1,45 +1,77 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BytebankCardBank,
   BytebankCard,
   BytebankText,
   BytebankButton,
+  BytebankNavigation,
 } from "@repo/ui";
 import { Box } from "@mui/material";
 import { CreditCard } from "@mui/icons-material";
 
+const cardList = [
+  {
+    name: "Eloisa Fagundes",
+    cardNumber: "1234567890123456",
+    expirationDate: "03/2028",
+    limit: "R$ 35.000,00",
+    expend: "R$1.759,20",
+  },
+  {
+    name: "Mia Collucci",
+    cardNumber: "9876543210987654",
+    expirationDate: "11/27",
+    limit: "R$ 20.000,00",
+    expend: "R$6.350,00",
+  },
+];
+
 export const BytebankCardSection: React.FC = () => {
-  const cardDetails = () => {
-    return (
-      <Box>
-        <Box display="flex" justifyContent="space-between" width="350px">
-          <BytebankText variant="xs">Cartão de crédito</BytebankText>
-          <BytebankText variant="xs">**** **** **** 3251</BytebankText>
-        </Box>
+    const [currentIndex, setCurrentIndex] = useState(0);
 
-        <Box display="flex" justifyContent="space-between">
-          <BytebankText variant="xs">Limite do cartão</BytebankText>
-          <BytebankText variant="xs" fontWeight="bold">
-            R$ 35.000,00
-          </BytebankText>
-        </Box>
-
-        <Box display="flex" justifyContent="space-between">
-          <BytebankText variant="xs">Data de expiração</BytebankText>
-          <BytebankText variant="xs" fontWeight="bold">
-            25/03/2028
-          </BytebankText>
-        </Box>
-
-        <Box display="flex" justifyContent="space-between">
-          <BytebankText variant="xs">Valor utilizado</BytebankText>
-          <BytebankText variant="xs" fontWeight="bold">
-            R$1.759,20
-          </BytebankText>
-        </Box>
-      </Box>
-    );
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : cardList.length - 1));
   };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev < cardList.length - 1 ? prev + 1 : 0));
+  };
+
+const cardDetails = () => {
+  const currentCard = cardList[currentIndex];
+
+  return (
+    <Box>
+      <Box display="flex" justifyContent="space-between" width="350px">
+        <BytebankText variant="xs">Cartão de crédito</BytebankText>
+        <BytebankText variant="xs">
+          **** **** **** {currentCard.cardNumber.slice(-4)}
+        </BytebankText>
+      </Box>
+
+      <Box display="flex" justifyContent="space-between">
+        <BytebankText variant="xs">Limite do cartão</BytebankText>
+        <BytebankText variant="xs" fontWeight="bold">
+          {currentCard.limit}
+        </BytebankText>
+      </Box>
+
+      <Box display="flex" justifyContent="space-between">
+        <BytebankText variant="xs">Data de expiração</BytebankText>
+        <BytebankText variant="xs" fontWeight="bold">
+          {currentCard.expirationDate}
+        </BytebankText>
+      </Box>
+
+      <Box display="flex" justifyContent="space-between">
+        <BytebankText variant="xs">Valor utilizado</BytebankText>
+        <BytebankText variant="xs" fontWeight="bold">
+          {currentCard.expend}
+        </BytebankText>
+      </Box>
+    </Box>
+  );
+};
 
   const buttonsWrapper = () => {
     return (
@@ -88,18 +120,19 @@ export const BytebankCardSection: React.FC = () => {
     );
   };
 
-  const cards = () => {
-    return (
+const cards = () => {
+  return (
+    <Box>
       <BytebankCardBank
         variant="Físico"
-        details={{
-          name: "Eloisa Fagundes",
-          cardNumber: "1234567890123456",
-          expirationDate: "12/25",
-        }}
+        details={cardList[currentIndex]}
       />
-    );
-  };
+      <Box display="flex" justifyContent="center" mb={1} mt={2}>
+        <BytebankNavigation onPrev={handlePrev} onNext={handleNext} />
+      </Box>
+    </Box>
+  );
+};
 
   const cardHeader = () => {
     return (
