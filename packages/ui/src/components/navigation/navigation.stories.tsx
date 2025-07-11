@@ -2,7 +2,7 @@ import { Meta, StoryFn } from "@storybook/react";
 import { BytebankNavigation, BytebankNavigationProps } from "./navigation";
 
 export default {
-  title: "Components/BytebankNavigation",
+  title: "Components/Navigation",
   component: BytebankNavigation,
   argTypes: {
     size: {
