@@ -6,11 +6,11 @@ import {
   BytebankButton,
 } from "@repo/ui";
 import { Box } from "@mui/material";
+import { CreditCard } from "@mui/icons-material";
 
 export const BytebankCardSection: React.FC = () => {
   const cardDetails = () => {
     return (
-      // <Box sx={{ p: { xs: "32px", md: "98px" } }}>
       <Box>
         <Box display="flex" justifyContent="space-between" width="350px">
           <BytebankText variant="xs">Cartão de crédito</BytebankText>
@@ -101,6 +101,22 @@ export const BytebankCardSection: React.FC = () => {
     );
   };
 
+  const cardHeader = () => {
+    return (
+      <Box
+        display="flex"
+        flexDirection="row"
+        justifyContent={{ xs: "center", md: "flex-start" }}
+        alignItems="center"
+        gap="10px"
+        mb={4}
+      >
+        <CreditCard fontSize="large" />
+        <BytebankText variant="md" fontWeight="bold">Byte Platinum</BytebankText>
+      </Box>
+    );
+  };
+
   return (
     <BytebankCard variant="outlined">
       <Box
@@ -110,13 +126,15 @@ export const BytebankCardSection: React.FC = () => {
         alignItems={{ xs: "center", md: "stretch" }}
         justifyContent={{ xs: "center", md: "flex-start" }}
         maxWidth={{ xs: "98vw" }}
+        m="10px"
       >
         <Box
           flex={1}
           m={{ xs: 1, md: 4 }}
-          sx={{ width: "100%", maxWidth: 300 }}
+          sx={{ width: "100%", maxWidth: 350 }}
           mt={{ xs: "20px" }}
         >
+          {cardHeader()}
           {cards()}
         </Box>
         <Box flex={1} m={{ xs: 1, md: 4 }}>
