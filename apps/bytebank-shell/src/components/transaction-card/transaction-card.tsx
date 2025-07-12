@@ -10,7 +10,7 @@ import {
   BytebankInputFileUpload,
 } from "@repo/ui";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface categoriesProps {
   label: string;
@@ -22,19 +22,48 @@ interface optionsProps {
   categories: categoriesProps[];
 }
 
+const mockCards = [
+  {
+    _id: "i686367017dad6840720d6282",
+    userId: "6861d7cf2e40177f08d6b236",
+    cardNumber: 2429280541397358,
+    name: "cartão teste 2",
+    functions: ["credit"],
+    variant: "platinum",
+    expirationDate: "2028-07-01T04:41:37.174Z",
+    cvv: 527,
+    flag: "Visa",
+    blocked: false,
+    __v: 0,
+  },
+  {
+    _id: "686367017dad6840720d6282",
+    userId: "6861d7cf2e40177f08d6b236",
+    cardNumber: 2429280541397853, // 24292.80541.397853 2429.2805.4139.7853
+    name: "cartão teste 1",
+    functions: ["credit"],
+    variant: "platinum",
+    expirationDate: "2028-07-01T04:41:37.174Z",
+    cvv: 527,
+    flag: "Visa",
+    blocked: false,
+    __v: 0,
+  },
+];
+
 const expanseOptions = {
   selectValues: [
     {
       label: "Cartão de Crédito",
-      value: "seila1",
+      value: "credit",
     },
     {
       label: "PIX",
-      value: "seila2",
+      value: "pix",
     },
     {
       label: "BOLETO",
-      value: "seila3",
+      value: "boleto",
     },
   ],
   categories: [
@@ -61,66 +90,99 @@ const incomingOptions = {
   selectValues: [
     {
       label: "DOC/TED",
-      value: "seila1",
+      value: "doc/ted",
     },
     {
       label: "PIX",
-      value: "seila2",
+      value: "pix",
     },
     {
       label: "BOLETO",
-      value: "seila3",
+      value: "boleto",
     },
   ],
   categories: [
     {
-      label: "Categoria 1",
-      value: "categoria1",
+      label: "Transporte",
+      value: "transporte",
     },
     {
-      label: "Categoria 2",
-      value: "categoria2",
+      label: "Alimentação",
+      value: "alimentacao",
     },
     {
-      label: "Categoria 3",
-      value: "categoria3",
+      label: "Lazer",
+      value: "lazer",
     },
     {
-      label: "Categoria 4",
-      value: "categoria4",
+      label: "Saúde",
+      value: "saude",
     },
   ],
 };
 
+function getCurrentDate(): string {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0"); // Mês começa em 0
+  const day = String(today.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+function maskCardNumber(cardNumber: number | string): string {
+  const digits = cardNumber.toString().replace(/\D/g, "");
+  const lastFour = digits.slice(-4);
+  return "**** **** **** " + lastFour;
+}
+
 function formRender(options: optionsProps, isActive: boolean) {
   const { selectValues, categories } = options;
-  const [seila, setSeila] = useState<string>(selectValues[0].value);
+  const [cards, setCards] = useState<any>([]);
+  const [selectedPaymentType, setSelectedPaymentType] = useState<string>(
+    selectValues[0].value,
+  );
+  const [selectedCreditCard, setSelectedCreditCard] = useState<string>("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [transactionDate, setTransactionDate] = useState<string>("");
+  const [transactionValue, setTransactionValue] = useState<string>("");
+  const showCardSection =
+    isActive && selectedPaymentType === expanseOptions.selectValues[0].value;
+
+  useEffect(() => {
+    const listCards = mockCards.map((card) => ({
+      label: maskCardNumber(card.cardNumber),
+      value: card._id,
+    }));
+    setCards(listCards);
+  }, []);
+
   return (
     <>
       <BytebankSelect
-        value={seila}
-        onChange={(e) => setSeila(e + "")}
+        value={selectedPaymentType}
+        onChange={(e) => setSelectedPaymentType(e + "")}
         label="Selecione o tipo da transação"
         options={selectValues}
       />
-      {isActive && <p>asdasd</p>}
       <BytebankInput
-        onChange={() => null}
+        onChange={(e) => setTransactionDate(e)}
         name="date"
         type="date"
         label="Data da transação"
-        value="1900-12-27"
+        value={transactionDate ? transactionDate : getCurrentDate()}
       />
       <BytebankInput
-        onChange={(e) => null}
+        onChange={(e) => setTransactionValue(e)}
         name="value"
         type="number"
+        value={transactionValue}
         label="Valor"
         placeholder="R$ 00,00"
       />
       <BytebankSelect
-        value={categories[0].value}
-        onChange={() => null}
+        value={selectedCategory}
+        onChange={(e) => setSelectedCategory(e + "")}
         label="Categoria"
         options={categories}
       />
@@ -131,39 +193,41 @@ function formRender(options: optionsProps, isActive: boolean) {
         alignItems="center"
         flexWrap="wrap"
       >
-        {categories.map((e) => {
-          return (
-            <>
-              <BytebankChip
-                label={e.label}
-                onClick={() => console.log("clicou aa")}
-                // deleteIcon={<DoneIcon />}
-              />
-            </>
-          );
-        })}
+        {categories.map((e) => (
+          <BytebankChip
+            key={e.value}
+            label={e.label}
+            onClick={() => setSelectedCategory(e.value)}
+          />
+        ))}
       </Box>
-      <BytebankInputFileUpload label="FAZER UPLOAD DE ARQUIVO" />
-      <Box marginY={"1rem"}>
-        <BytebankText>
-          A transação foi paga com cartão? Escolha o cartão utilizado ou crie um
-          novo.
-        </BytebankText>
-        <BytebankSelect
-          value={""}
-          onChange={() => null}
-          label="Selecione o tipo da transação"
-          options={expanseOptions.categories}
-        />
-        <BytebankButton
-          fullWidth
-          label={"Criar um novo cartão"}
-          startIcon={<ControlPointIcon />}
-          variant={"text"}
-          color={"secondary"}
-        />
+      <Box marginBottom="1rem">
+        <BytebankInputFileUpload label="FAZER UPLOAD DE ARQUIVO" />
       </Box>
-      <Box display="flex" justifyContent="center">
+
+      {showCardSection && (
+        <Box>
+          <BytebankText>
+            A transação foi paga com cartão? Escolha o cartão utilizado ou crie
+            um novo.
+          </BytebankText>
+          <BytebankSelect
+            value={selectedCreditCard}
+            onChange={(e) => setSelectedCreditCard(e + "")}
+            label="Selecione o tipo da transação"
+            options={cards}
+          />
+          <BytebankButton
+            fullWidth
+            label={"Criar um novo cartão"}
+            startIcon={<ControlPointIcon />}
+            variant={"text"}
+            color={"secondary"}
+          />
+        </Box>
+      )}
+
+      <Box marginTop="1rem" display="flex" justifyContent="center">
         <BytebankButton
           label={"Concluir"}
           variant={"contained"}
@@ -176,14 +240,15 @@ function formRender(options: optionsProps, isActive: boolean) {
 
 export function BytebankTransactionCard() {
   const [activeTab, setActiveTab] = useState(0);
+
   const options = [
     {
       label: "Entrada",
-      content: formRender(incomingOptions, activeTab === 0),
+      content: formRender(incomingOptions, false), // não mostra o bloco de cartão
     },
     {
       label: "Saída",
-      content: formRender(expanseOptions, activeTab === 1),
+      content: formRender(expanseOptions, true), // mostra o bloco de cartão
     },
   ];
 

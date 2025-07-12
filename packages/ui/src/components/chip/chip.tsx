@@ -7,22 +7,24 @@ export interface BytebankChipProps {
   onClick?: () => void;
 }
 
-export function BytebankChip({ label, onClick }: BytebankChipProps): JSX.Element {
+export function BytebankChip({
+  label,
+  onClick,
+}: BytebankChipProps): JSX.Element {
   const { colors } = useTheme();
 
   return (
     <Chip
       sx={{
-        bgcolor: colors["lime.100"], // cor de fundo normal
+        bgcolor: colors["lime.100"],
         "&:hover": {
           color: colors["lime.800"],
-          bgcolor: colors["lime.300"], // cor de fundo no hover
-          cursor: "pointer", // opcional: mostra que é clicável
+          bgcolor: colors["lime.300"],
+          cursor: "pointer",
         },
       }}
       label={label}
       onClick={onClick}
-      // deleteIcon={<DoneIcon />}
     />
   );
 }
