@@ -11,15 +11,18 @@ export default createModuleFederationConfig({
   shared: {
     react: {
       singleton: true,
-      requiredVersion: dependencies.react
+      requiredVersion: dependencies.react,
+      eager: true
     },
     'react-dom': {
       singleton: true,
-      requiredVersion: dependencies['react-dom']
+      requiredVersion: dependencies['react-dom'],
+      eager: true
     },
     '@mui/material': {
       singleton: true,
-      requiredVersion: dependencies['@mui/material']
+      requiredVersion: dependencies['@mui/material'],
+      eager: true
     },
     '@emotion/react': {
       singleton: true,
@@ -36,8 +39,7 @@ export default createModuleFederationConfig({
       singleton: true
     },
     '@repo/data-access': {
-      singleton: true, // ✅ Aqui é a chave para resolver seu problema
-      requiredVersion: dependencies['@repo/data-access']
+      singleton: true,
     }
   }
 });

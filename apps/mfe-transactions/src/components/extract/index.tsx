@@ -1,13 +1,14 @@
 import {
   BytebankCard,
   BytebankDivider,
+  BytebankDrawer,
   BytebankSnackbar,
   BytebankText,
   SnackbarData,
 } from  "@repo/ui";
-import { Box, Skeleton } from '@mui/material';
+import { Box, Skeleton, Typography } from '@mui/material';
 import { format } from 'date-fns';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useUser } from "@repo/data-access";
 import { useFinancialData } from "@repo/data-access";
 import { Transaction } from '@repo/data-access';
@@ -17,6 +18,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import FilterExtract from "./components/filter";
 
 export default function BytebankExtract() {
   const { user } = useUser();
@@ -26,6 +29,7 @@ export default function BytebankExtract() {
   const [snackbarData, setSnackbarData] = useState<SnackbarData | null>(null);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Transaction | null>(null);
+  const [openFilter, setOpenFilter] = useState(false);
 
   useEffect(() => {
     const getTransactions = async () => {
@@ -36,6 +40,9 @@ export default function BytebankExtract() {
     getTransactions();
   }, [user]);
 
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setOpenFilter(newOpen);
+  };
   const numberFormat = (value: number) =>
     value.toLocaleString('pt-BR', {
       style: 'currency',
@@ -121,17 +128,28 @@ export default function BytebankExtract() {
   return (
     
     <>
-      <BytebankCard bgcolor={'#FFF'}>
+      <BytebankCard >
         <Box pb={4}>
           <Box p={4}>
             <BytebankText fontWeight={'bold'} variant={'md'}>
-              Extrato
+              Histórico de transações
             </BytebankText>
           </Box>
-          {/* Lista de extratos */}
+          <Box width={'100%'} display="flex" justifyContent="flex-end" px={4}>
+            <IconButton
+              color="primary"
+              onClick={() => setOpenFilter(true)}
+              size="small"
+              
+            >
+              <FilterAltIcon  fontSize='small'  />
+              <Typography fontSize={12}> Filtros</Typography>
+            </IconButton>
+          </Box>
+          {/* Lista de extratos */}  
           {isLoading ? (
             <Box>
-              <Box px={4}>
+              <Box px={4}> 
                 <Skeleton
                   width={40}
                   variant="text"
@@ -149,7 +167,7 @@ export default function BytebankExtract() {
                 />
               </Box>
               <Box my={2}>
-                <BytebankDivider type="horizontal" color="primary" />
+                <BytebankDivider type="horizontal" />
               </Box>
               <Box px={4}>
                 <Skeleton
@@ -302,6 +320,9 @@ export default function BytebankExtract() {
         data={snackbarData}
         onClose={closeSnackbar}
       />
+      <BytebankDrawer anchor="right" open={openFilter} onClose={toggleDrawer(false)} title="Filtros" >
+        <FilterExtract></FilterExtract>
+      </BytebankDrawer>
     </>
   );
 }

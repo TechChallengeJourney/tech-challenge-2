@@ -123,35 +123,14 @@ export const lightTheme = createTheme(defaultTheme, {
           "--Paper-overlay": "none !important",
         },
         body: {
-          backgroundColor: lightPalette.background,
+          backgroundColor: lightPalette,
         },
       },
     },
-    MuiInput: {
+    MuiDrawer: {
       styleOverrides: {
-        root: {
-          color: lightPalette["lime.900"],
-        },
-        underline: {
-          "&:before": {
-            borderBottomColor: lightPalette["lime.400"],
-          },
-          "&:hover:not(.Mui-disabled):before": {
-            borderBottomColor: lightPalette["lime.700"],
-          },
-          "&:after": {
-            borderBottomColor: lightPalette["lime.900"],
-          },
-        },
-      },
-    },
-    MuiSelect: {
-      styleOverrides: {
-        root: {
-          color: lightPalette["grey.400"],
-        },
-        icon: {
-          color: lightPalette["grey.400"],
+        paper: {
+          backgroundColor: lightPalette['white.main']
         },
       },
     },
@@ -168,27 +147,6 @@ export const lightTheme = createTheme(defaultTheme, {
           "&": {
             color: lightPalette["grey.400"],
           },
-        },
-      },
-    },
-    MuiOutlinedInput: {
-      styleOverrides: {
-        root: {
-          "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: lightPalette["grey.500"],
-          },
-          "&:hover .MuiOutlinedInput-notchedOutline": {
-            borderColor: lightPalette["lime.800"],
-          },
-          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: lightPalette["lime.700"],
-          },
-          "&.Mui-error .MuiOutlinedInput-notchedOutline": {
-            borderColor: lightPalette["red.700"],
-          },
-        },
-        input: {
-          color: lightPalette["grey.900"],
         },
       },
     },
@@ -302,31 +260,10 @@ export const darkTheme = createTheme(defaultTheme, {
         },
       },
     },
-    MuiInput: {
+    MuiDrawer: {
       styleOverrides: {
-        root: {
-          color: darkPalette["lime.900"],
-        },
-        underline: {
-          "&:before": {
-            borderBottomColor: darkPalette["lime.400"],
-          },
-          "&:hover:not(.Mui-disabled):before": {
-            borderBottomColor: darkPalette["lime.700"],
-          },
-          "&:after": {
-            borderBottomColor: darkPalette["lime.800"],
-          },
-        },
-      },
-    },
-    MuiSelect: {
-      styleOverrides: {
-        select: {
-          color: darkPalette["lime.900"],
-        },
-        icon: {
-          color: darkPalette["lime.900"],
+        paper: {
+          backgroundColor: darkPalette.background
         },
       },
     },
@@ -334,42 +271,6 @@ export const darkTheme = createTheme(defaultTheme, {
       styleOverrides: {
         root: {
           color: darkPalette["grey.main"],
-        },
-      },
-    },
-    MuiInputLabel: {
-      styleOverrides: {
-        root: {
-          "&": {
-            color: lightPalette["grey.50"],
-          },
-          "&.Mui-focused": {
-            color: darkPalette["lime.600"],
-          },
-          "&.Mui-error": {
-            color: darkPalette["red.700"],
-          },
-        },
-      },
-    },
-    MuiOutlinedInput: {
-      styleOverrides: {
-        root: {
-          "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: darkPalette["grey.500"],
-          },
-          "&:hover .MuiOutlinedInput-notchedOutline": {
-            borderColor: darkPalette["lime.700"],
-          },
-          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: darkPalette["lime.600"],
-          },
-          "&.Mui-error .MuiOutlinedInput-notchedOutline": {
-            borderColor: lightPalette["red.700"],
-          },
-        },
-        input: {
-          color: darkPalette["grey.50"],
         },
       },
     },

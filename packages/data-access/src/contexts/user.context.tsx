@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useSession } from '../hooks/use-session';
 import { User } from '../classes';
+import { isTokenExpired } from '../helpers/is-token-expired';
 
 interface UserContextProps {
   user: User | null;
@@ -13,7 +14,9 @@ const UserContext = createContext<UserContextProps | undefined>(undefined);
 
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [sessionUser, setSessionUser] = useSession<User | null>('user');
+  const [sessionToken] = useSession<string | null>('token');
   const [user, setUser] = useState<User | null>(sessionUser);
+  const [, setToken] = useState<string | null>(sessionToken);
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!sessionUser);
 
@@ -21,13 +24,17 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     if (sessionUser !== null) {
       setUser(sessionUser);
-      setIsAuthenticated(true);
+      if (sessionToken !== null) {
+        setToken(sessionToken)
+        const isExpired = isTokenExpired(sessionToken);
+        setIsAuthenticated(!isExpired);
+      }
     } else {
       setUser(null);
-      setIsAuthenticated(false);
+      setToken(null);
     }
     setLoading(false);
-  }, [sessionUser]);
+  }, [sessionUser, sessionToken, loading]);
 
   const handleSetUser = (user: User | null) => {
     setUser(user);

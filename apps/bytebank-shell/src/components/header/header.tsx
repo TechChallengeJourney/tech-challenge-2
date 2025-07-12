@@ -1,4 +1,4 @@
-import styles from "./header.module.scss";
+import "./header.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -30,7 +30,7 @@ import { BytebankRegisterModal, BytebankLoginModal } from "../../modals";
 import { useTheme } from "@repo/utils";
 
 export function BytebankHeader() {
-  const { colors } = useTheme();
+    const { colors } = useTheme();
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
     const [snackbarData, setSnackbarData] = useState<SnackbarData | null>(null);
@@ -61,12 +61,14 @@ export function BytebankHeader() {
     const closeLoginModal = () => setOpenLoginModal(false);
     const closeRegisterModal = () => setOpenRegisterModal(false);
 
-    const closeSnackbar = () => { setSnackbarOpen(false); setSnackbarData(null);};
+    const closeSnackbar = () => { setSnackbarOpen(false); setSnackbarData(null); };
 
     const handleLoginModal = ({ status, message }: SnackbarData) => {
         if (status === 'success') {
-            navigate('/dashboard');
-            setTimeout(() => closeLoginModal(), 1000);
+            setTimeout(() => {
+                closeLoginModal();
+                navigate('/dashboard');
+            }, 500);
         } else {
             closeRegisterModal();
             setSnackbarData({ status, message });
@@ -99,7 +101,7 @@ export function BytebankHeader() {
         setUser(null);
         navigate('/');
     };
-    
+
     return (
         <>
             <AppBar
@@ -115,7 +117,7 @@ export function BytebankHeader() {
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <Box
-                            className={styles.link}
+                            className={'link'}
                             onClick={() => navigate("/")}
                             sx={{
                                 display: { xs: "none", md: "flex" },
@@ -176,7 +178,7 @@ export function BytebankHeader() {
                         </Box>
 
                         <Box
-                            className={styles.link}
+                            className={'link'}
                             onClick={() => navigate("/")}
                             sx={{
                                 mr: 2,
@@ -215,7 +217,7 @@ export function BytebankHeader() {
 
                         <Box display={'flex'} flex={'none'} gap={1}>
                             {!isLogged ? (<>
-                                <Box sx={{ display: { xs: "none", md: "flex" } }}  gap={1}>
+                                <Box sx={{ display: { xs: "none", md: "flex" } }} gap={1}>
                                     <BytebankButton
                                         sendSubmit={() => setOpenRegisterModal(true)}
                                         label="Crie uma conta"
@@ -245,7 +247,7 @@ export function BytebankHeader() {
                                 <>
                                     <Tooltip title="Gerenciar conta">
                                         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                            <Avatar sx={{ bgcolor: colors["lime.400"] }} alt={user?.name} src="/static/images/avatar/2.jpg" />
                                         </IconButton>
                                     </Tooltip>
                                     <Menu

@@ -35,10 +35,10 @@
     "@types/react-dom": "19.0.0"
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
-    "@mui/icons-material": "^7.0.2",
-    "@mui/material": "^7.0.2",
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.0",
+    "@mui/icons-material": "7.2.0",
+    "@mui/material": "7.2.0",
     "@repo/data-access": "*",
     "@repo/ui": "*",
     "@repo/utils": "*",
@@ -49,6 +49,7 @@
     "react": "^19.0.0",
     "react-apexcharts": "^1.7.0",
     "react-dom": "^19.0.0",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "react-hook-form": "7.58.1"
   }
 }

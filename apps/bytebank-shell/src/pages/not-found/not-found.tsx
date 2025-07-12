@@ -6,8 +6,6 @@ export default function NotFound() {
   const navigate = useNavigate();
   const handleRedirect = () => navigate("/");
 
-  console.log("NotFound page loaded");
-
   return (
     <Box
       display="flex"
@@ -17,8 +15,8 @@ export default function NotFound() {
       flexGrow={1}
       gap={2}
       minHeight="100vh"
-      px={{ xs: 2, sm: 4, md: 6 }}
-      py={4}
+      px={{ xs: '2', sm: '4', md: '6' }}
+      p={4}
       boxSizing="border-box"
       textAlign="center"
     >

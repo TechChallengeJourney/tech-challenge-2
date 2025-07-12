@@ -13,4 +13,6 @@ export * from "./illustration/illustration";
 export * from "./linear-progress/linear-progress";
 export * from "./chip/chip";
 export * from "./file-upload/file-upload";
+export * from "./drawer/drawer";
+export * from "./datepicker";
 
