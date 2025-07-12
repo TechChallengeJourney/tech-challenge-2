@@ -1,5 +1,5 @@
 import { BytebankDrawerProps } from "../../classes/models/drawer";
-import { Box, Drawer, Typography } from "@mui/material";
+import { Box, Drawer } from "@mui/material";
 import { BytebankText } from "../text/text";
 import { BytebankDivider } from "../divider/divider";
 
