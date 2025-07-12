@@ -42,10 +42,15 @@ export const BytebankCardSection: React.FC = () => {
 
     return (
       <Box>
-        <Box display="flex" justifyContent="flex-end" mb={1} mt={2}>
+        <Box
+          display="flex"
+          mb={{ xs: 2, md: 1 }}
+          mt={2}
+          justifyContent={{ xs: "center", md: "flex-end" }}
+        >
           <BytebankNavigation onPrev={handlePrev} onNext={handleNext} />
         </Box>
-        <Box display="flex" justifyContent="space-between" width="350px">
+        <Box display="flex" justifyContent="space-between">
           <BytebankText variant="xs">Cartão de crédito</BytebankText>
           <BytebankText variant="xs">
             **** **** **** {currentCard.cardNumber.slice(-4)}
@@ -158,6 +163,7 @@ export const BytebankCardSection: React.FC = () => {
         alignItems={{ xs: "center", md: "stretch" }}
         justifyContent={{ xs: "center", md: "flex-start" }}
         maxWidth={{ xs: "98vw" }}
+        width={{ xs: "90vw", md: "60vw" }}
         m="10px"
       >
         <Box

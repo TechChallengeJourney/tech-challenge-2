@@ -10,13 +10,13 @@ export interface CardWidgetProps {
 
 export function CardWidget({ title, icon, value }: CardWidgetProps) {
   return (
-    <BytebankCard variant="elevation">
+    <BytebankCard variant="outlined">
       <Box
         display="flex"
         flexDirection="row"
         justifyContent="space-between"
         alignItems="center"
-        width="100%"
+        width={{ xs: "90vw", md: "20vw" }}
         height="100%"
         padding={2}
       >
@@ -38,7 +38,6 @@ export function CardWidget({ title, icon, value }: CardWidgetProps) {
           width="40px"
           height="40px"
           borderRadius="50%"
-          bgcolor="#FAFAF5"
           display="flex"
           alignItems="center"
           justifyContent="center"
