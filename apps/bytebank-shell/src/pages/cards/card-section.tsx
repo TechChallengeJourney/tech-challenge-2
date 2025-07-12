@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import {
-  BytebankCardBank,
-  BytebankCard,
-  BytebankText,
-  BytebankButton,
-  BytebankNavigation,
-} from "@repo/ui";
-import { Box } from "@mui/material";
 import { CreditCard } from "@mui/icons-material";
+import { Box } from "@mui/material";
+import {
+  BytebankButton,
+  BytebankCard,
+  BytebankCardBank,
+  BytebankNavigation,
+  BytebankText,
+} from "@repo/ui";
+import { useCards } from "@repo/data-access";
 
 const cardList = [
   {
@@ -26,7 +27,8 @@ const cardList = [
   },
 ];
 
-export const BytebankCardSection: React.FC = () => {
+export const BytebankCardSection: React.FC<{ userId: string }> = ({ userId }) => {
+  const { cards, error, loading } = useCards(userId);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrev = () => {
@@ -128,7 +130,7 @@ export const BytebankCardSection: React.FC = () => {
     );
   };
 
-  const cards = () => {
+  const cardsWrapper = () => {
     return (
       <Box>
         <BytebankCardBank variant="Físico" details={cardList[currentIndex]} />
@@ -173,7 +175,7 @@ export const BytebankCardSection: React.FC = () => {
           mt={{ xs: "20px" }}
         >
           {cardHeader()}
-          {cards()}
+          {cardsWrapper()}
         </Box>
         <Box flex={1} m={{ xs: 1, md: 4 }}>
           {cardDetails()}
