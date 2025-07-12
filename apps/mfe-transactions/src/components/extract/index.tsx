@@ -6,9 +6,9 @@ import {
   BytebankText,
   SnackbarData,
 } from  "@repo/ui";
-import { Box, Skeleton, Typography, Drawer } from '@mui/material';
+import { Box, Skeleton, Typography } from '@mui/material';
 import { format } from 'date-fns';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useUser } from "@repo/data-access";
 import { useFinancialData } from "@repo/data-access";
 import { Transaction } from '@repo/data-access';
@@ -167,7 +167,7 @@ export default function BytebankExtract() {
                 />
               </Box>
               <Box my={2}>
-                <BytebankDivider type="horizontal" color="primary" />
+                <BytebankDivider type="horizontal" />
               </Box>
               <Box px={4}>
                 <Skeleton
@@ -320,7 +320,7 @@ export default function BytebankExtract() {
         data={snackbarData}
         onClose={closeSnackbar}
       />
-      <BytebankDrawer anchor="right" open={openFilter} onClose={toggleDrawer(false)} title="Filtro Extrato" >
+      <BytebankDrawer anchor="right" open={openFilter} onClose={toggleDrawer(false)} title="Filtros" >
         <FilterExtract></FilterExtract>
       </BytebankDrawer>
     </>
