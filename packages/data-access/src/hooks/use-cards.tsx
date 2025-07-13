@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { GetCards } from '../api/get-cards-bank';
-import { Card } from '../classes/models/cards';
+import { useEffect, useState } from "react";
+import { GetCardsBank } from "../api/get-cards-bank";
+import { Card } from "../classes/models/cards";
 
 export function useCards(userId: string) {
   const [cards, setCards] = useState<Card[]>([]);
@@ -8,13 +8,15 @@ export function useCards(userId: string) {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    console.log("entrei no useeffect");
     if (!userId) return;
 
     const loadCards = async () => {
       setLoading(true);
-      const result = await GetCards(userId);
+      const result = await GetCardsBank(userId);
+      console.log("entrei no loadCards");
 
-      if ('error' in result) {
+      if ("error" in result) {
         setError(result.error);
         setCards([]);
       } else {

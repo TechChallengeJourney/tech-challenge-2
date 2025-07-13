@@ -5,7 +5,7 @@ export interface ErrorResponse {
   error: string;
 }
 
-export async function GetCards(
+export async function GetCardsBank(
   userId: string
 ): Promise<Card[] | ErrorResponse> {
   try {
