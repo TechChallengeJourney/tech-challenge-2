@@ -2,11 +2,26 @@ import { createModuleFederationConfig } from "@module-federation/rsbuild-plugin"
 import pkg from "./package.json";
 const { dependencies } = pkg;
 
+// Função para obter a URL do remote baseado no ambiente
+const getRemoteUrl = (remoteName: string, defaultPort: string) => {
+  if (process.env.NODE_ENV === 'production') {
+    // Em produção, use variáveis de ambiente ou URLs fixas da Vercel
+    const investmentsUrl = process.env.INVESTMENTS_URL || 'https://mfe-investments-vercel.vercel.app';
+    const transactionsUrl = process.env.TRANSACTIONS_URL || 'https://mfe-transactions-vercel.vercel.app';
+    
+    if (remoteName === 'remote') return `${investmentsUrl}/remoteEntry.js`;
+    if (remoteName === 'transactions') return `${transactionsUrl}/remoteEntry.js`;
+  }
+  
+  // Em desenvolvimento, use localhost
+  return `http://localhost:${defaultPort}/remoteEntry.js`;
+};
+
 export default createModuleFederationConfig({
   name: "host",
   remotes: {
-    remote: 'remote@http://localhost:3001/remoteEntry.js',
-    transactions: 'transactions@http://localhost:3002/remoteEntry.js',
+    remote: `remote@${getRemoteUrl('remote', '3001')}`,
+    transactions: `transactions@${getRemoteUrl('transactions', '3002')}`,
   },
   shared: {
     react: {
