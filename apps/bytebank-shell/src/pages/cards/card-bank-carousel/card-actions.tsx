@@ -1,17 +1,28 @@
 import { Box } from "@mui/material";
 import { BytebankButton } from "@repo/ui";
+import { useDeleteCard, useBlockCard } from "@repo/data-access";
 
-export const CardActions = () => {
-  const handleBlockCard = () => {
-    alert("Bloquear cartão");
+interface CardActionsProps {
+  cardId: string;
+  onCardUpdate?: () => void;
+}
+
+export const CardActions = ({ cardId, onCardUpdate }: CardActionsProps) => {
+  const { handleBlock, loading: loadingBlock } = useBlockCard();
+  const { handleDelete, loading: loadingDelete } = useDeleteCard();
+
+  const handleBlockCard = async () => {
+    const success = await handleBlock(cardId);
+    if (success && onCardUpdate) onCardUpdate();
   };
 
   const handleSetAsPrimary = () => {
     alert("Marcar como principal");
   };
 
-  const handleDeleteCard = () => {
-    alert("Excluir cartão");
+  const handleDeleteCard = async () => {
+    const success = await handleDelete(cardId);
+    if (success && onCardUpdate) onCardUpdate();
   };
 
   return (
@@ -26,7 +37,8 @@ export const CardActions = () => {
           fullWidth
           variant="contained"
           color="primary"
-          label="Bloquear cartão"
+          label={loadingBlock ? "Bloqueando..." : "Bloquear cartão"}
+          disabled={loadingBlock}
           onClick={handleBlockCard}
         />
       </Box>
@@ -43,10 +55,11 @@ export const CardActions = () => {
 
       <Box mt={2}>
         <BytebankButton
-          label="Excluir cartão"
+          label={loadingDelete ? "Excluindo..." : "Excluir cartão"}
           color="primary"
           variant="text"
           onClick={handleDeleteCard}
+          disabled={loadingDelete}
           sx={{
             textDecoration: "underline",
             textTransform: "none",

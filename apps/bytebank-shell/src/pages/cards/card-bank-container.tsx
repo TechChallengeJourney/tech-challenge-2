@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardVisual,
   CardNavigation,
-} from "./CardsBankCarousel";
+} from "./card-bank-carousel";
 
 const cardList = [
   {
@@ -44,11 +44,18 @@ export const BytebankCardContainer: React.FC<{
   cards: any[];
   loading: boolean;
   error: any;
-}> = ({ cards, loading, error }) => {
+  refetchCards: () => void; // função para refazer a busca dos cards
+}> = ({ cards, loading, error, refetchCards }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  
   const displayedCards = cards.length > 0 ? cards : cardList;
   const currentCard = displayedCards[currentIndex];
+
+  // Reajusta o índice caso a lista diminua no tamanho após o refetch
+  React.useEffect(() => {
+    if (currentIndex >= displayedCards.length) {
+      setCurrentIndex(displayedCards.length - 1);
+    }
+  }, [displayedCards.length, currentIndex]);
 
   const handlePrev = () => {
     setCurrentIndex((prev) =>
@@ -61,24 +68,6 @@ export const BytebankCardContainer: React.FC<{
       prev < displayedCards.length - 1 ? prev + 1 : 0
     );
   };
-
-  // if (loading) {
-  //   return (
-  //     <Box p={4}>
-  //       <BytebankLinearProgress />
-  //     </Box>
-  //   );
-  // }
-
-  // if (error) {
-  //   return (
-  //     <Box p={4}>
-  //       <BytebankText variant="md" color="error">
-  //         Ocorreu um erro ao carregar os cartões.
-  //       </BytebankText>
-  //     </Box>
-  //   );
-  // }
 
   return (
     <BytebankCard variant="outlined">
@@ -103,9 +92,12 @@ export const BytebankCardContainer: React.FC<{
         </Box>
 
         <Box flex={1} m={{ xs: 1, md: 4 }}>
-          <CardNavigation onPrev={handlePrev} onNext={handleNext}/>
+          <CardNavigation onPrev={handlePrev} onNext={handleNext} />
           <CardDetails card={currentCard} />
-          <CardActions />
+          <CardActions
+            cardId={currentCard._id}
+            onCardUpdate={refetchCards}  // chama refetch direto
+          />
         </Box>
       </Box>
     </BytebankCard>
