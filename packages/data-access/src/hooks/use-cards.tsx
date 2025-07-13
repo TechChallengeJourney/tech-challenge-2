@@ -26,7 +26,7 @@ export function useCards(userId: string) {
     };
 
     loadCards();
-  }, [userId]);
+  }, []);
 
   return { cards, error, loading };
 }
