@@ -22,28 +22,28 @@ export const CardDetails: React.FC<{ card: CardData }> = ({ card }) => (
     <Box display="flex" justifyContent="space-between">
       <BytebankText variant="xs">Cartão de crédito</BytebankText>
       <BytebankText variant="xs">
-        **** **** **** {card.cardNumber.slice(-4)}
+        **** **** **** {card?.cardNumber?.slice(-4)}
       </BytebankText>
     </Box>
 
     <Box display="flex" justifyContent="space-between">
       <BytebankText variant="xs">Limite do cartão</BytebankText>
       <BytebankText variant="xs" fontWeight="bold">
-        {card.limit}
+        {card?.limit ?? "R$ 0,00"}
       </BytebankText>
     </Box>
 
     <Box display="flex" justifyContent="space-between">
       <BytebankText variant="xs">Data de expiração</BytebankText>
       <BytebankText variant="xs" fontWeight="bold">
-        {card.expirationDate}
+        {card?.expirationDate}
       </BytebankText>
     </Box>
 
     <Box display="flex" justifyContent="space-between">
       <BytebankText variant="xs">Valor utilizado</BytebankText>
       <BytebankText variant="xs" fontWeight="bold">
-        {card.expend ?? "R$ 0,00"}
+        {card?.expend ?? "R$ 0,00"}
       </BytebankText>
     </Box>
   </Box>

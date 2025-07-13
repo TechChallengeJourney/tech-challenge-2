@@ -1,5 +1,5 @@
 export type BankCardFunction = "Crédito" | "Débito";
-export type BankCardVariant = "Físico" | "Digital";
+export type BankCardVariant = "Platinum" | "Black";
 
 export interface BankCard {
     id: string;
@@ -7,6 +7,6 @@ export interface BankCard {
     name: string;
     cardNumber: string;
     expirationDate: string;
-    functions: BankCardFunction[];
+    functions?: BankCardFunction[];
     variant: BankCardVariant;
 }

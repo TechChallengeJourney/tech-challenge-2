@@ -17,7 +17,7 @@ export const CardActions = ({ cardId, onCardUpdate }: CardActionsProps) => {
   };
 
   const handleSetAsPrimary = () => {
-    alert("Marcar como principal");
+    alert("Marcado como principal");
   };
 
   const handleDeleteCard = async () => {

@@ -4,6 +4,11 @@ import { BytebankCardBank } from "@repo/ui";
 
 export const CardVisual: React.FC<{ card: any }> = ({ card }) => (
   <Box>
-    <BytebankCardBank variant="Físico" details={card} />
+    <BytebankCardBank
+      variant={card?.variant[0] || []}
+      name={card?.name}
+      cardNumber={card?.cardNumber}
+      expirationDate={card?.expirationDate}
+    />
   </Box>
 );
