@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-const client = axios.create({
+export const clientApi = axios.create({
   baseURL: process.env.PUBLIC_API_URL,
 });
-
-export default client;
