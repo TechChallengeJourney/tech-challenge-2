@@ -5,10 +5,14 @@ import { BytebankText } from "../text/text";
 export interface CardWidgetProps {
   title: string;
   icon: React.ReactNode;
-  value: string;
+  value: number | string;
 }
 
-export function CardWidget({ title, icon, value }: CardWidgetProps) {
+export function CardWidget({
+  title,
+  icon,
+  value = "0",
+}: CardWidgetProps) {
   return (
     <BytebankCard variant="outlined">
       <Box
