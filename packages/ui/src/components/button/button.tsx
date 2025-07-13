@@ -33,14 +33,14 @@ export interface BytebankButtonProps extends ButtonProps {
    * O estilo do botão
    */
   variant?: 'contained' | 'text' | 'outlined';
-  sendSubmit?: () => void;
+  onClick?: () => void;
 }
 
 export function BytebankButton({
   label,
   color,
   variant,
-  sendSubmit,
+  onClick,
   ...props
 }: BytebankButtonProps): JSX.Element {
   const { colors } = useTheme();
@@ -110,7 +110,7 @@ export function BytebankButton({
       variant={variant}
       color={color}
       aria-label={label}
-      onClick={sendSubmit}
+      onClick={onClick}
     >
       {label}
     </ButtonColor>
