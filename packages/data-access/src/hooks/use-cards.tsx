@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getCards } from '../api/getCards';
+import { GetCards } from '../api/get-cards-bank';
 import { Card } from '../classes/models/cards';
 
 export function useCards(userId: string) {
@@ -12,7 +12,7 @@ export function useCards(userId: string) {
 
     const loadCards = async () => {
       setLoading(true);
-      const result = await getCards(userId);
+      const result = await GetCards(userId);
 
       if ('error' in result) {
         setError(result.error);
