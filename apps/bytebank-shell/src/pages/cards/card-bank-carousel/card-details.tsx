@@ -17,12 +17,29 @@ export interface CardData {
   _id: string | null;
 }
 
+function maskCardNumber(cardNumber: string): string {
+  const lastFourDigits = cardNumber.slice(-4);
+  const maskedPart = "**** **** ****";
+
+  return `${maskedPart} ${lastFourDigits}`;
+}
+
+function formatExpirationDate(expirationDate: string): string {
+  const date = new Date(expirationDate);
+  const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+  const year = date.getUTCFullYear();
+
+  return `${month}/${year}`;
+}
+
 export const CardDetails: React.FC<{ card: CardData }> = ({ card }) => (
   <Box>
     <Box display="flex" justifyContent="space-between">
-      <BytebankText variant="xs">Cartão de crédito</BytebankText>
       <BytebankText variant="xs">
-        **** **** **** {card?.cardNumber?.slice(-4)}
+        Cartão de {card?.functions ?? "****"}
+      </BytebankText>
+      <BytebankText variant="xs">
+        {maskCardNumber(card?.cardNumber) || "**** **** **** ****"}
       </BytebankText>
     </Box>
 
@@ -36,7 +53,7 @@ export const CardDetails: React.FC<{ card: CardData }> = ({ card }) => (
     <Box display="flex" justifyContent="space-between">
       <BytebankText variant="xs">Data de expiração</BytebankText>
       <BytebankText variant="xs" fontWeight="bold">
-        {card?.expirationDate}
+        {formatExpirationDate(card?.expirationDate) || "0/00"}
       </BytebankText>
     </Box>
 

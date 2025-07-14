@@ -5,7 +5,7 @@ import { BytebankCardBank } from "@repo/ui";
 export const CardVisual: React.FC<{ card: any }> = ({ card }) => (
   <Box>
     <BytebankCardBank
-      variant={card?.variant[0] || []}
+      variant={card?.variant || []}
       name={card?.name}
       cardNumber={card?.cardNumber}
       expirationDate={card?.expirationDate}

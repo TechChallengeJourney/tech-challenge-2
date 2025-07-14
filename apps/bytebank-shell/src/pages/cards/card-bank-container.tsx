@@ -13,12 +13,12 @@ const cardList = [
   {
     name: "Eloisa Fagundes",
     cardNumber: "1234567890123456",
-    expirationDate: "03/2028",
+    expirationDate: "2028-07-01T04:03:58.696Z",
     limit: "R$ 35.000,00",
     expend: "R$ 1.759,20",
     blocked: false,
     flag: "Visa",
-    functions:["crédito"],
+    functions: ["crédito"],
     userId: "1234569",
     variant: "Black",
     cvv: 123,
@@ -27,14 +27,15 @@ const cardList = [
   {
     name: "Mia Colluci",
     cardNumber: "8797223517022612",
-    expirationDate: "07/2028",
+    expirationDate: "2028-07-01T04:03:58.696Z",
+
     limit: "R$ 5.000,00",
     expend: null,
     blocked: true,
     flag: "Elo",
     functions: ["debito"],
     userId: "6872b7609ef0a65b445ce20e",
-    variant: "platinum",
+    variant: "Platinum",
     cvv: 504,
     _id: "6872fc727ebf3196e9604862",
   },
@@ -96,7 +97,7 @@ export const BytebankCardContainer: React.FC<{
           <CardDetails card={currentCard} />
           <CardActions
             cardId={currentCard._id}
-            onCardUpdate={refetchCards}  // chama refetch direto
+            onCardUpdate={refetchCards} // chama refetch direto
           />
         </Box>
       </Box>

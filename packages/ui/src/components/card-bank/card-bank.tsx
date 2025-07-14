@@ -26,6 +26,14 @@ export function BytebankCardBank({
       ? palette["background.bankcard"]
       : palette["grey.400"];
 
+  function maskCardNumber(cardNumber: string): string {
+
+    const lastFourDigits = cardNumber.slice(-4);
+    const maskedPart = "**** **** ****";
+
+    return `${maskedPart} ${lastFourDigits}`;
+  }
+
   return (
     <Box
       className="card-bank--container"
@@ -59,11 +67,11 @@ export function BytebankCardBank({
               ></Box>
 
               <Box display="flex" flexDirection="column" marginTop={1}>
-                <BytebankText variant="sm" fontWeight={200} marginBottom={4}>
+                <BytebankText variant="sm" fontWeight={100} marginBottom={4}>
                   {name}
                 </BytebankText>
                 <BytebankText variant="sm" fontWeight={200} marginTop={4}>
-                  **** **** **** {cardNumber.slice(-4)}
+                  {maskCardNumber(cardNumber)}
                 </BytebankText>
               </Box>
             </Box>
