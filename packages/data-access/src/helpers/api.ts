@@ -2,7 +2,7 @@ import axios from "axios";
 
 //http://localhost:8080/api
 export const api = axios.create({
-  baseURL: process.env.PUBLIC_API_URL || "http://localhost:7000/api",
+  baseURL: process.env.PUBLIC_API_URL || "http://localhost:8080/api",
 });
 
 api.interceptors.request.use(
