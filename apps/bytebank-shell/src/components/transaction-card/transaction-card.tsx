@@ -11,11 +11,16 @@ import {
 } from "@repo/ui";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import { useEffect, useState } from "react";
+import { Controller, FormProvider, useForm, useFormContext } from "react-hook-form";
+import { format } from "date-fns";
+import { useFetch, useSession, useUser } from "@repo/data-access";
 
 interface categoriesProps {
   label: string;
   value: string;
 }
+
+  const apiUrl = import.meta.env.PUBLIC_API_URL;
 
 interface optionsProps {
   selectValues: categoriesProps[];
@@ -121,33 +126,28 @@ const incomingOptions = {
   ],
 };
 
-function getCurrentDate(): string {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, "0"); // Mês começa em 0
-  const day = String(today.getDate()).padStart(2, "0");
-
-  return `${year}-${month}-${day}`;
-}
-
 function maskCardNumber(cardNumber: number | string): string {
   const digits = cardNumber.toString().replace(/\D/g, "");
   const lastFour = digits.slice(-4);
   return "**** **** **** " + lastFour;
 }
 
-function formRender(options: optionsProps, isActive: boolean) {
-  const { selectValues, categories } = options;
-  const [cards, setCards] = useState<any>([]);
-  const [selectedPaymentType, setSelectedPaymentType] = useState<string>(
-    selectValues[0].value,
-  );
-  const [selectedCreditCard, setSelectedCreditCard] = useState<string>("");
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [transactionDate, setTransactionDate] = useState<string>("");
-  const [transactionValue, setTransactionValue] = useState<string>("");
-  const showCardSection =
-    isActive && selectedPaymentType === expanseOptions.selectValues[0].value;
+
+function TransactionForm({ options, isActive }: { options: optionsProps; isActive: boolean }) {
+  const [sessionToken] = useSession<string | null>('token');
+  const { control, watch, handleSubmit, setValue } = useFormContext();
+  const {request, loading, error} = useFetch();
+
+  console.log(sessionToken === 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmM1OWUxMzdlNzE1OWY5MzA5OTZmOCIsImVtYWlsIjoic2VpbGFAdGVzdGUuY29tIiwiaWF0IjoxNzUyNTM2MDQ0LCJleHAiOjE3NTI2MjI0NDR9.o2HGDnslaNzGqY_7Uy4vF4mtbInqA3WyxfbUbvQc7_w')
+
+  const selectedPaymentType = watch("paymentType");
+  const showCardSection = isActive && selectedPaymentType === "credit";
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+  }
+
+  const [cards, setCards] = useState<any[]>([]);
 
   useEffect(() => {
     const listCards = mockCards.map((card) => ({
@@ -157,81 +157,93 @@ function formRender(options: optionsProps, isActive: boolean) {
     setCards(listCards);
   }, []);
 
+    useEffect(() => {
+      setValue("type", isActive ? "expense" : "income");
+    }, [isActive]);
+
+
+    useEffect(() => {
+      // const fetchData = async () => {
+      //   const {json} = await request(`${apiUrl}/categories/types/expense`, {method: 'GET', headers: {Authorization: 'Bearer ' + value}});
+      //   console.log(json, error);
+      // }
+      const fetchData = async () => {
+        const res = await fetch(`${apiUrl}/categories/types/expense`,{method: 'GET', headers: {Authorization: 'Bearer ' + sessionToken}})
+        const json = await res.json()
+        console.log(json);
+      }
+      fetchData()
+    },[])
+
   return (
     <>
-      <BytebankSelect
-        value={selectedPaymentType}
-        onChange={(e) => setSelectedPaymentType(e + "")}
-        label="Selecione o tipo da transação"
-        options={selectValues}
+      <Controller
+        name="paymentType"
+        control={control}
+        render={({ field }) => (
+          <BytebankSelect {...field} label="Selecione o tipo da transação" options={options.selectValues} />
+        )}
       />
-      <BytebankInput
-        onChange={(e) => setTransactionDate(e)}
+
+      <Controller
         name="date"
-        type="date"
-        label="Data da transação"
-        value={transactionDate ? transactionDate : getCurrentDate()}
+        control={control}
+        render={({ field }) => (
+          <BytebankInput {...field} type="date" label="Data da transação" value={field.value} />
+        )}
       />
-      <BytebankInput
-        onChange={(e) => setTransactionValue(e)}
+
+      <Controller
         name="value"
-        type="number"
-        value={transactionValue}
-        label="Valor"
-        placeholder="R$ 00,00"
+        control={control}
+        render={({ field }) => (
+          <BytebankInput {...field} type="number" label="Valor" placeholder="R$ 00,00" />
+        )}
       />
-      <BytebankSelect
-        value={selectedCategory}
-        onChange={(e) => setSelectedCategory(e + "")}
-        label="Categoria"
-        options={categories}
+
+      <Controller
+        name="category"
+        control={control}
+        render={({ field }) => (
+          <BytebankSelect {...field} label="Categoria" options={options.categories} />
+        )}
       />
-      <Box
-        marginBottom="1rem"
-        display="flex"
-        justifyContent="space-around"
-        alignItems="center"
-        flexWrap="wrap"
-      >
-        {categories.map((e) => (
-          <BytebankChip
-            key={e.value}
-            label={e.label}
-            onClick={() => setSelectedCategory(e.value)}
-          />
+
+      <Box marginBottom="1rem" display="flex" justifyContent="space-around" flexWrap="wrap" gap={1}>
+        {options.categories.map((cat) => (
+          <BytebankChip key={cat.value} label={cat.label} onClick={() => setValue("category", cat.value)} />
         ))}
       </Box>
       <Box marginBottom="1rem">
         <BytebankInputFileUpload label="FAZER UPLOAD DE ARQUIVO" />
       </Box>
-
       {showCardSection && (
         <Box>
           <BytebankText>
-            A transação foi paga com cartão? Escolha o cartão utilizado ou crie
-            um novo.
+            A transação foi paga com cartão? Escolha o cartão utilizado ou crie um novo.
           </BytebankText>
-          <BytebankSelect
-            value={selectedCreditCard}
-            onChange={(e) => setSelectedCreditCard(e + "")}
-            label="Selecione o tipo da transação"
-            options={cards}
+          <Controller
+            name="creditCard"
+            control={control}
+            render={({ field }) => (
+              <BytebankSelect {...field} label="Selecione o cartão" options={cards} />
+            )}
           />
           <BytebankButton
             fullWidth
-            label={"Criar um novo cartão"}
+            label="Criar um novo cartão"
             startIcon={<ControlPointIcon />}
-            variant={"text"}
-            color={"secondary"}
+            variant="text"
+            color="secondary"
           />
         </Box>
       )}
-
       <Box marginTop="1rem" display="flex" justifyContent="center">
         <BytebankButton
-          label={"Concluir"}
-          variant={"contained"}
-          color={"primary"}
+          label="Concluir"
+          variant="contained"
+          color="primary"
+          sendSubmit={handleSubmit(onSubmit)}
         />
       </Box>
     </>
@@ -241,23 +253,44 @@ function formRender(options: optionsProps, isActive: boolean) {
 export function BytebankTransactionCard() {
   const [activeTab, setActiveTab] = useState(0);
 
-  const options = [
-    {
-      label: "Entrada",
-      content: formRender(incomingOptions, false), // não mostra o bloco de cartão
+  const methods = useForm({
+    defaultValues: {
+      paymentType: "credit",
+      creditCard: "",
+      category: "",
+      date: format(new Date(), 'yyyy-MM-dd'),
+      value: "",
+      type: "income"
     },
-    {
-      label: "Saída",
-      content: formRender(expanseOptions, true), // mostra o bloco de cartão
-    },
-  ];
+  });
+
 
   return (
     <BytebankCard>
       <Box sx={{ width: "100%" }} padding="2rem">
         <BytebankText variant="lg">Nova Transação</BytebankText>
         <Box marginTop={2}>
-          <BytebankTabs options={options} onChangeTab={setActiveTab} />
+          <BytebankTabs
+            onChangeTab={(e) => setActiveTab(e)}
+            options={[
+              {
+                label: "Entrada",
+                content: (
+                  <FormProvider {...methods}>
+                    <TransactionForm options={incomingOptions} isActive={activeTab === 0 ? false : true} />
+                  </FormProvider>
+                ),
+              },
+              {
+                label: "Saída",
+                content: (
+                  <FormProvider {...methods}>
+                    <TransactionForm options={expanseOptions} isActive={activeTab === 1 ? true : false} />
+                  </FormProvider>
+                ),
+              },
+            ]}
+          />
         </Box>
       </Box>
     </BytebankCard>

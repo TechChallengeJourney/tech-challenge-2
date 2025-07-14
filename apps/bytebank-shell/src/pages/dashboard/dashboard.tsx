@@ -5,9 +5,9 @@ import { BytebankCard, BytebankButton, BytebankModal } from '@repo/ui';
 // @ts-ignore
 import { BytebankAnalytics, BytebankMobility, BytebankSalary, BytebankSpend, BytebankMonthlyResume } from 'remote/components'
 import { useTheme } from '@repo/utils';
+import { BytebankTransactionCard } from '../../components/transaction-card/transaction-card';
 // @ts-ignore
-const BytebankExtract = React.lazy(() => 
-  import('transactions/BytebankExtract').then((module) => ({
+const BytebankExtract = React.lazy(() => import('transactions/BytebankExtract').then((module) => ({
     default: module.default || module.BytebankExtract,
   }))
 );
@@ -32,6 +32,9 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
             </React.Suspense>
           </Box>
         </Box>
+        <Box width="45%">
+          <BytebankTransactionCard />
+        </Box>
 
         <Box>
           <Box display={'flex'} justifyContent={'flex-end'} pb={2}>
@@ -46,7 +49,6 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
             <BytebankMonthlyResume />
             <BytebankAnalytics />
           </Box>
-          
         </Box>
         <BytebankModal
           open={open}
