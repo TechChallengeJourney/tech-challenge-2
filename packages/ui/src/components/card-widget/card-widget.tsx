@@ -46,6 +46,7 @@ export function CardWidget({
           alignItems="center"
           justifyContent="center"
           ml="20px"
+          mr={{ xs: "10px" }}
         >
           {icon}
         </Box>

@@ -8,13 +8,15 @@ export const BytebankNewCardBank = () => {
       <Box
         display="flex"
         gap={2}
-        flexDirection="column"
-        alignContent={"center"}
         alignItems="center"
-        justifyContent="center"
+        flexDirection="column"
+        // alignContent="center"
+        // alignText="center"
+        // justifyContent="center"
         maxWidth={{ xs: "98vw", md: "100%" }}
         maxHeight={{ xs: "100%", md: "100%" }}
         p="30px"
+        textAlign="center"
       >
         <IconButton
           sx={{
@@ -29,11 +31,11 @@ export const BytebankNewCardBank = () => {
           <AddIcon fontSize="large" />
         </IconButton>
 
-        <BytebankText variant="xs" fontWeight="bold" align="justify">
+        <BytebankText variant="xs" fontWeight="bold" align="center">
           Criar novo cartão
         </BytebankText>
 
-        <BytebankText variant="xs" color="secondary" style={{ whiteSpace: "pre-line"}}>
+        <BytebankText variant="xs" color="secondary" align="center" style={{ whiteSpace: "pre-line"}}>
          {` Adicione um novo cartão de \ncrédito a sua conta`}
         </BytebankText>
       </Box>
