@@ -4,7 +4,7 @@ import { BytebankText } from "@repo/ui";
 
 export interface CardData {
   name: string;
-  cardNumber: string;
+  cardNumber: number;
   expirationDate: string;
   limit: string | number;
   expend?: string;

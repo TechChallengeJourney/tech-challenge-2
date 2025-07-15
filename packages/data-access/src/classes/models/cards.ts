@@ -1,7 +1,7 @@
 export interface Card {
   _id: string;
   userId: string;
-  cardNumber: string;
+  cardNumber: number;
   name: string;
   functions: string[]; // Ex: ["credit"]
   variant: string[]; // Ex: ["black"]
