@@ -19,19 +19,28 @@ export const BytebankCardsPage: React.FC = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: { xs: "center", md: "flex-start" },
+        justifyContent: { xs: "center", md: "flex-start" },
         minHeight: { xs: "100vh", md: "auto" },
         minWidth: { xs: "100vw", md: "auto" },
-        maxWidth: { xs: "50vw", md: "auto" },
-        ml: { xs: 0, md: "70px" },
+        maxWidth: { xs: "90vw", md: "auto" },
+        ml: { xs: 0, md: "30px" },
+        mb: { xs: "20px", md: "20px" }, //<----parei aqui
       }}
     >
       <BytebankBalanceCard />
-      <Box mb={{ xs: "37px", md: "77px" }} mt={{ xs: "37px", md: "77px" }}>
+      <Box
+        mb={{ xs: "37px", md: "77px" }}
+        mt={{ xs: "37px", md: "77px" }}
+        maxWidth={{ xs: "100vw", md: "90vw" }}
+      >
         <CardsInfoWidgets cards={cards} loading={loading} error={error} />
       </Box>
       <Box
         display="flex"
-        flexDirection={{ xs: "column", md: "row" }}
+        flexDirection={{ xs: "column", lg: "row" }}
+        alignItems={{ xs: "center", md: "center" }}
+        justifyContent={{ xs: "center", md: "space-around" }}
+        width="100%"
       >
         <BytebankCardContainer
           cards={cards}
@@ -39,7 +48,7 @@ export const BytebankCardsPage: React.FC = () => {
           error={error}
           refetchCards={refetchCards}
         />
-        <Box height={{ xs: "auto", md: "60%" }}>
+        <Box >
           <BytebankNewCardBank />
         </Box>
       </Box>

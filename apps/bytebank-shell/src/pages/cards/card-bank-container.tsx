@@ -18,7 +18,7 @@ const cardList = [
     expend: "R$ 1.759,20",
     blocked: false,
     flag: "Visa",
-    functions: ["crédito"],
+    functions: ["credit"],
     userId: "1234569",
     variant: "Black",
     cvv: 123,
@@ -32,7 +32,7 @@ const cardList = [
     expend: null,
     blocked: true,
     flag: "Elo",
-    functions: ["debito"],
+    functions: ["debit"],
     userId: "6872b7609ef0a65b445ce20e",
     variant: "Platinum",
     cvv: 504,
@@ -46,7 +46,7 @@ const cardList = [
     expend: null,
     blocked: false,
     flag: "Elo",
-    functions: ["debito"],
+    functions: ["credit"],
     userId: "6872b7609ef0a65b445ce20e",
     variant: "Gold",
     cvv: 123,
@@ -91,8 +91,8 @@ export const BytebankCardContainer: React.FC<{
         flexDirection={{ xs: "column", md: "row" }}
         alignItems={{ xs: "center", md: "stretch" }}
         justifyContent={{ xs: "center", md: "flex-start" }}
-        maxWidth={{ xs: "98vw" }}
-        width={{ xs: "90vw", md: "60vw" }}
+        maxWidth={{ xs: "90vw" }}
+        width={{ xs: "90vw", md: "90vw", lg: "68vw" }}
         m="10px"
       >
         <Box
@@ -105,7 +105,7 @@ export const BytebankCardContainer: React.FC<{
           <CardVisual card={currentCard} />
         </Box>
 
-        <Box flex={1} m={{ xs: 1, md: 4 }}>
+        <Box flex={2}>
           <CardNavigation onPrev={handlePrev} onNext={handleNext} />
           <CardDetails card={currentCard} />
           <CardActions

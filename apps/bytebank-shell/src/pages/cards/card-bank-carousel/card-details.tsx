@@ -33,11 +33,17 @@ function formatExpirationDate(expirationDate: string): string {
   return `${month}/${year}`;
 }
 
+function translateFunctionType(functions: string): string {
+  if (functions === "debit") return "débito";
+  if (functions === "credit") return "crédito";
+  return functions;
+}
+
 export const CardDetails: React.FC<{ card: CardData }> = ({ card }) => (
   <Box>
     <Box display="flex" justifyContent="space-between">
       <BytebankText variant="xs">
-        Cartão de {card?.functions ?? "****"}
+        Cartão de {translateFunctionType(card?.functions[0] ?? "") || "****"}
       </BytebankText>
       <BytebankText variant="xs">
         {maskCardNumber(card?.cardNumber) || "**** **** **** ****"}

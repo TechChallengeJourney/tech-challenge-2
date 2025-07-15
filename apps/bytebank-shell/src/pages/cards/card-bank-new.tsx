@@ -13,6 +13,7 @@ export const BytebankNewCardBank = () => {
         alignItems="center"
         justifyContent="center"
         maxWidth={{ xs: "98vw", md: "100%" }}
+        maxHeight={{ xs: "100%", md: "100%" }}
         p="30px"
       >
         <IconButton
