@@ -1,5 +1,5 @@
 import { Card } from "../classes/models/cards";
-import { clientApi } from "../helpers/client-api";
+import { api } from "../helpers/api";
 
 export interface ErrorResponse {
   error: string;
@@ -16,7 +16,7 @@ export async function GetCardsBank(
       return { error: "Usuário não autenticado." };
     }
 
-    const response = await clientApi.get<Card[]>("/cards", {
+    const response = await api.get<Card[]>("/cards", {
       params: { userId },
       headers: {
         Authorization: `Bearer ${token}`,
