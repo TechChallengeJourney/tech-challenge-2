@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
-import { BytebankCard, BytebankLinearProgress, BytebankText } from "@repo/ui";
+import { BytebankCard } from "@repo/ui";
 import {
   CardDetails,
   CardActions,
@@ -12,7 +12,7 @@ import {
 const cardList = [
   {
     name: "Eloisa Fagundes",
-    cardNumber: "1234567890123456",
+    cardNumber: 1234567890123456,
     expirationDate: "2028-07-01T04:03:58.696Z",
     limit: "R$ 35.000,00",
     expend: "R$ 1.759,20",
@@ -26,9 +26,8 @@ const cardList = [
   },
   {
     name: "Mia Colluci",
-    cardNumber: "8797223517022612",
+    cardNumber: 8797223517022612,
     expirationDate: "2028-07-01T04:03:58.696Z",
-
     limit: "R$ 5.000,00",
     expend: null,
     blocked: true,
@@ -37,6 +36,20 @@ const cardList = [
     userId: "6872b7609ef0a65b445ce20e",
     variant: "Platinum",
     cvv: 504,
+    _id: "6872fc727ebf3196e9604862",
+  },
+    {
+    name: "Roberta Prado",
+    cardNumber: 827382478462764,
+    expirationDate: "2027-06-01T04:03:58.696Z",
+    limit: "R$ 2.000,00",
+    expend: null,
+    blocked: false,
+    flag: "Elo",
+    functions: ["debito"],
+    userId: "6872b7609ef0a65b445ce20e",
+    variant: "Gold",
+    cvv: 123,
     _id: "6872fc727ebf3196e9604862",
   },
 ];

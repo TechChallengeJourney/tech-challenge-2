@@ -20,18 +20,22 @@ export function BytebankCardBank({
   variant,
 }: BytebankCardBankProps) {
   const { isDarkMode } = useTheme();
+
   const palette = !isDarkMode ? colorsPalette.light : colorsPalette.dark;
-  const bgcolor: string | undefined =
-    variant === "Platinum"
-      ? palette["background.bankcard"]
-      : palette["grey.400"];
+
+  const variantColorMap: Record<string, string> = {
+    Platinum: palette["background.bankcard"],
+    Gold: palette["background.goldcard"],
+  };
+
+  const bgcolor = variantColorMap[variant] || palette["grey.400"];
 
   function maskCardNumber(cardNumber: string): string {
+    const cardNumberStr = String(cardNumber);
+    const lastFourDigits = cardNumberStr.slice(-4);
+    const maskedCardNumber = "**** **** ****";
 
-    const lastFourDigits = cardNumber.slice(-4);
-    const maskedPart = "**** **** ****";
-
-    return `${maskedPart} ${lastFourDigits}`;
+    return `${maskedCardNumber} ${lastFourDigits}`;
   }
 
   return (

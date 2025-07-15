@@ -17,11 +17,12 @@ export interface CardData {
   _id: string | null;
 }
 
-function maskCardNumber(cardNumber: string): string {
-  const lastFourDigits = cardNumber.slice(-4);
-  const maskedPart = "**** **** ****";
+function maskCardNumber(cardNumber: string | number): string {
+  const cardNumberStr = String(cardNumber);
+  const lastFourDigits = cardNumberStr.slice(-4);
+  const maskedCardNumber = "**** **** ****";
 
-  return `${maskedPart} ${lastFourDigits}`;
+  return `${maskedCardNumber} ${lastFourDigits}`;
 }
 
 function formatExpirationDate(expirationDate: string): string {
