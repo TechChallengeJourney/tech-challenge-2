@@ -2,6 +2,8 @@ import React from "react";
 import { Box } from "@mui/material";
 import { BytebankText } from "@repo/ui";
 
+enum CardFlag { Visa = 'Visa', MasterCard = 'MasterCard', Elo = 'Elo', }
+
 export interface CardData {
   name: string;
   cardNumber: number;
@@ -9,7 +11,7 @@ export interface CardData {
   limit: string | number;
   expend?: string;
   blocked: boolean;
-  flag: string;
+  flag: CardFlag;
   functions: string[];
   userId: string | null;
   variant: string;
