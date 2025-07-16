@@ -34,8 +34,8 @@ function formatExpirationDate(expirationDate: string): string {
 }
 
 function translateFunctionType(functions: string): string {
-  if (functions === "debit") return "débito";
-  if (functions === "credit") return "crédito";
+  if (functions === "debit") return "Débito";
+  if (functions === "credit") return "Crédito";
   return functions;
 }
 

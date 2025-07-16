@@ -1,4 +1,4 @@
-import { clientApi } from "../helpers/client-api";
+import { api } from "../helpers/api";
 
 export interface BlockCardResponse {
   _id: string;
@@ -18,23 +18,13 @@ export interface ErrorResponse {
 }
 
 export async function BlockCardBank(
-  id: string
+  cardId: string
 ): Promise<BlockCardResponse | ErrorResponse> {
   try {
-    const rawToken = sessionStorage.getItem("token");
-    const token = rawToken ? JSON.parse(rawToken) : null;
-
-    if (!token) {
-      return { error: "Usuário não autenticado." };
-    }
-
-    const response = await clientApi.put<BlockCardResponse>(
-      `/cards/${id}/block`,
-      null,
+    const response = await api.put<BlockCardResponse>(
+      `/cards/${cardId}/block`,
       {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        params: { id: cardId },
       }
     );
 

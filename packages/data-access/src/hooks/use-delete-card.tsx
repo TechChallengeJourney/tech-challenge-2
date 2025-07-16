@@ -5,11 +5,11 @@ export function useDeleteCard() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (cardId: string) => {
     setLoading(true);
     setError(null);
 
-    const result = await DeleteCardBank(id);
+    const result = await DeleteCardBank(cardId);
 
     if (result === true) {
       setLoading(false);

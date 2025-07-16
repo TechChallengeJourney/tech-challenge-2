@@ -9,6 +9,7 @@ import { BytebankNewCardBank } from "./card-bank-new";
 
 export const BytebankCardsPage: React.FC = () => {
   const { user } = useUser();
+
   const userId = user?._id;
 
   const { cards, loading, error, refetchCards } = useCards(userId ?? "");

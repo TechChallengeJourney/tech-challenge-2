@@ -59,7 +59,7 @@ export const BytebankCardContainer: React.FC<{
   loading: boolean;
   error: any;
   refetchCards: () => void; // função para refazer a busca dos cards
-}> = ({ cards, loading, error, refetchCards }) => {
+}> = ({ cards, refetchCards }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const displayedCards = cards.length > 0 ? cards : cardList;
   const currentCard = displayedCards[currentIndex];
@@ -110,7 +110,7 @@ export const BytebankCardContainer: React.FC<{
           <CardDetails card={currentCard} />
           <CardActions
             cardId={currentCard._id}
-            onCardUpdate={refetchCards} // chama refetch direto
+            onCardUpdate={refetchCards}
           />
         </Box>
       </Box>
