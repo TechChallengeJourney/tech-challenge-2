@@ -2,6 +2,7 @@ import {
   BytebankCard,
   BytebankDivider,
   BytebankDrawer,
+  BytebankPagination,
   BytebankSnackbar,
   BytebankText,
   SnackbarData,
@@ -221,7 +222,7 @@ export default function BytebankExtract() {
             <>
               {extract  && extract.data?.length !== 0 ? (
                 extract.data?.map((itens, index) => (
-                  <Box key={index} maxHeight={'763px'} borderBottom={'1px solid #e3e3e3'}  overflow={'auto'} display={'flex'} flexDirection={'row'} justifyContent={"space-between"} alignItems={"center"} gap={2}>
+                  <Box key={index} minHeight={'100px'} borderBottom={'1px solid #e3e3e3'}  overflow={'auto'} display={'flex'} flexDirection={'row'} justifyContent={"space-between"} alignItems={"center"} gap={2}>
                     <Box px={4} py={2} >
                       <Box display={'flex'} flexDirection="row" gap={'10px'}  alignItems="center">
                         <IconButton
@@ -314,7 +315,6 @@ export default function BytebankExtract() {
                         </Box>
                       </Box>
                     </Box>
-                    
                   </Box>
                 ))
               ) : (
@@ -333,6 +333,18 @@ export default function BytebankExtract() {
                   </BytebankText>
                 </Box>
               )}
+              <Box display={'flex'} justifyContent={'center'} py={2}>
+                <BytebankPagination
+                  totalPages={extract?.pagination?.totalPages || 1}
+                  currentPage={extract?.pagination?.page || 1}
+                  onPageChange={(e, page) => {
+                    if (user) {
+                      fetchTransactions(user, { limit: 5, page: page });
+                    }
+                  }}
+                  color="primary"
+                />
+              </Box>
             </>
           )}
         </Box>
