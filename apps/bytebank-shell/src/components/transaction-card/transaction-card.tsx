@@ -11,20 +11,50 @@ import {
 } from "@repo/ui";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import { useEffect, useState } from "react";
-import { Controller, FormProvider, useForm, useFormContext } from "react-hook-form";
+import {
+  Controller,
+  FormProvider,
+  useForm,
+  useFormContext,
+} from "react-hook-form";
 import { format } from "date-fns";
 import { useFetch, useSession, useUser } from "@repo/data-access";
+import AsyncSelectAutocomplete from "@repo/ui/components/auto-complete/auto-complete";
+const apiUrl = import.meta.env.PUBLIC_API_URL;
+
+function sortMethodsAndCategories(
+  methods: any,
+  categories: any
+): any {
+  const format = (items: any[]) =>
+    items.map((item) => ({
+      label: item.name,
+      value: item._id,
+    }));
+
+  const result: any = {
+    income: {
+      methods: format(methods.filter((item: any) => item.type === "income")),
+      categories: format(categories.filter((item: any) => item.type === "income")),
+    },
+    expense: {
+      methods: format(methods.filter((item: any) => item.type === "expense")),
+      categories: format(categories.filter((item: any) => item.type === "expense")),
+    },
+  };
+  return result;
+}
+
+function formatSelectData(items: any[]) {
+  return items.map((item) => ({
+    label: item.name,
+    value: item._id,
+  }));
+}
 
 interface categoriesProps {
   label: string;
   value: string;
-}
-
-  const apiUrl = import.meta.env.PUBLIC_API_URL;
-
-interface optionsProps {
-  selectValues: categoriesProps[];
-  categories: categoriesProps[];
 }
 
 const mockCards = [
@@ -56,75 +86,9 @@ const mockCards = [
   },
 ];
 
-const expanseOptions = {
-  selectValues: [
-    {
-      label: "Cartão de Crédito",
-      value: "credit",
-    },
-    {
-      label: "PIX",
-      value: "pix",
-    },
-    {
-      label: "BOLETO",
-      value: "boleto",
-    },
-  ],
-  categories: [
-    {
-      label: "Transporte",
-      value: "transporte",
-    },
-    {
-      label: "Alimentação",
-      value: "alimentacao",
-    },
-    {
-      label: "Lazer",
-      value: "lazer",
-    },
-    {
-      label: "Saúde",
-      value: "saude",
-    },
-  ],
-};
-
-const incomingOptions = {
-  selectValues: [
-    {
-      label: "DOC/TED",
-      value: "doc/ted",
-    },
-    {
-      label: "PIX",
-      value: "pix",
-    },
-    {
-      label: "BOLETO",
-      value: "boleto",
-    },
-  ],
-  categories: [
-    {
-      label: "Transporte",
-      value: "transporte",
-    },
-    {
-      label: "Alimentação",
-      value: "alimentacao",
-    },
-    {
-      label: "Lazer",
-      value: "lazer",
-    },
-    {
-      label: "Saúde",
-      value: "saude",
-    },
-  ],
-};
+interface TransactionFormProps {
+  type: string;
+}
 
 function maskCardNumber(cardNumber: number | string): string {
   const digits = cardNumber.toString().replace(/\D/g, "");
@@ -132,23 +96,16 @@ function maskCardNumber(cardNumber: number | string): string {
   return "**** **** **** " + lastFour;
 }
 
-
-function TransactionForm({ options, isActive }: { options: optionsProps; isActive: boolean }) {
-  const [sessionToken] = useSession<string | null>('token');
-  const { control, watch, handleSubmit, setValue } = useFormContext();
-  const {request, loading, error} = useFetch();
-
-  console.log(sessionToken === 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmM1OWUxMzdlNzE1OWY5MzA5OTZmOCIsImVtYWlsIjoic2VpbGFAdGVzdGUuY29tIiwiaWF0IjoxNzUyNTM2MDQ0LCJleHAiOjE3NTI2MjI0NDR9.o2HGDnslaNzGqY_7Uy4vF4mtbInqA3WyxfbUbvQc7_w')
-
-  const selectedPaymentType = watch("paymentType");
-  const showCardSection = isActive && selectedPaymentType === "credit";
-
-  const onSubmit = (data: any) => {
-    console.log(data);
-  }
+function TransactionForm({
+  type,
+}: TransactionFormProps) {
+const { control, watch, handleSubmit, setValue } = useFormContext();
+  const { request, loading } = useFetch();
+  const [sessionToken] = useSession<string | null>("token");
+  const [methods, setMethods] = useState<any[]>([]); // Tipar como array
+  const [categories, setCategories] = useState<any[]>([]); // Tipar como array
 
   const [cards, setCards] = useState<any[]>([]);
-
   useEffect(() => {
     const listCards = mockCards.map((card) => ({
       label: maskCardNumber(card.cardNumber),
@@ -157,31 +114,63 @@ function TransactionForm({ options, isActive }: { options: optionsProps; isActiv
     setCards(listCards);
   }, []);
 
-    useEffect(() => {
-      setValue("type", isActive ? "expense" : "income");
-    }, [isActive]);
+  // --- CORREÇÃO PRINCIPAL ESTÁ AQUI ---
+  useEffect(() => {
+    // 1. Adicionamos um "guard clause": se não houver token, não fazemos nada.
+    if (!sessionToken) {
+      return;
+    }
 
+    // Função assíncrona para buscar os dados
+    const fetchDataForType = async () => {
+        // Limpa os campos antes de buscar novos dados
+        setValue("category", "");
+        setValue("paymentType", "");
+        setMethods([]);
+        setCategories([]);
 
-    useEffect(() => {
-      // const fetchData = async () => {
-      //   const {json} = await request(`${apiUrl}/categories/types/expense`, {method: 'GET', headers: {Authorization: 'Bearer ' + value}});
-      //   console.log(json, error);
-      // }
-      const fetchData = async () => {
-        const res = await fetch(`${apiUrl}/categories/types/expense`,{method: 'GET', headers: {Authorization: 'Bearer ' + sessionToken}})
-        const json = await res.json()
-        console.log(json);
-      }
-      fetchData()
-    },[])
+        // Busca categorias
+        const categoriesResp = await request(`${apiUrl}/categories/types/${type}`, {
+            headers: { Authorization: "Bearer " + sessionToken },
+        });
+        if (categoriesResp.json) setCategories(formatSelectData(categoriesResp.json));
 
+        // Busca métodos
+        const methodsResp = await request(`${apiUrl}/methods/types/${type}`, {
+            headers: { Authorization: "Bearer " + sessionToken },
+        });
+        if (methodsResp.json) setMethods(formatSelectData(methodsResp.json));
+    };
+
+    setValue("type", type);
+    fetchDataForType();
+
+  // 2. Adicionamos 'sessionToken' ao array de dependências.
+  // O hook agora irá re-executar quando o token for carregado.
+  }, [type, sessionToken, setValue, request]);
+
+  const selectedPaymentType = watch("paymentType");
+  const showCardSection = selectedPaymentType === "credit";
+
+  // As funções getMethods e getCategories não são mais necessárias aqui,
+  // pois a lógica foi movida para o useEffect.
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+  };
   return (
     <>
       <Controller
         name="paymentType"
         control={control}
         render={({ field }) => (
-          <BytebankSelect {...field} label="Selecione o tipo da transação" options={options.selectValues} />
+          <BytebankSelect
+            {...field}
+            // onOpen não é mais necessário
+            loading={loading && methods.length === 0} // Mostra loading apenas se estiver carregando métodos
+            label="Selecione o tipo da transação"
+            options={methods}
+          />
         )}
       />
 
@@ -189,7 +178,12 @@ function TransactionForm({ options, isActive }: { options: optionsProps; isActiv
         name="date"
         control={control}
         render={({ field }) => (
-          <BytebankInput {...field} type="date" label="Data da transação" value={field.value} />
+          <BytebankInput
+            {...field}
+            type="date"
+            label="Data da transação"
+            value={field.value}
+          />
         )}
       />
 
@@ -197,36 +191,64 @@ function TransactionForm({ options, isActive }: { options: optionsProps; isActiv
         name="value"
         control={control}
         render={({ field }) => (
-          <BytebankInput {...field} type="number" label="Valor" placeholder="R$ 00,00" />
+          <BytebankInput
+            {...field}
+            type="number"
+            label="Valor"
+            placeholder="R$ 00,00"
+          />
         )}
       />
 
-      <Controller
+       <Controller
         name="category"
         control={control}
         render={({ field }) => (
-          <BytebankSelect {...field} label="Categoria" options={options.categories} />
+          <BytebankSelect
+            {...field}
+            // onOpen não é mais necessário
+            label="Categoria"
+            loading={loading && categories.length === 0} // Mostra loading apenas se estiver carregando categorias
+            options={categories}
+          />
         )}
       />
 
-      <Box marginBottom="1rem" display="flex" justifyContent="space-around" flexWrap="wrap" gap={1}>
-        {options.categories.map((cat) => (
-          <BytebankChip key={cat.value} label={cat.label} onClick={() => setValue("category", cat.value)} />
+      <Box
+        marginBottom="1rem"
+        display="flex"
+        justifyContent="space-around"
+        flexWrap="wrap"
+        gap={1}
+      >
+        {categories?.map(({ label, value }) => (
+          <BytebankChip
+            key={value}
+            label={label}
+            onClick={() => setValue("category", value)}
+          />
         ))}
       </Box>
+
       <Box marginBottom="1rem">
         <BytebankInputFileUpload label="FAZER UPLOAD DE ARQUIVO" />
       </Box>
+
       {showCardSection && (
         <Box>
           <BytebankText>
-            A transação foi paga com cartão? Escolha o cartão utilizado ou crie um novo.
+            A transação foi paga com cartão? Escolha o cartão utilizado ou crie
+            um novo.
           </BytebankText>
           <Controller
             name="creditCard"
             control={control}
             render={({ field }) => (
-              <BytebankSelect {...field} label="Selecione o cartão" options={cards} />
+              <BytebankSelect
+                {...field}
+                label="Selecione o cartão"
+                options={cards}
+              />
             )}
           />
           <BytebankButton
@@ -238,6 +260,7 @@ function TransactionForm({ options, isActive }: { options: optionsProps; isActiv
           />
         </Box>
       )}
+
       <Box marginTop="1rem" display="flex" justifyContent="center">
         <BytebankButton
           label="Concluir"
@@ -251,46 +274,42 @@ function TransactionForm({ options, isActive }: { options: optionsProps; isActiv
 }
 
 export function BytebankTransactionCard() {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState("income");
 
   const methods = useForm({
     defaultValues: {
       paymentType: "credit",
       creditCard: "",
       category: "",
-      date: format(new Date(), 'yyyy-MM-dd'),
+      date: format(new Date(), "yyyy-MM-dd"),
       value: "",
-      type: "income"
+      type: "income",
     },
   });
 
+  // useEffect(() => {
+  //   console.log(activeTab)
+  // }, [activeTab])
 
   return (
     <BytebankCard>
       <Box sx={{ width: "100%" }} padding="2rem">
         <BytebankText variant="lg">Nova Transação</BytebankText>
+
         <Box marginTop={2}>
           <BytebankTabs
-            onChangeTab={(e) => setActiveTab(e)}
             options={[
-              {
-                label: "Entrada",
-                content: (
-                  <FormProvider {...methods}>
-                    <TransactionForm options={incomingOptions} isActive={activeTab === 0 ? false : true} />
-                  </FormProvider>
-                ),
-              },
-              {
-                label: "Saída",
-                content: (
-                  <FormProvider {...methods}>
-                    <TransactionForm options={expanseOptions} isActive={activeTab === 1 ? true : false} />
-                  </FormProvider>
-                ),
-              },
+              { label: "Entrada", id: "income" },
+              { label: "Saída", id: "expense" },
             ]}
-          />
+            onChangeTab={(i) => setActiveTab(i)}
+          >
+            <FormProvider {...methods}>
+              <TransactionForm
+                type={activeTab}
+              />
+            </FormProvider>
+          </BytebankTabs>
         </Box>
       </Box>
     </BytebankCard>

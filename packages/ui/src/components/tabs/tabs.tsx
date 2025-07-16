@@ -1,51 +1,45 @@
-import { Box, Tabs, Tab } from "@mui/material";
-import { useState } from "react";
-
-function CustomTabPanel(props: {
-  children?: React.ReactNode;
-  value: number;
-  index: number;
-}) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`custom-tabpanel-${index}`}
-      aria-labelledby={`custom-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box sx={{ p: 2 }}>{children}</Box>}
-    </div>
-  );
-}
-
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-  };
-}
+import { Box, Tab, Tabs } from "@mui/material";
+import { useEffect, useState } from "react";
 
 interface TabOption {
   label: string;
-  content: React.ReactNode;
+  id: string;
 }
 
 interface BytebankTabsProps {
   options: TabOption[];
-  onChangeTab?: (index: number) => void;
+  onChangeTab?: (id: string) => void; // A prop recebe o ID diretamente
+  children: React.ReactNode;
 }
 
-export function BytebankTabs({ options, onChangeTab }: BytebankTabsProps) {
+export function BytebankTabs({
+  options,
+  onChangeTab,
+  children,
+}: BytebankTabsProps) {
+  // O único estado necessário é o 'value' (índice da aba) para o controle do MUI
   const [value, setValue] = useState(0);
 
-  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-    if (onChangeTab) {
-      onChangeTab(newValue);
+  // REMOVIDO: O estado 'tab' não é mais necessário.
+  // const [tab, setTab] = useState("");
+
+  // Este useEffect garante que o pai seja notificado sobre a aba inicial.
+  useEffect(() => {
+    if (options?.[value]) {
+      onChangeTab?.(options[value].id);
     }
+  }, []); // O array vazio [] garante que isso rode apenas uma vez, na montagem.
+
+
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
+    // 1. Atualiza o estado do índice da aba
+    setValue(newValue);
+
+    // 2. Encontra o ID da aba correspondente usando o novo índice
+    const newTabId = options[newValue].id;
+    
+    // 3. Chama o callback com o ID correto e atualizado
+    onChangeTab?.(newTabId);
   };
 
   return (
@@ -83,17 +77,14 @@ export function BytebankTabs({ options, onChangeTab }: BytebankTabsProps) {
             },
           }}
         >
-          {options.map((e, i) => {
-            return <Tab key={i} label={e.label} {...a11yProps(i)} />;
-          })}
+          {/* REMOVIDO: O onClick que causava o problema foi removido. */}
+          {options.map((option) => (
+            <Tab key={option.id} label={option.label} />
+          ))}
         </Tabs>
       </Box>
 
-      {options.map((e, i) => (
-        <CustomTabPanel key={i} value={value} index={i}>
-          {e.content}
-        </CustomTabPanel>
-      ))}
+      <Box sx={{ p: 2 }}>{children}</Box>
     </Box>
   );
 }
