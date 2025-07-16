@@ -10,9 +10,6 @@ export const BytebankNewCardBank = () => {
         gap={2}
         alignItems="center"
         flexDirection="column"
-        // alignContent="center"
-        // alignText="center"
-        // justifyContent="center"
         maxWidth={{ xs: "98vw", md: "100%" }}
         maxHeight={{ xs: "100%", md: "100%" }}
         p="30px"

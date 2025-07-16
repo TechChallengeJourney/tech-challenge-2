@@ -14,42 +14,46 @@ export const BytebankCardsPage: React.FC = () => {
   const { cards, loading, error, refetchCards } = useCards(userId ?? "");
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: { xs: "center", md: "flex-start" },
-        justifyContent: { xs: "center", md: "flex-start" },
-        minHeight: { xs: "100vh", md: "auto" },
-        minWidth: { xs: "100vw", md: "auto" },
-        maxWidth: { xs: "90vw", md: "auto" },
-        ml: { xs: 0, md: "30px" },
-        mb: { xs: "20px", md: "20px" }, //<----parei aqui
-      }}
-    >
-      <BytebankBalanceCard />
+    <Box minWidth="100%" display="flex" alignItems={{ xs: "center", md: "center" }} justifyContent={{ xs: "center", md: "center" }}>
       <Box
-        mb={{ xs: "37px", md: "77px" }}
-        mt={{ xs: "37px", md: "77px" }}
-        maxWidth={{ xs: "100vw", md: "90vw" }}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          borderRadius: "10px",
+          alignItems: { xs: "center", md: "center" },
+          justifyContent: { xs: "center", md: "flex-start" },
+          minHeight: { xs: "100vh", md: "auto" },
+          mb: { xs: "20px", md: "20px" },
+        }}
       >
-        <CardsInfoWidgets cards={cards} loading={loading} error={error} />
-      </Box>
-      <Box
-        display="flex"
-        flexDirection={{ xs: "column", lg: "row" }}
-        alignItems={{ xs: "center", md: "center" }}
-        justifyContent={{ xs: "center", md: "space-between" }}
-        width="100%"
-      >
-        <BytebankCardContainer
-          cards={cards}
-          loading={loading}
-          error={error}
-          refetchCards={refetchCards}
-        />
-        <Box mt={{ xs: "20px", md: "20px", lg: "0" }} width={{ xs: "95vw", md: "100%", lg: "250px" }}>
-          <BytebankNewCardBank />
+        <BytebankBalanceCard />
+        <Box
+          mb={{ xs: "37px", md: "77px" }}
+          mt={{ xs: "37px", md: "77px" }}
+          width="95vw"
+        >
+          <CardsInfoWidgets cards={cards} loading={loading} error={error} />
+        </Box>
+        <Box
+          display="flex"
+          flexDirection={{ xs: "column", lg: "row" }}
+          alignItems={{ xs: "center", md: "center" }}
+          justifyContent={{ xs: "center", md: "space-between" }}
+          width="100%"
+        >
+          <BytebankCardContainer
+            cards={cards}
+            loading={loading}
+            error={error}
+            refetchCards={refetchCards}
+          />
+          <Box
+            mt={{ xs: "20px", md: "20px", lg: "0" }}
+            ml={{ xs: 1, md: 4 }}
+            width={{ xs: "95vw", md: "92vw", lg: "350px" }}
+          >
+            <BytebankNewCardBank />
+          </Box>
         </Box>
       </Box>
     </Box>
