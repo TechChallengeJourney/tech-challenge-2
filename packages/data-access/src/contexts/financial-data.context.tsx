@@ -8,7 +8,7 @@ export interface FinancialData {
 }
 
 interface FinancialDataContextType extends FinancialData {
-  fetchTransactions: (user: User) => void;
+  fetchTransactions: (user: User, params? : {limit: number, page: number}) => void;
   updateFinancialData: (financial: FinancialData) => void;
   isLoading: boolean;
   setIsLoading: (value: boolean) => void;
@@ -47,9 +47,9 @@ export const FinancialDataProvider: React.FC<{ children: React.ReactNode }> = ({
   };
   
 
-  const fetchTransactions = async (user: User) => {
+  const fetchTransactions = async (user: User , params? : {limit: number, page: number}) => {
   try {
-    const res = await api.get<ExtractProps>(`/transactions`, {
+    const res = await api.get<ExtractProps>(`/transactions?limit=${params?.limit || 5}&page=${params?.page || 1}`, {
       params: { userId: user?._id },
     });
 

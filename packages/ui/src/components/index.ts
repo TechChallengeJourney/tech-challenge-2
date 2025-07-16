@@ -12,4 +12,5 @@ export * from "./illustration/illustration";
 export * from "./linear-progress/linear-progress";
 export * from "./drawer/drawer";
 export * from "./datepicker";
+export * from "./pagination";
 
