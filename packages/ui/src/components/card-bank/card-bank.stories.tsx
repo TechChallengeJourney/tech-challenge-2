@@ -46,9 +46,14 @@ export default {
                   flexDirection="column"
                   alignItems="flex-start"
                 >
-                  <BytebankCardBank variant={item.variant} details={cardDetails} />
+                  <BytebankCardBank
+                  name={cardDetails.name}
+                  cardNumber={cardDetails.cardNumber}
+                  expirationDate={cardDetails.expirationDate}
+                  variant={item.variant}
+                  />
                   <Typography variant="caption" style={{ marginTop: '8px' }}>
-                    {item.name}
+                  {item.name}
                   </Typography>
                 </Box>
               ))}
@@ -68,14 +73,18 @@ export default {
 
 const Template: StoryFn<BytebankCardBankProps> = (args) => <BytebankCardBank {...args} />;
 
-export const CartaoFisico = Template.bind({});
-CartaoFisico.args = {
-  variant: 'Físico' as BankCardVariant,
-  details: cardDetails,
+export const CreditCard = Template.bind({});
+CreditCard.args = {
+  name: cardDetails.name,
+  cardNumber: cardDetails.cardNumber,
+  expirationDate: cardDetails.expirationDate,
+  variant: 'Crédito' as BankCardVariant,
 };
 
-export const CartaoVirtual = Template.bind({});
-CartaoVirtual.args = {
-  variant: 'Virtual' as BankCardVariant,
-  details: cardDetails,
+export const DebitCard = Template.bind({});
+DebitCard.args = {
+  name: cardDetails.name,
+  cardNumber: cardDetails.cardNumber,
+  expirationDate: cardDetails.expirationDate,
+  variant: 'Débito' as BankCardVariant,
 };
