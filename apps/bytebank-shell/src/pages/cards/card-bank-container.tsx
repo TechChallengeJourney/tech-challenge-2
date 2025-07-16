@@ -87,13 +87,13 @@ export const BytebankCardContainer: React.FC<{
     <BytebankCard variant="outlined">
       <Box
         display="flex"
-        gap={2}
+        gap={4}
         flexDirection={{ xs: "column", md: "row" }}
         alignItems={{ xs: "center", md: "stretch" }}
         justifyContent={{ xs: "center", md: "flex-start" }}
         maxWidth={{ xs: "90vw" }}
         width={{ xs: "90vw", md: "90vw", lg: "68vw" }}
-        m="10px"
+        m="26px"
       >
         <Box
           flex={1}
