@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { BytebankWrapper } from './components/wrapper/wrapper';
-import { UserProvider } from '@repo/data-access';
+import { FinancialDataProvider, UserProvider } from '@repo/data-access';
 import ErrorBoundary from './error-boundary';
 
 const root = ReactDOM.createRoot(
@@ -15,11 +15,13 @@ root.render(
   <React.StrictMode>
     <ErrorBoundary>
       <UserProvider>
-        <Router>
-          <BytebankWrapper>
-            <App />
-          </BytebankWrapper>
-        </Router>
+        <FinancialDataProvider>
+          <Router>
+            <BytebankWrapper>
+              <App />
+            </BytebankWrapper>
+          </Router>
+        </FinancialDataProvider>
       </UserProvider>
     </ErrorBoundary>
   </React.StrictMode>

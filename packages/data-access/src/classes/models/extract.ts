@@ -1,6 +1,11 @@
 import { Transaction } from './transaction';
 
 export interface ExtractProps {
-    month: string;
+    pagination: string;
+    data: Transaction[];
+}
+
+export interface Extract {
+    mounth: string;
     data: Transaction[];
 }
