@@ -15,23 +15,36 @@ export const useFetch = <T = unknown>() => {
   const request = useCallback(async (url: string, options?: RequestOptions): Promise<FetchResponse<T>> => {
     setError(null);
     setLoading(true);
+
     let response: Response | null = null;
     let json: T | null = null;
 
     try {
       response = await fetch(url, options);
-      const parsed = await response.json();
+      const parsed: unknown = await response.json();
+
       if (!response.ok) {
-        throw new Error(parsed?.message || "Erro na requisição");
+        const errorMessage =
+          typeof parsed === "object" && parsed !== null && "message" in parsed
+            ? String((parsed as { message?: string }).message)
+            : "Erro na requisição";
+
+        throw new Error(errorMessage);
       }
-      json = parsed;
+
+      json = parsed as T;
       setData(json);
-    } catch (err: any) {
-      setError(err.message || "Erro desconhecido");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Erro desconhecido");
+      }
     } finally {
       setLoading(false);
-      return { response, json };
     }
+
+    return { response, json };
   }, []);
 
   return {

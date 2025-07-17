@@ -1,90 +1,77 @@
-import React, { useState, useEffect } from 'react';
-import { Autocomplete, TextField, CircularProgress } from '@mui/material';
+import * as React from 'react';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import CircularProgress from '@mui/material/CircularProgress';
 
-// Interface para a estrutura de dados das opções
-interface Option {
-  id: number;
-  nome: string;
+interface BytebankAutoCompleteProps {
+  loading: boolean;
+  options: { label: string; value: string }[];
+  label: string;
+  value: { label: string; value: string } | null;
+  onChange: (value: { label: string; value: string } | null) => void;
+  onCreateOption?: (label: string) => Promise<void>;
+  error?: boolean;
+  helperText?: string;
 }
 
-const AsyncSelectAutocomplete: React.FC = () => {
-  const [open, setOpen] = useState(false);
-  const [options, setOptions] = useState<Option[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<Option | null>(null);
+export function BytebankAutoComplete({
+  options,
+  loading,
+  label,
+  error,
+  helperText,
+  value,
+  onChange,
+  onCreateOption,
+}: BytebankAutoCompleteProps) {
+  const [open, setOpen] = React.useState(false);
+  const [inputValue, setInputValue] = React.useState("");
 
-  // Simulação de uma chamada de API
-  const fetchOptions = async () => {
-    setLoading(true);
-    try {
-      // Simula um atraso de rede
-      await new Promise((resolve) => setTimeout(resolve, 1500)); 
-
-      // Dados simulados que viriam da sua API
-      const data: Option[] = [
-        { id: 101, nome: 'Opção Carregada 1' },
-        { id: 102, nome: 'Opção Carregada 2' },
-        { id: 103, nome: 'Opção Carregada 3' },
-        { id: 104, nome: 'Outra Categoria' },
-        { id: 105, nome: 'Item Final' },
-      ];
-      setOptions(data);
-    } catch (error) {
-      console.error('Erro ao carregar opções:', error);
-      // Aqui você poderia lidar com o erro, talvez mostrar uma mensagem para o usuário
-    } finally {
-      setLoading(false);
+  const handleBlur = async () => {
+    const exists = options.some((opt) => opt.label.toLowerCase() === inputValue.toLowerCase());
+    if (inputValue && !exists && onCreateOption) {
+      await onCreateOption(inputValue);
     }
   };
 
-  useEffect(() => {
-    if (open && options.length === 0) { // Carrega apenas se estiver aberto e as opções não foram carregadas
-      fetchOptions();
+  const handleKeyDown = async (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      const exists = options.some((opt) => opt.label.toLowerCase() === inputValue.toLowerCase());
+      if (inputValue && !exists && onCreateOption) {
+        await onCreateOption(inputValue);
+      }
     }
-  }, [open, options.length]); // Dependências: reage à mudança de 'open' ou 'options.length'
+  };
 
   return (
     <Autocomplete
       open={open}
       onOpen={() => setOpen(true)}
       onClose={() => setOpen(false)}
-      
+      isOptionEqualToValue={(option, val) => option.value === val?.value}
+      getOptionLabel={(option) => option.label}
       options={options}
-      getOptionLabel={(option) => option.nome}
-      
-      // Controla o valor selecionado
-      value={selectedValue}
-      onChange={(event, newValue) => {
-        setSelectedValue(newValue as Option | null);
-      }}
-
-      // Input Value é essencial para um comportamento de select sem digitação
-      // Ele é vazio quando nada está selecionado, ou o nome da opção selecionada
-      onInputChange={(event, newInputValue) => {
-        // Não faz nada com newInputValue, pois não queremos que o usuário digite
-        // Se precisar que o texto do campo reflita a seleção ao invés de ficar vazio,
-        // o `value` já cuida disso automaticamente.
-      }}
-      
-      // --- Propriedades Chave para o Comportamento de SELECT ---
-      freeSolo={false} // Desabilita a digitação livre
-      filterOptions={(options) => options} // Mostra todas as opções carregadas, sem filtro de digitação
-      
       loading={loading}
-      loadingText="Carregando..." // Texto exibido enquanto carrega
-      
+      value={value}
+      onChange={(_, val) => {
+        onChange(val);
+        setInputValue("");
+      }}
+      inputValue={inputValue}
+      onInputChange={(_, val) => setInputValue(val)}
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Selecione uma Opção"
-          variant="outlined"
-          // --- Propriedade para tornar o campo SOMENTE LEITURA ---
+          label={label}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
+          error={error}
+          helperText={helperText}
           InputProps={{
             ...params.InputProps,
-            readOnly: true, // Impede a digitação direta no campo
             endAdornment: (
               <>
-                {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                {loading ? <CircularProgress size={20} /> : null}
                 {params.InputProps.endAdornment}
               </>
             ),
@@ -93,6 +80,4 @@ const AsyncSelectAutocomplete: React.FC = () => {
       )}
     />
   );
-};
-
-export default AsyncSelectAutocomplete;
+}

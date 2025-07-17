@@ -1,4 +1,3 @@
-import { useState } from "react";
 import PublishRoundedIcon from "@mui/icons-material/PublishRounded";
 import { styled } from "@mui/material/styles";
 import { useTheme } from "@repo/utils";
@@ -18,15 +17,22 @@ const VisuallyHiddenInput = styled("input")({
   width: 1,
 });
 
-export function BytebankInputFileUpload({ label }: { label: string }) {
+interface BytebankButtonFileUploadProps {
+  label: string;
+  value?: File | null;
+  onChange?: (file: File | null) => void;
+}
+
+export function BytebankButtonFileUpload({
+  label,
+  value,
+  onChange,
+}: BytebankButtonFileUploadProps) {
   const { colors, isDarkMode } = useTheme();
-  const [fileName, setFileName] = useState<string | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setFileName(file.name);
-    }
+    const file = event.target.files?.[0] || null;
+    if (onChange) onChange(file);
   };
 
   return (
@@ -52,15 +58,15 @@ export function BytebankInputFileUpload({ label }: { label: string }) {
         tabIndex={-1}
         startIcon={<PublishRoundedIcon />}
       >
-        {fileName ? "ARQUIVO SELECIONADO" : label}
-        <VisuallyHiddenInput type="file" onChange={handleFileChange} />
+        {value ? "ARQUIVO SELECIONADO" : label}
+        <VisuallyHiddenInput type="file" accept=".png, .jpeg, .jpg, .pdf" onChange={handleFileChange} />
       </Button>
 
-      {fileName && (
+      {value && (
         <Box display="flex" marginTop="0.5rem" alignItems="center" gap="6px">
-          <InsertDriveFileTwoToneIcon color="secondary" fontSize="small" />{" "}
+          <InsertDriveFileTwoToneIcon color="secondary" fontSize="small" />
           <Typography variant="body2" sx={{ color: colors["grey.800"] }}>
-            {fileName}
+            {value.name}
           </Typography>
         </Box>
       )}
