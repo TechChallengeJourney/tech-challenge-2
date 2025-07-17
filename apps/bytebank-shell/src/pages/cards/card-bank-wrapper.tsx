@@ -59,7 +59,7 @@ export interface BytebankCardContainerProps {
   refetchCards: () => void;
 }
 
-export const BytebankCardContainer: React.FC<BytebankCardContainerProps> = ({
+export const BytebankCardWrapper: React.FC<BytebankCardContainerProps> = ({
   cards,
   refetchCards,
 }) => {

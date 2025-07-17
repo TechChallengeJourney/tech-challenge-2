@@ -8,7 +8,11 @@ interface CardActionsProps {
 }
 
 export const CardActions = ({ cardId, onCardUpdate }: CardActionsProps) => {
-  const { handleBlock, loading: loadingBlock } = useBlockCard();
+  const {
+    handleBlock,
+    loading: loadingBlock,
+    blocked: isBlocked,
+  } = useBlockCard();
   const { handleDelete, loading: loadingDelete } = useDeleteCard();
 
   const handleBlockCard = async () => {
@@ -37,7 +41,15 @@ export const CardActions = ({ cardId, onCardUpdate }: CardActionsProps) => {
           fullWidth
           variant="contained"
           color="primary"
-          label={loadingBlock ? "Bloqueando..." : "Bloquear cartão"}
+          label={
+            loadingBlock
+              ? isBlocked
+                ? "Desbloqueando..."
+                : "Bloqueando..."
+              : isBlocked
+                ? "Desbloquear cartão"
+                : "Bloquear cartão"
+          }
           disabled={loadingBlock}
           onClick={handleBlockCard}
         />
