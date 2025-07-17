@@ -10,14 +10,15 @@ export interface CardsInfoWidgetsProps {
   cards?: any[];
   loading?: boolean;
   error?: any;
+  totalFormattedLimit?: string;
 }
 
-export const CardsInfoWidgets: React.FC<CardsInfoWidgetsProps> = ({ cards, loading, error }) => {
+export const CardsInfoWidgets: React.FC<CardsInfoWidgetsProps> = ({ cards, loading, error, totalFormattedLimit }) => {
   const totalCards = cards?.length || 0
 
   const cardsData = [
     { title: "Total de Cartões", value: totalCards },
-    { title: "Limite total", value: cards?.[0]?.limit },
+    { title: "Limite total", value: totalFormattedLimit || "R$ 0,00" },
     { title: "Limite usado", value: 0 },
     { title: "Gasto mensal", value: 0 },
   ];

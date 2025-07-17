@@ -6,6 +6,7 @@ export interface BankCard {
     userId: string;
     name: string;
     cardNumber: string;
+    limit: number;
     expirationDate: string;
     functions?: BankCardFunction[];
     variant: BankCardVariant;

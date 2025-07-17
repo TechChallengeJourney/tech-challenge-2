@@ -6,16 +6,35 @@ import { BytebankBalanceCard } from "../../components/balance-card/balance-card"
 import { BytebankCardContainer } from "./card-bank-container";
 import { CardsInfoWidgets } from "./cards-info-widgets";
 import { BytebankNewCardBank } from "./card-bank-new";
+import { CardData } from "./card-bank-carousel";
+
 
 export const BytebankCardsPage: React.FC = () => {
   const { user } = useUser();
-
   const userId = user?._id;
+  const { cards, refetchCards } = useCards(userId ?? "");
 
-  const { cards, loading, error, refetchCards } = useCards(userId ?? "");
+  const getTotalLimit = (array: CardData[]): number => {
+    return array.reduce((total, item) => total + item.limit, 0);
+  };
+
+  const formatLimitCurrency = (limit: number): string => {
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(limit);
+  };
+
+  const total = getTotalLimit(cards);
+  const totalFormattedLimit = formatLimitCurrency(total);
 
   return (
-    <Box minWidth="100%" display="flex" alignItems={{ xs: "center", md: "center" }} justifyContent={{ xs: "center", md: "center" }}>
+    <Box
+      minWidth="100%"
+      display="flex"
+      alignItems={{ xs: "center", md: "center" }}
+      justifyContent={{ xs: "center", md: "center" }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -33,7 +52,7 @@ export const BytebankCardsPage: React.FC = () => {
           mt={{ xs: "37px", md: "77px" }}
           width="95vw"
         >
-          <CardsInfoWidgets cards={cards} loading={loading} error={error} />
+          <CardsInfoWidgets cards={cards} totalFormattedLimit={totalFormattedLimit} />
         </Box>
         <Box
           display="flex"
@@ -44,8 +63,6 @@ export const BytebankCardsPage: React.FC = () => {
         >
           <BytebankCardContainer
             cards={cards}
-            loading={loading}
-            error={error}
             refetchCards={refetchCards}
           />
           <Box

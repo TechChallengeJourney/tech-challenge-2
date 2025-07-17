@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
-import { BytebankCard } from "@repo/ui";
+import { BytebankCard, BytebankText } from "@repo/ui";
 import {
   CardDetails,
   CardActions,
@@ -54,34 +54,47 @@ const cardList = [
   },
 ];
 
-export const BytebankCardContainer: React.FC<{
-  cards: any[];
-  loading: boolean;
-  error: any;
-  refetchCards: () => void; // função para refazer a busca dos cards
-}> = ({ cards, refetchCards }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const displayedCards = cards.length > 0 ? cards : cardList;
-  const currentCard = displayedCards[currentIndex];
+export interface BytebankCardContainerProps {
+  cards: any[]; 
+  refetchCards: () => void;
+}
 
-  // Reajusta o índice caso a lista diminua no tamanho após o refetch
-  React.useEffect(() => {
-    if (currentIndex >= displayedCards.length) {
-      setCurrentIndex(displayedCards.length - 1);
+export const BytebankCardContainer: React.FC<BytebankCardContainerProps> = ({
+  cards,
+  refetchCards,
+}) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const hasCards = cards.length > 0;
+  const currentCard = hasCards ? cards[currentIndex] : null;
+
+  useEffect(() => {
+    if (currentIndex >= cards.length && cards.length > 0) {
+      setCurrentIndex(cards.length - 1);
     }
-  }, [displayedCards.length, currentIndex]);
+  }, [cards.length, currentIndex]);
 
   const handlePrev = () => {
     setCurrentIndex((prev) =>
-      prev > 0 ? prev - 1 : displayedCards.length - 1
+      prev > 0 ? prev - 1 : cards.length - 1
     );
   };
 
   const handleNext = () => {
     setCurrentIndex((prev) =>
-      prev < displayedCards.length - 1 ? prev + 1 : 0
+      prev < cards.length - 1 ? prev + 1 : 0
     );
   };
+
+  if (!hasCards) {
+    return (
+      <Box mt={4} textAlign="center">
+        <BytebankText variant="md" color="text.primary">
+          Você ainda não possui cartão cadastrado.
+        </BytebankText>
+      </Box>
+    );
+  }
 
   return (
     <BytebankCard variant="outlined">
@@ -109,7 +122,7 @@ export const BytebankCardContainer: React.FC<{
           <CardNavigation onPrev={handlePrev} onNext={handleNext} />
           <CardDetails card={currentCard} />
           <CardActions
-            cardId={currentCard._id}
+            cardId={currentCard?._id}
             onCardUpdate={refetchCards}
           />
         </Box>
