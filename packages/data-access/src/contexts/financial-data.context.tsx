@@ -1,21 +1,26 @@
 import React, { createContext, useContext, useState } from 'react';
 import { ExtractProps, User } from '../classes';
+import api from "../helpers/api";
 
 export interface FinancialData {
-  extract: ExtractProps[];
+  extract: ExtractProps | null;
   total_value: number;
 }
 
 interface FinancialDataContextType extends FinancialData {
-  fetchTransactions: (user: User) => void;
+  fetchTransactions: (user: User, params? : {limit: number, page: number}) => void;
   updateFinancialData: (financial: FinancialData) => void;
   isLoading: boolean;
   setIsLoading: (value: boolean) => void;
 }
 
+const sumValues = (transactions: { value: number }[]): number => {
+  return transactions.reduce((total, transaction) => total + transaction.value, 0);
+};
+
 const FinancialDataContext = createContext<FinancialDataContextType>({
   total_value: 0,
-  extract: [],
+  extract: null,
   fetchTransactions: () => {
     console.warn('fetchTransactions method is not implemented.');
   },
@@ -31,7 +36,7 @@ const FinancialDataContext = createContext<FinancialDataContextType>({
 export const FinancialDataProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [financialData, setFinancialData] = useState<FinancialData>({
     total_value: 0,
-    extract: [],
+    extract: null,
   });
 
   const [isLoading, setIsLoading] = useState(true);
@@ -40,14 +45,27 @@ export const FinancialDataProvider: React.FC<{ children: React.ReactNode }> = ({
     setFinancialData(newData);
     setIsLoading(false);
   };
+  
 
-  const fetchTransactions = async (user: User) => {
-    setIsLoading(true);
-    const res = await fetch(`api/transactions?userId=${user?.id}`);
-    const extract = await res.json() as FinancialData;
-    setFinancialData(extract);
-    setIsLoading(false);
+  const fetchTransactions = async (user: User , params? : {limit: number, page: number}) => {
+  try {
+    const res = await api.get<ExtractProps>(`/transactions?limit=${params?.limit || 5}&page=${params?.page || 1}`, {
+      params: { userId: user?._id },
+    });
+
+    const extract = res.data;
+    if (extract) {
+      setFinancialData({
+        total_value: sumValues(extract.data),
+        extract: extract,
+      });
+
+      setIsLoading(false);
+    }
+  } catch (error) {
+    console.error("Erro ao buscar transações:", error);
   }
+};
 
   return (
     <FinancialDataContext.Provider value={{ ...financialData, fetchTransactions, updateFinancialData, isLoading, setIsLoading }}>

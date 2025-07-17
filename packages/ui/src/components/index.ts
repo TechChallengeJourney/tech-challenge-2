@@ -16,4 +16,5 @@ export * from "./file-upload/file-upload";
 export * from "./auto-complete/auto-complete";
 export * from "./drawer/drawer";
 export * from "./datepicker";
+export * from "./pagination";
 

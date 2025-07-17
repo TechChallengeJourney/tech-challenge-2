@@ -25,16 +25,7 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
         <Box>
           <BytebankBalanceCard />
         </Box>
-        <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap="30px" sx={{ gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1fr 1fr' } }}>
-          <Box textAlign="left" minHeight={'10rem'}>
-            <React.Suspense fallback={<div>Carregando extrato...</div>}>
-              <BytebankExtract />
-            </React.Suspense>
-          </Box>
-        </Box>
-        <Box width="45%">
-          <BytebankTransactionCard />
-        </Box>
+        
 
         <Box>
           <Box display={'flex'} justifyContent={'flex-end'} pb={2}>
@@ -48,6 +39,23 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
           <Box display="grid" marginY="2rem" gridTemplateColumns="1fr 1fr" gap="30px" sx={{ gridTemplateColumns: { sm: '1fr', md: '1fr 1fr' } }}>
             <BytebankMonthlyResume />
             <BytebankAnalytics />
+          </Box>
+          
+        </Box>
+        <Box>
+          <Box display="grid" gridTemplateColumns="1fr 2fr " gap="30px" sx={{ gridTemplateColumns: { xs: '1fr', sm: '1fr 2fr', md: '1fr 2fr' } }}>
+            <Box>
+              <BytebankCard >
+                <Box p={4}>
+                  Nova Transaçao
+                </Box>
+              </BytebankCard>
+            </Box>
+            <Box textAlign="left" minHeight={'10rem'}>
+              <React.Suspense fallback={<div>Carregando extrato...</div>}>
+                <BytebankExtract />
+              </React.Suspense>
+            </Box>
           </Box>
         </Box>
         <BytebankModal
