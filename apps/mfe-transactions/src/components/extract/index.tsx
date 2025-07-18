@@ -25,7 +25,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 export default function BytebankExtract() {
   const { user } = useUser();
-  const { fetchTransactions, extract, isLoading } = useFinancialData();
+  const { fetchTransactions, extract, isLoading, categories } = useFinancialData();
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [snackbarData, setSnackbarData] = useState<SnackbarData | null>(null);
@@ -36,10 +36,9 @@ export default function BytebankExtract() {
   const open = Boolean(anchorEl);
 
   useEffect(() => {
-    const getTransactions = async () => {
+    const getTransactions =  () => {
       if (!user) return;
-      await fetchTransactions(user);
-      
+       fetchTransactions(user);
     };
     getTransactions();
   }, [user]);
@@ -74,6 +73,11 @@ export default function BytebankExtract() {
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const findCategoryName = (categoryId: string) => {
+    const category = categories?.find((cat) => cat._id === categoryId);
+    return category ? category.name : 'Unknown Category';
   };
 
   const handleClose = () => {
@@ -240,7 +244,7 @@ export default function BytebankExtract() {
                             fontWeight={600}
                           >
                             <BytebankText fontWeight={'bold'} color="primary" textTransform={'uppercase'}>
-                            {itens.type}
+                            {findCategoryName(itens.categoryId!)}
                             </BytebankText>
                           </Box>
                           <Box
@@ -333,18 +337,20 @@ export default function BytebankExtract() {
                   </BytebankText>
                 </Box>
               )}
-              <Box display={'flex'} justifyContent={'center'} py={2}>
-                <BytebankPagination
-                  totalPages={extract?.pagination?.totalPages || 1}
-                  currentPage={extract?.pagination?.page || 1}
-                  onPageChange={(e, page) => {
-                    if (user) {
-                      fetchTransactions(user, { limit: 5, page: page });
-                    }
-                  }}
-                  color="primary"
-                />
-              </Box>
+              {extract && extract.data?.length !== 0 && (
+                <Box display={'flex'} justifyContent={'center'} py={2}>
+                  <BytebankPagination
+                    totalPages={extract.pagination?.totalPages || 1}
+                    currentPage={extract.pagination?.page || 1}
+                    onPageChange={(e, page) => {
+                      if (user) {
+                        fetchTransactions(user, { limit: 5, page: page });
+                      }
+                    }}
+                    color="primary"
+                  />
+                </Box>
+              )}
             </>
           )}
         </Box>
@@ -375,7 +381,7 @@ export default function BytebankExtract() {
         onClose={closeSnackbar}
       />
       <BytebankDrawer anchor="right" open={openFilter} onClose={toggleDrawer(false)} title="Filtros" >
-        <FilterExtract></FilterExtract>
+        <FilterExtract toggleDrawer={(newOpen) => () => setOpenFilter(newOpen)} />
       </BytebankDrawer>
     </>
   );
