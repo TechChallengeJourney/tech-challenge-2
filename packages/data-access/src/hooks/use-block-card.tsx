@@ -10,8 +10,6 @@ export function useBlockCard(initialBlocked: boolean) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [blocked, setBlocked] = useState(initialBlocked);
-  console.log("useBlockCard - initialBlocked:", initialBlocked);
-  console.log("useBlockCard - blocked:", blocked);
 
   React.useEffect(() => {
     setBlocked(initialBlocked);

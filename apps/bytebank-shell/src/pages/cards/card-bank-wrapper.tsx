@@ -93,8 +93,6 @@ export const BytebankCardWrapper: React.FC<BytebankCardContainerProps> = ({
     );
   }
 
-  console.log("Current Card:", currentCard.blocked);
-  console.log("Current Card:", currentCard);
   return (
     <BytebankCard variant="outlined">
       <Box

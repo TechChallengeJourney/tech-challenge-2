@@ -4,7 +4,7 @@ import { useDeleteCard, useBlockCard } from "@repo/data-access";
 
 interface CardActionsProps {
   cardId: string;
-  isBlocked: boolean;  // recebe estado real do bloqueio
+  isBlocked: boolean;
   onCardUpdate?: () => void;
 }
 
@@ -21,9 +21,6 @@ export const CardActions = ({ cardId, isBlocked, onCardUpdate }: CardActionsProp
     loading: loadingBlock,
     blocked
   } = useBlockCard(isBlocked);
-
-  console.log("CardActions - blocked:", blocked);
-  console.log("CardActions - isBlocked:", isBlocked);
 
   const blockButtonLabel = getBlockButtonLabel(blocked, loadingBlock);
 
