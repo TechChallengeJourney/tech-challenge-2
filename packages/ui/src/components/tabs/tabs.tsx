@@ -8,7 +8,7 @@ interface TabOption {
 
 interface BytebankTabsProps {
   options: TabOption[];
-  onChangeTab?: (id: string) => void; // A prop recebe o ID diretamente
+  onChangeTab?: (id: string) => void;
   children: React.ReactNode;
 }
 
@@ -17,28 +17,20 @@ export function BytebankTabs({
   onChangeTab,
   children,
 }: BytebankTabsProps) {
-  // O único estado necessário é o 'value' (índice da aba) para o controle do MUI
   const [value, setValue] = useState(0);
 
-  // REMOVIDO: O estado 'tab' não é mais necessário.
-  // const [tab, setTab] = useState("");
-
-  // Este useEffect garante que o pai seja notificado sobre a aba inicial.
   useEffect(() => {
     if (options?.[value]) {
       onChangeTab?.(options[value].id);
     }
-  }, []); // O array vazio [] garante que isso rode apenas uma vez, na montagem.
+  }, []);
 
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
-    // 1. Atualiza o estado do índice da aba
     setValue(newValue);
 
-    // 2. Encontra o ID da aba correspondente usando o novo índice
     const newTabId = options[newValue].id;
     
-    // 3. Chama o callback com o ID correto e atualizado
     onChangeTab?.(newTabId);
   };
 
@@ -77,14 +69,13 @@ export function BytebankTabs({
             },
           }}
         >
-          {/* REMOVIDO: O onClick que causava o problema foi removido. */}
           {options.map((option) => (
             <Tab key={option.id} label={option.label} />
           ))}
         </Tabs>
       </Box>
 
-      <Box sx={{ p: 2 }}>{children}</Box>
+      <Box sx={{ px: 1 }}>{children}</Box>
     </Box>
   );
 }

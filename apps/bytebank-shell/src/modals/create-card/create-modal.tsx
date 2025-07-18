@@ -37,7 +37,6 @@ export function BytebankCreateCardModal({
   const [sessionToken] = useSession<string | null>("token");
 
   const { user } = useUser();
-  const [token] = useSession<string | null>("token");
 
   const methods = useForm({
     defaultValues: {
@@ -49,7 +48,6 @@ export function BytebankCreateCardModal({
 
 const handleCreateCard = async (data: any) => {
   if (!user?._id || !sessionToken) return;
-
   setLoading(true);
 
   try {
@@ -114,6 +112,7 @@ const handleCreateCard = async (data: any) => {
             render={({ field, fieldState }) => (
               <BytebankSelect
                 {...field}
+                multiple={true}
                 label="Função"
                 options={functionOptions}
                 error={!!fieldState.error}
@@ -123,13 +122,21 @@ const handleCreateCard = async (data: any) => {
           />
 
 
-
-            <BytebankSelect
-              name="variant"
-              label="Tipo do cartão"
-              options={variantOptions}
-              rules={{ required: "Selecione o tipo do cartão" }}
-            />
+          <Controller
+            name="variant"
+            control={methods.control}
+            rules={{ required: "Selecione o tipo do cartão" }}
+            render={({ field, fieldState }) => (
+              <BytebankSelect
+                {...field}
+                name="variant"
+                label="Tipo do cartão"
+                options={variantOptions}
+                error={!!fieldState.error}
+                helperText={fieldState.error?.message}
+              />
+            )}
+          />
 
             <Box mt={2}>
               <BytebankButton

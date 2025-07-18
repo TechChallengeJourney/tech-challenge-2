@@ -16,14 +16,15 @@ export interface SelectOption {
 }
 
 export type BytebankSelectProps = SelectProps & {
-  value: string;
-  onChange: (value: string) => void;
+  value: string | string[];
+  onChange: (value: string | string[]) => void;
   onOpen?: (value: string) => void;
   label: string;
   options: SelectOption[];
   error?: boolean;
   helperText?: string;
   loading?: boolean;
+  multiple?:boolean;
   /**
    * As cores do select
    */
@@ -39,6 +40,7 @@ export function BytebankSelect({
   error = false,
   helperText = "",
   color,
+  multiple,
   loading = false,
 }: BytebankSelectProps) {
   const reactId = useId();
@@ -58,6 +60,7 @@ export function BytebankSelect({
         label={label}
         color={color}
         aria-describedby={helperText ? `${selectId}-helper` : undefined}
+        multiple={multiple}
       >
         {loading ? (
           <MenuItem disabled>
