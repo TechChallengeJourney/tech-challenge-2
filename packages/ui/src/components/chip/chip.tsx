@@ -1,5 +1,5 @@
 import { JSX } from "react";
-import { Chip } from "@mui/material";
+import { Chip, Tooltip } from "@mui/material";
 import { useTheme } from "@repo/utils";
 
 export interface BytebankChipProps {

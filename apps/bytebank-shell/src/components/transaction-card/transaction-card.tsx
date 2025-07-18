@@ -246,7 +246,8 @@ function TransactionForm({ type }: TransactionFormProps) {
         render={({ field, fieldState }) => (
           <BytebankInput
             {...field}
-            type="number"
+            type="text"
+            mask="currency"
             error={!!fieldState.error}
             helperText={fieldState.error?.message}
             label="Valor"
