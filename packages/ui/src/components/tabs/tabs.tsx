@@ -32,7 +32,7 @@ export function BytebankTabs({
 
     onChangeTab?.(newTabId);
   };
-  // css-ip3wn5-MuiButtonBase-root-MuiTab-root MuiTabs-root
+
   return (
     <Box>
       <Box
