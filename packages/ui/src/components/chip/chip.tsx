@@ -1,5 +1,5 @@
 import { JSX } from "react";
-import { Chip, Tooltip } from "@mui/material";
+import { Chip } from "@mui/material";
 import { useTheme } from "@repo/utils";
 
 export interface BytebankChipProps {
@@ -17,10 +17,15 @@ export function BytebankChip({
     <Chip
       sx={{
         bgcolor: colors["lime.100"],
+        maxWidth: 135,
         "&:hover": {
           color: colors["lime.800"],
           bgcolor: colors["lime.300"],
           cursor: "pointer",
+        },
+        "& .MuiChip-label": {
+          overflow: "hidden",
+          textOverflow: "ellipsis",
         },
       }}
       label={label}

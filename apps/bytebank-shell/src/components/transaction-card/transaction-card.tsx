@@ -283,9 +283,8 @@ function TransactionForm({ type }: TransactionFormProps) {
       <Box
         marginY="1rem"
         display="flex"
-        justifyContent="space-around"
-        flexWrap="wrap"
-        gap={1}
+        justifyContent="flex-start"
+        gap="0.875rem"
       >
         {categories
           ?.slice(0, 3)
@@ -405,7 +404,6 @@ export function BytebankTransactionCard() {
     <BytebankCard>
       <Box sx={{ width: "100%" }} padding="2rem">
         <BytebankText variant="md" fontWeight="700">Nova Transação</BytebankText>
-
         <Box marginTop={2}>
           <BytebankTabs
             options={[
