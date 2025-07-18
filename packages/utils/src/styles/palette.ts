@@ -60,7 +60,7 @@ const darkPalette = {
   "background.bankcard": "#20240C",
   "background.platinumCard": "#1f2213ff",
   "background.goldcard": "#AA8E23",
-  "background.blackCard": "#0f220dff",
+  "background.blackCard": "#354433ff",
   "background.accent": "#474c3224",
   "background.gradient": "linear-gradient(90deg, #3c430c 0%, #8f9c17 100%)",
   "grey.50": "#fafafa",
