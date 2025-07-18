@@ -6,11 +6,26 @@ import {
   BytebankLinearProgress,
 } from "@repo/ui";
 import { formatCurrencyBRL } from "@repo/utils";
+import { api, useUser } from "@repo/data-access";
+import { useEffect } from "react";
 
 
 export function BytebankAnalytics() {
-  const category = "Lazer";
+  const { user } = useUser();
+  let widget = {};
+  const fetchWidgets = async (widget: string, userId: string) => {
+    const response = await api.get(`/api/widgets/${widget}/?userId=${userId}`);
+    if (response) {
+      console.log(response)
+    } else {
+      console.log('oooi');
 
+    }
+  }
+  const category = "Lazer";
+  const userId = user?._id ? user._id : '';
+
+  useEffect(() => { widget = fetchWidgets('financialStatus', userId); }, [widget])
   return (
     <BytebankCard>
       <Box padding="1.25rem">
