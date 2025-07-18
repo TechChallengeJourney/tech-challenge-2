@@ -9,51 +9,6 @@ import {
   CardNavigation,
 } from "./card-bank-carousel";
 
-const cardList = [
-  {
-    name: "Eloisa Fagundes",
-    cardNumber: 1234567890123456,
-    expirationDate: "2028-07-01T04:03:58.696Z",
-    limit: "R$ 35.000,00",
-    expend: "R$ 1.759,20",
-    blocked: false,
-    flag: "Visa",
-    functions: ["credit"],
-    userId: "1234569",
-    variant: "Black",
-    cvv: 123,
-    _id: "6872fc727ebf3196e9604862",
-  },
-  {
-    name: "Mia Colluci",
-    cardNumber: 8797223517022612,
-    expirationDate: "2028-07-01T04:03:58.696Z",
-    limit: "R$ 5.000,00",
-    expend: null,
-    blocked: true,
-    flag: "Elo",
-    functions: ["debit"],
-    userId: "6872b7609ef0a65b445ce20e",
-    variant: "Platinum",
-    cvv: 504,
-    _id: "6872fc727ebf3196e9604862",
-  },
-  {
-    name: "Roberta Prado",
-    cardNumber: 827382478462764,
-    expirationDate: "2027-06-01T04:03:58.696Z",
-    limit: "R$ 2.000,00",
-    expend: null,
-    blocked: false,
-    flag: "Elo",
-    functions: ["credit"],
-    userId: "6872b7609ef0a65b445ce20e",
-    variant: "Gold",
-    cvv: 123,
-    _id: "6872fc727ebf3196e9604862",
-  },
-];
-
 export interface BytebankCardContainerProps {
   cards: any[];
   refetchCards: () => void;
