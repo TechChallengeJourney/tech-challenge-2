@@ -25,15 +25,14 @@ export function BytebankTabs({
     }
   }, []);
 
-
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
 
     const newTabId = options[newValue].id;
-    
+
     onChangeTab?.(newTabId);
   };
-
+  // css-ip3wn5-MuiButtonBase-root-MuiTab-root MuiTabs-root
   return (
     <Box>
       <Box
@@ -51,6 +50,11 @@ export function BytebankTabs({
           aria-label="custom styled tabs"
           TabIndicatorProps={{ style: { display: "none" } }}
           sx={{
+            minHeight: "42px",
+            '[class*="MuiButtonBase-root-MuiTab-root"]': {
+              padding: "12px",
+              minHeight: "42px",
+            },
             "& .MuiTab-root": {
               width: `${100 / options.length}%`,
               fontWeight: "400",
