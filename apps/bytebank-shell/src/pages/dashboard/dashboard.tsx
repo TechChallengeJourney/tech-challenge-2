@@ -16,8 +16,6 @@ interface BytebankDashboardProps { }
 
 const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
   const [open, setOpen] = useState(false);
-  const { theme } = useTheme();
-  const textColor = theme.palette.text.primary;
 
   return (
     <>
@@ -25,8 +23,6 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
         <Box>
           <BytebankBalanceCard />
         </Box>
-        
-
         <Box>
           <Box display={'flex'} justifyContent={'flex-end'} pb={2}>
           <BytebankButton label={'Customizar widgets'} variant={'contained'} color={'secondary'} />
