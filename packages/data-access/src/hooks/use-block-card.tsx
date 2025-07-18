@@ -1,29 +1,39 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { BlockCardBank } from "../api/block-card-bank";
+import type { ErrorResponse } from "../api/block-card-bank";
 
-export function useBlockCard() {
+function isErrorResponse(res: any): res is ErrorResponse {
+  return res && typeof res === "object" && "error" in res;
+}
+
+export function useBlockCard(initialBlocked: boolean) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [blocked, setBlocked] = useState(initialBlocked);
+  console.log("useBlockCard - initialBlocked:", initialBlocked);
+  console.log("useBlockCard - blocked:", blocked);
 
-  const handleBlock = async (id: string) => {
+  React.useEffect(() => {
+    setBlocked(initialBlocked);
+    console.log("useBlockCard - synced with initialBlocked:", initialBlocked);
+  }, [initialBlocked]);
+
+  const handleBlock = async (cardId: string): Promise<boolean> => {
     setLoading(true);
     setError(null);
 
-    const result = await BlockCardBank(id);
+    const result = await BlockCardBank(cardId);
 
-    if ("success" in result && result.success === true) {
-      setLoading(false);
-      return true;
-    } else if ("error" in result) {
+    if (isErrorResponse(result)) {
       setError(result.error);
       setLoading(false);
       return false;
-    } else {
-      setError("Unknown error");
-      setLoading(false);
-      return false;
     }
+
+    setBlocked(result.blocked);
+    setLoading(false);
+    return true;
   };
 
-  return { handleBlock, loading, error };
+  return { handleBlock, loading, error, blocked };
 }

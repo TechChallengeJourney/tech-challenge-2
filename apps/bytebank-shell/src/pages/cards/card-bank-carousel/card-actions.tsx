@@ -4,15 +4,29 @@ import { useDeleteCard, useBlockCard } from "@repo/data-access";
 
 interface CardActionsProps {
   cardId: string;
+  isBlocked: boolean;  // recebe estado real do bloqueio
   onCardUpdate?: () => void;
 }
 
-export const CardActions = ({ cardId, onCardUpdate }: CardActionsProps) => {
+function getBlockButtonLabel(isBlocked: boolean, loading: boolean) {
+  if (loading) {
+    return isBlocked ? "Desbloqueando..." : "Bloqueando...";
+  }
+  return isBlocked ? "Desbloquear cartão" : "Bloquear cartão";
+}
+
+export const CardActions = ({ cardId, isBlocked, onCardUpdate }: CardActionsProps) => {
   const {
     handleBlock,
     loading: loadingBlock,
-    blocked: isBlocked,
-  } = useBlockCard();
+    blocked
+  } = useBlockCard(isBlocked);
+
+  console.log("CardActions - blocked:", blocked);
+  console.log("CardActions - isBlocked:", isBlocked);
+
+  const blockButtonLabel = getBlockButtonLabel(blocked, loadingBlock);
+
   const { handleDelete, loading: loadingDelete } = useDeleteCard();
 
   const handleBlockCard = async () => {
@@ -41,15 +55,7 @@ export const CardActions = ({ cardId, onCardUpdate }: CardActionsProps) => {
           fullWidth
           variant="contained"
           color="primary"
-          label={
-            loadingBlock
-              ? isBlocked
-                ? "Desbloqueando..."
-                : "Bloqueando..."
-              : isBlocked
-                ? "Desbloquear cartão"
-                : "Bloquear cartão"
-          }
+          label={blockButtonLabel}
           disabled={loadingBlock}
           onClick={handleBlockCard}
         />

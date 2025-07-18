@@ -38,7 +38,7 @@ const cardList = [
     cvv: 504,
     _id: "6872fc727ebf3196e9604862",
   },
-    {
+  {
     name: "Roberta Prado",
     cardNumber: 827382478462764,
     expirationDate: "2027-06-01T04:03:58.696Z",
@@ -55,8 +55,9 @@ const cardList = [
 ];
 
 export interface BytebankCardContainerProps {
-  cards: any[]; 
+  cards: any[];
   refetchCards: () => void;
+  blocked?: boolean;
 }
 
 export const BytebankCardWrapper: React.FC<BytebankCardContainerProps> = ({
@@ -75,15 +76,11 @@ export const BytebankCardWrapper: React.FC<BytebankCardContainerProps> = ({
   }, [cards.length, currentIndex]);
 
   const handlePrev = () => {
-    setCurrentIndex((prev) =>
-      prev > 0 ? prev - 1 : cards.length - 1
-    );
+    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : cards.length - 1));
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) =>
-      prev < cards.length - 1 ? prev + 1 : 0
-    );
+    setCurrentIndex((prev) => (prev < cards.length - 1 ? prev + 1 : 0));
   };
 
   if (!hasCards) {
@@ -96,6 +93,8 @@ export const BytebankCardWrapper: React.FC<BytebankCardContainerProps> = ({
     );
   }
 
+  console.log("Current Card:", currentCard.blocked);
+  console.log("Current Card:", currentCard);
   return (
     <BytebankCard variant="outlined">
       <Box
@@ -122,7 +121,8 @@ export const BytebankCardWrapper: React.FC<BytebankCardContainerProps> = ({
           <CardNavigation onPrev={handlePrev} onNext={handleNext} />
           <CardDetails card={currentCard} />
           <CardActions
-            cardId={currentCard?._id}
+            cardId={currentCard?._id || ""}
+            isBlocked={!!currentCard?.blocked}
             onCardUpdate={refetchCards}
           />
         </Box>

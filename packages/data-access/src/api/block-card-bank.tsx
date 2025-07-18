@@ -30,10 +30,11 @@ export async function BlockCardBank(
 
     return response.data;
   } catch (error: any) {
-    if (error?.response?.status === 404) {
-      return { error: "Cartão não encontrado." };
-    }
+    const backendError =
+      error?.response?.data?.error || error?.response?.data?.message;
 
-    return { error: "Erro ao bloquear o cartão. Tente novamente mais tarde." };
+    return {
+      error: backendError ?? "Erro ao bloquear cartão. Tente novamente mais tarde.",
+    };
   }
 }
