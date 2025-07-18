@@ -11,6 +11,9 @@ export interface BytebankIllustrationProps {
    * @default md
    */
   variant?: "sm" | "md" | "lg" | "auto";
+  type?: "svg" | "png" | "gif";
+  width?: string;
+  height?: string;
   alt?: string;
 }
 
@@ -23,9 +26,12 @@ const BytebankIllustrationSizes = {
 export function BytebankIllustration({
   name,
   variant = "auto",
+  type = "svg",
   alt,
+  width,
+  height,
 }: BytebankIllustrationProps) {
-  const path = name ? `/images/${name}.svg` : "";
+  const path = name ? `/images/${name}.${type}` : "";
 
   const fixedWidth = BytebankIllustrationSizes[variant as keyof typeof BytebankIllustrationSizes];
 
@@ -42,8 +48,8 @@ export function BytebankIllustration({
         src={path}
         alt={alt}
         style={{
-          width: variant === "auto" ? "100%" : fixedWidth,
-          height: "auto",
+          width: width ? width : (variant === "auto" ? "100%" : fixedWidth),
+          height: height ? height : "auto",
           maxWidth: "100%",
         }}
       />

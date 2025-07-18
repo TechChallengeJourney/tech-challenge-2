@@ -63,8 +63,8 @@ export function BytebankAnalytics() {
 
   return (
     <BytebankCard>
-      <Box padding="1.25rem">
-        <BytebankText variant="lg" fontWeight="bold">
+      <Box padding={4}>
+        <BytebankText variant="md" fontWeight="bold">
           Análise Financeira
         </BytebankText>
         {renderLoading()}
@@ -73,35 +73,33 @@ export function BytebankAnalytics() {
             <Box
               display="flex"
               justifyContent="space-between"
-              marginTop="2.25rem"
+              marginTop={2}
             >
-              <BytebankText variant="md" fontWeight="bold">
+              <BytebankText variant="sm" fontWeight="bold">
                 Receitas do mês
               </BytebankText>
-              <BytebankText variant="md" fontWeight="bold">
+              <BytebankText variant="sm" fontWeight="bold">
                 {formatCurrencyBRL(widgetData.income)}
               </BytebankText>
             </Box>
-            <BytebankLinearProgress value={75} />
-            <Box display="flex" justifyContent="space-between" marginTop="2rem">
-              <BytebankText variant="md" fontWeight="bold">
+            <BytebankLinearProgress value={widgetData.income > 0
+                  ? (widgetData.income /
+                      (widgetData.income + widgetData.expense)) *
+                    100
+                  : 0} />
+            <Box display="flex" justifyContent="space-between" marginTop={2}>
+              <BytebankText variant="sm" fontWeight="bold">
                 Despesas do mês
               </BytebankText>
-              <BytebankText variant="md" fontWeight="bold">
+              <BytebankText variant="sm" fontWeight="bold">
                 {formatCurrencyBRL(widgetData.expense)}
               </BytebankText>
             </Box>
             <BytebankLinearProgress
               variant="secondary"
-              value={
-                widgetData.expense > 0
-                  ? (widgetData.expense /
-                      (widgetData.income + widgetData.expense)) *
-                    100
-                  : 0
-              }
+              value={widgetData.category.percentage}
             />
-            <Box marginY="2rem">
+            <Box mt={2}>
               <BytebankText variant="sm">
                 Neste mês, suas receitas superaram as despesas, resultando em um
                 saldo positivo. Recomendamos revisar seus gastos com{" "}
@@ -110,10 +108,8 @@ export function BytebankAnalytics() {
                 >{`${widgetData.category.name}`}</span>
                 , que representaram{" "}
                 <span style={{ fontWeight: "600" }}>
-                  {`${widgetData.category.percentage.toFixed(2)}`}%
-                </span>{" "}
-                das suas despesas. Considere aumentar seus aportes em
-                Investimentos para otimizar seus rendimentos futuros.
+                  {`${widgetData.category.percentage}`}%
+                </span>das suas despesas.
               </BytebankText>
             </Box>
           </>

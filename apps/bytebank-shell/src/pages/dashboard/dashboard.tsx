@@ -3,10 +3,9 @@ import { BytebankBalanceCard } from '../../components/balance-card/balance-card'
 import { Box, Typography } from '@mui/material';
 import { BytebankCard, BytebankButton, BytebankModal } from '@repo/ui';
 // @ts-ignore
-import { BytebankAnalytics, BytebankMobility, BytebankSalary, BytebankSpend, BytebankMonthlyResume } from 'remote/components'
-import { useTheme } from '@repo/utils';
-// @ts-ignore
+import { BytebankAnalytics, BytebankFinancialStatus, BytebankMobility, BytebankSalary, BytebankSpend, BytebankMonthlyResume } from 'remote/components'
 const BytebankExtract = React.lazy(() => 
+  // @ts-ignore
   import('transactions/BytebankExtract').then((module) => ({
     default: module.default || module.BytebankExtract,
   }))
@@ -34,7 +33,10 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
           </Box>
           <Box display="grid" marginY="2rem" gridTemplateColumns="1fr 1fr" gap="30px" sx={{ gridTemplateColumns: { sm: '1fr', md: '1fr 1fr' } }}>
             <BytebankMonthlyResume />
+            <Box display={'flex'} gap={2} flexDirection={'column'}>
             <BytebankAnalytics />
+            <BytebankFinancialStatus />
+            </Box>
           </Box>
           
         </Box>
