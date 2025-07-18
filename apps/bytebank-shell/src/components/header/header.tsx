@@ -219,13 +219,13 @@ export function BytebankHeader() {
                             {!isLogged ? (<>
                                 <Box sx={{ display: { xs: "none", md: "flex" } }} gap={1}>
                                     <BytebankButton
-                                        sendSubmit={() => setOpenRegisterModal(true)}
+                                        onClick={() => setOpenRegisterModal(true)}
                                         label="Crie uma conta"
                                         color="primary"
                                         variant="contained"
                                     />
                                     <BytebankButton
-                                        sendSubmit={() => setOpenLoginModal(true)}
+                                        onClick={() => setOpenLoginModal(true)}
                                         label="Entre"
                                         color="primary"
                                         variant="outlined"

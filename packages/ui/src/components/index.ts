@@ -10,6 +10,9 @@ export * from "./modal/modal";
 export * from "./toggle-theme/toggle-theme";
 export * from "./illustration/illustration";
 export * from "./linear-progress/linear-progress";
+export * from "./card-bank/card-bank";
+export * from "./navigation/navigation"
+export * from "./card-widget/card-widget"
 export * from "./drawer/drawer";
 export * from "./datepicker";
 export * from "./pagination";

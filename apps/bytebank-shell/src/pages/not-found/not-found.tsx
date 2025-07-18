@@ -40,7 +40,7 @@ export default function NotFound() {
           label="Voltar ao início"
           variant="contained"
           color="primary"
-          sendSubmit={handleRedirect}
+          onClick={handleRedirect}
         />
       </Box>
     </Box>
