@@ -9,5 +9,5 @@ export interface Card {
   cvv: number;
   flag: string; // Ex: "Elo"
   blocked: boolean;
-  limit: string | number; // Ex: "35.000,00"
+  limit: number; // Ex: 35000
 }
