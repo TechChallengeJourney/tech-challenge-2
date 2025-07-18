@@ -6,7 +6,7 @@ import { BytebankBalanceCard } from "../../components/balance-card/balance-card"
 import { BytebankCardWrapper } from "./card-bank-wrapper";
 import { CardsInfoWidgets } from "./cards-info-widgets";
 import { BytebankNewCardBank } from "./card-bank-new";
-import { CardData } from "./card-bank-carousel";
+import { CardData } from "./models/card-model";
 
 export const BytebankCardsPage: React.FC = () => {
   const { user } = useUser();
@@ -14,6 +14,7 @@ export const BytebankCardsPage: React.FC = () => {
   const { cards, error, loading, refetchCards } = useCards(userId ?? "");
 
   const getTotalLimit = (array: CardData[]): number => {
+    console.log(array)
     return array.reduce((total, item) => total + item.limit, 0);
   };
 

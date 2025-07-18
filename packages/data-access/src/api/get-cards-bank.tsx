@@ -1,4 +1,4 @@
-import { Card } from "../classes/models/cards";
+import { CardData } from "../classes/models/cards";
 import { api } from "../helpers/api";
 
 export interface ErrorResponse {
@@ -7,9 +7,9 @@ export interface ErrorResponse {
 
 export async function GetCardsBank(
   userId: string
-): Promise<Card[] | ErrorResponse> {
+): Promise<CardData[] | ErrorResponse> {
   try {
-    const response = await api.get<Card[]>("/cards", {
+    const response = await api.get<CardData[]>("/cards", {
       params: { userId },
     });
 

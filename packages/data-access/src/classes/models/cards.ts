@@ -1,13 +1,20 @@
-export interface Card {
+export enum CardFlag {
+  Visa = "Visa",
+  MasterCard = "MasterCard",
+  Elo = "Elo",
+}
+
+export interface CardData {
   _id: string;
   userId: string;
   cardNumber: number;
   name: string;
-  functions: string[]; // Ex: ["credit"]
-  variant: string[]; // Ex: ["black"]
-  expirationDate: string; // ISO string
+  functions: string[]; // ex: ["credit"]
+  variant: string;     // ex: "Black" (não é array)
+  expirationDate: string;
   cvv: number;
-  flag: string; // Ex: "Elo"
+  flag: CardFlag;
   blocked: boolean;
-  limit: number; // Ex: 35000
+  limit: number;
+  expend?: string;
 }

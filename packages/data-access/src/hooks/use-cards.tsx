@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { GetCardsBank } from "../api/get-cards-bank";
-import { Card } from "../classes/models/cards";
+import { CardData } from "../classes/models/cards";
 
 export function useCards(userId: string) {
-  const [cards, setCards] = useState<Card[]>([]);
+  const [cards, setCards] = useState<CardData[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 

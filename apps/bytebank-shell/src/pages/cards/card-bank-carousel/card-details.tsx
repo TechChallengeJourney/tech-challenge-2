@@ -1,27 +1,7 @@
 import React from "react";
 import { Box } from "@mui/material";
 import { BytebankText } from "@repo/ui";
-
-enum CardFlag {
-  Visa = "Visa",
-  MasterCard = "MasterCard",
-  Elo = "Elo",
-}
-
-export interface CardData {
-  name: string;
-  cardNumber: number;
-  expirationDate: string;
-  limit: number;
-  expend?: string;
-  blocked: boolean;
-  flag: CardFlag;
-  functions: string[];
-  userId: string | null;
-  variant: string;
-  cvv: number | null;
-  _id: string | null;
-}
+import { CardData } from "../models/card-model";
 
 function maskCardNumber(cardNumber: string | number): string {
   const cardNumberStr = String(cardNumber);
@@ -53,8 +33,6 @@ const formatLimitCurrency = (limit: number): string => {
 };
 
 export const CardDetails: React.FC<{ card: CardData }> = ({ card }) => {
-
-
   return (
     <Box>
       <Box display="flex" justifyContent="space-between">
