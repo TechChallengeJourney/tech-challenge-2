@@ -116,12 +116,6 @@ export function BytebankAnalytics() {
                 Investimentos para otimizar seus rendimentos futuros.
               </BytebankText>
             </Box>
-            <BytebankButton
-              onClick={() => console.log("teste")}
-              label="Ver análise detalhada"
-              variant={"contained"}
-              color={"primary"}
-            />
           </>
         ) : (
           <Box
