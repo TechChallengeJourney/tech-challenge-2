@@ -58,11 +58,15 @@ export interface BytebankCardContainerProps {
   cards: any[];
   refetchCards: () => void;
   blocked?: boolean;
+  error?: string | null;
+  loading?: boolean;
 }
 
 export const BytebankCardWrapper: React.FC<BytebankCardContainerProps> = ({
   cards,
   refetchCards,
+  error,
+  loading = false,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -82,6 +86,26 @@ export const BytebankCardWrapper: React.FC<BytebankCardContainerProps> = ({
   const handleNext = () => {
     setCurrentIndex((prev) => (prev < cards.length - 1 ? prev + 1 : 0));
   };
+
+  if (loading) {
+    return (
+      <Box mt={4} textAlign="center">
+        <BytebankText variant="md" color="text.primary">
+          Carregando cartões...
+        </BytebankText>
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Box mt={4} textAlign="center">
+        <BytebankText variant="md" color="error">
+          Erro ao carregar cartões: {error}
+        </BytebankText>
+      </Box>
+    );
+  }
 
   if (!hasCards) {
     return (

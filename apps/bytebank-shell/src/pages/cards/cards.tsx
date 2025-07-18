@@ -11,8 +11,8 @@ import { CardData } from "./card-bank-carousel";
 export const BytebankCardsPage: React.FC = () => {
   const { user } = useUser();
   const userId = user?._id;
-  const { cards, refetchCards } = useCards(userId ?? "");
-  
+  const { cards, error, loading, refetchCards } = useCards(userId ?? "");
+
   const getTotalLimit = (array: CardData[]): number => {
     return array.reduce((total, item) => total + item.limit, 0);
   };
@@ -63,7 +63,12 @@ export const BytebankCardsPage: React.FC = () => {
           justifyContent={{ xs: "center", md: "space-between" }}
           width="100%"
         >
-          <BytebankCardWrapper cards={cards} refetchCards={refetchCards} />
+          <BytebankCardWrapper
+            cards={cards}
+            refetchCards={refetchCards}
+            error={error}
+            loading={loading}
+          />
           <Box
             mt={{ xs: "20px", md: "20px", lg: "0" }}
             ml={{ xs: 1, md: 4 }}

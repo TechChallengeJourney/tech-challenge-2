@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Alert } from "@mui/material";
 import { BytebankButton } from "@repo/ui";
 import { useDeleteCard, useBlockCard } from "@repo/data-access";
 
@@ -15,16 +15,19 @@ function getBlockButtonLabel(isBlocked: boolean, loading: boolean) {
   return isBlocked ? "Desbloquear cartão" : "Bloquear cartão";
 }
 
-export const CardActions = ({ cardId, isBlocked, onCardUpdate }: CardActionsProps) => {
+export const CardActions = ({
+  cardId,
+  isBlocked,
+  onCardUpdate,
+}: CardActionsProps) => {
   const {
     handleBlock,
     loading: loadingBlock,
-    blocked
+    blocked,
   } = useBlockCard(isBlocked);
+  const { handleDelete, loading: loadingDelete, error } = useDeleteCard();
 
   const blockButtonLabel = getBlockButtonLabel(blocked, loadingBlock);
-
-  const { handleDelete, loading: loadingDelete } = useDeleteCard();
 
   const handleBlockCard = async () => {
     const success = await handleBlock(cardId);
@@ -48,6 +51,11 @@ export const CardActions = ({ cardId, isBlocked, onCardUpdate }: CardActionsProp
       alignItems="center"
     >
       <Box width="100%">
+        {error && (
+          <Box mt={2} width="100%">
+            <Alert severity="error">{error}</Alert>
+          </Box>
+        )}
         <BytebankButton
           fullWidth
           variant="contained"
@@ -69,6 +77,11 @@ export const CardActions = ({ cardId, isBlocked, onCardUpdate }: CardActionsProp
       </Box>
 
       <Box mt={2}>
+        {error && (
+          <Box mt={2} width="100%">
+            <Alert severity="error">{error}</Alert>
+          </Box>
+        )}
         <BytebankButton
           label={loadingDelete ? "Excluindo..." : "Excluir cartão"}
           color="primary"
