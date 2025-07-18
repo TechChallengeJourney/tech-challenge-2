@@ -43,7 +43,7 @@ export const FinancialDataProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const fetchTransactions = async (user: User) => {
     setIsLoading(true);
-    const res = await fetch(`api/transactions?userId=${user?.id}`);
+    const res = await fetch(`api/transactions?userId=${user?._id}`);
     const extract = await res.json() as FinancialData;
     setFinancialData(extract);
     setIsLoading(false);
