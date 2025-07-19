@@ -3,7 +3,7 @@ import pkg from "./package.json";
 const { dependencies } = pkg;
 
 export default createModuleFederationConfig({
-  name: "remote",
+  name: "investments",
   exposes: {
     "./components": "./src/components/index.ts",
   },

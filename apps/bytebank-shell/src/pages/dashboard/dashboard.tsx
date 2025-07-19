@@ -5,7 +5,7 @@ import { BytebankButton, BytebankModal } from '@repo/ui';
 import { BytebankTransactionCard } from '../../components/transaction-card/transaction-card';
 
 // @ts-ignore
-import { BytebankGeneralCardsWidget, BytebankMonthlyResumeWidget, BytebankAnalyticsWidget, BytebankFinancialStatusWidget } from 'remote/components'
+import { BytebankGeneralCardsWidget, BytebankMonthlyResumeWidget, BytebankAnalyticsWidget, BytebankFinancialStatusWidget } from 'investments/components'
 const BytebankExtract = React.lazy(() =>
   // @ts-ignore
   import('transactions/BytebankExtract').then((module) => ({
