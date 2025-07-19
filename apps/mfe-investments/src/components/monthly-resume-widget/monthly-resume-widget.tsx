@@ -142,10 +142,9 @@ export function BytebankMonthlyResumeWidget() {
             WidgetKey.MonthlySummary,
             userId
           );
-
           if (options.yaxis && !Array.isArray(options.yaxis)) {
-            options.yaxis.max = data.maxValue;
-            options.yaxis.min = data.minValue;
+            options.yaxis.max = data?.maxValue || 0;
+            options.yaxis.min = data?.minValue || 0;
           }
           setWidgetData(data);
         } catch (error) {
@@ -185,7 +184,7 @@ export function BytebankMonthlyResumeWidget() {
         {widgetData && !isLoading ? (
           <>
             <Box marginTop={2} width="100%">
-              <Chart options={options} series={widgetData.data as ApexAxisChartSeries} type="bar" width="100%" minHeight={400} />
+              <Chart options={options} series={widgetData.data as ApexAxisChartSeries} type="bar" width="100%" minheight={400} />
             </Box>
           </>
         ) : (
@@ -193,13 +192,16 @@ export function BytebankMonthlyResumeWidget() {
             display="flex"
             flexDirection="column"
             alignItems="center"
+            justifyContent={"center"}
             gap={4}
             py={4}
           >
             <BytebankIllustration name={"empty"} variant={"lg"}></BytebankIllustration>
             <BytebankText variant="sm" color="textSecondary" textAlign={"center"}>
-              Não foi possível carregar os dados. <br />Tente
-              criar uma nova transação ou recarregar a página.
+              <Box display={"flex"} justifyContent={"center"}>
+                Não podemos exibir os dados do resumo financeiro. <br />Tente
+                criar uma nova transação ou recarregar a página.
+              </Box>
             </BytebankText>
           </Box>
         )}

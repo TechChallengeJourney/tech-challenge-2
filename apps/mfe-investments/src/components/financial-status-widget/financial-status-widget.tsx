@@ -82,19 +82,18 @@ export function BytebankFinancialStatusWidget() {
             </Box>
           </>
         ) : (
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            gap={4}
-            py={4}
-          >
-            <BytebankIllustration name={"empty"} variant={"lg"}></BytebankIllustration>
-            <BytebankText variant="sm" color="textSecondary" textAlign={"center"}>
-              Não foi possível carregar os dados. <br />Tente
-              criar uma nova transação ou recarregar a página.
-            </BytebankText>
-          </Box>
+          <>
+            <Box display={"flex"} flexDirection={"row"} justifyContent={"space-between"}>
+              <Box display="flex" justifyContent="space-between" marginTop={2} gap={1} flexDirection={'column'}>
+                <BytebankText variant={"h4"} fontWeight="bold" color={colors["lime.900"]}>
+                  Pendente
+                </BytebankText>
+                <BytebankText variant="sm">
+                  Adicione novas transações para ver o seu status financeiro.
+                </BytebankText>
+              </Box>
+            </Box>
+          </>
         )}
       </Box>
     </BytebankCard>
