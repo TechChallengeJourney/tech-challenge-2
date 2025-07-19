@@ -4,31 +4,30 @@ const { dependencies } = pkg;
 
 export default createModuleFederationConfig({
   name: 'transactions',
-  async: false,
   exposes: {
-    './components': './src/components/index.ts',
+    './BytebankExtract': './src/components/extract/index',
   },
   filename: 'remoteEntry.js',
   shared: {
     react: {
       singleton: true,
-      eager: true,
+      eager: false,
       requiredVersion: dependencies.react
     },
     'react-dom': {
       singleton: true,
-      eager: true,
+      eager: false,
       requiredVersion: dependencies['react-dom']
     },
     'react-hook-form': {
       singleton: true,
-      eager: true,
+      eager: false,
       requiredVersion: dependencies['react-hook-form']
     },
     '@mui/material': {
       singleton: true,
       requiredVersion: dependencies['@mui/material'],
-      eager: true
+      eager: false
     },
     '@emotion/react': {
       singleton: true,

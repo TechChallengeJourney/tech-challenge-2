@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { BytebankBalanceCard } from '../../components/balance-card/balance-card';
 import { Box, Typography } from '@mui/material';
 import { BytebankButton, BytebankDrawer, BytebankModal } from '@repo/ui';
@@ -7,7 +7,12 @@ import { BytebankTransactionCard } from '../../components/transaction-card/trans
 // @ts-ignore
 import { BytebankGeneralCardsWidget, BytebankMonthlyResumeWidget, BytebankAnalyticsWidget, BytebankFinancialStatusWidget } from 'investments/components'
   // @ts-ignore
-import { BytebankExtract } from 'transactions/components';
+const BytebankExtract = React.lazy(() =>
+  // @ts-ignore
+  import('transactions/BytebankExtract').then((module) => ({
+    default: module.default || module.BytebankExtract,
+  }))
+);
 
 interface BytebankDashboardProps { }
 
@@ -46,7 +51,9 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
               <BytebankTransactionCard />
             </Box>
             <Box textAlign="left" minHeight={'10rem'}>
+              <React.Suspense fallback={<div>Carregando extrato...</div>}>
                 <BytebankExtract />
+              </React.Suspense>
             </Box>
           </Box>
         </Box>
