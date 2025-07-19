@@ -2,6 +2,7 @@ import { Box, TextField } from "@mui/material";
 import { TextFieldProps } from "@mui/material/TextField";
 import { useId } from "react";
 import "./style.scss";
+import { useTheme } from "@repo/utils";
 
 declare module "@mui/material/TextField" {
   interface TextFieldPropsColorOverrides {
@@ -60,6 +61,7 @@ export function BytebankInput({
   const reactId = useId();
   const inputId = id || `input-${reactId}`;
   const helperId = helperText ? `${inputId}-helper` : undefined;
+  const { colors } = useTheme();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newValue = e.target.value;

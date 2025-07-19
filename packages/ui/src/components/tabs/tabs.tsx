@@ -1,4 +1,5 @@
 import { Box, Tab, Tabs } from "@mui/material";
+import { useTheme } from "@repo/utils";
 import { useEffect, useState } from "react";
 
 interface TabOption {
@@ -18,6 +19,7 @@ export function BytebankTabs({
   children,
 }: BytebankTabsProps) {
   const [value, setValue] = useState(0);
+  const {colors} = useTheme();
 
   useEffect(() => {
     if (options?.[value]) {
@@ -32,7 +34,6 @@ export function BytebankTabs({
 
     onChangeTab?.(newTabId);
   };
-
   return (
     <Box>
       <Box
@@ -40,7 +41,7 @@ export function BytebankTabs({
           width: "100%",
           borderRadius: "6px",
           overflow: "hidden",
-          border: "1px solid #D4E157",
+          border: `1px solid ${colors["lime.500"]}`,
           display: "inline-block",
         }}
       >
@@ -60,16 +61,16 @@ export function BytebankTabs({
               fontWeight: "400",
               fontSize: "0.875rem",
               textTransform: "uppercase",
-              color: "#5B6327",
-              borderRight: "1px solid #D4E157",
+              color: colors["lime.highcontrast"],
+              borderRight: `1px solid ${colors["lime.500"]}`,
               transition: "all 0.2s ease-in-out",
             },
             "& .MuiTab-root:last-of-type": {
               borderRight: "none",
             },
             "& .Mui-selected": {
-              backgroundColor: "#D4E157",
-              color: "#20240c",
+              backgroundColor: colors["lime.500"],
+              color: colors["lime.subcontrast"] ,
             },
           }}
         >

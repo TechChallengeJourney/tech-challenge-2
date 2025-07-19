@@ -8,6 +8,7 @@ import {
   CircularProgress,
   ListItemText,
 } from "@mui/material";
+import { useTheme } from "@repo/utils";
 import { useId } from "react";
 
 export interface SelectOption {
@@ -45,6 +46,7 @@ export function BytebankSelect({
 }: BytebankSelectProps) {
   const reactId = useId();
   const selectId = `select-${reactId}`;
+  const {colors} = useTheme();
 
   return (
     <FormControl variant="outlined" fullWidth margin="normal" error={error}>
@@ -61,6 +63,11 @@ export function BytebankSelect({
         color={color}
         aria-describedby={helperText ? `${selectId}-helper` : undefined}
         multiple={multiple}
+        sx={{
+          ".MuiSvgIcon-root": {
+            color: colors["lime.highcontrast"]
+          }
+        }}
       >
         {loading ? (
           <MenuItem disabled>

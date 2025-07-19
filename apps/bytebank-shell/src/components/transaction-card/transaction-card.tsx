@@ -11,6 +11,7 @@ import {
   BytebankSnackbar,
   BytebankButtonFileUpload,
   BytebankAutoComplete,
+  BytebankDatePicker,
 } from "@repo/ui";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import { useEffect, useState } from "react";
@@ -20,9 +21,8 @@ import {
   useForm,
   useFormContext,
 } from "react-hook-form";
-import { format } from "date-fns";
+import { format, parse } from "date-fns";
 import {
-  Transaction,
   useFetch,
   useFinancialData,
   useSession,
@@ -220,21 +220,32 @@ function TransactionForm({ type }: TransactionFormProps) {
         )}
       />
 
-      <Controller
-        name="createdAt"
-        control={control}
-        rules={{ required: "Data é obrigatória" }}
-        render={({ field, fieldState }) => (
-          <BytebankInput
-            {...field}
-            type="date"
-            label="Data da transação"
-            error={!!fieldState.error}
-            helperText={fieldState.error?.message}
-            value={field.value}
-          />
-        )}
+<Controller
+  name="createdAt"
+  control={control}
+  rules={{ required: "Data é obrigatória" }}
+  render={({ field, fieldState }) => {
+    const stringValue = field.value; // Ex: "2025-07-19"
+    const parsedDate = stringValue
+      ? parse(stringValue, "yyyy-MM-dd", new Date())
+      : null;
+
+    const handleChange = (date: Date | null) => {
+      const formatted = date ? format(date, "yyyy-MM-dd") : "";
+      field.onChange(formatted); // envia como string para o form
+    };
+
+    return (
+      <BytebankDatePicker
+        label="Data da transação"
+        error={!!fieldState.error}
+        helperText={fieldState.error?.message}
+        value={parsedDate}
+        onChange={handleChange}
       />
+    );
+  }}
+/>
 
       <Controller
         name="value"

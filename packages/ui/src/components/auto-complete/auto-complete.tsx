@@ -1,7 +1,8 @@
-import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import CircularProgress from '@mui/material/CircularProgress';
+import * as React from "react";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import CircularProgress from "@mui/material/CircularProgress";
+import { useTheme } from "@repo/utils";
 
 interface BytebankAutoCompleteProps {
   loading: boolean;
@@ -26,9 +27,12 @@ export function BytebankAutoComplete({
 }: BytebankAutoCompleteProps) {
   const [open, setOpen] = React.useState(false);
   const [inputValue, setInputValue] = React.useState("");
+  const { colors } = useTheme();
 
   const handleBlur = async () => {
-    const exists = options.some((opt) => opt.label.toLowerCase() === inputValue.toLowerCase());
+    const exists = options.some(
+      (opt) => opt.label.toLowerCase() === inputValue.toLowerCase(),
+    );
     if (inputValue && !exists && onCreateOption) {
       await onCreateOption(inputValue);
     }
@@ -36,7 +40,9 @@ export function BytebankAutoComplete({
 
   const handleKeyDown = async (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
-      const exists = options.some((opt) => opt.label.toLowerCase() === inputValue.toLowerCase());
+      const exists = options.some(
+        (opt) => opt.label.toLowerCase() === inputValue.toLowerCase(),
+      );
       if (inputValue && !exists && onCreateOption) {
         await onCreateOption(inputValue);
       }
@@ -56,6 +62,11 @@ export function BytebankAutoComplete({
       onChange={(_, val) => {
         onChange(val);
         setInputValue("");
+      }}
+      sx={{
+        ".MuiSvgIcon-root": {
+          color: colors["lime.highcontrast"],
+        },
       }}
       inputValue={inputValue}
       onInputChange={(_, val) => setInputValue(val)}

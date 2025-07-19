@@ -43,7 +43,7 @@ export function BytebankButtonFileUpload({
         sx={{
           fontSize: "1rem",
           color: colors["grey.500"],
-          fontWeight: 600,
+          fontWeight: "regular",
           border: isDarkMode
             ? "dotted 2px rgba(255,255,255,0.1)"
             : "dotted 2px rgba(0,0,0,0.1)",
