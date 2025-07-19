@@ -48,9 +48,8 @@ export function BytebankIllustration({
         src={path}
         alt={alt}
         style={{
-          width: width ? width : (variant === "auto" ? "100%" : fixedWidth),
-          height: height ? height : "auto",
-          maxWidth: "100%",
+          maxWidth: width ? width : (variant === "auto" ? "100%" : fixedWidth),
+          maxHeight: height ? height : "auto",
         }}
       />
     </Box>

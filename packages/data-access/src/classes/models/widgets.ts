@@ -1,7 +1,7 @@
 export enum WidgetKey {
     MostExpensiveCategory = 'mostExpensiveCategory',
-    HighestIncome = 'highestIncome',
-    DailyAverage = 'dailyAverage',
+    HighestIncome = 'highestIncomeThisMonth',
+    DailyAverage = 'dailyExpenseAverage',
     MonthlySummary = 'monthlySummary',
     FinancialAnalysis = 'financialAnalysis',
     FinancialStatus = 'financialStatus',

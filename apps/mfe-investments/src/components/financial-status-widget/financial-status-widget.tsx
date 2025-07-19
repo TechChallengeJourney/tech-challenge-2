@@ -16,8 +16,8 @@ interface WidgetAnalyticsProps {
   description: string;
 }
 
-export function BytebankFinancialStatus() {
-  const {colors} = useTheme();
+export function BytebankFinancialStatusWidget() {
+  const { colors } = useTheme();
   const [isLoading, setLoading] = useState(true);
   const { user } = useUser();
   const [widgetData, setWidgetData] = useState<WidgetAnalyticsProps | null>(
@@ -70,15 +70,15 @@ export function BytebankFinancialStatus() {
         {widgetData && !isLoading ? (
           <>
             <Box display={"flex"} flexDirection={"row"} justifyContent={"space-between"}>
-              <Box display="flex" justifyContent="space-between" marginTop={2} gap={2} flexDirection={'column'}>
-                <BytebankText variant="lg" fontWeight="bold" color={widgetData.status === "positivo" ? colors["lime.700"] : colors["grey.900"]}>
+              <Box display="flex" justifyContent="space-between" marginTop={2} gap={1} flexDirection={'column'}>
+                <BytebankText variant={"h4"} fontWeight="bold" color={widgetData.status !== "positivo" ? colors["lime.700"] : "error.light"}>
                   {widgetData.status.toUpperCase()}
                 </BytebankText>
                 <BytebankText variant="sm">
                   {widgetData.description}
                 </BytebankText>
               </Box>
-              <BytebankIllustration name={"status"} type={"gif"} width="140px" height="140px"></BytebankIllustration>
+              <BytebankIllustration name={widgetData.status !== "positivo" ? "status-positive" : "status-negative"} type={"gif"} width="140px" height="140px"></BytebankIllustration>
             </Box>
           </>
         ) : (

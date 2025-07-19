@@ -3,8 +3,8 @@ import { BytebankBalanceCard } from '../../components/balance-card/balance-card'
 import { Box, Typography } from '@mui/material';
 import { BytebankCard, BytebankButton, BytebankModal } from '@repo/ui';
 // @ts-ignore
-import { BytebankAnalytics, BytebankFinancialStatus, BytebankMobility, BytebankSalary, BytebankSpend, BytebankMonthlyResume } from 'remote/components'
-const BytebankExtract = React.lazy(() => 
+import { BytebankGeneralCardsWidget, BytebankMonthlyResumeWidget, BytebankAnalyticsWidget, BytebankFinancialStatusWidget } from 'remote/components'
+const BytebankExtract = React.lazy(() =>
   // @ts-ignore
   import('transactions/BytebankExtract').then((module) => ({
     default: module.default || module.BytebankExtract,
@@ -24,21 +24,16 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
         </Box>
         <Box>
           <Box display={'flex'} justifyContent={'flex-end'} pb={2}>
-          <BytebankButton label={'Customizar widgets'} variant={'contained'} color={'secondary'} />
+            <BytebankButton label={'Customizar widgets'} variant={'contained'} color={'secondary'} />
           </Box>
-          <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap="30px" sx={{ gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1fr 1fr' } }}>
-            <BytebankMobility />
-            <BytebankSalary />
-            <BytebankSpend />
-          </Box>
+          <BytebankGeneralCardsWidget />
           <Box display="grid" marginY="2rem" gridTemplateColumns="1fr 1fr" gap="30px" sx={{ gridTemplateColumns: { sm: '1fr', md: '1fr 1fr' } }}>
-            <BytebankMonthlyResume />
+            <BytebankMonthlyResumeWidget />
             <Box display={'flex'} gap={2} flexDirection={'column'}>
-            <BytebankAnalytics />
-            <BytebankFinancialStatus />
+              <BytebankAnalyticsWidget />
+              <BytebankFinancialStatusWidget />
             </Box>
           </Box>
-          
         </Box>
         <Box>
           <Box display="grid" gridTemplateColumns="1fr 2fr " gap="30px" sx={{ gridTemplateColumns: { xs: '1fr', sm: '1fr 2fr', md: '1fr 2fr' } }}>

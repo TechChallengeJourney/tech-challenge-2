@@ -17,7 +17,7 @@ interface WidgetAnalyticsProps {
   category: { name: string; percentage: number };
 }
 
-export function BytebankAnalytics() {
+export function BytebankAnalyticsWidget() {
   const [isLoading, setLoading] = useState(true);
   const { user } = useUser();
   const [widgetData, setWidgetData] = useState<WidgetAnalyticsProps | null>(
