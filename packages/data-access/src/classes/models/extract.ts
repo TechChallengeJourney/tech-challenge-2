@@ -16,4 +16,14 @@ export interface Pagination{
     limit: number;
     totalPages: number;
 }
+
+export interface ExtractFilter {
+    page?: number
+    limit?: number
+    categoryId?: string
+    minValue?: number
+    maxValue?: number
+    startDate?: string
+    endDate?: string
+}
     
