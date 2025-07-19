@@ -23,7 +23,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-export default function BytebankExtract() {
+export function BytebankExtract() {
   const { user } = useUser();
   const { fetchTransactions, extract, isLoading, categories } = useFinancialData();
   const [editModalOpen, setEditModalOpen] = useState(false);

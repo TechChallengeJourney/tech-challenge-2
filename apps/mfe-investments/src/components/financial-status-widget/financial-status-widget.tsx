@@ -71,14 +71,14 @@ export function BytebankFinancialStatusWidget() {
           <>
             <Box display={"flex"} flexDirection={"row"} justifyContent={"space-between"}>
               <Box display="flex" justifyContent="space-between" marginTop={2} gap={1} flexDirection={'column'}>
-                <BytebankText variant={"h4"} fontWeight="bold" color={widgetData.status !== "positivo" ? colors["lime.700"] : "error.light"}>
+                <BytebankText variant={"h4"} fontWeight="bold" color={widgetData.status === "positivo" ? colors["lime.700"] : "error.light"}>
                   {widgetData.status.toUpperCase()}
                 </BytebankText>
                 <BytebankText variant="sm">
                   {widgetData.description}
                 </BytebankText>
               </Box>
-              <BytebankIllustration name={widgetData.status !== "positivo" ? "status-positive" : "status-negative"} type={"gif"} width="140px" height="140px"></BytebankIllustration>
+              <BytebankIllustration name={widgetData.status === "positivo" ? "status-positive" : "status-negative"} type={"gif"} width="140px" height="140px"></BytebankIllustration>
             </Box>
           </>
         ) : (
