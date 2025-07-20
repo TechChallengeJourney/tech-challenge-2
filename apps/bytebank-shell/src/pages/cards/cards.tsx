@@ -45,7 +45,7 @@ export const BytebankCardsPage: React.FC = () => {
       >
         <BytebankBalanceCard />
         <Box
-          mt={{ xs: "37px", md: "36px" }}
+          mt="36px"
           display="flex"
           alignItems="center"
           justifyContent="center"
