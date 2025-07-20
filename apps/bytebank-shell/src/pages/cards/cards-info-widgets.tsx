@@ -19,13 +19,11 @@ export const CardsInfoWidgets: React.FC<CardsInfoWidgetsProps> = ({ cards, loadi
   const cardsData = [
     { title: "Total de Cartões", value: totalCards },
     { title: "Limite total", value: totalFormattedLimit || "R$ 0,00" },
-    { title: "Limite usado", value: 0 },
-    { title: "Gasto mensal", value: 0 },
   ];
 
   return (
     <Box>
-      <Box display="flex" justifyContent={{ xs: "center", md: "flex-start" }}>
+      <Box display="flex" justifyContent="center">
         <BytebankText variant="lg" fontWeight="bold">
           Meus Cartões
         </BytebankText>

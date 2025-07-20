@@ -14,7 +14,7 @@ export const BytebankCardsPage: React.FC = () => {
   const { cards, error, loading, refetchCards } = useCards(userId ?? "");
 
   const getTotalLimit = (array: CardData[]): number => {
-    console.log(array)
+    console.log(array);
     return array.reduce((total, item) => total + item.limit, 0);
   };
 
@@ -39,17 +39,16 @@ export const BytebankCardsPage: React.FC = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          borderRadius: "10px",
           alignItems: { xs: "center", md: "center" },
           justifyContent: { xs: "center", md: "flex-start" },
-          minHeight: { xs: "100vh", md: "auto" },
-          mb: { xs: "20px", md: "20px" },
         }}
       >
         <BytebankBalanceCard />
         <Box
-          mb={{ xs: "37px", md: "77px" }}
-          mt={{ xs: "37px", md: "77px" }}
+          mt={{ xs: "37px", md: "36px" }}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
           width="95vw"
         >
           <CardsInfoWidgets
@@ -62,7 +61,7 @@ export const BytebankCardsPage: React.FC = () => {
           flexDirection={{ xs: "column", lg: "row" }}
           alignItems={{ xs: "center", md: "center" }}
           justifyContent={{ xs: "center", md: "space-between" }}
-          width="100%"
+          mt={{ xs: "36px", md: "36px" }}
         >
           <BytebankCardWrapper
             cards={cards}
@@ -71,9 +70,9 @@ export const BytebankCardsPage: React.FC = () => {
             loading={loading}
           />
           <Box
-            mt={{ xs: "20px", md: "20px", lg: "0" }}
-            ml={{ xs: 1, md: 4 }}
-            width={{ xs: "95vw", md: "92vw", lg: "350px" }}
+            mt={{ xs: "26px" }}
+            ml={{ xs: "0", md: "26px" }}
+            width={{ xs: "95vw", md: "92vw", lg: "426px" }}
           >
             <BytebankNewCardBank />
           </Box>

@@ -80,8 +80,7 @@ export const BytebankCardWrapper: React.FC<BytebankCardContainerProps> = ({
         flexDirection={{ xs: "column", md: "row" }}
         alignItems={{ xs: "center", md: "stretch" }}
         justifyContent={{ xs: "center", md: "flex-start" }}
-        maxWidth={{ xs: "90vw" }}
-        width={{ xs: "90vw", md: "90vw", lg: "68vw" }}
+        width={{ xs: "84vw", md: "90vw", lg: "72vw" }} 
         m="26px"
       >
         <Box

@@ -7,12 +7,12 @@ export const BytebankNewCardBank = () => {
     <BytebankCard variant="outlined">
       <Box
         display="flex"
-        gap={2}
         alignItems="center"
         flexDirection="column"
-        maxWidth={{ xs: "98vw", md: "100%" }}
+        maxWidth={{ xs: "98vw", md: "100%"}}
         maxHeight={{ xs: "100%", md: "100%" }}
-        p="30px"
+        height={{ xs: "100%", md: "330px" }}
+        p="95px"
         textAlign="center"
       >
         <IconButton
