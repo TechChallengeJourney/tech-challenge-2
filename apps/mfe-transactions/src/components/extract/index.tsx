@@ -163,8 +163,8 @@ export function BytebankExtract() {
   return (
     <>
       <BytebankCard styles={{ height: '100%' }}>
-        <Box pb={4}>
-          <Box p={4}>
+        <Box >
+          <Box p={4} pb={0}>
             <BytebankText fontWeight={'bold'} variant={'md'}>
               Histórico de transações
             </BytebankText>
@@ -174,6 +174,7 @@ export function BytebankExtract() {
               color="primary"
               onClick={() => setOpenFilter(true)}
               size="small"
+              style={{ border: '1px solid #e0e0e0', borderRadius: '4px' }}
               
             >
               <FilterAltIcon  fontSize='small'  />
@@ -230,6 +231,8 @@ export function BytebankExtract() {
                       <Box display={'flex'} flexDirection="row" gap={'10px'}  alignItems="center">
                         <IconButton
                           color="primary"
+                          style={{ border: '1px solid #e0e0e0' }}
+
                         >
                           {itens.type !== 'income' ? <ArrowUpwardIcon style={{ fontSize: '35px' }} /> : <ArrowUpwardIcon style={{ fontSize: '35px', transform: 'rotate(180deg)' }} />}
                         </IconButton>
@@ -343,7 +346,7 @@ export function BytebankExtract() {
                     currentPage={extract.pagination?.page || 1}
                     onPageChange={(e, page) => {
                       if (user) {
-                        fetchTransactions(user, { limit: 5, page: page });
+                        fetchTransactions(user, { limit: 4, page: page });
                       }
                     }}
                     color="primary"

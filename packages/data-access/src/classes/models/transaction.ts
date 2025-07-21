@@ -15,5 +15,15 @@ export interface Method {
   type: string;
 }
 
+export interface BodyTransactionPut {
+  userId: string;
+  value: number;
+  type: string;
+  createdAt: Date;
+  categoryId: string;
+  methodId: string;
+  cardId?: string;
+}
+
 
 

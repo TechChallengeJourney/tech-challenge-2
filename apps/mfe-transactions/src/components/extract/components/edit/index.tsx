@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BytebankModal, BytebankInputController, BytebankButton, BytebankText, BytebankSelectController, BytebankDatePickerController  } from "@repo/ui";
 import { FormProvider, useForm } from 'react-hook-form';
-import { api, Method, Transaction, useFinancialData } from '@repo/data-access';
+import { api, BodyTransactionPut, Method, Transaction, useFinancialData, useUser } from '@repo/data-access';
 import { Box } from '@mui/material';
 
 export interface EditExtractProps {
@@ -10,15 +10,16 @@ export interface EditExtractProps {
 }
 
 export interface IForm {
-    methodId?: string;
-    categoryId?: string
-    dateTransaction?: Date
-    value?: string
+    methodId: string;
+    categoryId: string
+    dateTransaction: Date
+    value: string
 }
 
 export default function EditExtract({
   toggleDrawer, item
 }: EditExtractProps) {
+    const { user } = useUser();
   const { categories, fetchTransactions } = useFinancialData();
   const [ types, setTypes ]  = useState<Method[]>([]);
   
@@ -33,7 +34,6 @@ export default function EditExtract({
 
   const handleMethods = () => {
     api.get(`/methods/types/${item.type}`).then((response) => {
-      console.log('response', response.data);
       setTypes(response.data);
     })
   }
@@ -41,12 +41,29 @@ export default function EditExtract({
   useEffect(() => {
     handleMethods();
   }, []);
-
-  
   
   const handleSubmit = (data: IForm) => {
-    toggleDrawer(false)();
+    const body: BodyTransactionPut = {
+      userId: item.userId || '',
+      value: Number(data.value.replace(/[^0-9.-]+/g,"")),
+      type: item.type,
+      createdAt: data.dateTransaction,
+      categoryId: data.categoryId,
+      methodId: data.methodId,
+    }
+    api.put(`/transactions/${item._id}`, body)
+      .then((res) => {
+        console.log(res.data);
+        toggleDrawer(false)();
+        fetchTransactions(user!);
+
+      })
+      .catch((error) => {
+        console.error('Error updating transaction:', error);
+      })
+    console.log(body);
   }
+
   return (
     <Box sx={{ width: "100%" }} >
         <Box marginTop={2}>
