@@ -82,9 +82,9 @@ export function BytebankAnalyticsWidget() {
                 {formatCurrencyBRL(widgetData.income)}
               </BytebankText>
             </Box>
-            <BytebankLinearProgress value={widgetData.income > 0
-                  ? (widgetData.income /
-                      (widgetData.income + widgetData.expense)) *
+            <BytebankLinearProgress value={widgetData?.income > 0
+                  ? (widgetData?.income /
+                      (widgetData?.income + widgetData?.expense)) *
                     100
                   : 0} />
             <Box display="flex" justifyContent="space-between" marginTop={2}>
@@ -92,12 +92,12 @@ export function BytebankAnalyticsWidget() {
                 Despesas do mês
               </BytebankText>
               <BytebankText variant="sm" fontWeight="bold">
-                {formatCurrencyBRL(widgetData.expense)}
+                {formatCurrencyBRL(widgetData?.expense)}
               </BytebankText>
             </Box>
             <BytebankLinearProgress
               variant="secondary"
-              value={widgetData.category.percentage}
+              value={widgetData?.category?.percentage}
             />
             <Box mt={2}>
               <BytebankText variant="sm">
@@ -105,10 +105,10 @@ export function BytebankAnalyticsWidget() {
                 saldo positivo. Recomendamos revisar seus gastos com{" "}
                 <span
                   style={{ fontWeight: "600" }}
-                >{`${widgetData.category.name}`}</span>
+                >{`${widgetData?.category?.name}`}</span>
                 , que representaram{" "}
                 <span style={{ fontWeight: "600" }}>
-                  {`${widgetData.category.percentage}`}%
+                  {`${widgetData?.category?.percentage}`}%
                 </span>das suas despesas.
               </BytebankText>
             </Box>
