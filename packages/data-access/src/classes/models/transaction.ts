@@ -9,5 +9,11 @@ export interface Transaction {
   methodId?: string;
 }
 
+export interface Method {
+  _id: string;
+  name: string;
+  type: string;
+}
+
 
 
