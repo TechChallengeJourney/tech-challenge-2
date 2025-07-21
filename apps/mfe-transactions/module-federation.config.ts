@@ -11,23 +11,23 @@ export default createModuleFederationConfig({
   shared: {
     react: {
       singleton: true,
-      eager: false,
+      eager: true,
       requiredVersion: dependencies.react
     },
     'react-dom': {
       singleton: true,
-      eager: false,
+      eager: true,
       requiredVersion: dependencies['react-dom']
     },
     'react-hook-form': {
       singleton: true,
-      eager: false,
+      eager: true,
       requiredVersion: dependencies['react-hook-form']
     },
     '@mui/material': {
       singleton: true,
       requiredVersion: dependencies['@mui/material'],
-      eager: false
+      eager: true
     },
     '@emotion/react': {
       singleton: true,

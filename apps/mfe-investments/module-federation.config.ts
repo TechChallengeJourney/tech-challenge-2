@@ -12,17 +12,17 @@ export default createModuleFederationConfig({
     react: {
       singleton: true,
       requiredVersion: dependencies.react,
-      eager: false
+      eager: true
     },
     'react-dom': {
       singleton: true,
       requiredVersion: dependencies['react-dom'],
-      eager: false
+      eager: true
     },
     '@mui/material': {
       singleton: true,
       requiredVersion: dependencies['@mui/material'],
-      eager: false
+      eager: true
     },
     '@emotion/react': {
       singleton: true,
