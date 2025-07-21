@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
-import { BytebankModal, BytebankInputController, BytebankButton, BytebankDatePickerController } from "@repo/ui";
+import { BytebankInputController, BytebankButton, BytebankDatePickerController, BytebankSelectController } from "@repo/ui";
 import { FormProvider, useForm } from 'react-hook-form';
-import { Transaction } from '@repo/data-access';
+import { ExtractFilter, useFinancialData, useUser } from '@repo/data-access';
 
 export interface IForm {
-    type?: string
+    categoryId?: string
     minValue?: number
     maxValue?: number
     startDate?: Date | null
@@ -12,13 +11,17 @@ export interface IForm {
 }
 
 export interface FilterExtractProps {
+   toggleDrawer: (newOpen: boolean) => () => void
 }
 
 export default function FilterExtract({
+  toggleDrawer
 }: FilterExtractProps) {
+  const { user } = useUser();
+  const { categories, fetchTransactions } = useFinancialData();
   const methods = useForm<IForm>({
     defaultValues: {
-      type: '',
+      categoryId: '',
       minValue: undefined,
       maxValue: undefined,
       startDate: null,
@@ -27,18 +30,34 @@ export default function FilterExtract({
   });
   
   const handleSubmit = (data: IForm) => {
-    console.log("Filter applied with value:", data);
+    const filterParams: ExtractFilter = {
+      categoryId: data.categoryId,
+      minValue: data.minValue,
+      maxValue: data.maxValue,
+      startDate: data.startDate ? data.startDate.toISOString() : undefined,
+      endDate: data.endDate ? data.endDate.toISOString() : undefined,
+    };
+    if(user){
+      fetchTransactions(user, filterParams);
+      toggleDrawer(false)()
+    }
   };
   
   return (
     
       <FormProvider {...methods}>
         <form onSubmit={ methods.handleSubmit(handleSubmit) }>
-          <BytebankInputController
-            name="type"
-            label="Tipo"
-            type="text"
-          />
+          {categories && categories.length > 0 && (
+            <BytebankSelectController
+              color='primary'
+              name="categoryId"
+              label="Tipo"
+              options={categories.map(category => ({
+                value: category._id,
+                label: category.name
+            }))}
+            />
+          )}
 
           <BytebankInputController
             name="minValue"

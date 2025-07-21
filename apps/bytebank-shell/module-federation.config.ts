@@ -2,27 +2,36 @@ import { createModuleFederationConfig } from "@module-federation/rsbuild-plugin"
 import pkg from "./package.json";
 const { dependencies } = pkg;
 
+const INVESTMENTS_APP_URL =
+  process.env.PUBLIC_INVESTMENTS_APP_URL || "http://localhost:3001";
+
+const TRANSACTIONS_APP_URL =
+  process.env.PUBLIC_TRANSACTIONS_APP_URL || "http://localhost:3002";
+
+  console.log(`Using Investments App URL: ${INVESTMENTS_APP_URL}`);
+  console.log(`Using Transactions App URL: ${TRANSACTIONS_APP_URL}`);
+
 export default createModuleFederationConfig({
-  name: "host",
+  name: "bytebank-shell",
   remotes: {
-    remote: 'remote@http://localhost:3001/remoteEntry.js',
-    transactions: 'transactions@http://localhost:3002/remoteEntry.js',
+    investments: `investments@${INVESTMENTS_APP_URL}/remoteEntry.js`,
+    transactions: `transactions@${TRANSACTIONS_APP_URL}/remoteEntry.js`,
   },
   shared: {
     react: {
       singleton: true,
       requiredVersion: dependencies.react,
-      eager: true
+      eager: false
     },
     'react-dom': {
       singleton: true,
       requiredVersion: dependencies['react-dom'],
-      eager: true
+      eager: false
     },
     '@mui/material': {
       singleton: true,
       requiredVersion: dependencies['@mui/material'],
-      eager: true
+      eager: false
     },
     'react-hook-form': {
       singleton: true,

@@ -4,7 +4,7 @@ import axios from "axios";
  * Define a URL base e interceptores para requisições e respostas.
  */
 export const api = axios.create({
-  baseURL: process.env.PUBLIC_API_URL || "http://localhost:8080/api",
+  baseURL: import.meta.env.PUBLIC_API_URL,
 });
 
 api.interceptors.request.use(
@@ -27,7 +27,9 @@ api.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       console.warn("Token inválido ou expirado. Redirecionando para home.");
-      window.location.href = "/";
+      if (typeof window !== "undefined") {
+        window.location.href = "/";
+      }
     }
     return Promise.reject(error);
   }

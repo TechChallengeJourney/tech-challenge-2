@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { BytebankModal, BytebankInputController, BytebankButton  } from "@repo/ui";
 import { FormProvider, useForm } from 'react-hook-form';
 import { Transaction } from '@repo/data-access';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { BytebankModal, BytebankText } from "@repo/ui";
 import { Transaction } from '@repo/data-access';
 import { BytebankButton } from "@repo/ui";

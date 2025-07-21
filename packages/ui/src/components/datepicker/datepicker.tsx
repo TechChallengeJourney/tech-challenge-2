@@ -5,6 +5,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { ptBR } from "date-fns/locale";
 import { useId } from "react";
 import "./style.scss";
+import { useTheme } from "@repo/utils";
 
 export type BytebankDatePickerProps = {
   label: string;
@@ -18,7 +19,7 @@ export type BytebankDatePickerProps = {
   id?: string;
   disableFuture?: boolean;
   disablePast?: boolean;
-  views?: ('year' | 'month' | 'day')[];
+  views?: ("year" | "month" | "day")[];
   format?: string;
 };
 
@@ -40,6 +41,7 @@ export function BytebankDatePicker({
   const reactId = useId();
   const datepickerId = id || `datepicker-${reactId}`;
   const helperId = helperText ? `${datepickerId}-helper` : undefined;
+  const { colors } = useTheme();
 
   return (
     <Box className="bytebank-datepicker">
@@ -55,6 +57,11 @@ export function BytebankDatePicker({
           disableFuture={disableFuture}
           disablePast={disablePast}
           views={views}
+          sx={{
+            ".MuiSvgIcon-root": {
+              color: colors["lime.contrast"],
+            },
+          }}
           slotProps={{
             textField: {
               id: datepickerId,

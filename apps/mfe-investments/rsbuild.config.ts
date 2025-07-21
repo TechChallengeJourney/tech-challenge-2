@@ -8,9 +8,6 @@ import { pluginSass } from "@rsbuild/plugin-sass";
 const { publicVars } = loadEnv({ prefixes: ["REACT_APP_"] });
 
 export default defineConfig({
-  env: {
-    API_URL: process.env.API_URL,
-  },
   server: {
     port: 3001,
   },

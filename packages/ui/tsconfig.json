@@ -2,7 +2,9 @@
   "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
     "outDir": "dist",
-    "lib": ["dom", "esnext"]
+    "lib": ["dom", "esnext"],
+    "typeRoots": ["node_modules/@types"]
+
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist"]

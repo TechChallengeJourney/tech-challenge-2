@@ -1,8 +1,13 @@
 export interface Transaction {
-  id: string;
+  _id: string;
   date: Date;
   type: string;
-  value: string | number;
+  value: number;
   userId?: string;
+  createdAt: string
+  categoryId?: string;
+  methodId?: string;
 }
+
+
 

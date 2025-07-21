@@ -44,7 +44,6 @@ export const AuthGuard: React.FC<AuthGuardProps> = ({ component: Component, ...r
         );
     }
 
-
     if (!isAuthenticated) {
         return <Navigate to="/" state={{ from: location }} replace />;
     }
