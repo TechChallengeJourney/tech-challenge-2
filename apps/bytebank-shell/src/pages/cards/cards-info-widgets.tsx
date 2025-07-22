@@ -13,7 +13,7 @@ export interface CardsInfoWidgetsProps {
   totalFormattedLimit?: string;
 }
 
-export const CardsInfoWidgets: React.FC<CardsInfoWidgetsProps> = ({ cards, loading, error, totalFormattedLimit }) => {
+export const CardsInfoWidgets: React.FC<CardsInfoWidgetsProps> = ({ cards, totalFormattedLimit }) => {
   const totalCards = cards?.length || 0
 
   const cardsData = [
