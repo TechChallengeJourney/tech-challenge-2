@@ -34,22 +34,31 @@ const widgets: Partial<BytebankGeneralWidgetCardProps>[] = [{
 
 export function BytebankGeneralCardsWidget() {
   const [isLoading, setLoading] = useState(true);
-  const { user } = useUser();
   const [widgetsData, setWidgetsData] = useState<Partial<BytebankGeneralWidgetCardProps>[]>([]);
-  const userId = user?._id ?? "";
+  const { user } = useUser();
+  const userId = user?._id ?? '';
+  const selectedWidgets = user?.selectedWidgets ?? [];
+  const cardWidgets = [WidgetKey.HighestIncome, WidgetKey.MostExpensiveCategory, WidgetKey.DailyAverage];
+
+  const filteredWidgets = cardWidgets.filter(widget => selectedWidgets.includes(widget));
 
   useEffect(() => {
-    const fetchAllWidgets = async () => {
+    const fetchAllWidgets = async () => {      
+      if(!filteredWidgets) {
+        setLoading(false);
+        return;
+      }
+
       if (userId) {
         setLoading(true);
         try {
           const results = await Promise.all(
-            [WidgetKey.HighestIncome, WidgetKey.MostExpensiveCategory, WidgetKey.DailyAverage].map(async (widgetType) => {
+            filteredWidgets.map(async (widgetType) => {              
               const data = await fetchWidgetData<Partial<BytebankGeneralWidgetCardProps>>(widgetType, userId);
               const widgetSelected = widgets.find(widget => widget.key === widgetType);
               return widgetSelected ? { ...widgetSelected, ...data } : null;
             })
-          );
+          );          
           setWidgetsData(results.filter((item): item is Partial<BytebankGeneralWidgetCardProps> => item !== null));
         } catch (error) {
           console.error("Erro ao buscar dados do widget:", error);
@@ -59,7 +68,7 @@ export function BytebankGeneralCardsWidget() {
       }
     };
     fetchAllWidgets();
-  }, [userId]);
+  }, [user]);
 
   if (isLoading) return (
     <Box
@@ -75,7 +84,7 @@ export function BytebankGeneralCardsWidget() {
     </Box>
   );
   return (
-    <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap={2} sx={{ gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1fr 1fr' } }}>
+    <Box display="grid" pb={2} gridTemplateColumns="1fr 1fr 1fr" gap={2} sx={{ gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1fr 1fr' } }}>
       {widgetsData && widgetsData.length !== 0 ? (
         widgetsData.map(widget => (
           <BytebankCard key={widget.key}>

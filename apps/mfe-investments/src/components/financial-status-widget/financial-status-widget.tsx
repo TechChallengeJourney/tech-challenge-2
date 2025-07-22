@@ -2,28 +2,24 @@ import { Box, Skeleton } from "@mui/material";
 import {
   BytebankCard,
   BytebankText,
-  BytebankButton,
-  BytebankLinearProgress,
   BytebankIllustration,
 } from "@repo/ui";
-import { formatCurrencyBRL, useTheme } from "@repo/utils";
+import { useTheme } from "@repo/utils";
 import { fetchWidgetData } from "../../services/widgets";
 import { useEffect, useState } from "react";
-import { useUser, WidgetKey } from "@repo/data-access";
+import { WidgetKey } from "@repo/data-access";
 
 interface WidgetAnalyticsProps {
   status: "positivo" | "negativo";
   description: string;
 }
 
-export function BytebankFinancialStatusWidget() {
+export function BytebankFinancialStatusWidget({ userId }: { userId: string }) {
   const { colors } = useTheme();
   const [isLoading, setLoading] = useState(true);
-  const { user } = useUser();
   const [widgetData, setWidgetData] = useState<WidgetAnalyticsProps | null>(
     null
   );
-  const userId = user?._id ?? "";
 
   useEffect(() => {
     const fetchData = async () => {
