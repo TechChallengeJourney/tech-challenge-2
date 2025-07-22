@@ -14,7 +14,6 @@ export const BytebankCardsPage: React.FC = () => {
   const { cards, error, loading, refetchCards } = useCards(userId ?? "");
 
   const getTotalLimit = (array: CardData[]): number => {
-    console.log(array);
     return array.reduce((total, item) => total + item.limit, 0);
   };
 
@@ -30,50 +29,62 @@ export const BytebankCardsPage: React.FC = () => {
 
   return (
     <Box
-      minWidth="100%"
+      width="100%"
       display="flex"
-      alignItems={{ xs: "center", md: "center" }}
-      justifyContent={{ xs: "center", md: "center" }}
-      mt="0px"
+      justifyContent="center"
     >
       <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: { xs: "center", md: "center" },
-          justifyContent: { xs: "center", md: "flex-start" },
-        }}
+        width="100%"
+        px={{ xs: 2, md: 4 }}
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
       >
         <BytebankBalanceCard />
+
         <Box
           mt="26px"
+          width="100%" 
           display="flex"
-          alignItems="center"
           justifyContent="center"
-          width="95vw"
         >
           <CardsInfoWidgets
             cards={cards}
             totalFormattedLimit={totalFormattedLimit}
           />
         </Box>
+
         <Box
-          display="flex"
-          flexDirection={{ xs: "column", lg: "row" }}
-          alignItems={{ xs: "center", md: "center" }}
-          justifyContent={{ xs: "center", md: "space-between" }}
           mt={{ xs: "36px", md: "36px" }}
+          display="flex"
+          flexDirection={{ xs: "column", lg: "row" }} // linha no desktop
+          justifyContent="space-between"
+          alignItems="flex-start"
+          width="100%"
+          gap={2}
         >
-          <BytebankCardWrapper
-            cards={cards}
-            refetchCards={refetchCards}
-            error={error}
-            loading={loading}
-          />
+          {/* Coluna 1: Cartões */}
           <Box
-            mt={{ xs: "26px" }}
-            ml={{ xs: "0", md: "26px" }}
-            width={{ xs: "95vw", md: "92vw", lg: "426px" }}
+            flex={1}
+            display="flex"
+            flexDirection="column"
+            width={{xs:"100%", md:"100%"}}
+          >
+            <BytebankCardWrapper
+              cards={cards}
+              refetchCards={refetchCards}
+              error={error}
+              loading={loading}
+            />
+          </Box>
+
+          {/* Coluna 2: Criar novo cartão */}
+          <Box
+            width={{ xs: "100%", lg: "400px" }}
+            display="flex"
+            flexDirection="column"
+            alignSelf="center"
+            mb={{xs: "36px"}}
           >
             <BytebankNewCardBank />
           </Box>
