@@ -23,7 +23,7 @@ export const CardsInfoWidgets: React.FC<CardsInfoWidgetsProps> = ({ cards, total
 
   return (
     <Box>
-      <Box display="flex" justifyContent="left">
+      <Box display="flex" justifyContent={{xs: "center", md: "center", lg:"left"}}>
         <BytebankText variant="lg" fontWeight="bold">
           Meus Cartões
         </BytebankText>

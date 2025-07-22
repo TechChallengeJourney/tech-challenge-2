@@ -46,7 +46,7 @@ export const BytebankCardsPage: React.FC = () => {
           mt="26px"
           width="100%" 
           display="flex"
-          justifyContent="left"
+          justifyContent={{xs: "center", md: "center", lg:"left"}}
         >
           <CardsInfoWidgets
             cards={cards}
