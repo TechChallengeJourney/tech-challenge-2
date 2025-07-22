@@ -348,7 +348,7 @@ function TransactionForm({ type }: TransactionFormProps) {
             startIcon={<ControlPointIcon />}
             variant="text"
             color="secondary"
-            sendSubmit={() => setCardModalOpen(true)}
+            onClick={() => setCardModalOpen(true)}
           />
         </Box>
       )}
@@ -358,7 +358,7 @@ function TransactionForm({ type }: TransactionFormProps) {
           label="Concluir"
           variant="contained"
           color="primary"
-          sendSubmit={handleSubmit(onSubmit)}
+          onClick={handleSubmit(onSubmit)}
         />
       </Box>
       <BytebankSnackbar
