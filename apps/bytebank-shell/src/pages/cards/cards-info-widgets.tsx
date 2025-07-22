@@ -13,8 +13,11 @@ export interface CardsInfoWidgetsProps {
   totalFormattedLimit?: string;
 }
 
-export const CardsInfoWidgets: React.FC<CardsInfoWidgetsProps> = ({ cards, totalFormattedLimit }) => {
-  const totalCards = cards?.length || 0
+export const CardsInfoWidgets: React.FC<CardsInfoWidgetsProps> = ({
+  cards,
+  totalFormattedLimit,
+}) => {
+  const totalCards = cards?.length || 0;
 
   const cardsData = [
     { title: "Total de Cartões", value: totalCards },
@@ -23,7 +26,10 @@ export const CardsInfoWidgets: React.FC<CardsInfoWidgetsProps> = ({ cards, total
 
   return (
     <Box>
-      <Box display="flex" justifyContent={{xs: "center", md: "center", lg:"left"}}>
+      <Box
+        display="flex"
+        justifyContent={{ xs: "center", md: "center", lg: "left" }}
+      >
         <BytebankText variant="lg" fontWeight="bold">
           Meus Cartões
         </BytebankText>

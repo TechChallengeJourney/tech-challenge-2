@@ -36,31 +36,31 @@ export const CardDetails: React.FC<{ card: CardData }> = ({ card }) => {
   return (
     <Box>
       <Box display="flex" justifyContent="space-between">
-        <BytebankText variant="xs">
+        <BytebankText variant="sm">
           Cartão de {translateFunctionType(card?.functions[0] ?? "") || "****"}
         </BytebankText>
-        <BytebankText variant="xs">
+        <BytebankText variant="sm">
           {maskCardNumber(card?.cardNumber) || "**** **** **** ****"}
         </BytebankText>
       </Box>
 
       <Box display="flex" justifyContent="space-between">
-        <BytebankText variant="xs">Limite do cartão</BytebankText>
-        <BytebankText variant="xs" fontWeight="bold">
+        <BytebankText variant="sm">Limite do cartão</BytebankText>
+        <BytebankText variant="sm" fontWeight="bold">
           {formatLimitCurrency(card?.limit) ?? "R$ 0,00"}
         </BytebankText>
       </Box>
 
       <Box display="flex" justifyContent="space-between">
-        <BytebankText variant="xs">Data de expiração</BytebankText>
-        <BytebankText variant="xs" fontWeight="bold">
+        <BytebankText variant="sm">Data de expiração</BytebankText>
+        <BytebankText variant="sm" fontWeight="bold">
           {formatExpirationDate(card?.expirationDate) || "0/00"}
         </BytebankText>
       </Box>
 
       <Box display="flex" justifyContent="space-between">
-        <BytebankText variant="xs">Valor utilizado</BytebankText>
-        <BytebankText variant="xs" fontWeight="bold">
+        <BytebankText variant="sm">Valor utilizado</BytebankText>
+        <BytebankText variant="sm" fontWeight="bold">
           {card?.expend ?? "R$ 0,00"}
         </BytebankText>
       </Box>
