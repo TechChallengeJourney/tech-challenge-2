@@ -20,7 +20,7 @@ export function CardWidget({
         flexDirection="row"
         justifyContent="space-between"
         alignItems="center"
-        width={{ xs: "90vw", md: "20vw" }}
+        width={{ xs: "90vw", md: "30vw", lg: "20vw" }}
         height="100%"
         padding={2}
       >

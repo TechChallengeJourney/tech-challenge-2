@@ -36,7 +36,7 @@ export const BytebankBalanceCard = () => {
   return (
     <Box
       display={"block"}
-      width={{ xs: "90%", md: "100%" }}
+      width={{ xs: "100%", md: "100%" }}
       minHeight={"15em"}
     >
       <BytebankCard styles={backgroundStyle}>
