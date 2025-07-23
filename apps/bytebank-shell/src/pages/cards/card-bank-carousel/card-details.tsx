@@ -57,13 +57,6 @@ export const CardDetails: React.FC<{ card: CardData }> = ({ card }) => {
           {formatExpirationDate(card?.expirationDate) || "0/00"}
         </BytebankText>
       </Box>
-
-      <Box display="flex" justifyContent="space-between">
-        <BytebankText variant="sm">Valor utilizado</BytebankText>
-        <BytebankText variant="sm" fontWeight="bold">
-          {card?.expend ?? "R$ 0,00"}
-        </BytebankText>
-      </Box>
     </Box>
   );
 };
