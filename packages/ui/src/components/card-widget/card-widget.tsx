@@ -26,14 +26,14 @@ export function CardWidget({
       >
         <Box display="flex" flexDirection="column">
           <BytebankText
-            variant="xs"
+            variant="sm"
             fontWeight={200}
             color="secondary"
             mb={0.5}
           >
             {title}
           </BytebankText>
-          <BytebankText variant="md" fontWeight="bold">
+          <BytebankText variant="lg" fontWeight="bold">
             {value}
           </BytebankText>
         </Box>
