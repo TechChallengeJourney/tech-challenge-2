@@ -37,7 +37,7 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
         </Box>
         <Box>
           <Box display={'flex'} justifyContent={'flex-end'} pb={2}>
-            <BytebankButton label={'Customizar widgets'} variant={'contained'} color={'secondary'} sendSubmit={() => openWidgetDrawer()} />
+          <BytebankButton label={'Customizar widgets'} variant={'contained'} color={'secondary'} onClick={() => openWidgetDrawer()} />
           </Box>
           <BytebankGeneralCardsWidget />
           <Box display="grid" gridTemplateColumns="1fr 1fr" gap={2} sx={{ gridTemplateColumns: { sm: '1fr', md: '1fr 1fr' } }}>

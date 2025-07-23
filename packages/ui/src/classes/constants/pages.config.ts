@@ -26,7 +26,7 @@ export const loggedPages: WrapperRouteProps[] = [
         disabled: true
     },
     {
-        name: 'outros',
-        route: '/outros'
+        name: 'cartões',
+        route: '/cartoes'
     },
 ];

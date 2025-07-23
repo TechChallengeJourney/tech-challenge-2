@@ -33,13 +33,13 @@ export default function DeleteExtractModal({
             label="Sim"
             color="error"
             variant="contained"
-            sendSubmit={onConfirm}
+            onClick={onConfirm}
           />
           <BytebankButton
             label="Não"
             color="secondary"
             variant="outlined"
-            sendSubmit={onClose}
+            onClick={onClose}
           />
         </Box>
       </Box>

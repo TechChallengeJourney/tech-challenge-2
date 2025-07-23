@@ -37,15 +37,15 @@ export interface BytebankButtonProps extends ButtonProps {
   borderRadius?: string;
 
   variant?: 'contained' | 'text' | 'outlined';
-  sendSubmit?: () => void;
+  onClick?: () => void;
 }
 
 export function BytebankButton({
   label,
   color,
   variant,
-  sendSubmit,
   borderRadius,
+  onClick,
   ...props
 }: BytebankButtonProps): JSX.Element {
   const { colors } = useTheme();
@@ -117,7 +117,7 @@ export function BytebankButton({
       variant={variant}
       color={color}
       aria-label={label}
-      onClick={sendSubmit}
+      onClick={onClick}
       borderRadius={borderRadius}
     >
       {label}
