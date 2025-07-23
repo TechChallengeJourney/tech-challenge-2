@@ -76,7 +76,7 @@ export const BytebankWidgetDrawer = ({ openDrawer, onClose }: { openDrawer: bool
                     </FormGroup>
                 </Box>
                 <Box pt={2}>
-                    <BytebankButton label={"Aplicar mudanças"} variant={"contained"} color={"primary"} sendSubmit={onSave} />
+                    <BytebankButton label={"Aplicar mudanças"} variant={"contained"} color={"primary"} onClick={onSave} />
                 </Box>
             </Box>
         </BytebankDrawer>
