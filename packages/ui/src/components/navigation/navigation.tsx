@@ -7,6 +7,7 @@ import {
 export interface BytebankNavigationProps {
   onPrev: () => void;
   onNext: () => void;
+  disabled: boolean;
   size?: "inherit" | "large" | "medium" | "small";
   color?: "primary" | "secondary" | "success" | "error" | "info" | "warning";
 }
@@ -16,7 +17,11 @@ export const BytebankNavigation: React.FC<BytebankNavigationProps> = ({
   onNext,
   size = "large",
   color = "primary",
+  disabled,
 }) => {
+
+  if (disabled) return null
+
   return (
     <Box display="flex" gap={1}>
       <IconButton
