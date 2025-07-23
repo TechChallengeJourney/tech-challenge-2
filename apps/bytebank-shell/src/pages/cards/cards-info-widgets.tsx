@@ -36,7 +36,7 @@ export const CardsInfoWidgets: React.FC<CardsInfoWidgetsProps> = ({
       </Box>
       <Box
         display="flex"
-        gap={{ xs: 2, md: 5 }}
+        gap={2}
         flexDirection={{ xs: "column", md: "row" }}
         mt={2}
       >

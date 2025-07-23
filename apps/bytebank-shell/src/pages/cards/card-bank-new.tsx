@@ -28,12 +28,12 @@ export const BytebankNewCardBank = () => {
           <AddIcon fontSize="large" />
         </IconButton>
 
-        <BytebankText variant="xs" fontWeight="bold" align="center">
+        <BytebankText variant="sm" fontWeight="bold" align="center">
           Criar novo cartão
         </BytebankText>
 
-        <BytebankText variant="xs" color="secondary" align="center" style={{ whiteSpace: "pre-line"}}>
-         {` Adicione um novo cartão de \ncrédito a sua conta`}
+        <BytebankText variant="sm" color="secondary" align="center" style={{ whiteSpace: "pre-line"}}>
+         {` Adicione um novo cartão \nde crédito a sua conta`}
         </BytebankText>
       </Box>
     </BytebankCard>

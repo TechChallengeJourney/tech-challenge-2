@@ -8,6 +8,7 @@ import {
   CardVisual,
   CardNavigation,
 } from "./card-bank-carousel";
+import { CardEmptyState } from "./card-bank-carousel/card-empty-state";
 
 export interface BytebankCardContainerProps {
   cards: any[];
@@ -25,7 +26,7 @@ export const BytebankCardWrapper: React.FC<BytebankCardContainerProps> = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const hasCards = cards.length > 0;
+  const hasCards = cards.length >= 1;
   const currentCard = hasCards ? cards[currentIndex] : null;
 
   useEffect(() => {
@@ -42,66 +43,48 @@ export const BytebankCardWrapper: React.FC<BytebankCardContainerProps> = ({
     setCurrentIndex((prev) => (prev < cards.length - 1 ? prev + 1 : 0));
   };
 
-  if (loading) {
-    return (
-      <Box mt={4} textAlign="center">
-        <BytebankText variant="md" color="text.primary">
-          Carregando cartões...
-        </BytebankText>
-      </Box>
-    );
-  }
-
-  if (error) {
-    return (
-      <Box mt={4} textAlign="center">
-        <BytebankText variant="md" color="error">
-          Erro ao carregar cartões: {error}
-        </BytebankText>
-      </Box>
-    );
-  }
-
-  if (!hasCards) {
-    return (
-      <Box mt={4} textAlign="center">
-        <BytebankText variant="md" color="text.primary">
-          Você ainda não possui cartão cadastrado.
-        </BytebankText>
-      </Box>
-    );
-  }
-
   return (
     <BytebankCard variant="outlined">
-      <Box
-        display="flex"
-        gap={4}
-        flexDirection={{ xs: "column", md: "row" }}
-        alignItems={{ xs: "center", md: "stretch" }}
-        justifyContent={{ xs: "center", md: "flex-start" }}
-        m="26px"
-      >
-        <Box
-          flex={1}
-          m={{ xs: 1, md: 4 }}
-          sx={{ width: "100%", maxWidth: 350 }}
-          mt={{ xs: "20px" }}
-        >
-          <CardHeader variant={currentCard?.variant} />
-          <CardVisual card={currentCard} />
-        </Box>
+      {loading && <CardEmptyState text="Carregando cartões..." />}
 
-        <Box flex={2}>
-          <CardNavigation onPrev={handlePrev} onNext={handleNext} />
-          <CardDetails card={currentCard} />
-          <CardActions
-            cardId={currentCard?._id || ""}
-            isBlocked={!!currentCard?.blocked}
-            onCardUpdate={refetchCards}
-          />
+      {error && (
+        <CardEmptyState text="Erro ao carregar cartões! Tente mais tarde." />
+      )}
+
+      {!loading && !error && !hasCards && (
+        <CardEmptyState text="Você ainda não possui cartão cadastrado." />
+      )}
+
+      {!loading && !error && hasCards && (
+        <Box
+          display="flex"
+          gap={4}
+          flexDirection={{ xs: "column", md: "row" }}
+          alignItems={{ xs: "center", md: "stretch" }}
+          justifyContent={{ xs: "center", md: "flex-start" }}
+          m="26px"
+        >
+          <Box
+            flex={1}
+            m={{ xs: 1, md: 4 }}
+            sx={{ width: "100%", maxWidth: 350 }}
+            mt={{ xs: "20px" }}
+          >
+            <CardHeader variant={currentCard?.variant} />
+            <CardVisual card={currentCard} />
+          </Box>
+
+          <Box flex={2}>
+            <CardNavigation onPrev={handlePrev} onNext={handleNext} cards={cards}/>
+            <CardDetails card={currentCard} />
+            <CardActions
+              cardId={currentCard?._id || ""}
+              isBlocked={!!currentCard?.blocked}
+              onCardUpdate={refetchCards}
+            />
+          </Box>
         </Box>
-      </Box>
+      )}
     </BytebankCard>
   );
 };

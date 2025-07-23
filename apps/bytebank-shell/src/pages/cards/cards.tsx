@@ -28,25 +28,25 @@ export const BytebankCardsPage: React.FC = () => {
   const totalFormattedLimit = formatLimitCurrency(total);
 
   return (
-    <Box
-      width="100%"
-      display="flex"
-      justifyContent="center"
-    >
+    <Box width="100%" display="flex" justifyContent="center" mb={2}>
       <Box
         width="100%"
-        px={{ xs: 2, md: 4 }}
+        gap={2}
         display="flex"
         flexDirection="column"
         alignItems="center"
+        sx={{
+          pl: { xs: 2, md: 4 },
+          pr: { xs: 2, md: 4 },
+        }}
       >
         <BytebankBalanceCard />
 
         <Box
-          mt="26px"
-          width="100%" 
+          mt="32px"
+          width="100%"
           display="flex"
-          justifyContent={{xs: "center", md: "center", lg:"left"}}
+          justifyContent={{ xs: "center", md: "center", lg: "left" }}
         >
           <CardsInfoWidgets
             cards={cards}
@@ -55,10 +55,9 @@ export const BytebankCardsPage: React.FC = () => {
         </Box>
 
         <Box
-          mt={{ xs: "36px", md: "36px" }}
+          mt={{ xs: "32px", md: "32px" }}
           display="flex"
           flexDirection={{ xs: "column", lg: "row" }} // linha no desktop
-          justifyContent="space-between"
           alignItems="flex-start"
           width="100%"
           gap={2}
@@ -68,7 +67,7 @@ export const BytebankCardsPage: React.FC = () => {
             flex={1}
             display="flex"
             flexDirection="column"
-            width={{xs:"100%", md:"100%"}}
+            width={{ xs: "100%", md: "100%" }}
           >
             <BytebankCardWrapper
               cards={cards}
@@ -84,7 +83,6 @@ export const BytebankCardsPage: React.FC = () => {
             display="flex"
             flexDirection="column"
             alignSelf="center"
-            mb={{xs: "36px"}}
           >
             <BytebankNewCardBank />
           </Box>
