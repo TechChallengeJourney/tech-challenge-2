@@ -1,5 +1,5 @@
 import { Box, Skeleton } from "@mui/material";
-import { useUser, WidgetKey } from "@repo/data-access";
+import { WidgetKey } from "@repo/data-access";
 import { BytebankCard, BytebankIllustration, BytebankText } from "@repo/ui";
 import { formatCurrencyBRL, useTheme } from "@repo/utils";
 import { useState, useEffect } from "react";
@@ -31,7 +31,7 @@ interface BytebankMonthlyResumeResponse {
   data: BytebankMonthlyResumeProps[];
 }
 
-export function BytebankMonthlyResumeWidget() {
+export function BytebankMonthlyResumeWidget({userId}: {userId: string}) {
   const { colors, isDarkMode } = useTheme();
 
   let options: ApexCharts.ApexOptions = {
@@ -129,9 +129,7 @@ export function BytebankMonthlyResumeWidget() {
   };
 
   const [isLoading, setLoading] = useState(true);
-  const { user } = useUser();
   const [widgetData, setWidgetData] = useState<BytebankMonthlyResumeResponse>();
-  const userId = user?._id ?? "";
 
   useEffect(() => {
     const fetchData = async () => {
