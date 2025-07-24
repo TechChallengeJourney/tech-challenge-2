@@ -20,7 +20,7 @@ export default {
           <Box>
             <Typography variant="h5" gutterBottom>Lista de ilustrações</Typography>
             <Box display="flex" flexDirection="row" flexWrap="nowrap" alignItems="flex-end" gap={5}>
-              {['not-found'].map((name) => (
+              {['not-found.svg'].map((name) => (
                 <Box key={name} display="flex" alignItems="center" flexDirection="column">
                   <BytebankIllustration name={name} variant="md" />
                   <Typography variant="caption" style={{ marginTop: '8px' }}>

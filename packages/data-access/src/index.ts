@@ -8,3 +8,5 @@ export * from './hooks/use-fetch';
 export * from "./hooks/use-delete-card";
 export * from "./hooks/use-block-card";
 export * from './helpers/api';
+export * from './api/addressService';
+export * from './api/userService';
