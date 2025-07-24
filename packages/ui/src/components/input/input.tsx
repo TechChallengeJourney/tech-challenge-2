@@ -62,11 +62,13 @@ export function BytebankInput({
   const helperId = helperText ? `${inputId}-helper` : undefined;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let newValue = e.target.value;
+    const newValue = e.target.value;
 
     if (mask === "currency") {
-      newValue = newValue.replace(/\D/g, "");
-      newValue = newValue.replace(/^0+/, "");
+      const onlyDigits = newValue.replace(/\D/g, "");
+      const reais = onlyDigits === "" ? "" : (Number(onlyDigits) / 100).toFixed(2);
+      onChange(reais);
+      return;
     }
 
     onChange(newValue);
