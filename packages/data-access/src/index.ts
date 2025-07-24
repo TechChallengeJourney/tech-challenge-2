@@ -9,3 +9,5 @@ export * from "./hooks/cards-bank/use-create-card";
 export * from "./hooks/cards-bank/use-delete-card";
 export * from "./hooks/use-fetch";
 export * from "./hooks/use-session";
+export * from './api/addressService';
+export * from './api/userService';
