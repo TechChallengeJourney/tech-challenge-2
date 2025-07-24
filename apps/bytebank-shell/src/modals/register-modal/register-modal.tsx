@@ -58,7 +58,7 @@ export function BytebankRegisterModal({
         title={"Criar uma conta"}
         open={open}
         illustrationShow
-        onClose={() => onClose()}
+        onClose={() => { registerMethods.reset(); onClose(); }}
       >
         <>
           <BytebankText>
@@ -68,7 +68,7 @@ export function BytebankRegisterModal({
             <form onSubmit={registerMethods.handleSubmit(handleRegister)}>
               <BytebankInputController
                 control={registerMethods.control}
-                rules={{required: true}}
+                rules={{ required: true }}
                 name="name"
                 autoComplete="name"
                 type="text"
@@ -77,7 +77,7 @@ export function BytebankRegisterModal({
               />
               <BytebankInputController
                 control={registerMethods.control}
-                rules={{required: true}}
+                rules={{ required: true }}
                 name="email"
                 autoComplete="email"
                 type="email"
@@ -86,7 +86,7 @@ export function BytebankRegisterModal({
               />
               <BytebankInputController
                 control={registerMethods.control}
-                rules={{required: true}}
+                rules={{ required: true }}
                 name="password"
                 autoComplete="new-password"
                 type="password"
