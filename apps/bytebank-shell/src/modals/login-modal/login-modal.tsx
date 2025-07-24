@@ -65,14 +65,14 @@ export function BytebankLoginModal({
         title={"Login"}
         open={open}
         illustrationShow
-        onClose={() => onClose()}
+        onClose={() => { loginMethods.reset(); onClose(); }}
       >
         <>
           <FormProvider {...loginMethods}>
             <form onSubmit={loginMethods.handleSubmit(handleLogin)}>
               <BytebankInputController
                 control={loginMethods.control}
-                rules={{required: true}}
+                rules={{ required: true }}
                 name="email"
                 autoComplete="email"
                 type="email"
@@ -81,7 +81,7 @@ export function BytebankLoginModal({
               />
               <BytebankInputController
                 control={loginMethods.control}
-                rules={{required: true}}
+                rules={{ required: true }}
                 name="password"
                 autoComplete="current-password"
                 type="password"
