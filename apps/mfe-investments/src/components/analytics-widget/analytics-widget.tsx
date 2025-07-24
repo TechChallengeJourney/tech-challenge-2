@@ -2,14 +2,13 @@ import { Box, Skeleton } from "@mui/material";
 import {
   BytebankCard,
   BytebankText,
-  BytebankButton,
   BytebankLinearProgress,
   BytebankIllustration,
 } from "@repo/ui";
 import { formatCurrencyBRL } from "@repo/utils";
 import { fetchWidgetData } from "../../services/widgets";
 import { useEffect, useState } from "react";
-import { useUser, WidgetKey } from "@repo/data-access";
+import { WidgetKey } from "@repo/data-access";
 
 interface WidgetAnalyticsProps {
   income: number;
@@ -17,13 +16,11 @@ interface WidgetAnalyticsProps {
   category: { name: string; percentage: number };
 }
 
-export function BytebankAnalyticsWidget() {
+export function BytebankAnalyticsWidget({userId}: {userId: string}) {
   const [isLoading, setLoading] = useState(true);
-  const { user } = useUser();
   const [widgetData, setWidgetData] = useState<WidgetAnalyticsProps | null>(
     null
   );
-  const userId = user?._id ?? "";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -83,10 +80,10 @@ export function BytebankAnalyticsWidget() {
               </BytebankText>
             </Box>
             <BytebankLinearProgress value={widgetData?.income > 0
-                  ? (widgetData?.income /
-                      (widgetData?.income + widgetData?.expense)) *
-                    100
-                  : 0} />
+              ? (widgetData?.income /
+                (widgetData?.income + widgetData?.expense)) *
+              100
+              : 0} />
             <Box display="flex" justifyContent="space-between" marginTop={2}>
               <BytebankText variant="sm" fontWeight="bold">
                 Despesas do mês

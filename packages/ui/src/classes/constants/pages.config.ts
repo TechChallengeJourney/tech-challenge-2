@@ -1,15 +1,6 @@
 import { WrapperRouteProps } from "../models/wrapper-route";
 
-export const unloggedPages: WrapperRouteProps[] = [
-    {
-        name: 'Sobre',
-        route: '/'
-    },
-    {
-        name: 'Serviços',
-        route: '/servicos'
-    },
-];
+export const unloggedPages: WrapperRouteProps[] = [];
 
 export const loggedPages: WrapperRouteProps[] = [
     {
@@ -17,16 +8,7 @@ export const loggedPages: WrapperRouteProps[] = [
         route: '/dashboard'
     },
     {
-        name: 'investimentos',
-        route: '/investimentos'
-    },
-    {
-        name: 'transferências',
-        route: '/transferencias',
-        disabled: true
-    },
-    {
-        name: 'outros',
-        route: '/outros'
+        name: 'meus cartões',
+        route: '/cartoes'
     },
 ];
