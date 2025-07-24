@@ -37,7 +37,7 @@ export function BytebankHeader() {
     const [isSnackbarOpen, setSnackbarOpen] = useState(false);
     const [openLoginModal, setOpenLoginModal] = useState(false);
     const [openRegisterModal, setOpenRegisterModal] = useState(false);
-    const { user, setUser, loading } = useUser();
+    const { user, setUser } = useUser();
     const isLogged = !!user;
     const pages = isLogged ? loggedPages : unloggedPages;
 
