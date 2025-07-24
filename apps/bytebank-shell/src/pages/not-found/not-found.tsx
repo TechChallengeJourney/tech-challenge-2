@@ -24,7 +24,7 @@ export default function NotFound() {
       textAlign="center"
     >
       <Box width={{ xs: "80%", sm: "60%", md: "40%" }} maxWidth={400}>
-        <BytebankIllustration variant="auto" name="not-found.svg" alt="ilustração de duas folhas e uma lupa"/>
+        <BytebankIllustration variant="auto" name="not-found" alt="ilustração de duas folhas e uma lupa"/>
       </Box>
 
       <BytebankText variant="xxl" align="center">

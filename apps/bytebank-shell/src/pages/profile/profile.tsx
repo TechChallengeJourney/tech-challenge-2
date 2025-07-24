@@ -139,7 +139,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
     }, [user, userMethods]);
 
     return (
-        <Container maxWidth="xl">
+        <Container maxWidth="xl" sx={{marginBottom: '100px'}}>
             <Box width={'100%'} pt={4} mb={4} display={'flex'} flexDirection={'column'} gap={1}>
                 <BytebankText variant="xxl" fontWeight={'bolder'} align="center">
                     Meu perfil
@@ -163,7 +163,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                     <Box flexGrow={1} px={'60px'}>
                         {hasUserImage ?
                             <BytebankIllustration className="user-image" src={user?.image} alt="Imagem de perfil do usuário" /> :
-                            <BytebankIllustration name="user-circle-icon.png" alt="Imagem padrão de usuário" />
+                            <BytebankIllustration name="user-circle-icon" type="png" alt="Imagem padrão de usuário" />
                         }
 
                     </Box>
@@ -176,7 +176,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                             onChange={updateImage}
                         />
                         <BytebankButton
-                            sendSubmit={handleEditClick}
+                            onClick={handleEditClick}
                             label="Editar foto"
                             variant={"outlined"}
                             color={"primary"}
