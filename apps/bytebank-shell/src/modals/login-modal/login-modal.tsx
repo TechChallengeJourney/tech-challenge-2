@@ -68,7 +68,7 @@ export function BytebankLoginModal({
         onClose={() => { loginMethods.reset(); onClose(); }}
       >
         <>
-          <FormProvider {...loginMethods}>
+          <FormProvider {...loginMethods}> 
             <form onSubmit={loginMethods.handleSubmit(handleLogin)}>
               <BytebankInputController
                 control={loginMethods.control}
