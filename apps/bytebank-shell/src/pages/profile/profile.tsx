@@ -1,6 +1,6 @@
 import { FC, useEffect, useRef, useState } from 'react';
 import { Box, Container } from '@mui/material';
-import { BytebankCard, BytebankButton, BytebankModal, BytebankText, SnackbarData, BytebankIllustration, BytebankInputController, BytebankSnackbar } from '@repo/ui';
+import { BytebankCard, BytebankButton, BytebankText, SnackbarData, BytebankIllustration, BytebankInputController, BytebankSnackbar } from '@repo/ui';
 import { useTheme } from '@repo/utils';
 import { getUserAddress, updateUser, updateUserProfileImage, useUser } from '@repo/data-access';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -29,8 +29,6 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
     const [isLoading, setLoading] = useState(false);
 
     const fileInputRef = useRef<HTMLInputElement | null>(null);
-
-    const [file, setFile] = useState(null);
 
     const userMethods = useForm<ProfileFormValues>({
         defaultValues: {
@@ -69,6 +67,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
 
         if (!user) throw new Error('É necessário user id');
 
+        setLoading(true);
         const request = await updateUser(user?._id, body)
 
         if (request.status == 200) {
@@ -89,6 +88,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
             getData()
             setSnackbarOpen(true);
         }
+        setLoading(false);
     };
 
     const handlePasswrodUpdatedModal = () => {
@@ -139,7 +139,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
     }, [user, userMethods]);
 
     return (
-        <Container maxWidth="xl" sx={{marginBottom: '100px'}}>
+        <Container maxWidth="xl" sx={{ marginBottom: '100px' }}>
             <Box width={'100%'} pt={4} mb={4} display={'flex'} flexDirection={'column'} gap={1}>
                 <BytebankText variant="xxl" fontWeight={'bolder'} align="center">
                     Meu perfil
