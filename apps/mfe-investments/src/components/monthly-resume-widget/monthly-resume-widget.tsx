@@ -106,7 +106,7 @@ export function BytebankMonthlyResumeWidget({userId}: {userId: string}) {
     },
     responsive: [
       {
-        breakpoint: 600,
+        breakpoint: 900,
         options: {
           plotOptions: {
             bar: {

@@ -25,11 +25,7 @@ const BytebankWidgetDrawer: React.FC<{ openDrawer: boolean; onClose: () => void;
 
 const BytebankGeneralCardsWidget: React.FC = React.lazy(() =>
   // @ts-ignore
-  import('investments/components').then((module) => {
-    console.log('inv', module)
-    return {default: module.default || module.BytebankGeneralCardsWidget
-    }
-  }).catch((error) => {
+  import('investments/components').then((module) => ({default: module.default || module.BytebankGeneralCardsWidget})).catch((error) => {
     console.error(error)
   })
 );
@@ -98,7 +94,7 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
           </React.Suspense>
         </Box>
         <Box>
-          <Box display="grid" gridTemplateColumns="1fr 2fr " gap={2} sx={{ gridTemplateColumns: { xs: '1fr', sm: '1fr 2fr', md: '1fr 2fr' } }}>
+          <Box display="grid" gridTemplateColumns="1fr 2fr " gap={2} sx={{ gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr 2fr' } }}>
             <Box>
               <BytebankTransactionCard />
             </Box>
