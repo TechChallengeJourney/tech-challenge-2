@@ -247,7 +247,7 @@ export function BytebankHeader() {
                                 <>
                                     <Tooltip title="Gerenciar conta">
                                         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                            <Avatar sx={{ bgcolor: colors["lime.400"] }} alt={user?.name} src="/static/images/avatar/2.jpg" />
+                                            <Avatar sx={{ bgcolor: colors["lime.400"] }} alt={user?.name} />
                                         </IconButton>
                                     </Tooltip>
                                     <Menu

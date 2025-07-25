@@ -10,36 +10,36 @@ export default createModuleFederationConfig({
   filename: "remoteEntry.js",
   shared: {
     react: {
-      singleton: true,
+       singleton: true,
       requiredVersion: dependencies.react,
       eager: true
     },
     'react-dom': {
-      singleton: true,
+       singleton: true,
       requiredVersion: dependencies['react-dom'],
-      eager: true
+       eager: true
     },
     '@mui/material': {
-      singleton: true,
+       singleton: true,
       requiredVersion: dependencies['@mui/material'],
-      eager: true
+       eager: true
     },
     '@emotion/react': {
-      singleton: true,
+       singleton: true,
       requiredVersion: dependencies['@emotion/react']
     },
     '@emotion/styled': {
-      singleton: true,
+       singleton: true,
       requiredVersion: dependencies['@emotion/styled']
     },
     '@repo/ui': {
-      singleton: true
+       singleton: true
     },
     '@repo/utils': {
-      singleton: true
+       singleton: true
     },
     '@repo/data-access': {
-      singleton: true,
+       singleton: true,
     }
   }
 });

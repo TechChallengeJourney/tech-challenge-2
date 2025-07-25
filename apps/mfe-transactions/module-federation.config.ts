@@ -1,50 +1,50 @@
-import { createModuleFederationConfig } from '@module-federation/rsbuild-plugin';
-import pkg from './package.json';
+import { createModuleFederationConfig } from "@module-federation/rsbuild-plugin";
+import pkg from "./package.json";
 const { dependencies } = pkg;
 
 export default createModuleFederationConfig({
-  name: 'transactions',
+  name: "transactions",
   exposes: {
-    './BytebankExtract': './src/components/extract/index',
+    "./components": "./src/components/extract/index",
   },
-  filename: 'remoteEntry.js',
+  filename: "remoteEntry.js",
   shared: {
     react: {
       singleton: true,
       eager: true,
-      requiredVersion: dependencies.react
+      requiredVersion: dependencies.react,
     },
-    'react-dom': {
+    "react-dom": {
       singleton: true,
       eager: true,
-      requiredVersion: dependencies['react-dom']
+      requiredVersion: dependencies["react-dom"],
     },
-    'react-hook-form': {
+    "react-hook-form": {
       singleton: true,
       eager: true,
-      requiredVersion: dependencies['react-hook-form']
+      requiredVersion: dependencies["react-hook-form"],
     },
-    '@mui/material': {
+    "@mui/material": {
       singleton: true,
-      requiredVersion: dependencies['@mui/material'],
-      eager: true
+      requiredVersion: dependencies["@mui/material"],
+      eager: true,
     },
-    '@emotion/react': {
+    "@emotion/react": {
       singleton: true,
-      requiredVersion: dependencies['@emotion/react']
+      requiredVersion: dependencies["@emotion/react"],
     },
-    '@emotion/styled': {
+    "@emotion/styled": {
       singleton: true,
-      requiredVersion: dependencies['@emotion/styled']
+      requiredVersion: dependencies["@emotion/styled"],
     },
-    '@repo/ui': {
-      singleton: true
-    },
-    '@repo/utils': {
-      singleton: true
-    },
-    '@repo/data-access': {
+    "@repo/ui": {
       singleton: true,
-    }
-  }
+    },
+    "@repo/utils": {
+      singleton: true,
+    },
+    "@repo/data-access": {
+      singleton: true,
+    },
+  },
 });
