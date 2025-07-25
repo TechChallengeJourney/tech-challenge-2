@@ -6,7 +6,7 @@ import mfConfig from "./module-federation.config";
 import { pluginSass } from "@rsbuild/plugin-sass";
 
 const { publicVars } = loadEnv({ prefixes: ["REACT_APP_", "PUBLIC_"] });
-const APP_URL = process.env.PUBLIC_TRANSACTIONS_APP_URL || "http://localhost:3002";
+const APP_URL = process.env.PUBLIC_INVESTMENTS_APP_URL || "http://localhost:3002";
 
 export default defineConfig({
   server: {
