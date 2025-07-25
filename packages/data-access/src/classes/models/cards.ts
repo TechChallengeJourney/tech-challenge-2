@@ -18,3 +18,10 @@ export interface CardData {
   limit: number;
   expend?: string;
 }
+
+export interface NewCardData {
+  userId: string;
+  name: string;
+  functions: string[];
+  variant: string;
+}

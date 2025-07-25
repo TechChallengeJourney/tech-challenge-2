@@ -1,18 +1,24 @@
 import { Box } from "@mui/material";
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { useForm, FormProvider, Controller } from "react-hook-form";
-import { useFetch, useSession, useUser } from "@repo/data-access";
 import {
   BytebankAccessModalProps,
   BytebankModal,
   BytebankInputController,
   BytebankSelect,
   BytebankButton,
-  BytebankText,
-  SnackbarData,
   BytebankSnackbar,
+  SnackbarData,
 } from "@repo/ui";
-const apiUrl = import.meta.env.PUBLIC_API_URL;
+import { useUser } from "@repo/data-access";
+import { useCreateCardBank } from "@repo/data-access";
+
+export interface NewCardData {
+  userId: string;
+  name: string;
+  functions: string[];
+  variant: string;
+}
 
 const variantOptions = [
   { label: "Platinum", value: "platinum" },
@@ -30,13 +36,10 @@ export function BytebankCreateCardModal({
   onClose,
   onSubmit,
 }: BytebankAccessModalProps): ReactElement {
-  const [isLoading, setLoading] = useState(false);
   const [snackbarData, setSnackbarData] = useState<SnackbarData | null>(null);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const { request, loading, error } = useFetch();
-  const [sessionToken] = useSession<string | null>("token");
-
   const { user } = useUser();
+  const { createCard, loading, error } = useCreateCardBank();
 
   const methods = useForm({
     defaultValues: {
@@ -46,47 +49,34 @@ export function BytebankCreateCardModal({
     },
   });
 
-const handleCreateCard = async (data: any) => {
-  if (!user?._id || !sessionToken) return;
-  setLoading(true);
+  const handleCreateCard = async (data: any) => {
+    if (!user?._id) return;
 
-  try {
-    const { json, response } = await request(`${apiUrl}/cards`, {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + sessionToken,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userId: user._id,
-        name: data.name,
-        functions: data.functions,
-        variant: data.variant,
-      }),
+    const result = await createCard({
+      userId: user._id,
+      name: data.name,
+      functions: data.functions,
+      variant: data.variant,
     });
 
-    if (!response?.ok) {
-      throw new Error(error || "Erro ao criar cartão");
+    if (result) {
+      setSnackbarData({
+        status: "success",
+        message: "Cartão criado com sucesso!",
+      });
+
+      onSubmit?.({ status: "success", data: result });
+      methods.reset();
+      onClose();
+    } else {
+      setSnackbarData({
+        status: "error",
+        message: error ?? "Erro ao criar cartão.",
+      });
     }
 
-    setSnackbarData({
-      status: "success",
-      message: "Cartão criado com sucesso!",
-    });
-
-    onSubmit({ status: "success", data: json });
-    methods.reset();
-    onClose();
-  } catch (err: any) {
-    setSnackbarData({
-      status: "error",
-      message: err.message || "Erro ao criar cartão",
-    });
-  } finally {
     setSnackbarOpen(true);
-    setLoading(false);
-  }
-};
+  };
 
   return (
     <>
@@ -105,45 +95,43 @@ const handleCreateCard = async (data: any) => {
               rules={{ required: "Nome é obrigatório" }}
             />
 
-          <Controller
-            name="functions"
-            control={methods.control}
-            rules={{ required: "Selecione pelo menos uma função" }}
-            render={({ field, fieldState }) => (
-              <BytebankSelect
-                {...field}
-                multiple={true}
-                label="Função"
-                options={functionOptions}
-                error={!!fieldState.error}
-                helperText={fieldState.error?.message}
-              />
-            )}
-          />
+            <Controller
+              name="functions"
+              control={methods.control}
+              rules={{ required: "Selecione pelo menos uma função" }}
+              render={({ field, fieldState }) => (
+                <BytebankSelect
+                  {...field}
+                  multiple
+                  label="Função"
+                  options={functionOptions}
+                  error={!!fieldState.error}
+                  helperText={fieldState.error?.message}
+                />
+              )}
+            />
 
-
-          <Controller
-            name="variant"
-            control={methods.control}
-            rules={{ required: "Selecione o tipo do cartão" }}
-            render={({ field, fieldState }) => (
-              <BytebankSelect
-                {...field}
-                name="variant"
-                label="Tipo do cartão"
-                options={variantOptions}
-                error={!!fieldState.error}
-                helperText={fieldState.error?.message}
-              />
-            )}
-          />
+            <Controller
+              name="variant"
+              control={methods.control}
+              rules={{ required: "Selecione o tipo do cartão" }}
+              render={({ field, fieldState }) => (
+                <BytebankSelect
+                  {...field}
+                  label="Tipo do cartão"
+                  options={variantOptions}
+                  error={!!fieldState.error}
+                  helperText={fieldState.error?.message}
+                />
+              )}
+            />
 
             <Box mt={2}>
               <BytebankButton
                 label="Criar cartão"
                 color="secondary"
                 variant="contained"
-                loading={isLoading}
+                loading={loading}
                 fullWidth
                 type="submit"
               />
