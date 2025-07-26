@@ -9,6 +9,19 @@ import {
 } from "@mui/icons-material";
 import { useTheme } from "@repo/utils";
 
+// Dados estáticos para SSG
+const STATIC_THEME = {
+  isDarkMode: false,
+  colors: {
+    "lime.dark": "#4a5d23",
+    "lime.100": "#f7fee7",
+    "lime.50": "#f7fee7",
+    "lime.900": "#1a2e05",
+    "lime.contrast": "#ffffff",
+    "lime.400": "#a3e635"
+  }
+};
+
 type Benefit = {
   icon: ReactElement;
   title: string;
@@ -42,10 +55,15 @@ const BENEFITS: Benefit[] = [
   },
 ];
 
-const BytebankHomePage = () => {
-  const { isDarkMode, colors } = useTheme();
+const BytebankHomePage = ({ isSSG = false }: { isSSG?: boolean } = {}) => {
+  // Use tema estático para SSG ou tema dinâmico para CSR
+  const dynamicTheme = useTheme();
+  const { isDarkMode, colors } = isSSG ? STATIC_THEME : dynamicTheme;
 
   useEffect(() => {
+    // Pular efeitos durante SSG
+    if (isSSG) return;
+    
     const header = document.getElementById("bytebank-header");
 
     if (!header) return;
@@ -77,6 +95,9 @@ const BytebankHomePage = () => {
   }, [isDarkMode]);
 
   useEffect(() => {
+    // Pular efeitos durante SSG
+    if (isSSG) return;
+    
     const footer = document.getElementById("bytebank-bg-footer");
     const footerText = document.getElementById('bytebank-footer-text');
     if (!footer || !footerText) return;

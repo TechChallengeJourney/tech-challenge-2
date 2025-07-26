@@ -34,6 +34,7 @@
   "scripts": {
     "dev": "rsbuild dev --port 3000",
     "build": "rsbuild build",
+    "build:ssg": "yarn run build && node scripts/prerender.js",
     "preview": "rsbuild preview",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -60,6 +61,7 @@
     "@rsbuild/core": "latest",
     "@rsbuild/plugin-react": "latest",
     "@types/react": "19.0.0",
-    "@types/react-dom": "19.0.0"
+    "@types/react-dom": "19.0.0",
+    "esbuild-sass-plugin": "^3.3.1"
   }
 }
