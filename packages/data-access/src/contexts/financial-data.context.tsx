@@ -68,7 +68,7 @@ export const FinancialDataProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const fetchTransactions = (user: User, params?: ExtractFilter) => {
     const queryParams = {
-      limit: params?.limit || 5,
+      limit: params?.limit || 4,
       page: params?.page || 1,
       categoryId: params?.categoryId ,
       minValue: params?.minValue ,

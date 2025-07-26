@@ -41,11 +41,12 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
           </React.Suspense>
         </Box>
         <Box>
+
           <Box display="grid" gridTemplateColumns="1fr 2fr " gap={2} sx={{ gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr 2fr' } }}>
             <Box>
               <BytebankTransactionCard />
             </Box>
-            <Box textAlign="left" minHeight={'10rem'}>
+            <Box textAlign="left" height={'100%'} overflow={'hidden'}>
               <React.Suspense fallback={<div>Carregando extrato...</div>}>
                 <BytebankExtract />
               </React.Suspense>
