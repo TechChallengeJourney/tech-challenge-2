@@ -4,6 +4,8 @@ export interface User {
     _id: string;
     name: string;
     email: string;
-    selectedWidgets: WidgetKey[];
     password?: string;
+    document: string;
+    image: string;
+    selectedWidgets: WidgetKey[];
 }
