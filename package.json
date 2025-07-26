@@ -2,9 +2,10 @@
   "name": "tech-challenge-2",
   "private": true,
   "scripts": {
-    "build": "NODE_ENV=production turbo run build",
-    "preview": "NODE_ENV=production turbo run preview --filter=bytebank-shell",
-    "preview:mfe-investments": "NODE_ENV=production turbo run preview --filter=mfe-investments",
+    "build": "turbo run build",
+    "build:prod": "NODE_ENV=production turbo run build",
+    "preview": "turbo run preview --filter=bytebank-shell",
+    "preview:mfe-investments": "turbo run preview --filter=mfe-investments",
     "preview:mfe-transactions": "NODE_ENV=production turbo run preview --filter=mfe-transactions",
     "preview:all": "concurrently \"npm run preview\" \"npm run preview:mfe-investments\" \"npm run preview:mfe-transactions\"",
     "build:bytebank-shell": "turbo run build --filter=bytebank-shell",

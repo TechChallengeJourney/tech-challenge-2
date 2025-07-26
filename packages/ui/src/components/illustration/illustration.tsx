@@ -15,6 +15,7 @@ export interface BytebankIllustrationProps {
   width?: string;
   height?: string;
   alt?: string;
+  justifyContent?: string;
 }
 
 const BytebankIllustrationSizes = {
@@ -30,6 +31,7 @@ export function BytebankIllustration({
   alt,
   width,
   height,
+  justifyContent = "center"
 }: BytebankIllustrationProps) {
   const path = name ? `/images/${name}.${type}` : "";
 
@@ -41,7 +43,7 @@ export function BytebankIllustration({
         width: variant === "auto" ? "100%" : fixedWidth,
         maxWidth: "100%",
         display: "flex",
-        justifyContent: "center",
+        justifyContent,
       }}
     >
       <img
