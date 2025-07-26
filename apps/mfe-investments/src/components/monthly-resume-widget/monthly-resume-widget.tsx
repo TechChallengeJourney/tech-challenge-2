@@ -1,5 +1,5 @@
 import { Box, Skeleton } from "@mui/material";
-import { WidgetKey } from "@repo/data-access";
+import { useFinancialData, WidgetKey } from "@repo/data-access";
 import { BytebankCard, BytebankIllustration, BytebankText } from "@repo/ui";
 import { formatCurrencyBRL, useTheme } from "@repo/utils";
 import { useState, useEffect } from "react";
@@ -32,8 +32,9 @@ interface BytebankMonthlyResumeResponse {
 }
 
 export function BytebankMonthlyResumeWidget({userId}: {userId: string}) {
+  const { extract } = useFinancialData();
   const { colors, isDarkMode } = useTheme();
-
+  
   let options: ApexCharts.ApexOptions = {
     chart: {
       type: "bar",
@@ -153,7 +154,7 @@ export function BytebankMonthlyResumeWidget({userId}: {userId: string}) {
       }
     };
     fetchData();
-  }, [userId]);
+  }, [userId, extract]);
 
   const renderLoading = () =>
     isLoading ? (

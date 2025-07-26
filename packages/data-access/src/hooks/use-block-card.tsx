@@ -13,7 +13,6 @@ export function useBlockCard(initialBlocked: boolean) {
 
   React.useEffect(() => {
     setBlocked(initialBlocked);
-    console.log("useBlockCard - synced with initialBlocked:", initialBlocked);
   }, [initialBlocked]);
 
   const handleBlock = async (cardId: string): Promise<boolean> => {
