@@ -84,7 +84,7 @@ export const BytebankCardsPage: React.FC = () => {
             flexDirection="column"
             alignSelf="center"
           >
-            <BytebankNewCardBank />
+            <BytebankNewCardBank refetchCards={refetchCards}/>
           </Box>
         </Box>
       </Box>

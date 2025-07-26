@@ -1,5 +1,5 @@
-import { CardData } from "../classes/models/cards";
-import { api } from "../helpers/api";
+import { CardData } from "../../classes/models/cards";
+import { api } from "../../helpers/api";
 
 export interface ErrorResponse {
   error: string;
