@@ -1,5 +1,6 @@
 import { NewCardData } from "../../classes/models/cards";
 import { api } from "../../helpers/api";
+
 export interface ErrorResponse {
   error: string;
 }
@@ -11,17 +12,20 @@ export async function PostCardBank({
   variant,
 }: NewCardData): Promise<NewCardData | ErrorResponse> {
   try {
-    const response = await api.post<NewCardData>(`/cards`, {
-      body: JSON.stringify({
+    const response = await api.post<NewCardData>(
+      `/cards`,
+      {
         userId,
         name,
         functions,
         variant,
-      }),
-      headers: {
-        "Content-Type": "application/json",
       },
-    });
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     return response.data;
   } catch (error: any) {
