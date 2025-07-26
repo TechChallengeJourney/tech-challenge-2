@@ -9,10 +9,9 @@ import {
 } from  "@repo/ui";
 import { Box, Skeleton, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { useUser } from "@repo/data-access";
+import { api, useUser } from "@repo/data-access";
 import { useFinancialData } from "@repo/data-access";
 import { Transaction } from '@repo/data-access';
-import EditExtractModal from './components/edit-modal';
 import DeleteExtractModal from './components/delete-modal';
 import IconButton from '@mui/material/IconButton';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
@@ -22,6 +21,8 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import EditExtract from "./components/edit";
+import { set } from "react-hook-form";
 
 export function BytebankExtract() {
   const { user } = useUser();
@@ -32,6 +33,7 @@ export function BytebankExtract() {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Transaction | null>(null);
   const [openFilter, setOpenFilter] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -46,6 +48,10 @@ export function BytebankExtract() {
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpenFilter(newOpen);
   };
+
+  const toggleDrawerEdit = (newOpen: boolean) => () => {
+    setOpenEdit(newOpen);
+  };
   const numberFormat = (value: number) =>
     value.toLocaleString('pt-BR', {
       style: 'currency',
@@ -54,9 +60,10 @@ export function BytebankExtract() {
 
   // Função para abrir modal de edição
   const handleEditMenu = (item: Transaction) => {
+    setOpenEdit(true);
     handleClose()
     setSelectedItem(item);
-    setEditModalOpen(true);
+   
   };
 
   // Função para abrir modal de exclusão
@@ -112,15 +119,7 @@ export function BytebankExtract() {
     }
   };
   const handleTransactionDelete = async (id: string) => {
-    const response = await fetch(`/api/transactions/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(id),
-    });
-
-    if (response.ok) {
+    api.delete(`/transactions/${id}`, { data: { id } }).then(() => {
       setSnackbarData({
         status: 'success',
         message: 'Transação excluída com sucesso!',
@@ -129,9 +128,9 @@ export function BytebankExtract() {
       if (user) {
         fetchTransactions(user);
       }
-    } else {
-      errorSnackBar();
-    }
+    }).catch(() => {
+     errorSnackBar();
+    });
   };
 
   const errorSnackBar = () => {
@@ -163,9 +162,9 @@ export function BytebankExtract() {
 
   return (
     <>
-      <BytebankCard >
-        <Box pb={4}>
-          <Box p={4}>
+      <BytebankCard styles={{ height: '100%' }}>
+        <Box >
+          <Box p={4} pb={0}>
             <BytebankText fontWeight={'bold'} variant={'md'}>
               Histórico de transações
             </BytebankText>
@@ -175,6 +174,7 @@ export function BytebankExtract() {
               color="primary"
               onClick={() => setOpenFilter(true)}
               size="small"
+              style={{ border: '1px solid #e0e0e0', borderRadius: '4px' }}
               
             >
               <FilterAltIcon  fontSize='small'  />
@@ -231,6 +231,8 @@ export function BytebankExtract() {
                       <Box display={'flex'} flexDirection="row" gap={'10px'}  alignItems="center">
                         <IconButton
                           color="primary"
+                          style={{ border: '1px solid #e0e0e0' }}
+
                         >
                           {itens.type !== 'income' ? <ArrowUpwardIcon style={{ fontSize: '35px' }} /> : <ArrowUpwardIcon style={{ fontSize: '35px', transform: 'rotate(180deg)' }} />}
                         </IconButton>
@@ -344,7 +346,7 @@ export function BytebankExtract() {
                     currentPage={extract.pagination?.page || 1}
                     onPageChange={(e, page) => {
                       if (user) {
-                        fetchTransactions(user, { limit: 5, page: page });
+                        fetchTransactions(user, { limit: 4, page: page });
                       }
                     }}
                     color="primary"
@@ -356,15 +358,14 @@ export function BytebankExtract() {
         </Box>
       </BytebankCard>
 
-      <EditExtractModal
-        open={editModalOpen}
-        onClose={() => setEditModalOpen(false)}
-        item={selectedItem as Transaction}
-        onSave={async (newValue) => {
-          if (!selectedItem) return;
-          handleTransactionUpdate(selectedItem, newValue);
-        }}
-      />
+      <BytebankDrawer anchor="right" open={openEdit} onClose={toggleDrawerEdit(false)} title="Editar" >
+        <EditExtract
+          toggleDrawer={toggleDrawerEdit}
+          item={selectedItem as Transaction}
+        />
+      </BytebankDrawer>
+
+      
       <DeleteExtractModal
         open={deleteModalOpen}
         onClose={() => setDeleteModalOpen(false)}
