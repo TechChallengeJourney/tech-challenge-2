@@ -24,9 +24,9 @@ export function BytebankCardBank({
   const palette = !isDarkMode ? colorsPalette.light : colorsPalette.dark;
 
   const variantColorMap: Record<string, string> = {
-    Platinum: palette["background.platinumCard"],
-    Gold: palette["background.goldcard"],
-    Black: palette["background.blackCard"],
+    platinum: palette["background.platinumCard"],
+    gold: palette["background.goldcard"],
+    black: palette["background.blackCard"],
   };
 
   const bgcolor = variantColorMap[variant] || palette["grey.400"];
