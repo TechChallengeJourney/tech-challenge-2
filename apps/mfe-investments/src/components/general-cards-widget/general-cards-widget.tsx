@@ -2,7 +2,7 @@ import { Box, Skeleton } from '@mui/material';
 import { BytebankCard, BytebankText } from '@repo/ui';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { formatCurrencyBRL } from '@repo/utils';
-import { useUser, WidgetKey } from '@repo/data-access';
+import { useFinancialData, useUser, WidgetKey } from '@repo/data-access';
 import { useState, useEffect, JSX } from 'react';
 import { fetchWidgetData } from '../../services/widgets';
 import PaymentsIcon from '@mui/icons-material/Payments';
@@ -33,9 +33,10 @@ const widgets: Partial<BytebankGeneralWidgetCardProps>[] = [{
 }];
 
 export function BytebankGeneralCardsWidget() {
+  const { user } = useUser();
+  const { extract } = useFinancialData();
   const [isLoading, setLoading] = useState(true);
   const [widgetsData, setWidgetsData] = useState<Partial<BytebankGeneralWidgetCardProps>[]>([]);
-  const { user } = useUser();
   const userId = user?._id ?? '';
   const selectedWidgets = user?.selectedWidgets ?? [];
   const cardWidgets = [WidgetKey.HighestIncome, WidgetKey.MostExpensiveCategory, WidgetKey.DailyAverage];
@@ -68,7 +69,7 @@ export function BytebankGeneralCardsWidget() {
       }
     };
     fetchAllWidgets();
-  }, [user]);
+  }, [user, extract]);
 
   if (isLoading) return (
     <Box

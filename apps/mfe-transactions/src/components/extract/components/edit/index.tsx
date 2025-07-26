@@ -53,7 +53,6 @@ export default function EditExtract({
     }
     api.put(`/transactions/${item._id}`, body)
       .then((res) => {
-        console.log(res.data);
         toggleDrawer(false)();
         fetchTransactions(user!);
 
@@ -61,7 +60,6 @@ export default function EditExtract({
       .catch((error) => {
         console.error('Error updating transaction:', error);
       })
-    console.log(body);
   }
 
   return (
