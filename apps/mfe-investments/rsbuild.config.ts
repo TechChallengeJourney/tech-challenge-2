@@ -5,11 +5,19 @@ import { pluginModuleFederation } from "@module-federation/rsbuild-plugin";
 import mfConfig from "./module-federation.config";
 import { pluginSass } from "@rsbuild/plugin-sass";
 
-const { publicVars } = loadEnv({ prefixes: ["REACT_APP_"] });
+const { publicVars } = loadEnv({ prefixes: ["REACT_APP_", "PUBLIC_"] });
+const APP_URL = process.env.PUBLIC_INVESTMENTS_APP_URL || "http://localhost:3001";
 
 export default defineConfig({
   server: {
     port: 3001,
+  },
+  mode: 'production',
+  dev: {
+    assetPrefix: 'http://localhost:3001',
+  },
+  output: {
+    assetPrefix: APP_URL,
   },
   html: {
     template: "./public/index.html",

@@ -37,7 +37,7 @@ export function BytebankHeader() {
     const [isSnackbarOpen, setSnackbarOpen] = useState(false);
     const [openLoginModal, setOpenLoginModal] = useState(false);
     const [openRegisterModal, setOpenRegisterModal] = useState(false);
-    const { user, setUser, loading } = useUser();
+    const { user, setUser } = useUser();
     const isLogged = !!user;
     const pages = isLogged ? loggedPages : unloggedPages;
 
@@ -219,13 +219,13 @@ export function BytebankHeader() {
                             {!isLogged ? (<>
                                 <Box sx={{ display: { xs: "none", md: "flex" } }} gap={1}>
                                     <BytebankButton
-                                        sendSubmit={() => setOpenRegisterModal(true)}
+                                        onClick={() => setOpenRegisterModal(true)}
                                         label="Crie uma conta"
                                         color="primary"
                                         variant="contained"
                                     />
                                     <BytebankButton
-                                        sendSubmit={() => setOpenLoginModal(true)}
+                                        onClick={() => setOpenLoginModal(true)}
                                         label="Entre"
                                         color="primary"
                                         variant="outlined"
@@ -247,7 +247,7 @@ export function BytebankHeader() {
                                 <>
                                     <Tooltip title="Gerenciar conta">
                                         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                            <Avatar sx={{ bgcolor: colors["lime.400"] }} alt={user?.name} src="/static/images/avatar/2.jpg" />
+                                            <Avatar sx={{ bgcolor: colors["lime.400"] }} alt={user?.name} />
                                         </IconButton>
                                     </Tooltip>
                                     <Menu
