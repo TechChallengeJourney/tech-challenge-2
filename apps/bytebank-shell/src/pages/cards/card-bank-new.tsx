@@ -37,7 +37,7 @@ export const BytebankNewCardBank = ({
         textAlign="center"
       >
         <IconButton
-          onClick={handleCreateCard} // ✅ Correção aplicada
+          onClick={handleCreateCard}
           sx={{
             border: "1px solid",
             color: "primary.main",
