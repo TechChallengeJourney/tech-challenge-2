@@ -4,60 +4,7 @@ import { Box, Typography } from '@mui/material';
 import { BytebankButton, BytebankModal } from '@repo/ui';
 import { BytebankTransactionCard } from '../../components/transaction-card/transaction-card';
 import { useUser, WidgetKey } from '@repo/data-access';
-
-const BytebankExtract = React.lazy(() =>
-  // @ts-ignore
-  import('transactions/components').then((module) => ({
-    default: module.default || module.BytebankExtract,
-  })).catch((error) => {
-    console.error(error)
-  })
-);
-
-const BytebankWidgetDrawer: React.FC<{ openDrawer: boolean; onClose: () => void; }> = React.lazy(() =>
-  // @ts-ignore
-  import('investments/components').then((module) => ({
-    default: module.default || module.BytebankWidgetDrawer,
-  })).catch((error) => {
-    console.error(error)
-  })
-);
-
-const BytebankGeneralCardsWidget: React.FC = React.lazy(() =>
-  // @ts-ignore
-  import('investments/components').then((module) => ({default: module.default || module.BytebankGeneralCardsWidget})).catch((error) => {
-    console.error(error)
-  })
-);
-
-const BytebankFinancialStatusWidget: React.FC<{userId?: string}> = React.lazy(() =>
-  // @ts-ignore
-  import('investments/components').then((module) => ({
-    default: module.default ||module.BytebankFinancialStatusWidget,
-  })).catch((error) => {
-    console.error(error)
-  })
-);
-
-const BytebankMonthlyResumeWidget: React.FC<{userId?: string}> = React.lazy(() =>
-  // @ts-ignore
-  import('investments/components').then((module) => ({
-      default: module.default ||module.BytebankMonthlyResumeWidget
-    }
-  )).catch((error) => {
-    console.error(error)
-  })
-);
-
-const BytebankAnalyticsWidget: React.FC<{userId?: string}> = React.lazy(() =>
-  // @ts-ignore
-  import('investments/components').then((module) => ({
-      default: module.default || module.
-      BytebankAnalyticsWidget
-    })).catch((error) => {
-    console.error(error)
-  })
-);
+import { BytebankAnalyticsWidget, BytebankExtract, BytebankFinancialStatusWidget, BytebankGeneralCardsWidget, BytebankMonthlyResumeWidget, BytebankWidgetDrawer } from '../../utils/microfrontends';
 
 interface BytebankDashboardProps { }
 
