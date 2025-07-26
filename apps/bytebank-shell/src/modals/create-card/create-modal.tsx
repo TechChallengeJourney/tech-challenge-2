@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useState } from "react";
 import { useForm, FormProvider, Controller } from "react-hook-form";
 import {
   BytebankAccessModalProps,
@@ -49,20 +49,8 @@ export function BytebankCreateCardModal({
     },
   });
 
-<<<<<<< Updated upstream
   const handleCreateCard = async (data: any) => {
     if (!user?._id) return;
-=======
-<<<<<<< Updated upstream
-const handleCreateCard = async (data: any) => {
-  if (!user?._id || !sessionToken) return;
-  setLoading(true);
-=======
-  const handleCreateCard = async (data: any) => {
-    console.log("handleCreateCard aqui")
-    if (!user?._id) return;
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 
     const result = await createCard({
       userId: user._id,
@@ -86,28 +74,7 @@ const handleCreateCard = async (data: any) => {
         message: error ?? "Erro ao criar cartão.",
       });
     }
-<<<<<<< Updated upstream
 
-<<<<<<< Updated upstream
-=======
-    setSnackbarData({
-      status: "success",
-      message: "Cartão criado com sucesso!",
-    });
-
-    onSubmit({ status: "success", data: json });
-    methods.reset();
-    onClose();
-  } catch (err: any) {
-    setSnackbarData({
-      status: "error",
-      message: err.message || "Erro ao criar cartão",
-    });
-  } finally {
-=======
-    console.log(result);
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     setSnackbarOpen(true);
   };
 
