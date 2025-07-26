@@ -40,7 +40,7 @@ export function BytebankFinancialStatusWidget({ userId }: { userId: string }) {
       }
     };
     fetchData();
-  }, [userId, extract]);
+  }, [userId]);
 
   const renderLoading = () =>
     isLoading ? (
@@ -75,7 +75,7 @@ export function BytebankFinancialStatusWidget({ userId }: { userId: string }) {
                   {widgetData.description}
                 </BytebankText>
               </Box>
-              <BytebankIllustration name={widgetData.status === "positivo" ? "status-positive" : "status-negative"} type={"gif"} width="140px" height="140px"></BytebankIllustration>
+              <BytebankIllustration name={widgetData.status === "positivo" ? "status-positive" : "status-negative"} justifyContent={"end"} type={"gif"} width="140px" height="140px"></BytebankIllustration>
             </Box>
           </>
         ) : (

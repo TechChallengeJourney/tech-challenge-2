@@ -34,7 +34,7 @@ interface BytebankMonthlyResumeResponse {
 export function BytebankMonthlyResumeWidget({userId}: {userId: string}) {
   const { extract } = useFinancialData();
   const { colors, isDarkMode } = useTheme();
-  
+
   let options: ApexCharts.ApexOptions = {
     chart: {
       type: "bar",
@@ -154,7 +154,7 @@ export function BytebankMonthlyResumeWidget({userId}: {userId: string}) {
       }
     };
     fetchData();
-  }, [userId, extract]);
+  }, [userId]);
 
   const renderLoading = () =>
     isLoading ? (

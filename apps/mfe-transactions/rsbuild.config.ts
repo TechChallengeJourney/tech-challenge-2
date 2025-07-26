@@ -6,15 +6,15 @@ import mfConfig from "./module-federation.config.ts";
 import { pluginSass } from "@rsbuild/plugin-sass";
 
 const { publicVars } = loadEnv({ prefixes: ["REACT_APP_", "PUBLIC_"] });
-const APP_URL = process.env.PUBLIC_TRANSACTIONS_APP_URL || "http://localhost:3002";
+const APP_URL = process.env.PUBLIC_TRANSACTIONS_APP_URL;
 
 export default defineConfig({
   server: {
     port: 3002,
   },
-  mode: 'production',
+  // mode: 'production',
   dev: {
-    assetPrefix: 'http://localhost:3002',
+    assetPrefix: APP_URL,
   },
   output: {
     assetPrefix: APP_URL,
