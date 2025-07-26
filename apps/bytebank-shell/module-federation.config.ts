@@ -2,10 +2,8 @@ import { createModuleFederationConfig } from "@module-federation/rsbuild-plugin"
 import pkg from "./package.json";
 const { dependencies } = pkg;
 
-const INVESTMENTS_APP_URL =
-  process.env.PUBLIC_INVESTMENTS_APP_URL || "http://localhost:3001";
-const TRANSACTIONS_APP_URL =
-  process.env.PUBLIC_TRANSACTIONS_APP_URL || "http://localhost:3002";
+const INVESTMENTS_APP_URL = process.env.PUBLIC_INVESTMENTS_APP_URL;
+const TRANSACTIONS_APP_URL = process.env.PUBLIC_TRANSACTIONS_APP_URL;
 
 console.log(`Using Investments App URL: ${INVESTMENTS_APP_URL}`);
 console.log(`Using Transactions App URL: ${TRANSACTIONS_APP_URL}`);

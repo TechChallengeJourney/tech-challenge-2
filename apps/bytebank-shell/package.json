@@ -33,8 +33,8 @@
   },
   "scripts": {
     "dev": "rsbuild dev --port 3000",
-    "build": "NODE_ENV=production rsbuild build",
-    "preview": "NODE_ENV=production rsbuild preview",
+    "build": "rsbuild build",
+    "preview": "rsbuild preview",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

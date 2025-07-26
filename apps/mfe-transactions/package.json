@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "rsbuild dev --port 3002",
-    "build": "NODE_ENV=production rsbuild build",
+    "build": "rsbuild build",
     "preview": "rsbuild preview",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
