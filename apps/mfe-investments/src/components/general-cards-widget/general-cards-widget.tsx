@@ -69,7 +69,7 @@ export function BytebankGeneralCardsWidget() {
       }
     };
     fetchAllWidgets();
-  }, [user, extract]);
+  }, [user]);
 
   if (isLoading) return (
     <Box

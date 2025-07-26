@@ -40,7 +40,7 @@ export function BytebankFinancialStatusWidget({ userId }: { userId: string }) {
       }
     };
     fetchData();
-  }, [userId, extract]);
+  }, [userId]);
 
   const renderLoading = () =>
     isLoading ? (

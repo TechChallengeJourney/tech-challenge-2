@@ -41,7 +41,7 @@ export function BytebankAnalyticsWidget({userId}: {userId: string}) {
       }
     };
     fetchData();
-  }, [userId, extract]);
+  }, [userId]);
 
   const renderLoading = () =>
     isLoading ? (
