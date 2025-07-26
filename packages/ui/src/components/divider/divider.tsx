@@ -1,25 +1,22 @@
+import { Box } from '@mui/material';
 import './style.scss';
+import { useTheme } from '@repo/utils';
 
 export interface DividerProps {
     type?: 'horizontal' | 'vertical';
     className?: string;
-    color?:
-    | 'primary'
-    | 'secondary'
-    | 'tertiary'
-    | 'success'
-    | 'error'
-    | 'info'
-    | 'warning'
-    | 'black';
+    color?: string;
 }
 
 export function BytebankDivider({
     type = 'horizontal',
-    color = 'black',
+    color,
     className
 }: DividerProps) {
+    const { colors } = useTheme();
+    color = color ?? colors['grey.400'];
+
     return (
-        <div className={`divider divider--${type} divider--${color} ${className}`}></div>
+        <Box className={`divider divider--${type} ${className}`} sx={{ backgroundColor: color }}></Box>
     );
 }

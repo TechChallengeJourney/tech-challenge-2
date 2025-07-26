@@ -32,21 +32,28 @@ export interface BytebankButtonProps extends ButtonProps {
   /**
    * O estilo do botão
    */
+
+    /** Raio da borda (padrão: 5rem) */
+  borderRadius?: string;
+
   variant?: 'contained' | 'text' | 'outlined';
-  sendSubmit?: () => void;
+  onClick?: () => void;
 }
 
 export function BytebankButton({
   label,
   color,
   variant,
-  sendSubmit,
+  borderRadius,
+  onClick,
   ...props
 }: BytebankButtonProps): JSX.Element {
   const { colors } = useTheme();
   const palette = colors;
 
-  const ButtonColor = styled(Button)<ButtonProps>(() => ([{
+  const ButtonColor = styled(Button, {
+  shouldForwardProp: (prop) => prop !== 'borderRadius'
+})<ButtonProps & { borderRadius?: string }>(({ borderRadius }) => ([{
     '&.MuiButton-containedSecondary': {
       backgroundColor: palette['lime.500'],
       color: palette['lime.subcontrast']
@@ -87,7 +94,7 @@ export function BytebankButton({
     },
     '&': {
       borderWidth: '1px',
-      borderRadius: '5rem !important',
+      borderRadius: borderRadius || '5rem',
       padding: '.6rem 1.2rem !important',
       boxShadow: 'none !important',
       textTransform: 'none !important',
@@ -110,7 +117,8 @@ export function BytebankButton({
       variant={variant}
       color={color}
       aria-label={label}
-      onClick={sendSubmit}
+      onClick={onClick}
+      borderRadius={borderRadius}
     >
       {label}
     </ButtonColor>

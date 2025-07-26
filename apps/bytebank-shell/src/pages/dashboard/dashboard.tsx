@@ -1,23 +1,76 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { BytebankBalanceCard } from '../../components/balance-card/balance-card';
 import { Box, Typography } from '@mui/material';
-import { BytebankCard, BytebankButton, BytebankModal } from '@repo/ui';
-// @ts-ignore
-import { BytebankAnalytics, BytebankMobility, BytebankSalary, BytebankSpend, BytebankMonthlyResume } from 'remote/components'
-import { useTheme } from '@repo/utils';
-// @ts-ignore
+import { BytebankButton, BytebankModal } from '@repo/ui';
+import { BytebankTransactionCard } from '../../components/transaction-card/transaction-card';
+import { useUser, WidgetKey } from '@repo/data-access';
+
 const BytebankExtract = React.lazy(() =>
-  import('transactions/BytebankExtract').then((module) => ({
+  // @ts-ignore
+  import('transactions/components').then((module) => ({
     default: module.default || module.BytebankExtract,
-  }))
+  })).catch((error) => {
+    console.error(error)
+  })
+);
+
+const BytebankWidgetDrawer: React.FC<{ openDrawer: boolean; onClose: () => void; }> = React.lazy(() =>
+  // @ts-ignore
+  import('investments/components').then((module) => ({
+    default: module.default || module.BytebankWidgetDrawer,
+  })).catch((error) => {
+    console.error(error)
+  })
+);
+
+const BytebankGeneralCardsWidget: React.FC = React.lazy(() =>
+  // @ts-ignore
+  import('investments/components').then((module) => ({default: module.default || module.BytebankGeneralCardsWidget})).catch((error) => {
+    console.error(error)
+  })
+);
+
+const BytebankFinancialStatusWidget: React.FC<{userId?: string}> = React.lazy(() =>
+  // @ts-ignore
+  import('investments/components').then((module) => ({
+    default: module.default ||module.BytebankFinancialStatusWidget,
+  })).catch((error) => {
+    console.error(error)
+  })
+);
+
+const BytebankMonthlyResumeWidget: React.FC<{userId?: string}> = React.lazy(() =>
+  // @ts-ignore
+  import('investments/components').then((module) => ({
+      default: module.default ||module.BytebankMonthlyResumeWidget
+    }
+  )).catch((error) => {
+    console.error(error)
+  })
+);
+
+const BytebankAnalyticsWidget: React.FC<{userId?: string}> = React.lazy(() =>
+  // @ts-ignore
+  import('investments/components').then((module) => ({
+      default: module.default || module.
+      BytebankAnalyticsWidget
+    })).catch((error) => {
+    console.error(error)
+  })
 );
 
 interface BytebankDashboardProps { }
 
 const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
-  const [open, setOpen] = useState(false);
-  const { theme } = useTheme();
-  const textColor = theme.palette.text.primary;
+  const [openModal, setModalOpen] = useState(false);
+  const [openDrawer, setDrawerOpen] = useState(false);
+  const { user } = useUser();
+  const selectedWidgets = user?.selectedWidgets ?? [];
+
+  const validateUserWidget = (widget: WidgetKey) => selectedWidgets.includes(widget);
+
+  useEffect(() => { }, [user])
+  const openWidgetDrawer = (value: boolean = true) => { setDrawerOpen(value); };
 
   return (
     <>
@@ -25,36 +78,39 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
         <Box>
           <BytebankBalanceCard />
         </Box>
-
         <Box>
           <Box display={'flex'} justifyContent={'flex-end'} pb={2}>
-          <BytebankButton label={'Customizar widgets'} variant={'contained'} color={'secondary'} />
+            <BytebankButton label={'Customizar widgets'} variant={'contained'} color={'secondary'} onClick={() => openWidgetDrawer()} />
           </Box>
-          <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap="30px" sx={{ gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1fr 1fr' } }}>
-            <BytebankMobility />
-            <BytebankSalary />
-            <BytebankSpend />
+          <React.Suspense fallback={<div>Carregando widgets...</div>}>
+          <BytebankGeneralCardsWidget />
+          <Box display="grid" gridTemplateColumns="1fr 1fr" gap={2} sx={{ gridTemplateColumns: { sm: '1fr', md: '1fr 1fr' } }}>
+            {validateUserWidget(WidgetKey.MonthlySummary) ? <BytebankMonthlyResumeWidget userId={user?._id} /> : null}
+            <Box display={'flex'} gap={2} flexDirection={'column'}>
+              {validateUserWidget(WidgetKey.FinancialAnalysis) ? <BytebankAnalyticsWidget userId={user?._id} /> : null}
+              {validateUserWidget(WidgetKey.FinancialStatus) ? <BytebankFinancialStatusWidget userId={user?._id} /> : null}
+            </Box>
           </Box>
-          <Box display="grid" marginY="2rem" gridTemplateColumns="1fr 1fr" gap="30px" sx={{ gridTemplateColumns: { sm: '1fr', md: '1fr 1fr' } }}>
-            <BytebankMonthlyResume />
-            <BytebankAnalytics />
-          </Box>
-          <BytebankCard >
-            <Box textAlign="left" minHeight={'10rem'} p={4}>
-              <Typography fontWeight={'bold'} variant="lg" mb={2}>
-                Extrato
-              </Typography>
+          </React.Suspense>
+        </Box>
+        <Box>
+
+          <Box display="grid" gridTemplateColumns="1fr 2fr " gap={2} sx={{ gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr 2fr' } }}>
+            <Box>
+              <BytebankTransactionCard />
+            </Box>
+            <Box textAlign="left" height={'100%'} overflow={'hidden'}>
               <React.Suspense fallback={<div>Carregando extrato...</div>}>
                 <BytebankExtract />
               </React.Suspense>
             </Box>
-          </BytebankCard>
+          </Box>
         </Box>
         <BytebankModal
-          open={open}
+          open={openModal}
           title="Confirmar exclusão"
           illustrationShow={false}
-          onClose={() => setOpen(false)}
+          onClose={() => setModalOpen(false)}
         >
           <Box>
             <Typography style={{ marginBottom: 16 }}>
@@ -75,6 +131,9 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
           </Box>
         </BytebankModal>
       </Box>
+      <React.Suspense>
+        <BytebankWidgetDrawer openDrawer={openDrawer} onClose={() => openWidgetDrawer(false)} />
+      </React.Suspense>
     </>
   );
 };

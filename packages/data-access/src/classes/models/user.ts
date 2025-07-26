@@ -1,6 +1,9 @@
+import { WidgetKey } from "./widgets";
+
 export interface User {
-    id: string;
+    _id: string;
     name: string;
     email: string;
+    selectedWidgets: WidgetKey[];
     password?: string;
 }

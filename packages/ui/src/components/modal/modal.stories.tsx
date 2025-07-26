@@ -35,7 +35,7 @@ export const Default: Story = {
           label="Abrir Modal"
           color="primary"
           variant="contained"
-          sendSubmit={() => setOpen(true)}
+          onClick={() => setOpen(true)}
         />
         <BytebankModal
           title={args.title}

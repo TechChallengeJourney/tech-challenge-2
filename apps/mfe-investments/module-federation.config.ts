@@ -3,41 +3,43 @@ import pkg from "./package.json";
 const { dependencies } = pkg;
 
 export default createModuleFederationConfig({
-  name: "remote",
+  name: "investments",
   exposes: {
     "./components": "./src/components/index.ts",
   },
   filename: "remoteEntry.js",
   shared: {
     react: {
-      singleton: true,
-      requiredVersion: dependencies.react
+       singleton: true,
+      requiredVersion: dependencies.react,
+      eager: true
     },
     'react-dom': {
-      singleton: true,
-      requiredVersion: dependencies['react-dom']
+       singleton: true,
+      requiredVersion: dependencies['react-dom'],
+       eager: true
     },
     '@mui/material': {
-      singleton: true,
-      requiredVersion: dependencies['@mui/material']
+       singleton: true,
+      requiredVersion: dependencies['@mui/material'],
+       eager: true
     },
     '@emotion/react': {
-      singleton: true,
+       singleton: true,
       requiredVersion: dependencies['@emotion/react']
     },
     '@emotion/styled': {
-      singleton: true,
+       singleton: true,
       requiredVersion: dependencies['@emotion/styled']
     },
     '@repo/ui': {
-      singleton: true
+       singleton: true
     },
     '@repo/utils': {
-      singleton: true
+       singleton: true
     },
     '@repo/data-access': {
-      singleton: true, // ✅ Aqui é a chave para resolver seu problema
-      requiredVersion: dependencies['@repo/data-access']
+       singleton: true,
     }
   }
 });
