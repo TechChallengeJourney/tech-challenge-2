@@ -20,6 +20,11 @@ export const BytebankNewCardBank = ({
   const [snackbarData, setSnackbarData] = useState<SnackbarData | null>(null);
   const [open, setOpen] = useState(false);
 
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+    setSnackbarData(null);
+  };
+
   const handleCreateCard = () => {
     setOpen(true);
   };
@@ -52,7 +57,7 @@ export const BytebankNewCardBank = ({
 
         <BytebankSnackbar
           open={snackbarOpen}
-          onClose={() => setSnackbarOpen(false)}
+          onClose={handleSnackbarClose}
           data={snackbarData}
         />
 
