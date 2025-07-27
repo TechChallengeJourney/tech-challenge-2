@@ -74,7 +74,7 @@ export const BytebankCardWrapper: React.FC<BytebankCardContainerProps> = ({
             <CardVisual card={currentCard} />
           </Box>
 
-          <Box flex={2}>
+          <Box flex={2} alignSelf="center">
             <CardNavigation onPrev={handlePrev} onNext={handleNext} cards={cards}/>
             <CardDetails card={currentCard} />
             <CardActions

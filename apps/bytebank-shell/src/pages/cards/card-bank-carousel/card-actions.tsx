@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { BytebankButton, BytebankSnackbar, SnackbarData } from "@repo/ui";
 import { useDeleteCard, useBlockCard } from "@repo/data-access";
 import { useState } from "react";
+import { DeleteCardModal } from "../../../components/delete-modal";
 
 interface CardActionsProps {
   cardId: string;
@@ -31,12 +32,20 @@ export const CardActions = ({
 
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarData, setSnackbarData] = useState<SnackbarData | null>(null);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
 
   const blockButtonLabel = getBlockButtonLabel(blocked, loadingBlock);
 
   const showSnackbar = (data: SnackbarData) => {
     setSnackbarData(data);
     setSnackbarOpen(true);
+  };
+
+  const handleDeleteModal = (cardId: string) => {
+    console.log(cardId, "cardId");
+    setSelectedCardId(cardId);
+    setDeleteModalOpen(true);
   };
 
   const handleSnackbarClose = () => {
@@ -72,7 +81,8 @@ export const CardActions = ({
     }
   };
 
-  const handleDeleteCard = async () => {
+  const handleDeleteCard = async (cardId: string) => {
+    if (!cardId) return;
     try {
       const success = await handleDelete(cardId);
       if (success) {
@@ -111,13 +121,23 @@ export const CardActions = ({
           onClose={handleSnackbarClose}
           data={snackbarData}
         />
+        <DeleteCardModal
+          open={deleteModalOpen}
+          onClose={() => setDeleteModalOpen(false)}
+          cardId={selectedCardId}
+          onConfirm={async () => {
+            if (!selectedCardId) return;
+            setDeleteModalOpen(false);
+            await handleDeleteCard(selectedCardId);
+          }}
+        />
         <BytebankButton
           fullWidth
           variant="contained"
           color="primary"
           label={blockButtonLabel}
           disabled={loadingBlock}
-          onClick={handleBlockCard}
+          onClick={() => handleBlockCard()}
         />
       </Box>
 
@@ -126,7 +146,7 @@ export const CardActions = ({
           label={loadingDelete ? "Excluindo..." : "Excluir cartão"}
           color="primary"
           variant="text"
-          onClick={handleDeleteCard}
+          onClick={() => handleDeleteModal(cardId)}
           disabled={loadingDelete}
           sx={{
             textDecoration: "underline",
