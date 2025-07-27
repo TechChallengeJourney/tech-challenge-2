@@ -8,7 +8,7 @@ import {
 import { formatCurrencyBRL } from "@repo/utils";
 import { fetchWidgetData } from "../../services/widgets";
 import { useEffect, useState } from "react";
-import { WidgetKey } from "@repo/data-access";
+import { useFinancialData, WidgetKey } from "@repo/data-access";
 
 interface WidgetAnalyticsProps {
   income: number;
@@ -17,6 +17,7 @@ interface WidgetAnalyticsProps {
 }
 
 export function BytebankAnalyticsWidget({userId}: {userId: string}) {
+  const { extract } = useFinancialData();
   const [isLoading, setLoading] = useState(true);
   const [widgetData, setWidgetData] = useState<WidgetAnalyticsProps | null>(
     null

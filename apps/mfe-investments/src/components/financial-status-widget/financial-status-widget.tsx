@@ -7,7 +7,7 @@ import {
 import { useTheme } from "@repo/utils";
 import { fetchWidgetData } from "../../services/widgets";
 import { useEffect, useState } from "react";
-import { WidgetKey } from "@repo/data-access";
+import { useFinancialData, WidgetKey } from "@repo/data-access";
 
 interface WidgetAnalyticsProps {
   status: "positivo" | "negativo";
@@ -16,6 +16,7 @@ interface WidgetAnalyticsProps {
 
 export function BytebankFinancialStatusWidget({ userId }: { userId: string }) {
   const { colors } = useTheme();
+  const { extract } = useFinancialData();
   const [isLoading, setLoading] = useState(true);
   const [widgetData, setWidgetData] = useState<WidgetAnalyticsProps | null>(
     null
@@ -74,7 +75,7 @@ export function BytebankFinancialStatusWidget({ userId }: { userId: string }) {
                   {widgetData.description}
                 </BytebankText>
               </Box>
-              <BytebankIllustration name={widgetData.status === "positivo" ? "status-positive" : "status-negative"} type={"gif"} width="140px" height="140px"></BytebankIllustration>
+              <BytebankIllustration name={widgetData.status === "positivo" ? "status-positive" : "status-negative"} justifyContent={"end"} type={"gif"} width="140px" height="140px"></BytebankIllustration>
             </Box>
           </>
         ) : (

@@ -30,14 +30,14 @@ import { BytebankRegisterModal, BytebankLoginModal } from "../../modals";
 import { useTheme } from "@repo/utils";
 
 export function BytebankHeader() {
-    const { colors } = useTheme();
+    const { colors, isDarkMode } = useTheme();
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
     const [snackbarData, setSnackbarData] = useState<SnackbarData | null>(null);
     const [isSnackbarOpen, setSnackbarOpen] = useState(false);
     const [openLoginModal, setOpenLoginModal] = useState(false);
     const [openRegisterModal, setOpenRegisterModal] = useState(false);
-    const { user, setUser, loading } = useUser();
+    const { user, setUser } = useUser();
     const isLogged = !!user;
     const pages = isLogged ? loggedPages : unloggedPages;
 
@@ -125,7 +125,7 @@ export function BytebankHeader() {
                             }}
                         >
                             <img
-                                src="/logo.svg"
+                                src={isDarkMode ? '/logo-light.svg': '/logo.svg'}
                                 className="logo"
                                 id="bytebank-logo"
                                 alt="Bytebank logo"
@@ -188,8 +188,8 @@ export function BytebankHeader() {
                                 filter: `${colors['logo.filter']}`
                             }}
                         >
-                            <img
-                                src="/logo.svg"
+                             <img
+                                src={isDarkMode ? '/logo-light.svg': '/logo.svg'}
                                 className="logo"
                                 id="bytebank-logo"
                                 alt="Bytebank logo"
@@ -247,7 +247,7 @@ export function BytebankHeader() {
                                 <>
                                     <Tooltip title="Gerenciar conta">
                                         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                            <Avatar sx={{ bgcolor: colors["lime.400"] }} alt={user?.name} src="/static/images/avatar/2.jpg" />
+                                            <Avatar sx={{ bgcolor: colors["lime.400"] }} alt={user?.name} />
                                         </IconButton>
                                     </Tooltip>
                                     <Menu

@@ -45,11 +45,8 @@ export function BytebankRegisterModal({
         message: "Cadastro realizado com sucesso!",
       });
     } else {
-      const responseError = (await response.json()) as { error: string };
-      onSubmit({
-        status: "error",
-        message: "Ocorreu um erro, o cadastro não foi concluído.",
-      });
+      const responseError = (await response.json()) as { message: string };
+      onSubmit({ status: "error", message: responseError.message });
     }
 
     setLoading(false);
@@ -61,7 +58,7 @@ export function BytebankRegisterModal({
         title={"Criar uma conta"}
         open={open}
         illustrationShow
-        onClose={() => onClose()}
+        onClose={() => { registerMethods.reset(); onClose(); }}
       >
         <>
           <BytebankText>
@@ -71,6 +68,7 @@ export function BytebankRegisterModal({
             <form onSubmit={registerMethods.handleSubmit(handleRegister)}>
               <BytebankInputController
                 control={registerMethods.control}
+                rules={{ required: true }}
                 name="name"
                 autoComplete="name"
                 type="text"
@@ -79,6 +77,7 @@ export function BytebankRegisterModal({
               />
               <BytebankInputController
                 control={registerMethods.control}
+                rules={{ required: true }}
                 name="email"
                 autoComplete="email"
                 type="email"
@@ -87,6 +86,7 @@ export function BytebankRegisterModal({
               />
               <BytebankInputController
                 control={registerMethods.control}
+                rules={{ required: true }}
                 name="password"
                 autoComplete="new-password"
                 type="password"
@@ -116,7 +116,7 @@ export function BytebankRegisterModal({
               component="button"
               variant="sm"
               color={"secondary"}
-              onClick={() => openModal(AccessModalType.LOGIN)}
+              onClick={() => openModal(AccessModalType.REGISTER)}
             >
               Fazer login
             </Link>

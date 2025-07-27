@@ -8,7 +8,6 @@ import {
   DevicesOtherOutlined,
 } from "@mui/icons-material";
 import { useTheme } from "@repo/utils";
-import { useUser } from "@repo/data-access";
 
 type Benefit = {
   icon: ReactElement;

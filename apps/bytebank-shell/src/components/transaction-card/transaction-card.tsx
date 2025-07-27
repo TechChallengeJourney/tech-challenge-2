@@ -49,7 +49,7 @@ interface OptionsFields {
 
 function TransactionForm({ type }: TransactionFormProps) {
   const { fetchTransactions } = useFinancialData();
-  const { control, watch, handleSubmit, setValue } = useFormContext();
+  const { control, watch, handleSubmit, setValue, reset } = useFormContext();
   const { request, loading, error } = useFetch();
   const [sessionToken] = useSession<string | null>("token");
   const [methods, setMethods] = useState<OptionsFields[]>([]);
@@ -192,6 +192,15 @@ function TransactionForm({ type }: TransactionFormProps) {
         message: "Transação criada com sucesso!",
       });
       setSnackbarOpen(true);
+      reset({
+        methodId: "",
+        creditCard: "",
+        categoryId: "",
+        createdAt: "",
+        value: "",
+        type: type,
+        file: null,
+      });
     } catch (err: any) {
       setSnackbarData({
         status: "error",
