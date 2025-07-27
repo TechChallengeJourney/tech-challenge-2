@@ -1,6 +1,6 @@
 import { VisibilityRounded, VisibilityOff } from "@mui/icons-material";
 import { Box, Typography, Skeleton } from "@mui/material";
-import { useUser } from "@repo/data-access";
+import { useFinancialData, useUser } from "@repo/data-access";
 import { BytebankCard } from "@repo/ui";
 import { useTheme } from "@repo/utils";
 import { format } from "date-fns";
@@ -11,12 +11,13 @@ export const BytebankBalanceCard = () => {
   const [visible, setVisible] = useState(false);
   const { colors } = useTheme();
   const { user } = useUser();
+  const { total_value } = useFinancialData();
   const today = new Date();
   const formattedDate = format(today, "EEEE',' dd/MM/yyyy", { locale: ptBR });
 
-  const totalValue = 12356.78;
+  const totalBalance = total_value;
   const isLoading = false;
-  const totalBalanceFormatted = totalValue.toLocaleString("pt-BR", {
+  const totalBalanceFormatted = totalBalance.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
   });

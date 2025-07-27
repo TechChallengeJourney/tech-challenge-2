@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { DeleteCardBank } from "../api/delete-card-bank";
-import type { ErrorResponse } from "../api/delete-card-bank";
+import { DeleteCardBank } from "../../api/cards-bank/delete-card-bank";
+import type { ErrorResponse } from "../../api/cards-bank/delete-card-bank";
 
 function isErrorResponse(res: any): res is ErrorResponse {
   return res && typeof res === "object" && "error" in res;
