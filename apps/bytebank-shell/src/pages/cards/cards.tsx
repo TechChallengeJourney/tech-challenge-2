@@ -55,7 +55,6 @@ export const BytebankCardsPage: React.FC = () => {
         </Box>
 
         <Box
-          mt={{ xs: "32px", md: "32px" }}
           display="flex"
           flexDirection={{ xs: "column", lg: "row" }} // linha no desktop
           alignItems="flex-start"

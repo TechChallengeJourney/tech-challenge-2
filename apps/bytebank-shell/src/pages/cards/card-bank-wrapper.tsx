@@ -66,9 +66,9 @@ export const BytebankCardWrapper: React.FC<BytebankCardContainerProps> = ({
         >
           <Box
             flex={1}
-            m={{ xs: 1, md: 4 }}
             sx={{ width: "100%", maxWidth: 350 }}
             mt={{ xs: "20px" }}
+            mr={{md: "32px"}}
           >
             <CardHeader variant={currentCard?.variant} />
             <CardVisual card={currentCard} />

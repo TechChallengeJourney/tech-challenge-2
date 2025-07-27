@@ -10,7 +10,7 @@ export const CardHeader: React.FC<{ variant: string }> = ({ variant }) => (
     justifyContent={{ xs: "center", md: "flex-start" }}
     alignItems="center"
     gap="10px"
-    mb={2}
+    mb={4}
   >
     <CreditCard fontSize="large" />
     <BytebankText variant="md" fontWeight="bold">

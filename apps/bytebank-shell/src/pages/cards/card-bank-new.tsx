@@ -38,7 +38,7 @@ export const BytebankNewCardBank = ({
         maxWidth={{ xs: "98vw", md: "100%" }}
         maxHeight={{ xs: "100%", md: "100%" }}
         height={{ xs: "100%", md: "330px" }}
-        p="95px"
+        p={{xs:"60px" ,md: "95px"}}
         textAlign="center"
       >
         <IconButton
