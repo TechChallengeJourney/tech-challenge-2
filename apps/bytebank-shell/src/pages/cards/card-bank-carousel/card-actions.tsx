@@ -35,7 +35,6 @@ export const CardActions = ({
   const blockButtonLabel = getBlockButtonLabel(blocked, loadingBlock);
 
   const showSnackbar = (data: SnackbarData) => {
-    console.log(data);
     setSnackbarData(data);
     setSnackbarOpen(true);
   };
@@ -48,7 +47,6 @@ export const CardActions = ({
   const handleBlockCard = async () => {
     try {
       const success = await handleBlock(cardId);
-      console.log(success);
       if (success) {
         showSnackbar({
           message: blocked
@@ -77,7 +75,6 @@ export const CardActions = ({
   const handleDeleteCard = async () => {
     try {
       const success = await handleDelete(cardId);
-      console.log(success);
       if (success) {
         showSnackbar({
           message: "Cartão excluído com sucesso!",
