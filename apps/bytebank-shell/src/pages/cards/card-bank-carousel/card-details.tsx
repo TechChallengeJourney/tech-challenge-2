@@ -6,7 +6,7 @@ import { CardData } from "../models/card-model";
 function maskCardNumber(cardNumber: string | number): string {
   const cardNumberStr = String(cardNumber);
   const lastFourDigits = cardNumberStr.slice(-4);
-  const maskedCardNumber = "**** **** ****";
+  const maskedCardNumber = "**** ****";
 
   return `${maskedCardNumber} ${lastFourDigits}`;
 }
@@ -35,12 +35,12 @@ const formatLimitCurrency = (limit: number): string => {
 export const CardDetails: React.FC<{ card: CardData }> = ({ card }) => {
   return (
     <Box>
-      <Box display="flex" justifyContent="space-between">
+      <Box display="flex" justifyContent="space-between" alignSelf="center">
         <BytebankText variant="sm">
           Cartão de {translateFunctionType(card?.functions[0] ?? "") || "****"}
         </BytebankText>
         <BytebankText variant="sm">
-          {maskCardNumber(card?.cardNumber) || "**** **** **** ****"}
+          {maskCardNumber(card?.cardNumber) || "**** **** ****"}
         </BytebankText>
       </Box>
 
