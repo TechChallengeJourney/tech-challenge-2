@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { useCards, useUser } from "@repo/data-access";
 
 import { BytebankBalanceCard } from "../../components/balance-card/balance-card";
-import { BytebankCardWrapper } from "./card-bank-wrapper";
+import { BytebankCardList } from "./card-bank-list";
 import { CardsInfoWidgets } from "./cards-info-widgets";
 import { BytebankNewCardBank } from "./card-bank-new";
 import { CardData } from "./models/card-model";
@@ -68,7 +68,7 @@ export const BytebankCardsPage: React.FC = () => {
             flexDirection="column"
             width={{ xs: "100%", md: "100%" }}
           >
-            <BytebankCardWrapper
+            <BytebankCardList
               cards={cards}
               refetchCards={refetchCards}
               error={error}

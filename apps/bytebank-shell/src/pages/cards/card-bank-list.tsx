@@ -18,7 +18,7 @@ export interface BytebankCardContainerProps {
   loading?: boolean;
 }
 
-export const BytebankCardWrapper: React.FC<BytebankCardContainerProps> = ({
+export const BytebankCardList: React.FC<BytebankCardContainerProps> = ({
   cards,
   refetchCards,
   error,
