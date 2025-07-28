@@ -3,9 +3,11 @@ import axios from "axios";
  * Configuração do cliente Axios para chamadas à API.
  * Define a URL base e interceptores para requisições e respostas.
  */
+
 export const api = axios.create({
-  baseURL: import.meta.env.PUBLIC_API_URL,
+  baseURL: import.meta.env.PUBLIC_API_URL || "http://localhost:8080",
 });
+
 
 api.interceptors.request.use(
   (config) => {

@@ -8,6 +8,35 @@ import mfConfig from "./module-federation.config";
 const { publicVars } = loadEnv({ prefixes: ["REACT_APP_", "PUBLIC_"] });
 
 export default defineConfig({
+  environments: {
+    web: {
+      output: {
+        target: "web",
+        manifest: true,
+      },
+      source: {
+        entry: {
+          index: "./src/index",
+        },
+      },
+    },
+    ssr: {
+      output: {
+        target: "node",
+        distPath: {
+          root: "dist/server",
+        },
+      },
+      source: {
+        entry: {
+          index: "./src/index.server",
+        },
+      },
+    },
+  },
+  output: {
+    manifest: true,
+  },
   html: {
     template: "./public/index.html",
   },

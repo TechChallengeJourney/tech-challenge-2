@@ -32,7 +32,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "dev": "rsbuild dev --port 3000",
+    "dev": "node ./server.mjs --port 3000",
     "build": "rsbuild build",
     "preview": "rsbuild preview",
     "test": "react-scripts test",
@@ -59,7 +59,9 @@
   "devDependencies": {
     "@rsbuild/core": "latest",
     "@rsbuild/plugin-react": "latest",
+    "@types/express": "^5.0.3",
     "@types/react": "19.0.0",
-    "@types/react-dom": "19.0.0"
+    "@types/react-dom": "19.0.0",
+    "express": "^5.1.0"
   }
 }

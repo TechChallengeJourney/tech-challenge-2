@@ -1,0 +1,1 @@
+import('./bootstrap.server').catch((error) => console.log(error));
