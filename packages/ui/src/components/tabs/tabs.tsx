@@ -19,13 +19,13 @@ export function BytebankTabs({
   children,
 }: BytebankTabsProps) {
   const [value, setValue] = useState(0);
-  const { colors, isDarkMode } = useTheme();
+  const { colors } = useTheme();
 
   useEffect(() => {
     if (options?.[value]) {
       onChangeTab?.(options[value].id);
     }
-  }, []);
+  }, [onChangeTab, options, value]);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
