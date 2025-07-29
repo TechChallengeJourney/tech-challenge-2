@@ -19,7 +19,7 @@ export function BytebankTabs({
   children,
 }: BytebankTabsProps) {
   const [value, setValue] = useState(0);
-  const {colors} = useTheme();
+  const { colors, isDarkMode } = useTheme();
 
   useEffect(() => {
     if (options?.[value]) {
@@ -68,9 +68,9 @@ export function BytebankTabs({
             "& .MuiTab-root:last-of-type": {
               borderRight: "none",
             },
-            "& .Mui-selected": {
+            "& .MuiButtonBase-root.Mui-selected": {
               backgroundColor: colors["lime.500"],
-              color: colors["lime.subcontrast"] ,
+              color: colors["lime.subcontrast"],
             },
           }}
         >

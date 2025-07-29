@@ -2,16 +2,16 @@ import { Box } from "@mui/material";
 import {
   BytebankButton,
   BytebankCard,
-  BytebankInput,
-  BytebankSelect,
   BytebankTabs,
   BytebankText,
   BytebankChip,
   SnackbarData,
   BytebankSnackbar,
   BytebankButtonFileUpload,
-  BytebankAutoComplete,
-  BytebankDatePicker,
+  BytebankDatePickerController,
+  BytebankSelectController,
+  BytebankInputController,
+  BytebankAutoCompleteController,
 } from "@repo/ui";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import { useEffect, useState } from "react";
@@ -20,22 +20,19 @@ import {
   FormProvider,
   useForm,
   useFormContext,
+  useWatch,
 } from "react-hook-form";
-import { format, parse } from "date-fns";
-import {
-  useFetch,
-  useFinancialData,
-  useSession,
-  useUser,
-} from "@repo/data-access";
+import { format } from "date-fns";
+import { api, useFinancialData, useUser } from "@repo/data-access";
 import { BytebankCreateCardModal } from "../../modals/create-card/create-modal";
-const apiUrl = import.meta.env.PUBLIC_API_URL;
 
-function formatSelectData(items: any) {
-  return items.map((item: any) => ({
-    label: item.name,
-    value: item._id,
-  }));
+function formatDataByType(list: any, type: string) {
+  return list
+    .filter((e: any) => e.type === type)
+    .map((e: any) => ({
+      label: e.name,
+      value: e._id,
+    }));
 }
 
 interface TransactionFormProps {
@@ -48,45 +45,34 @@ interface OptionsFields {
 }
 
 function TransactionForm({ type }: TransactionFormProps) {
-  const { fetchTransactions } = useFinancialData();
-  const { control, watch, handleSubmit, setValue, reset } = useFormContext();
-  const { request, loading, error } = useFetch();
-  const [sessionToken] = useSession<string | null>("token");
-  const [methods, setMethods] = useState<OptionsFields[]>([]);
-  const [categories, setCategories] = useState<OptionsFields[]>([]);
+  const { fetchTransactions, categories } = useFinancialData();
+  const [localCategories, setLocalCategories] = useState<OptionsFields[]>([]);
+  const { control, handleSubmit, setValue, reset } = useFormContext();
+  const [methods, setMethods] = useState([]);
+  const filterMethods = formatDataByType(methods, type);
   const [cards, setCards] = useState<OptionsFields[]>([]);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarData, setSnackbarData] = useState<SnackbarData | null>(null);
   const [cardModalOpen, setCardModalOpen] = useState(false);
   const { user } = useUser();
 
-  const selectedPaymentType = watch("methodId");
+  const selectedPaymentType = useWatch({ name: "methodId", control });
   const isMethodCredit = selectedPaymentType === "686c5a6b56268262e407a484";
-  const showCardSection =
-    type === "expense" && selectedPaymentType === "686c5a6b56268262e407a484";
+  const showCardSection = type === "expense" && isMethodCredit;
 
   const createCategory = async (name: string) => {
     try {
-      const { json, response } = await request(`${apiUrl}/categories`, {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer " + sessionToken,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          type,
-        }),
-      });
+      const { status, data } = await api.post("/categories", { name, type });
 
-      if (response && response.ok) {
-        const categoryJson = json as { name: string; _id: string };
+      if (status === 201) {
+        const categoryJson = data as { name: string; _id: string };
         const newCategory = {
           label: categoryJson.name,
           value: categoryJson._id,
         };
 
-        setCategories((prev) => [...prev, newCategory]);
+        setLocalCategories((prev) => [...prev, newCategory]);
+
         setValue("categoryId", newCategory.value);
 
         setSnackbarData({
@@ -98,69 +84,19 @@ function TransactionForm({ type }: TransactionFormProps) {
     } catch (err) {
       setSnackbarData({
         status: "error",
-        message: `Erro ao criar a categoria "${name}". ${error}`,
+        message: `Erro ao criar a categoria "${name}". ${err}`,
       });
       setSnackbarOpen(true);
     }
   };
 
-  useEffect(() => {
-    if (!sessionToken || !isMethodCredit) return;
-
-    const fetchUserCards = async () => {
-      const { json } = await request(`${apiUrl}/cards?userId=${user?._id}`, {
-        headers: { Authorization: "Bearer " + sessionToken },
-      });
-
-      if (Array.isArray(json)) {
-        const listCards = json.map((card) => ({
-          label: "**** **** **** " + card.cardNumber.toString().slice(-4),
-          value: card._id,
-        }));
-        setCards(listCards);
-      }
-    };
-
-    fetchUserCards();
-  }, [isMethodCredit, sessionToken, request]);
-
-  useEffect(() => {
-    if (!sessionToken) {
-      return;
-    }
-
-    const fetchDataForType = async () => {
-      setValue("categoryId", "");
-      setValue("methodId", "");
-      setMethods([]);
-      setCategories([]);
-
-      const categoriesResp = await request(
-        `${apiUrl}/categories/types/${type}`,
-        {
-          headers: { Authorization: "Bearer " + sessionToken },
-        },
-      );
-
-      if (categoriesResp.json)
-        setCategories(formatSelectData(categoriesResp.json));
-
-      const methodsResp = await request(`${apiUrl}/methods/types/${type}`, {
-        headers: { Authorization: "Bearer " + sessionToken },
-      });
-      if (methodsResp.json) setMethods(formatSelectData(methodsResp.json));
-    };
-
-    setValue("type", type);
-    fetchDataForType();
-  }, [type, sessionToken, setValue, request]);
-
   const onSubmit = async (data: any) => {
+    console.log(new Date(data.createdAt).toISOString())
     const formData = new FormData();
     if (user?._id) formData.append("userId", user?._id);
     formData.append("value", data.value);
     formData.append("type", data.type);
-    formData.append("createdAt", data.createdAt);
+    formData.append("createdAt", new Date(data.createdAt).toISOString());
     formData.append("categoryId", data.categoryId);
     formData.append("methodId", data.methodId);
 
@@ -173,15 +109,9 @@ function TransactionForm({ type }: TransactionFormProps) {
     }
 
     try {
-      const { response } = await request(`${apiUrl}/transactions`, {
-        method: "POST",
-        headers: { Authorization: "Bearer " + sessionToken },
-        body: formData,
-      });
+      const { status, statusText } = await api.post("/transactions", formData);
 
-      if (response && !response.ok) {
-        throw new Error(error || "Erro desconhecido");
-      }
+      if (status != 201) throw new Error(statusText || "Erro desconhecido");
 
       if (user) {
         fetchTransactions(user);
@@ -211,92 +141,81 @@ function TransactionForm({ type }: TransactionFormProps) {
     }
   };
 
-  return (
-    <>
-      <Controller
-        name="methodId"
-        control={control}
-        rules={{ required: "Tipo de pagamento é obrigatório" }}
-        render={({ field, fieldState }) => (
-          <BytebankSelect
-            {...field}
-            loading={loading && methods.length === 0}
-            label="Selecione o tipo da transação"
-            error={!!fieldState.error}
-            helperText={fieldState.error?.message}
-            options={methods}
-          />
-        )}
-      />
-
-<Controller
-  name="createdAt"
-  control={control}
-  rules={{ required: "Data é obrigatória" }}
-  render={({ field, fieldState }) => {
-    const stringValue = field.value; // Ex: "2025-07-19"
-    const parsedDate = stringValue
-      ? parse(stringValue, "yyyy-MM-dd", new Date())
-      : null;
-
-    const handleChange = (date: Date | null) => {
-      const formatted = date ? format(date, "yyyy-MM-dd") : "";
-      field.onChange(formatted); // envia como string para o form
+  useEffect(() => {
+    setValue("type", type);
+    const fetchPaymentMethods = async () => {
+      try {
+        const { data } = await api.get(`/methods`);
+        if (data.length > 0) {
+          setMethods(data);
+        }
+      } catch (err) {
+        setSnackbarData({
+          status: "error",
+          message: "Erro ao buscar métodos  de pagamento.",
+        });
+        setSnackbarOpen(true);
+      }
     };
 
-    return (
-      <BytebankDatePicker
-        label="Data da transação"
-        error={!!fieldState.error}
-        helperText={fieldState.error?.message}
-        value={parsedDate}
-        onChange={handleChange}
-      />
-    );
-  }}
-/>
+    const fetchUserCards = async () => {
+      const { data } = await api.get(`/cards?userId=${user?._id}`);
+      if (data.length > 0) {
+        const listCards = data.map((card: any) => ({
+          label: "**** **** **** " + card.cardNumber.toString().slice(-4),
+          value: card._id,
+        }));
+        setCards(listCards);
+      }
+    };
 
-      <Controller
+    fetchPaymentMethods();
+    if (isMethodCredit) fetchUserCards();
+  }, [type, selectedPaymentType]);
+
+  useEffect(() => {
+    if (categories && categories.length > 0) {
+      const filtered = formatDataByType(categories, type);
+      setLocalCategories(filtered);
+    }
+  }, [categories, type]);
+
+  return (
+    <>
+      <BytebankSelectController
+        name="methodId"
+        label="Selecione o tipo da transação"
+        rules={{ required: "Tipo de pagamento é obrigatório" }}
+        options={filterMethods}
+        color="primary"
+      />
+
+      <BytebankDatePickerController
+        name="createdAt"
+        label="Data da transação"
+        rules={{ required: "Data é obrigatória" }}
+      />
+
+      <BytebankInputController
+        type="text"
+        mask="currency"
+        label="Valor"
         name="value"
         rules={{
           required: "Valor é obrigatório",
           min: { value: 0.01, message: "O valor deve ser maior que zero" },
         }}
-        control={control}
-        render={({ field, fieldState }) => (
-          <BytebankInput
-            {...field}
-            type="text"
-            mask="currency"
-            error={!!fieldState.error}
-            helperText={fieldState.error?.message}
-            label="Valor"
-            placeholder="R$ 00,00"
-          />
-        )}
+        placeholder="R$ 00,00"
       />
 
       <Box marginTop="1rem">
-        <Controller
+        <BytebankAutoCompleteController
           name="categoryId"
+          label="Categoria"
           rules={{ required: "Categoria é obrigatória" }}
-          control={control}
-          render={({ field, fieldState }) => {
-            const selected =
-              categories.find((cat) => cat.value === field.value) || null;
-            return (
-              <BytebankAutoComplete
-                error={!!fieldState.error}
-                helperText={fieldState.error?.message}
-                label="Categoria"
-                onCreateOption={createCategory}
-                loading={loading && categories.length === 0}
-                options={categories}
-                value={selected}
-                onChange={(val) => field.onChange(val?.value || "")}
-              />
-            );
-          }}
+          loading={localCategories.length === 0}
+          options={localCategories}
+          onCreateOption={createCategory}
         />
       </Box>
 
@@ -306,15 +225,13 @@ function TransactionForm({ type }: TransactionFormProps) {
         justifyContent="flex-start"
         gap="0.875rem"
       >
-        {categories
-          ?.slice(0, 3)
-          .map(({ label, value }) => (
-            <BytebankChip
-              key={value}
-              label={label}
-              onClick={() => setValue("categoryId", value)}
-            />
-          ))}
+        {localCategories.slice(0, 3).map(({ label, value }) => (
+          <BytebankChip
+            key={value}
+            label={label}
+            onClick={() => setValue("categoryId", value)}
+          />
+        ))}
       </Box>
 
       <Box marginBottom="1rem">
@@ -338,16 +255,11 @@ function TransactionForm({ type }: TransactionFormProps) {
             um novo.
           </BytebankText>
           {cards.length > 0 ? (
-            <Controller
+            <BytebankSelectController
               name="creditCard"
-              control={control}
-              render={({ field }) => (
-                <BytebankSelect
-                  {...field}
-                  label="Selecione o cartão"
-                  options={cards}
-                />
-              )}
+              label="Selecione o cartão"
+              options={cards}
+              color="primary"
             />
           ) : null}
 
@@ -423,7 +335,9 @@ export function BytebankTransactionCard() {
   return (
     <BytebankCard>
       <Box sx={{ width: "100%" }} padding="2rem">
-        <BytebankText variant="md" fontWeight="700">Nova Transação</BytebankText>
+        <BytebankText variant="md" fontWeight="700">
+          Nova Transação
+        </BytebankText>
         <Box marginTop={2}>
           <BytebankTabs
             options={[
