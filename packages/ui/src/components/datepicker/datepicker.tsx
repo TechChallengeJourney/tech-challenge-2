@@ -66,10 +66,72 @@ export function BytebankDatePicker({
             textField: {
               id: datepickerId,
               fullWidth: true,
-              error: error,
-              helperText: helperText,
+              error,
+              helperText,
               margin: "normal",
               "aria-describedby": helperId,
+            },
+            day: {
+              sx: {
+                color: colors["lime.contrast"],
+                fontWeight: 500,
+                "&.Mui-selected": {
+                  "&:hover": {
+                    backgroundColor: colors["lime.contrast"],
+                    color: colors["lime.50"],
+                  },
+                },
+                "&:hover": {
+                  backgroundColor: colors["lime.subcontrast"],
+                  color: colors["white.main"],
+                },
+                "&.Mui-disabled": {
+                  color: colors["grey.500"],
+                },
+                "&.MuiPickersDay-today": {
+                  border: `1px solid ${colors["lime.900"]}`,
+                },
+              },
+            },
+            calendarHeader: {
+              sx: {
+                color: colors["lime.contrast"],
+                "& .MuiSvgIcon-root": {
+                  color: colors["lime.contrast"],
+                },
+                "& .MuiPickersCalendarHeader-label": {
+                  fontWeight: 600,
+                },
+                ".MuiDayCalendar-header": {
+                  background: "red",
+                },
+              },
+            },
+            popper: {
+              sx: {
+                ".MuiDayCalendar-header": {
+                  backgroundColor: colors["lime.500"],
+                },
+                ".MuiPickersPopper-paper": {
+                  backgroundColor: colors["grey.900"],
+                  color: colors["lime.contrast"],
+                  borderRadius: 2,
+                },
+                ".MuiDayCalendar-weekDayLabel": {
+                  color: colors["lime.subcontrast"],
+                  fontWeight: "bold",
+                },
+              },
+            },
+            toolbar: {
+              sx: {
+                backgroundColor: colors["background.gradient"],
+                color: colors["lime.highcontrast"],
+                "& .MuiTypography-root": {
+                  color: colors["lime.highcontrast"],
+                  fontWeight: 600,
+                },
+              },
             },
           }}
         />

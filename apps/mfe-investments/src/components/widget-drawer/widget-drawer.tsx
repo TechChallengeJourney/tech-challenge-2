@@ -9,7 +9,7 @@ export const BytebankWidgetDrawer = ({ openDrawer, onClose }: { openDrawer: bool
     const { user, setUser } = useUser();
     if(!user) return;
 
-    const selectedWidgets = user ? user.selectedWidgets : [];
+    const selectedWidgets: WidgetKey[] = Array.isArray(user?.selectedWidgets) ? user.selectedWidgets : [];
     const widgetKeys =  Object.entries(WidgetKey).map(([key, value]) => ({ key, value })) as unknown as Array<{key:keyof typeof WidgetKey; value: WidgetKey}>;
 
     const [widgets, setWidgets] = useState(() =>

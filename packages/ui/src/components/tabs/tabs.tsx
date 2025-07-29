@@ -19,13 +19,13 @@ export function BytebankTabs({
   children,
 }: BytebankTabsProps) {
   const [value, setValue] = useState(0);
-  const {colors} = useTheme();
+  const { colors } = useTheme();
 
   useEffect(() => {
     if (options?.[value]) {
       onChangeTab?.(options[value].id);
     }
-  }, []);
+  }, [onChangeTab, options, value]);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -68,9 +68,9 @@ export function BytebankTabs({
             "& .MuiTab-root:last-of-type": {
               borderRight: "none",
             },
-            "& .Mui-selected": {
+            "& .MuiButtonBase-root.Mui-selected": {
               backgroundColor: colors["lime.500"],
-              color: colors["lime.subcontrast"] ,
+              color: colors["lime.subcontrast"],
             },
           }}
         >
