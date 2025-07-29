@@ -1,67 +1,10 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, Suspense, useEffect, useState } from 'react';
 import { BytebankBalanceCard } from '../../components/balance-card/balance-card';
 import { Box, Typography } from '@mui/material';
 import { BytebankButton, BytebankModal } from '@repo/ui';
 import { BytebankTransactionCard } from '../../components/transaction-card/transaction-card';
 import { useUser, WidgetKey } from '@repo/data-access';
-
-const BytebankExtract = React.lazy(() =>
-  // @ts-ignore
-  import('transactions/components').then((module) => ({
-    default: module.default || module.BytebankExtract,
-  })).catch((error) => {
-    console.error(error)
-  })
-);
-
-const BytebankWidgetDrawer: React.FC<{ openDrawer: boolean; onClose: () => void; }> = React.lazy(() =>
-  // @ts-ignore
-  import('investments/components').then((module) => ({
-    default: module.default || module.BytebankWidgetDrawer,
-  })).catch((error) => {
-    console.error(error)
-  })
-);
-
-const BytebankGeneralCardsWidget: React.FC = React.lazy(() =>
-  // @ts-ignore
-  import('investments/components').then((module) => {
-    console.log('inv', module)
-    return {default: module.default || module.BytebankGeneralCardsWidget
-    }
-  }).catch((error) => {
-    console.error(error)
-  })
-);
-
-const BytebankFinancialStatusWidget: React.FC<{userId?: string}> = React.lazy(() =>
-  // @ts-ignore
-  import('investments/components').then((module) => ({
-    default: module.default ||module.BytebankFinancialStatusWidget,
-  })).catch((error) => {
-    console.error(error)
-  })
-);
-
-const BytebankMonthlyResumeWidget: React.FC<{userId?: string}> = React.lazy(() =>
-  // @ts-ignore
-  import('investments/components').then((module) => ({
-      default: module.default ||module.BytebankMonthlyResumeWidget
-    }
-  )).catch((error) => {
-    console.error(error)
-  })
-);
-
-const BytebankAnalyticsWidget: React.FC<{userId?: string}> = React.lazy(() =>
-  // @ts-ignore
-  import('investments/components').then((module) => ({
-      default: module.default || module.
-      BytebankAnalyticsWidget
-    })).catch((error) => {
-    console.error(error)
-  })
-);
+import { BytebankAnalyticsWidget, BytebankExtract, BytebankFinancialStatusWidget, BytebankGeneralCardsWidget, BytebankMonthlyResumeWidget, BytebankWidgetDrawer } from '../../utils/microfrontends';
 
 interface BytebankDashboardProps { }
 
@@ -73,7 +16,6 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
 
   const validateUserWidget = (widget: WidgetKey) => selectedWidgets.includes(widget);
 
-  useEffect(() => { }, [user])
   const openWidgetDrawer = (value: boolean = true) => { setDrawerOpen(value); };
 
   return (
@@ -86,7 +28,7 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
           <Box display={'flex'} justifyContent={'flex-end'} pb={2}>
             <BytebankButton label={'Customizar widgets'} variant={'contained'} color={'secondary'} onClick={() => openWidgetDrawer()} />
           </Box>
-          <React.Suspense fallback={<div>Carregando widgets...</div>}>
+          <Suspense fallback={<div>Carregando widgets...</div>}>
           <BytebankGeneralCardsWidget />
           <Box display="grid" gridTemplateColumns="1fr 1fr" gap={2} sx={{ gridTemplateColumns: { sm: '1fr', md: '1fr 1fr' } }}>
             {validateUserWidget(WidgetKey.MonthlySummary) ? <BytebankMonthlyResumeWidget userId={user?._id} /> : null}
@@ -95,17 +37,18 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
               {validateUserWidget(WidgetKey.FinancialStatus) ? <BytebankFinancialStatusWidget userId={user?._id} /> : null}
             </Box>
           </Box>
-          </React.Suspense>
+          </Suspense>
         </Box>
         <Box>
-          <Box display="grid" gridTemplateColumns="1fr 2fr " gap={2} sx={{ gridTemplateColumns: { xs: '1fr', sm: '1fr 2fr', md: '1fr 2fr' } }}>
+
+          <Box display="grid" gridTemplateColumns="1fr 2fr " gap={2} sx={{ gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr 2fr' } }}>
             <Box>
               <BytebankTransactionCard />
             </Box>
-            <Box textAlign="left" minHeight={'10rem'}>
-              <React.Suspense fallback={<div>Carregando extrato...</div>}>
+            <Box textAlign="left" height={'100%'} overflow={'hidden'}>
+              <Suspense fallback={<div>Carregando extrato...</div>}>
                 <BytebankExtract />
-              </React.Suspense>
+              </Suspense>
             </Box>
           </Box>
         </Box>
@@ -134,9 +77,9 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
           </Box>
         </BytebankModal>
       </Box>
-      <React.Suspense>
+      <Suspense>
         <BytebankWidgetDrawer openDrawer={openDrawer} onClose={() => openWidgetDrawer(false)} />
-      </React.Suspense>
+      </Suspense>
     </>
   );
 };

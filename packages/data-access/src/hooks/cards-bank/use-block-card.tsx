@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { BlockCardBank } from "../api/block-card-bank";
-import type { ErrorResponse } from "../api/block-card-bank";
+import { BlockCardBank } from "../../api/cards-bank/block-card-bank";
+import type { ErrorResponse } from "../../api/cards-bank/block-card-bank";
 
 function isErrorResponse(res: any): res is ErrorResponse {
   return res && typeof res === "object" && "error" in res;
@@ -13,7 +13,6 @@ export function useBlockCard(initialBlocked: boolean) {
 
   React.useEffect(() => {
     setBlocked(initialBlocked);
-    console.log("useBlockCard - synced with initialBlocked:", initialBlocked);
   }, [initialBlocked]);
 
   const handleBlock = async (cardId: string): Promise<boolean> => {

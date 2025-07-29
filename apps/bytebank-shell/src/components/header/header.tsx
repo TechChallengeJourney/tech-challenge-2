@@ -30,7 +30,7 @@ import { BytebankRegisterModal, BytebankLoginModal } from "../../modals";
 import { useTheme } from "@repo/utils";
 
 export function BytebankHeader() {
-    const { colors } = useTheme();
+    const { colors, isDarkMode } = useTheme();
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
     const [snackbarData, setSnackbarData] = useState<SnackbarData | null>(null);
@@ -125,7 +125,7 @@ export function BytebankHeader() {
                             }}
                         >
                             <img
-                                src="/logo.svg"
+                                src={isDarkMode ? '/logo-light.svg': '/logo.svg'}
                                 className="logo"
                                 id="bytebank-logo"
                                 alt="Bytebank logo"
@@ -188,8 +188,8 @@ export function BytebankHeader() {
                                 filter: `${colors['logo.filter']}`
                             }}
                         >
-                            <img
-                                src="/logo.svg"
+                             <img
+                                src={isDarkMode ? '/logo-light.svg': '/logo.svg'}
                                 className="logo"
                                 id="bytebank-logo"
                                 alt="Bytebank logo"

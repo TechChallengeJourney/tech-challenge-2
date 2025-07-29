@@ -18,7 +18,7 @@ export interface BytebankCardContainerProps {
   loading?: boolean;
 }
 
-export const BytebankCardWrapper: React.FC<BytebankCardContainerProps> = ({
+export const BytebankCardList: React.FC<BytebankCardContainerProps> = ({
   cards,
   refetchCards,
   error,
@@ -66,15 +66,15 @@ export const BytebankCardWrapper: React.FC<BytebankCardContainerProps> = ({
         >
           <Box
             flex={1}
-            m={{ xs: 1, md: 4 }}
             sx={{ width: "100%", maxWidth: 350 }}
             mt={{ xs: "20px" }}
+            mr={{md: "32px"}}
           >
             <CardHeader variant={currentCard?.variant} />
             <CardVisual card={currentCard} />
           </Box>
 
-          <Box flex={2}>
+          <Box flex={2} alignSelf="center">
             <CardNavigation onPrev={handlePrev} onNext={handleNext} cards={cards}/>
             <CardDetails card={currentCard} />
             <CardActions
