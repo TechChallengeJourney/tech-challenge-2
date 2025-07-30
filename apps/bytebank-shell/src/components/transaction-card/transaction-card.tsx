@@ -99,7 +99,6 @@ function TransactionForm({ type }: TransactionFormProps) {
     formData.append("createdAt", new Date(data.createdAt).toISOString());
     formData.append("categoryId", data.categoryId);
     formData.append("methodId", data.methodId);
-    console.log({formData})
 
     if (data.creditCard) {
       formData.append("cardId", data.creditCard);
