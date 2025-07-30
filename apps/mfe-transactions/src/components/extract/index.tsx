@@ -92,8 +92,6 @@ export function BytebankExtract() {
     return category ? category.name : "Unknown Category";
   };
 
-
-
   const handleTransactionUpdate = async (
     data: Transaction,
     newValue: string
