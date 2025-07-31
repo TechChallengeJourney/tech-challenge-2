@@ -46,8 +46,8 @@ export function BytebankMonthlyResumeWidget({ userId }: { userId: string }) {
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: "85%",
-        borderRadius: 6,
+        columnWidth: "100%",
+        borderRadius: 5,
       },
     },
     dataLabels: {
@@ -67,13 +67,13 @@ export function BytebankMonthlyResumeWidget({ userId }: { userId: string }) {
       labels: {
         show: true,
         style: {
-          fontSize: "12px",
+          fontSize: "12.5px",
           colors: colors["lime.contrast"],
         },
       },
       axisTicks: {
         show: true,
-        color: colors["grey.200"],
+        color: colors["grey.800"],
       },
     },
     yaxis: {
@@ -91,11 +91,14 @@ export function BytebankMonthlyResumeWidget({ userId }: { userId: string }) {
         fillColors: [colors["lime.500"], colors["lime.900"]],
         strokeWidth: 0,
       },
+      labels: {
+        colors: colors["lime.contrast"],
+      }
     },
     tooltip: {
       theme: isDarkMode ? "dark" : "light",
       style: {
-        fontSize: "14px",
+        fontSize: "15px",
         fontFamily: "Roboto, sans-serif",
       },
       y: {
@@ -106,7 +109,7 @@ export function BytebankMonthlyResumeWidget({ userId }: { userId: string }) {
       },
     },
     grid: {
-      borderColor: isDarkMode ? colors["grey.900"] : colors["grey.200"],
+      borderColor: isDarkMode ? colors["grey.800"] : colors["grey.200"],
     },
     responsive: [
       {
@@ -114,8 +117,8 @@ export function BytebankMonthlyResumeWidget({ userId }: { userId: string }) {
         options: {
           plotOptions: {
             bar: {
-              columnWidth: "70%",
-            },
+              columnWidth: "80%",
+            }
           },
           xaxis: {
             labels: {
@@ -123,9 +126,9 @@ export function BytebankMonthlyResumeWidget({ userId }: { userId: string }) {
             },
           },
           legend: {
-            position: "bottom",
-            fontSize: "12px",
-            colors: colors["lime.contrast"],
+            position: 'top',
+            fontSize: '13px',
+            color: colors["lime.contrast"],
           },
         },
       },

@@ -108,6 +108,7 @@ export function BytebankHeader() {
                 id="bytebank-header"
                 position={"sticky"}
                 sx={{
+                    width: "100vw",
                     transition: "all 0.3s ease",
                     boxShadow: "none",
                     borderBottom: "1px solid rgb(199 201 145 / 20%)",
@@ -118,7 +119,7 @@ export function BytebankHeader() {
                     <Toolbar disableGutters>
                         <Box
                             className={'link'}
-                            onClick={() => navigate("/")}
+                            onClick={() => navigate((isLogged ? '/dashboard' : '/'))}
                             sx={{
                                 display: { xs: "none", md: "flex" },
                                 filter: `${colors['logo.filter']}`
@@ -132,6 +133,7 @@ export function BytebankHeader() {
                             />
                         </Box>
 
+                        {(pages.length !== 0) ?
                         <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
                             <IconButton
                                 size="large"
@@ -176,15 +178,16 @@ export function BytebankHeader() {
                                 ))}
                             </Menu>
                         </Box>
-
+                        : null}
                         <Box
                             className={'link'}
-                            onClick={() => navigate("/")}
+                            onClick={() => navigate((isLogged ? '/dashboard' : '/'))}
                             sx={{
                                 mr: 2,
+                                ml: 2,
                                 display: { xs: "flex", md: "none" },
                                 width: "80%",
-                                justifyContent: "center",
+                                justifyContent: "flex-start",
                                 filter: `${colors['logo.filter']}`
                             }}
                         >
