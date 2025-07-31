@@ -88,16 +88,16 @@ export default function BlogPage() {
     return (
         <>
             <Box style={{ backgroundColor: 'white', width: '100%', minHeight: '100vh' }}>
-
-               
                 {/* Hero Section */}
-                <Box p={5} minHeight={'10em'} display={'flex'} alignContent={'center'} flexWrap="wrap" justifyContent={"center"} sx={{ background: `${colors['background.gradient']}`, py: 8 }}>
-                    <Typography variant="h3" gutterBottom fontWeight="bold" color="text.primary">
+                <Box p={5} minHeight={'15em'} display={'flex'} alignContent={'center'} flexWrap="wrap" justifyContent={"left"} sx={{ background: "url('./credit-card.jpg')", backgroundPosition: 'center', backgroundSize: 'cover', py: 8 }}>
+                    <Box bgcolor={colors['white.main']} px={4} py={4} width={{sm: '80%', md: '25%'}} textAlign={'left'} borderRadius={4}>
+                    <Typography variant="h4" gutterBottom fontWeight="bold" color={colors['lime.800']}>
                         Blog Bytebank
                     </Typography>
-                    <Typography variant="h5" color="text.primary">
+                    <Typography variant="h6" color="text.primary">
                         Insights, análises e conhecimento sobre o mundo financeiro para impulsionar seus investimentos
                     </Typography>
+                    </Box>
                 </Box>
                 <Box py={4} sx={{ maxWidth: 1280, mx: 'auto', px: 2 }}>
                     <Typography variant="h4" fontWeight="bold" color="text.primary" mb={4}>
