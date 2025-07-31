@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from '../components/FormattedDate.astro';
+import {BytebankCard, BytebankButton} from '@repo/ui';
+import {
+    Container,
+    Box,
+    Typography,
+    Button,
+    Grid,
+    Card,
+    CardMedia,
+    CardContent,
+    Chip,
+    AppBar,
+    Toolbar,
+    IconButton,
+    InputBase,
+    Boxider,
+    Paper,
+    TextField,
+} from '@mui/material';
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+---
+		<main>
+			<article>
+			<Container maxWidth="md">
+<Box>
+ {/* Botão Carregar mais */}
+                        <Box display={"flex"} justifyContent="left" pb={4}>
+                            <a href="/"><BytebankButton variant="outlined" label={'Voltar'} color={'tertiary'} /></a>
+                        </Box>
+<Box pb={4}>
+						<Typography variant="h3" color="text.primary">{title}</Typography>
+</Box>
+			<Card sx={{ borderRadius: 2, boxShadow: 3, '&:hover': { boxShadow: 6, transition: 'box-shadow 0.3s' } }}>
+                                        <CardMedia
+                                            component="img"
+                                            height="300"
+                                            image={heroImage}
+                                            alt={title}
+                                            sx={{ objectFit: 'cover', objectPosition: 'top' }}
+                                        />
+										</Card>
+				<Box class="prose">
+					<Box class="title">
+						<Box class="date">
+							<Typography variant="body2" py={2}>
+							<FormattedDate date={pubDate} />
+							{
+								updatedDate && (
+									<Typography variant="body2" class="last-updated-on">
+										Last updated on <FormattedDate date={updatedDate} />
+									</Typography>
+								)
+							}
+							</Typography>
+						</Box>
+				
+					</Box>
+					<Typography variant="body2"><slot /></Typography>
+				</Box>
+</Box>
+<Container>
+
+			</article>
+		</main>
