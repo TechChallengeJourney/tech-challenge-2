@@ -46,7 +46,7 @@ const darkPalette = {
   "lime.400": "#485014",
   "lime.500": "#B8CC00",
   "lime.600": "#c9df39",
-  "lime.700": "#565F16",
+  "lime.700": "#818c39",
   "lime.800": "#CDE333",
   "lime.900": "#f2ffb8",
   "lime.dark": "#151808",

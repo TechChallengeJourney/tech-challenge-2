@@ -2,6 +2,7 @@ import { BytebankDrawerProps } from "../../classes/models/drawer";
 import { Box, Drawer } from "@mui/material";
 import { BytebankText } from "../text/text";
 import { BytebankDivider } from "../divider/divider";
+import CloseIcon from '@mui/icons-material/Close';
 
 export function BytebankDrawer({title, children, anchor, open, onClose}: BytebankDrawerProps) {
     return (
@@ -11,6 +12,8 @@ export function BytebankDrawer({title, children, anchor, open, onClose}: Byteban
                 <BytebankText variant={'md'} sx={{ paddingTop: 2, paddingBottom: 2, fontWeight: 600 }}>
                 {title}
                 </BytebankText>
+                
+                <CloseIcon sx={{ cursor: 'pointer', position: 'absolute', right: 16, top: 30 }} onClick={() => onClose?.({}, 'escapeKeyDown')} />
                 </Box>
                 <BytebankDivider type="horizontal" />
                 <Box px={4} py={2}>
