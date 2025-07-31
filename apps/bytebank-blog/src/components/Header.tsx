@@ -3,7 +3,7 @@ import { BytebankButton } from "@repo/ui";
 
 export default function Header() {    
     return (
-        <AppBar position={"relative"}
+        <AppBar position={"sticky"}
         sx={{
             background: '#ffffffc4',
             width: "100vw",
