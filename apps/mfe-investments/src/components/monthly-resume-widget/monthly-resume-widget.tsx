@@ -2,22 +2,21 @@ import { Box, Skeleton } from "@mui/material";
 import { useFinancialData, WidgetKey } from "@repo/data-access";
 import { BytebankCard, BytebankIllustration, BytebankText } from "@repo/ui";
 import { formatCurrencyBRL, useTheme } from "@repo/utils";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Chart from "react-apexcharts";
 import { fetchWidgetData } from "../../services/widgets";
 
 function getDatesOfCurrentMonthUntilToday(): string[] {
   const now = new Date();
-  const month = (now.getMonth() + 1).toString().padStart(2, '0');
+  const month = (now.getMonth() + 1).toString().padStart(2, "0");
   const today = now.getDate();
   const dates: string[] = [];
 
   for (let day = 1; day <= today; day++) {
-    dates.push(`${day.toString().padStart(2, '0')}/${month}`);
+    dates.push(`${day.toString().padStart(2, "0")}/${month}`);
   }
   return dates;
 }
-
 
 interface BytebankMonthlyResumeProps {
   name?: string;
@@ -31,7 +30,11 @@ interface BytebankMonthlyResumeResponse {
   data: BytebankMonthlyResumeProps[];
 }
 
-export function BytebankMonthlyResumeWidget({userId}: {userId: string}) {
+export function BytebankMonthlyResumeWidget({ userId }: { userId: string }) {
+  const hasFetchedOnce = useRef(false)
+  const [isLoading, setLoading] = useState(true);
+  const [widgetData, setWidgetData] = useState<BytebankMonthlyResumeResponse>();
+  
   const { extract } = useFinancialData();
   const { colors, isDarkMode } = useTheme();
 
@@ -65,7 +68,7 @@ export function BytebankMonthlyResumeWidget({userId}: {userId: string}) {
         show: true,
         style: {
           fontSize: "12.5px",
-          colors: colors["lime.contrast"]
+          colors: colors["lime.contrast"],
         },
       },
       axisTicks: {
@@ -77,9 +80,9 @@ export function BytebankMonthlyResumeWidget({userId}: {userId: string}) {
       tickAmount: 5,
       labels: {
         style: {
-          colors: colors["lime.contrast"]
-        }
-      }
+          colors: colors["lime.contrast"],
+        },
+      },
     },
     legend: {
       position: "top",
@@ -119,45 +122,52 @@ export function BytebankMonthlyResumeWidget({userId}: {userId: string}) {
           },
           xaxis: {
             labels: {
-              style: { fontSize: '10px' }
-            }
+              style: { fontSize: "10px" },
+            },
           },
           legend: {
             position: 'top',
             fontSize: '13px',
             color: colors["lime.contrast"],
           },
-        }
-      }
+        },
+      },
     ],
   };
 
-  const [isLoading, setLoading] = useState(true);
-  const [widgetData, setWidgetData] = useState<BytebankMonthlyResumeResponse>();
-
   useEffect(() => {
     const fetchData = async () => {
-      if (userId) {
+      if (!userId) return;
+
+      // só ativa loading se for a primeira vez da montagem do componente
+      if (!hasFetchedOnce.current) {
         setLoading(true);
-        try {
-          const data = await fetchWidgetData<BytebankMonthlyResumeResponse>(
-            WidgetKey.MonthlySummary,
-            userId
-          );
-          if (options.yaxis && !Array.isArray(options.yaxis)) {
-            options.yaxis.max = data?.maxValue || 0;
-            options.yaxis.min = data?.minValue || 0;
-          }
-          setWidgetData(data);
-        } catch (error) {
-          console.error("Erro ao buscar dados do widget:", error);
-        } finally {
-          setLoading(false);
+      }
+
+      try {
+        const data = await fetchWidgetData<BytebankMonthlyResumeResponse>(
+          WidgetKey.MonthlySummary,
+          userId
+        );
+
+        if (options.yaxis && !Array.isArray(options.yaxis)) {
+          options.yaxis.max = data?.maxValue || 0;
+          options.yaxis.min = data?.minValue || 0;
+        }
+
+        setWidgetData(data);
+      } catch (error) {
+        console.error("Erro ao buscar dados do widget:", error);
+      } finally {
+        if (!hasFetchedOnce.current) {
+          setLoading(false); // finaliza o loading inicial
+          hasFetchedOnce.current = true;
         }
       }
     };
+
     fetchData();
-  }, [userId]);
+  }, [userId, extract]);
 
   const renderLoading = () =>
     isLoading ? (
@@ -186,7 +196,13 @@ export function BytebankMonthlyResumeWidget({userId}: {userId: string}) {
         {widgetData && !isLoading ? (
           <>
             <Box marginTop={2} width="100%">
-              <Chart options={options} series={widgetData.data as ApexAxisChartSeries} type="bar" width="100%" minheight={400} />
+              <Chart
+                options={options}
+                series={widgetData.data as ApexAxisChartSeries}
+                type="bar"
+                width="100%"
+                minheight={400}
+              />
             </Box>
           </>
         ) : (
@@ -198,11 +214,18 @@ export function BytebankMonthlyResumeWidget({userId}: {userId: string}) {
             gap={4}
             py={4}
           >
-            <BytebankIllustration name={"empty"} variant={"lg"}></BytebankIllustration>
-            <BytebankText variant="sm" color="textSecondary" textAlign={"center"}>
+            <BytebankIllustration
+              name={"empty"}
+              variant={"lg"}
+            ></BytebankIllustration>
+            <BytebankText
+              variant="sm"
+              color="textSecondary"
+              textAlign={"center"}
+            >
               <Box display={"flex"} justifyContent={"center"}>
-                Não podemos exibir os dados do resumo financeiro. <br />Tente
-                criar uma nova transação ou recarregar a página.
+                Não podemos exibir os dados do resumo financeiro. <br />
+                Tente criar uma nova transação ou recarregar a página.
               </Box>
             </BytebankText>
           </Box>
