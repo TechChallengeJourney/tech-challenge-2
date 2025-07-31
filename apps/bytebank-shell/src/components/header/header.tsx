@@ -118,7 +118,7 @@ export function BytebankHeader() {
                     <Toolbar disableGutters>
                         <Box
                             className={'link'}
-                            onClick={() => navigate("/")}
+                            onClick={() => navigate((isLogged ? '/dashboard' : '/'))}
                             sx={{
                                 display: { xs: "none", md: "flex" },
                                 filter: `${colors['logo.filter']}`
@@ -132,6 +132,7 @@ export function BytebankHeader() {
                             />
                         </Box>
 
+                        {(pages.length !== 0) ?
                         <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
                             <IconButton
                                 size="large"
@@ -176,15 +177,16 @@ export function BytebankHeader() {
                                 ))}
                             </Menu>
                         </Box>
-
+                        : null}
                         <Box
                             className={'link'}
-                            onClick={() => navigate("/")}
+                            onClick={() => navigate((isLogged ? '/dashboard' : '/'))}
                             sx={{
                                 mr: 2,
+                                ml: 2,
                                 display: { xs: "flex", md: "none" },
                                 width: "80%",
-                                justifyContent: "center",
+                                justifyContent: "flex-start",
                                 filter: `${colors['logo.filter']}`
                             }}
                         >

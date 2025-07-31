@@ -33,6 +33,7 @@ const lightPalette = {
   "grey.main": "#9e9e9e",
   "black.main": "#000000",
   "white.main": "#ffffff",
+  "red.200": "#ff5c5c",
   "red.700": "#B00020",
   "logo.filter": "brightness(0.4)",
 };
@@ -72,6 +73,7 @@ const darkPalette = {
   "grey.main": "#9e9e9e",
   "black.main": "#000000",
   "white.main": "#ffffff",
+  "red.200": "#ff8181",
   "red.700": "#B00020",
   "logo.filter": "brightness(1)",
 };

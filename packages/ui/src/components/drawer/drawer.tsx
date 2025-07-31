@@ -8,7 +8,7 @@ export function BytebankDrawer({title, children, anchor, open, onClose}: Byteban
         <Drawer anchor={anchor} open={open} onClose={onClose} color="#fff" >
             <Box minWidth={'25em'}>
                 <Box px={4} py={3}>
-                <BytebankText variant={'lg'} sx={{ paddingTop: 2, paddingBottom: 2, fontWeight: 600 }}>
+                <BytebankText variant={'md'} sx={{ paddingTop: 2, paddingBottom: 2, fontWeight: 600 }}>
                 {title}
                 </BytebankText>
                 </Box>

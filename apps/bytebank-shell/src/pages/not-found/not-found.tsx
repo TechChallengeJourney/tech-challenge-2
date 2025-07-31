@@ -1,10 +1,13 @@
 import { BytebankButton, BytebankIllustration, BytebankText } from "@repo/ui";
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "@repo/data-access";
 
 export default function NotFound() {
+  const { user } = useUser();
+  const isLogged = !!user;
   const navigate = useNavigate();
-  const handleRedirect = () => navigate("/");
+  const handleRedirect = () => navigate((isLogged ? '/dashboard' : '/'));
 
   return (
     <Box

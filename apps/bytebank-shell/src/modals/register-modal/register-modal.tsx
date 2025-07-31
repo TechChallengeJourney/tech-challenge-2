@@ -36,8 +36,11 @@ export function BytebankRegisterModal({
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
+    }).catch(() => {
+      setLoading(false);
+      onSubmit({ status: "error", message: "Ocorreu um erro ao tentar criar o cadastro no sistema, tente novamente mais tarde por favor." });
     });
-
+    if (!response) { return; }
     if (response.ok) {
       registerMethods.reset();
       onSubmit({
