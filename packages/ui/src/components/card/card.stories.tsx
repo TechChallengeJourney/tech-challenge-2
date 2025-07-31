@@ -58,7 +58,7 @@ export default {
                           {item.name}
                         </Typography>
 
-                        <Typography variant="sm" style={{ marginTop: "8px" }}>
+                        <Typography variant="body1" style={{ marginTop: "8px" }}>
                           Lorem ipsum dolor sit amet, consectetur adipisci elit,
                           sed eiusmod tempor incidunt ut labore et dolore magna
                           aliqua. Ut enim ad minim veniam, quis nostrum
