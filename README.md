@@ -1,80 +1,72 @@
-# Turborepo starter
+# Bytebank - Tech Challenge #2
 
-This Turborepo starter is maintained by the Turborepo core team.
+Bem-vindo ao projeto de estudo **Bytebank**, uma aplicação moderna desenvolvida em **React**. Para garantir uma estrutura flexível, escalável e organizada, o projeto foi criado utilizando o **Turborepo** (https://turborepo.com/docs). Essa abordagem facilita o compartilhamento de componentes e a gestão de diferentes features, possibilitando uma integração eficiente de múltiplos frameworks.
 
-## Using this example
+---
 
-Run the following command:
+## 🚀 Começando
 
-```sh
-npx create-turbo@latest
+Estas instruções vão te ajudar a rodar o projeto localmente e explorar as funcionalidades que implementamos neste projeto, que são elas:
+- Possibilidade de criar um novo usuário e logar na aplicação com **autenticação**;
+- Criar, editar e excluir uma transação registrada;
+- Filtrar o extrato;
+- Visualizar o saldo total;
+- Visualizar e customizar widgets;
+- Editar perfil do usuário;
+- Visualizar e excluir cartões vinculados a sua conta;
+- Acessar o nosso blog.
+
+### Pré-requisitos
+
+Certifique-se de ter o [Node.js](https://nodejs.org/) instalado na sua máquina.
+
+---
+
+## 🛠️ Instalação
+
+Clone este repositório:
+
+```bash
+git clone https://github.com/TechChallengeJourney/tech-challenge-2.git
+cd tech-challenge-2
 ```
 
-## What's inside?
+Instale todas as dependências:
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `bytebank-shell`: [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `bytebank-shell` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+```bash
+yarn install
 ```
 
-### Develop
+## 🚀 Como Executar
 
-To develop all apps and packages, run the following command:
+### Rodar o projeto
 
+Execute o comando abaixo para iniciar o servidor de desenvolvimento:
+
+```bash
+yarn run dev
 ```
-cd my-turborepo
-pnpm dev
-```
+Acesse http://localhost:3000 no seu navegador para visualizar o projeto.
 
-### Remote Caching
+## Rodar a API
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+Para iniciar a API, é necessário clonar nosso outro repositório do [Bytebank API](https://github.com/TechChallengeJourney/bytebank-api) e rodar os comandos:
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+```bash
+docker-compose build
+docker-compose up
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+## 🎨 Estilização
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+Para visualizar o Design System do projeto, utilizamos o Storybook para exibir e demonstrar as definições de layout e componentes, foi baseado neste Figma (https://www.figma.com/design/ZeXkGB9NhAr5ypgpgF1gWf/Bytebank---Redesign?node-id=118-103&t=hyMOJlYGyckL9kYm-1). E para conferir a documentação dos componenentes do nosso Design System, utilize os comandos:
 
+```bash
+cd apps/docs
+yarn run storybook
 ```
-npx turbo link
-```
 
-## Useful Links
-
-Learn more:
+## Links Úteis
 
 - [React](https://react.dev/reference/react)
 - [Material MUI](https://mui.com/material-ui/all-components/)
@@ -82,3 +74,4 @@ Learn more:
 - [Rsbuild](https://rsbuild.rs)
 - [Storybook](https://storybook.js.org/docs)
 - [TurboRepo](https://turborepo.com/docs)
+- [Astro](https://docs.astro.build/en/basics/astro-components)
