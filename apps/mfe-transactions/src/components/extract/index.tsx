@@ -226,8 +226,8 @@ export function BytebankExtract() {
             <>
               {extract  && extract.data?.length !== 0 ? (
                 extract.data?.map((itens, index) => (
-                  <Box key={index} minHeight={'100px'} borderBottom={'1px solid #e3e3e3'}  overflow={'auto'} display={'flex'} flexDirection={'row'} justifyContent={"space-between"} alignItems={"center"} gap={2}>
-                    <Box px={4} py={2} >
+                  <Box key={index} minHeight={'100px'} borderBottom={'1px solid #e3e3e3'}  overflow={'auto'} display={'flex'} flexDirection={'row'} justifyContent={"space-between"} alignItems={"center"}>
+                    <Box pl={{xs: 2, md: 4}} py={2}>
                       <Box display={'flex'} flexDirection="row" gap={'10px'}  alignItems="center">
                         <IconButton
                           color="primary"
@@ -240,7 +240,6 @@ export function BytebankExtract() {
                           <Box
                             width="100%"
                             display="flex"
-                            
                             flexDirection="row"
                             boxSizing={'border-box'}
                             fontWeight={600}
@@ -274,25 +273,26 @@ export function BytebankExtract() {
                       <Box
                         key={index}
                         width="100%"
-                        display="flex"
-                        px={4}
+                        // display="flex"
+                        pr={3}
+                        // bgcolor="green"
                         flexDirection="row"
                         justifyContent="space-between"
                         boxSizing="border-box"
                         borderColor={'primary.main'}
-                        paddingTop={'5px'}
-                        paddingBottom={'20px'}
+                        // paddingTop={'5px'}
+                        // paddingBottom={'20px'}
                         alignItems="center"
                         position={'relative'}
                       >
                         
                         <Box
-                          display={'flex'}
-                          flexDirection="column"
-                          gap="5px"
+                          // display={'flex'}
+                          // flexDirection="column"
+                          // gap="5px"
                         >
                           
-                          <Box display="flex">
+                          <Box>
                             <IconButton
                               color="primary"
                               aria-label="more"

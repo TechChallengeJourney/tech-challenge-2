@@ -223,6 +223,7 @@ function TransactionForm({ type }: TransactionFormProps) {
         marginY="1rem"
         display="flex"
         justifyContent="flex-start"
+        flexWrap="wrap"
         gap="0.875rem"
       >
         {localCategories.slice(0, 3).map(({ label, value }) => (
