@@ -166,11 +166,11 @@ export function BytebankHeader() {
                                         key={page.name}
                                         onClick={() => {
                                             handleCloseNavMenu();
-                                            navigate(page.route);
+                                            (page.blank) ? window.open(page.route, '_blank') : navigate(page.route);
                                         }}
                                     >
                                         <Typography
-                                            sx={{ textAlign: "center", textTransform: "capitalize" }}
+                                            sx={{ textAlign: "center" }}
                                         >
                                             {page.name}
                                         </Typography>
@@ -202,7 +202,6 @@ export function BytebankHeader() {
                             sx={{
                                 flexGrow: 1,
                                 justifyContent: "center",
-                                textTransform: "capitalize",
                                 display: { xs: "none", md: "flex" },
                             }}
                         >
@@ -210,8 +209,8 @@ export function BytebankHeader() {
                                 <BytebankButton
                                     key={page.name}
                                     label={page.name}
-                                    onClick={() => navigate(page.route)}
-                                    sx={{ my: 2, display: "block", textTransform: "capitalize" }}
+                                    onClick={() => (page.blank) ? window.open(page.route, '_blank') : navigate(page.route)}
+                                    sx={{ my: 2, display: "block" }}
                                     variant="text"
                                     color={"primary"}
                                 />
