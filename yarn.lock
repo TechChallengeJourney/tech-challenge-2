@@ -1568,7 +1568,7 @@
     react-is "^19.1.0"
     react-transition-group "^4.4.5"
 
-"@mui/material@^7.2.0":
+"@mui/material@^7.0.2":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@mui/material/-/material-7.2.0.tgz#957da3b927c67e5a36a026658ffb40c10a3b6b5f"
   integrity sha512-NTuyFNen5Z2QY+I242MDZzXnFIVIR6ERxo7vntFi9K1wCgSwvIl0HcAO2OOydKqqKApE6omRiYhpny1ZhGuH7Q==

@@ -213,7 +213,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
 
                 <BytebankCard styles={{
                     flex: "1",
-                    padding: "36px 40px"
+                    padding: 4,
                 }} className="form-section">
                     <Box pb={4}>
                         <BytebankText variant='md' color={colors['lime.highcontrast']} textTransform='capitalize' fontWeight='bold'>Dados pessoais</BytebankText>
