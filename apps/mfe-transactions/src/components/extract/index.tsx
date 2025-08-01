@@ -214,9 +214,8 @@ export function BytebankExtract() {
                     flexDirection={"row"}
                     justifyContent={"space-between"}
                     alignItems={"center"}
-                    gap={2}
                   >
-                    <Box px={4} py={2}>
+                    <Box pl={4} py={2}>
                       <Box
                         display={"flex"}
                         flexDirection="row"
@@ -293,20 +292,16 @@ export function BytebankExtract() {
                       <Box
                         key={index}
                         width="100%"
-                        // display="flex"
-                        pr={3}
-                        // bgcolor="green"
+                        pr={{xs: 1, md: 3}}
                         flexDirection="row"
                         justifyContent="space-between"
                         boxSizing="border-box"
                         borderColor={"primary.main"}
-                        paddingTop={"5px"}
-                        paddingBottom={"20px"}
                         alignItems="center"
                         position={"relative"}
                       >
-                        <Box display={"flex"} flexDirection="column" gap="5px">
-                          <Box display="flex">
+                        <Box>
+                          <Box>
                             <IconButton
                               color="primary"
                               aria-label="more"
