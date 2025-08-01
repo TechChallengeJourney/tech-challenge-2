@@ -33,6 +33,7 @@ const lightPalette = {
   "grey.main": "#9e9e9e",
   "black.main": "#000000",
   "white.main": "#ffffff",
+  "red.200": "#ff5c5c",
   "red.700": "#B00020",
   "logo.filter": "brightness(0.4)",
 };
@@ -45,7 +46,7 @@ const darkPalette = {
   "lime.400": "#485014",
   "lime.500": "#B8CC00",
   "lime.600": "#c9df39",
-  "lime.700": "#565F16",
+  "lime.700": "#818c39",
   "lime.800": "#CDE333",
   "lime.900": "#f2ffb8",
   "lime.dark": "#151808",
@@ -72,6 +73,7 @@ const darkPalette = {
   "grey.main": "#9e9e9e",
   "black.main": "#000000",
   "white.main": "#ffffff",
+  "red.200": "#ff8181",
   "red.700": "#B00020",
   "logo.filter": "brightness(1)",
 };

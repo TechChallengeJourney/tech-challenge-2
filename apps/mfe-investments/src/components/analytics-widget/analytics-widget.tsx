@@ -7,7 +7,7 @@ import {
 } from "@repo/ui";
 import { formatCurrencyBRL } from "@repo/utils";
 import { fetchWidgetData } from "../../services/widgets";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useFinancialData, WidgetKey } from "@repo/data-access";
 
 interface WidgetAnalyticsProps {
@@ -16,17 +16,21 @@ interface WidgetAnalyticsProps {
   category: { name: string; percentage: number };
 }
 
-export function BytebankAnalyticsWidget({userId}: {userId: string}) {
-  const { extract } = useFinancialData();
+export function BytebankAnalyticsWidget({ userId }: { userId: string }) {
+  const hasFetchedOnce = useRef(false);
   const [isLoading, setLoading] = useState(true);
   const [widgetData, setWidgetData] = useState<WidgetAnalyticsProps | null>(
     null
   );
 
+  const { extract } = useFinancialData();
+
   useEffect(() => {
     const fetchData = async () => {
       if (userId) {
-        setLoading(true);
+        if (!hasFetchedOnce.current) {
+          setLoading(true);
+        }
         try {
           const data = await fetchWidgetData<WidgetAnalyticsProps>(
             WidgetKey.FinancialAnalysis,
@@ -36,12 +40,15 @@ export function BytebankAnalyticsWidget({userId}: {userId: string}) {
         } catch (error) {
           console.error("Erro ao buscar dados do widget:", error);
         } finally {
-          setLoading(false);
+          if (!hasFetchedOnce.current) {
+            setLoading(false);
+            hasFetchedOnce.current = true;
+          }
         }
       }
     };
     fetchData();
-  }, [userId]);
+  }, [userId, extract]);
 
   const renderLoading = () =>
     isLoading ? (
@@ -68,11 +75,7 @@ export function BytebankAnalyticsWidget({userId}: {userId: string}) {
         {renderLoading()}
         {widgetData && !isLoading ? (
           <>
-            <Box
-              display="flex"
-              justifyContent="space-between"
-              marginTop={2}
-            >
+            <Box display="flex" justifyContent="space-between" marginTop={2}>
               <BytebankText variant="sm" fontWeight="bold">
                 Receitas do mês
               </BytebankText>
@@ -80,11 +83,15 @@ export function BytebankAnalyticsWidget({userId}: {userId: string}) {
                 {formatCurrencyBRL(widgetData.income)}
               </BytebankText>
             </Box>
-            <BytebankLinearProgress value={widgetData?.income > 0
-              ? (widgetData?.income /
-                (widgetData?.income + widgetData?.expense)) *
-              100
-              : 0} />
+            <BytebankLinearProgress
+              value={
+                widgetData?.income > 0
+                  ? (widgetData?.income /
+                      (widgetData?.income + widgetData?.expense)) *
+                    100
+                  : 0
+              }
+            />
             <Box display="flex" justifyContent="space-between" marginTop={2}>
               <BytebankText variant="sm" fontWeight="bold">
                 Despesas do mês
@@ -107,7 +114,8 @@ export function BytebankAnalyticsWidget({userId}: {userId: string}) {
                 , que representaram{" "}
                 <span style={{ fontWeight: "600" }}>
                   {`${widgetData?.category?.percentage}`}%
-                </span>das suas despesas.
+                </span>
+                das suas despesas.
               </BytebankText>
             </Box>
           </>
@@ -119,10 +127,13 @@ export function BytebankAnalyticsWidget({userId}: {userId: string}) {
             gap={4}
             py={4}
           >
-            <BytebankIllustration name={"empty"} variant={"lg"}></BytebankIllustration>
+            <BytebankIllustration
+              name={"empty"}
+              variant={"lg"}
+            ></BytebankIllustration>
             <BytebankText variant="sm" color="textSecondary">
-              Não foi possível carregar os dados da análise financeira. <br />Tente
-              criar uma nova transação ou recarregar a página.
+              Não foi possível carregar os dados da análise financeira. <br />
+              Tente criar uma nova transação ou recarregar a página.
             </BytebankText>
           </Box>
         )}

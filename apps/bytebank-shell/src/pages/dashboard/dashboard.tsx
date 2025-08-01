@@ -1,6 +1,6 @@
 import { FC, Suspense, useEffect, useState } from 'react';
 import { BytebankBalanceCard } from '../../components/balance-card/balance-card';
-import { Box, Typography } from '@mui/material';
+import { Box, Skeleton, Typography } from '@mui/material';
 import { BytebankButton, BytebankModal } from '@repo/ui';
 import { BytebankTransactionCard } from '../../components/transaction-card/transaction-card';
 import { useUser, WidgetKey } from '@repo/data-access';
@@ -28,15 +28,24 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
           <Box display={'flex'} justifyContent={'flex-end'} pb={2}>
             <BytebankButton label={'Customizar widgets'} variant={'contained'} color={'secondary'} onClick={() => openWidgetDrawer()} />
           </Box>
-          <Suspense fallback={<div>Carregando widgets...</div>}>
-          <BytebankGeneralCardsWidget />
-          <Box display="grid" gridTemplateColumns="1fr 1fr" gap={2} sx={{ gridTemplateColumns: { sm: '1fr', md: '1fr 1fr' } }}>
-            {validateUserWidget(WidgetKey.MonthlySummary) ? <BytebankMonthlyResumeWidget userId={user?._id} /> : null}
-            <Box display={'flex'} gap={2} flexDirection={'column'}>
-              {validateUserWidget(WidgetKey.FinancialAnalysis) ? <BytebankAnalyticsWidget userId={user?._id} /> : null}
-              {validateUserWidget(WidgetKey.FinancialStatus) ? <BytebankFinancialStatusWidget userId={user?._id} /> : null}
+          <Suspense fallback={<>
+            <Box display={'flex'} flexWrap={"wrap"} justifyContent={"space-between"} gap={2}>
+              <Skeleton variant={"rounded"} width={"30%"} height={80} />
+              <Skeleton variant={"rounded"} width={"30%"} height={80} />
+              <Skeleton variant={"rounded"} width={"30%"} height={80} />
+              <Skeleton variant={"rounded"} width={"48%"} height={150} />
+              <Skeleton variant={"rounded"} width={"48%"} height={150} />
             </Box>
-          </Box>
+          </>
+          }>
+            <BytebankGeneralCardsWidget />
+            <Box display="grid" gridTemplateColumns="1fr 1fr" gap={2} sx={{ gridTemplateColumns: { sm: '1fr', md: '1fr 1fr' } }}>
+              {validateUserWidget(WidgetKey.MonthlySummary) ? <BytebankMonthlyResumeWidget userId={user?._id} /> : null}
+              <Box display={'flex'} gap={2} flexDirection={'column'}>
+                {validateUserWidget(WidgetKey.FinancialAnalysis) ? <BytebankAnalyticsWidget userId={user?._id} /> : null}
+                {validateUserWidget(WidgetKey.FinancialStatus) ? <BytebankFinancialStatusWidget userId={user?._id} /> : null}
+              </Box>
+            </Box>
           </Suspense>
         </Box>
         <Box>
@@ -46,7 +55,13 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
               <BytebankTransactionCard />
             </Box>
             <Box textAlign="left" height={'100%'} overflow={'hidden'}>
-              <Suspense fallback={<div>Carregando extrato...</div>}>
+              <Suspense fallback={<>
+                <Box display={'flex'} flexWrap={"wrap"} gap={2}>
+                  <Skeleton variant={"rounded"} width={"100%"} height={150} />
+                  <Skeleton variant={"rounded"} width={"100%"} height={150} />
+                </Box>
+              </>
+              }>
                 <BytebankExtract />
               </Suspense>
             </Box>

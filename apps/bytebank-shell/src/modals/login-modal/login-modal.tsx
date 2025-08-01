@@ -39,13 +39,18 @@ export function BytebankLoginModal({
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
+    }).catch(() => {
+      setLoading(false);
+      onSubmit({ status: "error", message: "Ocorreu um erro ao tentar logar no sistema, tente novamente mais tarde por favor." });
     });
 
+    if (!response) { return; }
     if (response.ok) {
       const responseData = (await response.json()) as {
         user: User;
         accessToken: string;
       };
+
       const userData = responseData.user;
 
       loginMethods.reset();
@@ -68,7 +73,7 @@ export function BytebankLoginModal({
         onClose={() => { loginMethods.reset(); onClose(); }}
       >
         <>
-          <FormProvider {...loginMethods}> 
+          <FormProvider {...loginMethods}>
             <form onSubmit={loginMethods.handleSubmit(handleLogin)}>
               <BytebankInputController
                 control={loginMethods.control}

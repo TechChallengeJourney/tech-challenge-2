@@ -1,8 +1,9 @@
 import './style.scss';
-import { Box, Modal, Typography } from '@mui/material';
+import { Box, Modal } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useTheme } from '@repo/utils';
 import { BytebankModalProps } from '../../classes';
+import { BytebankText } from '../text/text';
 
 export function BytebankModal({
   onClose,
@@ -25,9 +26,9 @@ export function BytebankModal({
           <CloseIcon />
         </Box>
         <Box pb={2}>
-          <Typography alignContent="center" fontWeight="700" color="textPrimary" variant={'md'} >
+          <BytebankText alignContent="center" fontWeight="700" color="textPrimary" variant={'md'} >
             {title}
-          </Typography>
+          </BytebankText>
         </Box>
         {children}
       </Box>

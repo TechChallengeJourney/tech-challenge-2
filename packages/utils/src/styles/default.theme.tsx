@@ -134,10 +134,48 @@ export const lightTheme = createTheme(defaultTheme, {
         },
       },
     },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+            borderColor: lightPalette["red.200"],
+          },
+          '&.Mui-error input': {
+            color: lightPalette["red.200"],
+          },
+        },
+      },
+    },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: {
+          "&.Mui-error": {
+            color: lightPalette["red.200"],
+          },
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          '&.Mui-error': {
+            color: lightPalette["red.200"],
+          },
+        },
+        input: {
+          '&.Mui-error': {
+            color: lightPalette["red.200"],
+          },
+        },
+      },
+    },
     MuiFormHelperText: {
       styleOverrides: {
         root: {
           color: lightPalette["grey.800"],
+          "&.Mui-error": {
+            color: lightPalette["red.200"],
+          },
         },
       },
     },
@@ -267,10 +305,48 @@ export const darkTheme = createTheme(defaultTheme, {
         },
       },
     },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+            borderColor: darkPalette["red.200"],
+          },
+          '&.Mui-error input': {
+            color: darkPalette["red.200"],
+          },
+        },
+      },
+    },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: {
+          "&.Mui-error": {
+            color: darkPalette["red.200"],
+          },
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          '&.Mui-error': {
+            color: darkPalette["red.200"],
+          },
+        },
+        input: {
+          '&.Mui-error': {
+            color: darkPalette["red.200"],
+          },
+        },
+      },
+    },
     MuiFormHelperText: {
       styleOverrides: {
         root: {
           color: darkPalette["grey.main"],
+          "&.Mui-error": {
+            color: darkPalette["red.200"],
+          },
         },
       },
     },

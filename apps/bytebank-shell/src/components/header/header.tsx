@@ -109,6 +109,7 @@ export function BytebankHeader() {
                 id="bytebank-header"
                 position={"sticky"}
                 sx={{
+                    width: "100vw",
                     transition: "all 0.3s ease",
                     boxShadow: "none",
                     borderBottom: "1px solid rgb(199 201 145 / 20%)",
@@ -119,7 +120,7 @@ export function BytebankHeader() {
                     <Toolbar disableGutters>
                         <Box
                             className={'link'}
-                            onClick={() => navigate("/")}
+                            onClick={() => navigate((isLogged ? '/dashboard' : '/'))}
                             sx={{
                                 display: { xs: "none", md: "flex" },
                                 filter: `${colors['logo.filter']}`
@@ -133,6 +134,7 @@ export function BytebankHeader() {
                             />
                         </Box>
 
+                        {(pages.length !== 0) ?
                         <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
                             <IconButton
                                 size="large"
@@ -165,11 +167,11 @@ export function BytebankHeader() {
                                         key={page.name}
                                         onClick={() => {
                                             handleCloseNavMenu();
-                                            navigate(page.route);
+                                            (page.blank) ? window.open(page.route, '_blank') : navigate(page.route);
                                         }}
                                     >
                                         <Typography
-                                            sx={{ textAlign: "center", textTransform: "capitalize" }}
+                                            sx={{ textAlign: "center" }}
                                         >
                                             {page.name}
                                         </Typography>
@@ -177,15 +179,16 @@ export function BytebankHeader() {
                                 ))}
                             </Menu>
                         </Box>
-
+                        : null}
                         <Box
                             className={'link'}
-                            onClick={() => navigate("/")}
+                            onClick={() => navigate((isLogged ? '/dashboard' : '/'))}
                             sx={{
                                 mr: 2,
+                                ml: 2,
                                 display: { xs: "flex", md: "none" },
                                 width: "80%",
-                                justifyContent: "center",
+                                justifyContent: "flex-start",
                                 filter: `${colors['logo.filter']}`
                             }}
                         >
@@ -200,7 +203,6 @@ export function BytebankHeader() {
                             sx={{
                                 flexGrow: 1,
                                 justifyContent: "center",
-                                textTransform: "capitalize",
                                 display: { xs: "none", md: "flex" },
                             }}
                         >
@@ -208,8 +210,8 @@ export function BytebankHeader() {
                                 <BytebankButton
                                     key={page.name}
                                     label={page.name}
-                                    onClick={() => navigate(page.route)}
-                                    sx={{ my: 2, display: "block", textTransform: "capitalize" }}
+                                    onClick={() => (page.blank) ? window.open(page.route, '_blank') : navigate(page.route)}
+                                    sx={{ my: 2, display: "block" }}
                                     variant="text"
                                     color={"primary"}
                                 />
