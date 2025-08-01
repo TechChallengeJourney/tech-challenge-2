@@ -2,7 +2,9 @@
 title: 'Sustentabilidade e investimentos ESG'
 description: 'Entenda como investir de forma responsável e contribuir para um futuro mais sustentável através dos investimentos ESG.'
 pubDate: 'Jan 3 2024'
-heroImage: 'https://readdy.ai/api/search-image?query=sustainable%20ESG%20investments%20with%20clean%20background%20showing%20green%20energy%20renewable%20technology%20and%20environmental%20financial%20charts%20in%20professional%20setting&width=400&height=250&seq=blog-post-5&orientation=landscape'
+readTime: "5 min de leitura"
+category: "ESG"
+image: 'https://readdy.ai/api/search-image?query=sustainable%20ESG%20investments%20with%20clean%20background%20showing%20green%20energy%20renewable%20technology%20and%20environmental%20financial%20charts%20in%20professional%20setting&width=400&height=250&seq=blog-post-5&orientation=landscape'
 ---
 
 Nos últimos anos, os investimentos ESG (Environmental, Social and Governance) têm ganhado cada vez mais atenção de investidores conscientes que desejam alinhar seus objetivos financeiros a valores de responsabilidade social, ambiental e de boa governança. Essa abordagem representa uma mudança de paradigma no mercado financeiro, pautada pela busca de resultados que promovam um impacto positivo no planeta e na sociedade, além de gerar retorno financeiro sustentável.

@@ -2,7 +2,9 @@
 title: 'Bytebank: Nossa jornada de inovação financeira'
 description: 'Conheça a história por trás do Bytebank e como estamos transformando a experiência bancária digital no país.'
 pubDate: 'Jan 10 2024'
-heroImage: 'https://readdy.ai/api/search-image?query=modern%20banking%20innovation%20journey%20with%20clean%20professional%20background%20showing%20digital%20transformation%20office%20environment%20with%20team%20collaboration%20and%20technology&width=400&height=250&seq=blog-post-2&orientation=landscape'
+readTime: "6 min de leitura"
+category: "Empresa"
+image: 'https://readdy.ai/api/search-image?query=modern%20banking%20innovation%20journey%20with%20clean%20professional%20background%20showing%20digital%20transformation%20office%20environment%20with%20team%20collaboration%20and%20technology&width=400&height=250&seq=blog-post-2&orientation=landscape'
 ---
 
 Por trás do Bytebank, há uma história de inovação, dedicação e vontade de revolucionar a forma como as pessoas lidam com suas finanças. Desde nossa origem, buscamos oferecer uma experiência bancária digital simples, segura e acessível para todos os brasileiros.  

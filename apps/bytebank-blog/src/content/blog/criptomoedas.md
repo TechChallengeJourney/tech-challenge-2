@@ -2,7 +2,9 @@
 title: 'Criptomoedas: Guia completo para iniciantes'
 description: 'Tudo que você precisa saber antes de começar a investir em criptomoedas de forma segura e consciente'
 pubDate: 'Jan 5 2024'
-heroImage: 'https://readdy.ai/api/search-image?query=cryptocurrency%20investment%20guide%20with%20clean%20professional%20background%20showing%20bitcoin%20ethereum%20charts%20and%20digital%20wallet%20interfaces%20on%20modern%20computer%20screen&width=400&height=250&seq=blog-post-4&orientation=landscape'
+readTime: "8 min de leitura"
+category: "Criptomoedas"
+image: 'https://readdy.ai/api/search-image?query=cryptocurrency%20investment%20guide%20with%20clean%20professional%20background%20showing%20bitcoin%20ethereum%20charts%20and%20digital%20wallet%20interfaces%20on%20modern%20computer%20screen&width=400&height=250&seq=blog-post-4&orientation=landscape'
 ---
   
 O mercado de criptomoedas tem ganhado cada vez mais atenção, atraindo investidores de diferentes perfis que desejam potencializar seus ganhos. Porém, investir nesse universo exige atenção, conhecimento e uma estratégia sólida para garantir segurança e evitar riscos desnecessários.  

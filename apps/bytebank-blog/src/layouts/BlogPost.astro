@@ -23,12 +23,12 @@ import {
 } from '@mui/material';
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, image } = Astro.props;
 ---
 		<main>
 			<article>
 			<Container maxWidth="md">
-<Box>
+<Box pt={4}>
  {/* Botão Carregar mais */}
                         <Box display={"flex"} justifyContent="left" pb={4}>
                             <a href="/"><BytebankButton variant="outlined" label={'Voltar'} color={'tertiary'} /></a>
@@ -40,7 +40,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
                                         <CardMedia
                                             component="img"
                                             height="300"
-                                            image={heroImage}
+                                            image={image}
                                             alt={title}
                                             sx={{ objectFit: 'cover', objectPosition: 'top' }}
                                         />
