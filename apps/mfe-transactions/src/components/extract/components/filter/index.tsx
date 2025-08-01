@@ -131,7 +131,7 @@ export default function FilterExtract({ toggleDrawer }: FilterExtractProps) {
           <BytebankButton
             label="Limpar"
             color="secondary"
-            variant="contained"
+            variant="outlined"
             type="submit"
             style={{ marginTop: 16 }}
             onClick={handleClear}
