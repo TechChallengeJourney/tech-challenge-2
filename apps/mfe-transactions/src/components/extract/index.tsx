@@ -23,6 +23,7 @@ import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditExtract from "./components/edit";
 import { set } from "react-hook-form";
+import { useTheme } from '@repo/utils';
 
 export function BytebankExtract() {
   const { user } = useUser();
@@ -39,6 +40,11 @@ export function BytebankExtract() {
     [key: string]: HTMLElement | null;
   }>({});
   const open = Boolean(anchorEls);
+
+    const { isDarkMode, colors } = useTheme();
+    const bgColor = isDarkMode ? colors['lime.100'] : colors['lime.100']
+    const iconColor = isDarkMode ? colors['lime.900'] : colors['lime.900']
+    const filterBg = isDarkMode ? colors['lime.100'] : colors['lime.100']
 
   useEffect(() => {
     const getTransactions = () => {
@@ -178,7 +184,12 @@ export function BytebankExtract() {
               color="primary"
               onClick={() => setOpenFilter(true)}
               size="small"
-              style={{ border: "1px solid #e0e0e0", borderRadius: "4px" }}
+              style={{
+                border: "1px solid #e0e0e0",
+                borderRadius: "20px",
+                padding: "7px",
+                backgroundColor: filterBg,
+              }}
             >
               <FilterAltIcon fontSize="small" />
               <Typography fontSize={12}> Filtros</Typography>
@@ -247,21 +258,41 @@ export function BytebankExtract() {
                         gap={"10px"}
                         alignItems="center"
                       >
-                        <IconButton
-                          color="primary"
-                          style={{ border: "1px solid #e0e0e0" }}
-                        >
+                        <Box mr={1}>
                           {itens.type !== "income" ? (
-                            <ArrowUpwardIcon style={{ fontSize: "35px" }} />
-                          ) : (
-                            <ArrowUpwardIcon
-                              style={{
-                                fontSize: "35px",
-                                transform: "rotate(180deg)",
+                            <Box
+                              display="flex"
+                              color={iconColor}
+                              alignItems="center"
+                              sx={{
+                                backgroundColor: bgColor,
+                                borderRadius: "50px",
+                                padding: "10px",
                               }}
-                            />
+                            >
+                              <ArrowUpwardIcon style={{ fontSize: "35px" }} />
+                            </Box>
+                          ) : (
+                            <Box
+                              display="flex"
+                              color="primary"
+                              sx={{
+                                backgroundColor: bgColor,
+                                borderRadius: "50px",
+                                padding: "10px",
+                              }}
+                              alignItems="center"
+                            >
+                              <ArrowUpwardIcon
+                                style={{
+                                  fontSize: "35px",
+                                  transform: "rotate(180deg)",
+                                  color: iconColor
+                                }}
+                              />
+                            </Box>
                           )}
-                        </IconButton>
+                        </Box>
                         <Box>
                           <Box
                             width="100%"
