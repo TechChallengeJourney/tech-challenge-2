@@ -4,6 +4,7 @@ import { BytebankCard, BytebankButton, BytebankText, SnackbarData, BytebankIllus
 import { formatCPF, useTheme, validateCPF } from '@repo/utils';
 import { getUserAddress, STATES_LIST, updateUser, updateUserProfileImage, useUser } from '@repo/data-access';
 import { FormProvider, useForm } from 'react-hook-form';
+import CameraEnhanceRoundedIcon from '@mui/icons-material/CameraEnhanceRounded';
 import "./profile.scss";
 
 interface BytebankProfileProps { }
@@ -23,7 +24,7 @@ interface ProfileFormValues {
 const BytebankProfilePage: FC<BytebankProfileProps> = () => {
     const [hasUserImage, setHasUserImage] = useState(false);
     const { isDarkMode, colors } = useTheme();
-    const { user, setUser, loading } = useUser();
+    const { user, setUser } = useUser();
     const [snackbarData, setSnackbarData] = useState<SnackbarData | null>(null);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [isLoading, setLoading] = useState(false);
@@ -161,7 +162,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
     }, [user, userMethods]);
 
     return (
-        <Container maxWidth="xl" sx={{ marginBottom: '100px' }}>
+        <Container maxWidth="xl" sx={{ marginBottom: '5vw' }}>
             <Box width={'100%'} pt={4} mb={4} display={'flex'} flexDirection={'column'} gap={1}>
                 <BytebankText variant="xxl" fontWeight={'bolder'} align="center">
                     Meu perfil
@@ -179,15 +180,16 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                     alignItems: "center",
                     padding: "16px 0 48px"
                 }} className="image-section">
-                    <Box padding='1.25rem'>
+                    <Box padding={2}>
                         <BytebankText variant='lg' color={colors['lime.highcontrast']} textTransform='capitalize' fontWeight='bold'>{user?.name}</BytebankText>
                     </Box>
-                    <Box flexGrow={1} px={'60px'} maxWidth={'445px'} >
+                    <Box flexGrow={1} px={2} maxWidth={'445px'} >
                         {hasUserImage ?
-                            <BytebankIllustration className="user-image" src={user?.image} alt="Imagem de perfil do usuário" /> :
-                            <BytebankIllustration className={isDarkMode ? "darkmode-user-image" : ''} name="user-circle-icon" type="png" alt="Imagem padrão de usuário" />
+                            <Box width={'100%'} minWidth={'20em'} minHeight={'20em'} borderRadius={'50%'} sx={{ background: `url(${user?.image}) center center / cover` }}></Box> :
+                            <Box width={'100%'} minWidth={'20em'} minHeight={'20em'} borderRadius={'50%'} bgcolor={isDarkMode ? colors['lime.200'] : colors['lime.200']} display='flex' justifyContent='center' alignItems='center'>
+                                <CameraEnhanceRoundedIcon fontSize={'large'} sx={{fontSize: '100pt'}}/>
+                            </Box>
                         }
-
                     </Box>
                     <Box>
                         <input
@@ -219,8 +221,8 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
 
                     <FormProvider {...userMethods}>
                         <form onSubmit={userMethods.handleSubmit(handleSubmit)}>
-                            <Box display="flex" gap={3} sx={{ flexDirection: { xs: "column", md: "row"}}}>
-                                <Box sx={{ width: { xs: "100%", md: "50%"}}}>
+                            <Box display="flex" gap={3} sx={{ flexDirection: { xs: "column", md: "row" } }}>
+                                <Box sx={{ width: { xs: "100%", md: "50%" } }}>
                                     <BytebankInputController
                                         name="name"
                                         autoComplete="name"
@@ -232,7 +234,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                                         }}
                                     />
                                 </Box>
-                                <Box sx={{ width: { xs: "100%", md: "50%"}}}>
+                                <Box sx={{ width: { xs: "100%", md: "50%" } }}>
                                     <BytebankInputController
                                         name="email"
                                         autoComplete="email"
@@ -250,8 +252,8 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                                 </Box>
                             </Box>
 
-                            <Box display="flex" gap={3} pt={2} sx={{ flexDirection: { xs: "column", md: "row"}}}>
-                                <Box sx={{ width: { xs: "100%", md: "20%"}}}>
+                            <Box display="flex" gap={3} pt={2} sx={{ flexDirection: { xs: "column", md: "row" } }}>
+                                <Box sx={{ width: { xs: "100%", md: "20%" } }}>
                                     <BytebankInputController
                                         name="document"
                                         type="text"
@@ -266,7 +268,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                                         }}
                                     />
                                 </Box>
-                                <Box sx={{ width: { xs: "100%", md: "35%"}}}>
+                                <Box sx={{ width: { xs: "100%", md: "35%" } }}>
                                     <BytebankInputController
                                         name="address"
                                         type="text"
@@ -274,7 +276,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                                         placeholder="Rua, número, etc."
                                     />
                                 </Box>
-                                <Box sx={{ width: { xs: "100%", md: "15%"}}}>
+                                <Box sx={{ width: { xs: "100%", md: "15%" } }}>
                                     <BytebankInputController
                                         name="city"
                                         type="text"
@@ -282,7 +284,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                                         placeholder="Digite sua cidade"
                                     />
                                 </Box>
-                                <Box sx={{ width: { xs: "100%", md: "15%"}}}>
+                                <Box sx={{ width: { xs: "100%", md: "15%" } }}>
                                     <BytebankSelectController
                                         color='primary'
                                         name="state"
@@ -293,7 +295,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                                         }))}
                                     />
                                 </Box>
-                                <Box sx={{ width: { xs: "100%", md: "15%"}}}>
+                                <Box sx={{ width: { xs: "100%", md: "15%" } }}>
                                     <BytebankInputController
                                         name="complement"
                                         type="text"
@@ -305,8 +307,8 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                             <Box pt={'40px'}>
                                 <BytebankText variant='md' color={colors['lime.highcontrast']} textTransform='capitalize' fontWeight='bold'>Atualizar senha</BytebankText>
                             </Box>
-                            <Box display="flex" gap={3} pt={2} sx={{ flexDirection: { xs: "column", md: "row"}}}>
-                                <Box sx={{ width: { xs: "100%", md: "50%"}}}>
+                            <Box display="flex" gap={3} pt={2} sx={{ flexDirection: { xs: "column", md: "row" } }}>
+                                <Box sx={{ width: { xs: "100%", md: "50%" } }}>
                                     <BytebankInputController
                                         name="password"
                                         autoComplete="new-password"
@@ -315,7 +317,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                                         placeholder="Digite sua senha"
                                     />
                                 </Box>
-                                <Box sx={{ width: { xs: "100%", md: "50%"}}}>
+                                <Box sx={{ width: { xs: "100%", md: "50%" } }}>
                                     <BytebankInputController
                                         name="newPassword"
                                         autoComplete="new-password"
