@@ -23,7 +23,7 @@ export function BytebankWrapper({
       <BytebankThemeProvider>
         <CssBaseline />
         {canNavigate ? <BytebankHeader /> : ''}
-        <Box sx={{ display: 'flex'}}>
+        <Box sx={{ display: 'flex', overflow: 'hidden'}}>
           <Box pt={2} display={'flex'} flex={1}>
             {children}
           </Box>

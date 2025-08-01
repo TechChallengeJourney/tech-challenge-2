@@ -21,6 +21,7 @@ interface ControlledInputProps {
     | "black"
     | "white";
   control?: Control<any>;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
 export const BytebankInputController: React.FC<ControlledInputProps> = ({
@@ -33,6 +34,7 @@ export const BytebankInputController: React.FC<ControlledInputProps> = ({
   mask,
   rules,
   color,
+  onBlur
 }) => {
   const formContext = useFormContext();
   const control = controlProp ?? formContext?.control;
@@ -59,6 +61,10 @@ export const BytebankInputController: React.FC<ControlledInputProps> = ({
           autoComplete={autoComplete}
           mask={mask}
           color={color}
+          onBlur={(e) => {
+            field.onBlur();
+            if (onBlur) onBlur(e);
+          }}
         />
       )}
     />

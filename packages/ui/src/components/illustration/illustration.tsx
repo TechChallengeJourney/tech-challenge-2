@@ -4,7 +4,7 @@ export interface BytebankIllustrationProps {
   /**
    * O nome da ilustração
    */
-  name: string;
+  name?: string;
   /**
    * O tamanho da ilustração
    * @type 'sm' | 'md' |'lg' | 'auto'
@@ -16,6 +16,8 @@ export interface BytebankIllustrationProps {
   height?: string;
   alt?: string;
   justifyContent?: string;
+  src?: string;
+  className?: string;
 }
 
 const BytebankIllustrationSizes = {
@@ -31,7 +33,9 @@ export function BytebankIllustration({
   alt,
   width,
   height,
-  justifyContent = "center"
+  justifyContent = "center",
+  src,
+  className
 }: BytebankIllustrationProps) {
   const path = name ? `/images/${name}.${type}` : "";
 
@@ -39,6 +43,7 @@ export function BytebankIllustration({
 
   return (
     <Box
+      className={className}
       sx={{
         width: variant === "auto" ? "100%" : fixedWidth,
         maxWidth: "100%",
@@ -47,7 +52,7 @@ export function BytebankIllustration({
       }}
     >
       <img
-        src={path}
+        src={name ? path : src}
         alt={alt}
         style={{
           maxWidth: width ? width : (variant === "auto" ? "100%" : fixedWidth),
