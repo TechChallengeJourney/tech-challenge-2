@@ -89,12 +89,14 @@ export default function FilterExtract({
           name="minValue"
           label="Valor Minimo"
           type="text"
+          mask="currency"
         />
 
         <BytebankInputController
           name="maxValue"
           label="Valor Máximo"
           type="text"
+          mask="currency"
         />
         
         <BytebankDatePickerController
