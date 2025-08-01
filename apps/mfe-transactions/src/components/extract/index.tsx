@@ -247,22 +247,39 @@ export function BytebankExtract() {
                         gap={"10px"}
                         alignItems="center"
                       >
-                        <Box
-                          display="flex"
-                          color="primary"
-                          alignItems="center"
-                          style={{ border: "1px solid", borderRadius: "50px", padding: "10px"}}
-                        >
+                        <Box>
                           {itens.type !== "income" ? (
-                            <ArrowUpwardIcon style={{ fontSize: "35px"}} />
-                          ) : (
-                            <ArrowUpwardIcon
-                              color="secondary"  
+                            <Box
+                              display="flex"
+                              color="primary"
+                              alignItems="center"
                               style={{
-                                fontSize: "35px",
-                                transform: "rotate(180deg)",
+                                border: "1px solid #eeeeee",
+                                borderRadius: "50px",
+                                padding: "10px",
                               }}
-                            />
+                            >
+                              <ArrowUpwardIcon style={{ fontSize: "35px" }} />
+                            </Box>
+                          ) : (
+                            <Box
+                              display="flex"
+                              color="primary"
+                              alignItems="center"
+                              style={{
+                                border: "1px solid #D5EA49",
+                                borderRadius: "50px",
+                                padding: "10px",
+                              }}
+                            >
+                              <ArrowUpwardIcon
+                                color="secondary"
+                                style={{
+                                  fontSize: "35px",
+                                  transform: "rotate(180deg)",
+                                }}
+                              />
+                            </Box>
                           )}
                         </Box>
                         <Box>
