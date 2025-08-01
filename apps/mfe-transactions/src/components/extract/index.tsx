@@ -247,7 +247,7 @@ export function BytebankExtract() {
                         gap={"10px"}
                         alignItems="center"
                       >
-                        <Box>
+                        <Box mr={1}>
                           {itens.type !== "income" ? (
                             <Box
                               display="flex"
