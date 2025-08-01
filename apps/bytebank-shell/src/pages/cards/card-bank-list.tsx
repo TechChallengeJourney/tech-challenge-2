@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Box } from "@mui/material";
 import { BytebankCard, BytebankText } from "@repo/ui";
 import {
@@ -25,9 +25,16 @@ export const BytebankCardList: React.FC<BytebankCardContainerProps> = ({
   loading = false,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
   const hasCards = cards.length >= 1;
   const currentCard = hasCards ? cards[currentIndex] : null;
+
+  const hasShownLoading = useRef(false);
+
+  useEffect(() => {
+    if (loading) {
+      hasShownLoading.current = true;
+    }
+  }, [loading]);
 
   useEffect(() => {
     if (currentIndex >= cards.length && cards.length > 0) {
@@ -45,7 +52,9 @@ export const BytebankCardList: React.FC<BytebankCardContainerProps> = ({
 
   return (
     <BytebankCard variant="outlined">
-      {loading && <CardEmptyState text="Carregando cartões..." />}
+      {loading && !hasShownLoading.current && (
+        <CardEmptyState text="Carregando cartões..." />
+      )}
 
       {error && (
         <CardEmptyState text="Erro ao carregar cartões! Tente mais tarde." />
@@ -68,14 +77,14 @@ export const BytebankCardList: React.FC<BytebankCardContainerProps> = ({
             flex={1}
             sx={{ width: "100%", maxWidth: 350 }}
             mt={{ xs: "20px" }}
-            mr={{md: "32px"}}
+            mr={{ md: "32px" }}
           >
             <CardHeader variant={currentCard?.variant} />
             <CardVisual card={currentCard} />
           </Box>
 
           <Box flex={2} alignSelf="center">
-            <CardNavigation onPrev={handlePrev} onNext={handleNext} cards={cards}/>
+            <CardNavigation onPrev={handlePrev} onNext={handleNext} cards={cards} />
             <CardDetails card={currentCard} />
             <CardActions
               cardId={currentCard?._id || ""}
