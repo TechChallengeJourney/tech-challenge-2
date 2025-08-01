@@ -108,7 +108,7 @@ export function BytebankHeader() {
                 id="bytebank-header"
                 position={"sticky"}
                 sx={{
-                    width: "100vw",
+                    width: "100%",
                     transition: "all 0.3s ease",
                     boxShadow: "none",
                     borderBottom: "1px solid rgb(199 201 145 / 20%)",
