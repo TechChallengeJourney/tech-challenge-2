@@ -174,7 +174,6 @@ const BytebankHomePage = () => {
                       <Box
                         minHeight={"21em"}
                         px={4}
-                        minHeight={"22em"}
                         p={4}
                         gap={2}
                         color={colors["lime.100"]}
