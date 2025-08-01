@@ -22,14 +22,12 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditExtract from "./components/edit";
-import { set } from "react-hook-form";
 import { useTheme } from '@repo/utils';
 
 export function BytebankExtract() {
   const { user } = useUser();
   const { fetchTransactions, extract, isLoading, categories } =
     useFinancialData();
-  const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [snackbarData, setSnackbarData] = useState<SnackbarData | null>(null);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -39,12 +37,7 @@ export function BytebankExtract() {
   const [anchorEls, setAnchorEls] = useState<{
     [key: string]: HTMLElement | null;
   }>({});
-  const open = Boolean(anchorEls);
-
     const { isDarkMode, colors } = useTheme();
-    const bgColor = isDarkMode ? colors['lime.100'] : colors['lime.100']
-    const iconColor = isDarkMode ? colors['lime.900'] : colors['lime.900']
-    const filterBg = isDarkMode ? colors['lime.100'] : colors['lime.100']
 
   useEffect(() => {
     const getTransactions = () => {
@@ -98,33 +91,6 @@ export function BytebankExtract() {
     return category ? category.name : "Unknown Category";
   };
 
-  const handleTransactionUpdate = async (
-    data: Transaction,
-    newValue: string
-  ) => {
-    data.date = new Date();
-
-    const response = await fetch(`/api/transactions/${data._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (response.ok) {
-      setSnackbarData({
-        status: "success",
-        message: "Transação adicionada com sucesso!",
-      });
-      setSnackbarOpen(true);
-      if (user) {
-        fetchTransactions(user);
-      }
-    } else {
-      errorSnackBar();
-    }
-  };
   const handleTransactionDelete = async (id: string) => {
     api
       .delete(`/transactions/${id}`, { data: { id } })
@@ -185,14 +151,13 @@ export function BytebankExtract() {
               onClick={() => setOpenFilter(true)}
               size="small"
               style={{
-                border: "1px solid #e0e0e0",
-                borderRadius: "20px",
-                padding: "7px",
-                backgroundColor: filterBg,
+                borderRadius: "2em",
+                padding: "0.6em 1em",
+                backgroundColor: isDarkMode ? colors['lime.100'] : colors['lime.100'],
               }}
             >
               <FilterAltIcon fontSize="small" />
-              <Typography fontSize={12}> Filtros</Typography>
+              <Typography fontSize={14} fontWeight={'bold'}> Filtros</Typography>
             </IconButton>
           </Box>
           {/* Lista de extratos */}
@@ -262,10 +227,10 @@ export function BytebankExtract() {
                           {itens.type !== "income" ? (
                             <Box
                               display="flex"
-                              color={iconColor}
+                              color={ isDarkMode ? colors['grey.200'] : colors['grey.900']}
                               alignItems="center"
                               sx={{
-                                backgroundColor: bgColor,
+                                backgroundColor: isDarkMode ? colors['grey.900'] : colors['grey.200'],
                                 borderRadius: "50px",
                                 padding: "10px",
                               }}
@@ -277,7 +242,7 @@ export function BytebankExtract() {
                               display="flex"
                               color="primary"
                               sx={{
-                                backgroundColor: bgColor,
+                                backgroundColor: isDarkMode ? colors['lime.100'] : colors['lime.100'],
                                 borderRadius: "50px",
                                 padding: "10px",
                               }}
@@ -287,7 +252,7 @@ export function BytebankExtract() {
                                 style={{
                                   fontSize: "35px",
                                   transform: "rotate(180deg)",
-                                  color: iconColor
+                                  color: isDarkMode ? colors['lime.900'] : colors['lime.900']
                                 }}
                               />
                             </Box>
