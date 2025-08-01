@@ -70,7 +70,15 @@ export const BytebankBalanceCard = () => {
               }}
               role="button"
               onClick={() => setVisible(!visible)}
-              sx={{ cursor: "pointer" }}
+              px="4px"
+              sx={{
+                cursor: "pointer",
+                outline: "none",
+                '&:focus': {
+                  background: colors["background.accent"],
+                  borderRadius: '4px',
+                }
+              }}
               display={"flex"}
               alignItems={"center"}
             >
