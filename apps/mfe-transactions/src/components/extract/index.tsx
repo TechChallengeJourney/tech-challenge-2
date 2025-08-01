@@ -247,21 +247,24 @@ export function BytebankExtract() {
                         gap={"10px"}
                         alignItems="center"
                       >
-                        <IconButton
+                        <Box
+                          display="flex"
                           color="primary"
-                          style={{ border: "1px solid #e0e0e0" }}
+                          alignItems="center"
+                          style={{ border: "1px solid", borderRadius: "50px", padding: "10px"}}
                         >
                           {itens.type !== "income" ? (
-                            <ArrowUpwardIcon style={{ fontSize: "35px" }} />
+                            <ArrowUpwardIcon style={{ fontSize: "35px"}} />
                           ) : (
                             <ArrowUpwardIcon
+                              color="secondary"  
                               style={{
                                 fontSize: "35px",
                                 transform: "rotate(180deg)",
                               }}
                             />
                           )}
-                        </IconButton>
+                        </Box>
                         <Box>
                           <Box
                             width="100%"
