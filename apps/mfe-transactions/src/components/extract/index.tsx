@@ -23,6 +23,7 @@ import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditExtract from "./components/edit";
 import { set } from "react-hook-form";
+import { useTheme } from '@repo/utils';
 
 export function BytebankExtract() {
   const { user } = useUser();
@@ -39,6 +40,11 @@ export function BytebankExtract() {
     [key: string]: HTMLElement | null;
   }>({});
   const open = Boolean(anchorEls);
+
+    const { isDarkMode, colors } = useTheme();
+    const bgColor = isDarkMode ? colors['lime.100'] : colors['lime.100']
+    const iconColor = isDarkMode ? colors['lime.900'] : colors['lime.900']
+    const filterBg = isDarkMode ? colors['lime.100'] : colors['lime.100']
 
   useEffect(() => {
     const getTransactions = () => {
@@ -178,7 +184,12 @@ export function BytebankExtract() {
               color="primary"
               onClick={() => setOpenFilter(true)}
               size="small"
-              style={{ border: "1px solid #e0e0e0", borderRadius: "20px", padding:"7px" }}
+              style={{
+                border: "1px solid #e0e0e0",
+                borderRadius: "20px",
+                padding: "7px",
+                backgroundColor: filterBg,
+              }}
             >
               <FilterAltIcon fontSize="small" />
               <Typography fontSize={12}> Filtros</Typography>
@@ -251,10 +262,10 @@ export function BytebankExtract() {
                           {itens.type !== "income" ? (
                             <Box
                               display="flex"
-                              color="primary"
+                              color={iconColor}
                               alignItems="center"
-                              style={{
-                                border: "1px solid #eeeeee",
+                              sx={{
+                                backgroundColor: bgColor,
                                 borderRadius: "50px",
                                 padding: "10px",
                               }}
@@ -265,18 +276,18 @@ export function BytebankExtract() {
                             <Box
                               display="flex"
                               color="primary"
-                              alignItems="center"
-                              style={{
-                                border: "1px solid #D5EA49",
+                              sx={{
+                                backgroundColor: bgColor,
                                 borderRadius: "50px",
                                 padding: "10px",
                               }}
+                              alignItems="center"
                             >
                               <ArrowUpwardIcon
-                                color="secondary"
                                 style={{
                                   fontSize: "35px",
                                   transform: "rotate(180deg)",
+                                  color: iconColor
                                 }}
                               />
                             </Box>
