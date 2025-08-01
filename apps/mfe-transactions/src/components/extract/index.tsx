@@ -178,7 +178,7 @@ export function BytebankExtract() {
               color="primary"
               onClick={() => setOpenFilter(true)}
               size="small"
-              style={{ border: "1px solid #e0e0e0", borderRadius: "4px" }}
+              style={{ border: "1px solid #e0e0e0", borderRadius: "20px", padding:"7px" }}
             >
               <FilterAltIcon fontSize="small" />
               <Typography fontSize={12}> Filtros</Typography>
