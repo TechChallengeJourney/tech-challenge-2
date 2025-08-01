@@ -208,7 +208,7 @@ export function BytebankExtract() {
                   <Box
                     key={index}
                     minHeight={"100px"}
-                    borderBottom={"1px solid #e3e3e3"}
+                    borderBottom={`1px solid ${isDarkMode ? "#e3e3e340" : "#e3e3e3"}`}
                     overflow={"auto"}
                     display={"flex"}
                     flexDirection={"row"}

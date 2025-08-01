@@ -1,5 +1,5 @@
 import { VisibilityRounded, VisibilityOff } from "@mui/icons-material";
-import { Box, Typography, Skeleton } from "@mui/material";
+import { Box, Typography, Skeleton, IconButton } from "@mui/material";
 import { useFinancialData, useUser } from "@repo/data-access";
 import { BytebankCard } from "@repo/ui";
 import { useTheme } from "@repo/utils";
@@ -60,8 +60,17 @@ export const BytebankBalanceCard = () => {
               Saldo
             </Typography>
             <Box
+              tabIndex={0}
+              aria-label={visible ? "Ocultar saldo" : "Mostrar saldo"}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setVisible((v) => !v);
+                }
+              }}
+              role="button"
               onClick={() => setVisible(!visible)}
-              style={{ cursor: "pointer" }}
+              sx={{ cursor: "pointer" }}
               display={"flex"}
               alignItems={"center"}
             >
