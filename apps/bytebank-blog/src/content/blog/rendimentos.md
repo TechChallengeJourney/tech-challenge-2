@@ -2,7 +2,9 @@
 title: 'Como maximizar seus rendimentos com renda fixa'
 description: 'Descubra estratégias inteligentes para otimizar seus investimentos em renda fixa e construir um portfólio sólido.'
 pubDate: 'Jan 12 2024'
-heroImage: "https://readdy.ai/api/search-image?query=financial%20growth%20charts%20fixed%20income%20investments%20with%20professional%20clean%20background%20showing%20upward%20trending%20graphs%20and%20calculator%20on%20desk&width=400&height=250&seq=blog-post-1&orientation=landscape"
+readTime: "4 min de leitura"
+category: "Renda Fixa"
+image: "https://readdy.ai/api/search-image?query=financial%20growth%20charts%20fixed%20income%20investments%20with%20professional%20clean%20background%20showing%20upward%20trending%20graphs%20and%20calculator%20on%20desk&width=400&height=250&seq=blog-post-1&orientation=landscape"
 ---
 
 Investir em renda fixa é uma das estratégias mais tradicionais e confiáveis para quem busca segurança e rentabilidade consistente. No entanto, para alcançar resultados melhores, é essencial adotar estratégias inteligentes de diversificação e timing de mercado.  

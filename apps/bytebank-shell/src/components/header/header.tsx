@@ -109,7 +109,7 @@ export function BytebankHeader() {
                 id="bytebank-header"
                 position={"sticky"}
                 sx={{
-                    width: "100vw",
+                    width: "100%",
                     transition: "all 0.3s ease",
                     boxShadow: "none",
                     borderBottom: "1px solid rgb(199 201 145 / 20%)",
@@ -135,7 +135,7 @@ export function BytebankHeader() {
                         </Box>
 
                         {(pages.length !== 0) ?
-                        <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+                        <Box sx={{ flexGrow: 1, display: isLogged ? { xs: "flex", md: "none" } : "none" }}>
                             <IconButton
                                 size="large"
                                 aria-label="account of current user"
@@ -188,7 +188,7 @@ export function BytebankHeader() {
                                 ml: 2,
                                 display: { xs: "flex", md: "none" },
                                 width: "80%",
-                                justifyContent: "flex-start",
+                                justifyContent: isLogged ? "center" : "flex-start",
                                 filter: `${colors['logo.filter']}`
                             }}
                         >
@@ -250,7 +250,11 @@ export function BytebankHeader() {
                                 <>
                                     <Tooltip title="Gerenciar conta">
                                         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                            <Avatar sx={{ bgcolor: colors["lime.400"] }} alt={user?.name} />
+                                            {
+                                                user?.image ?
+                                                    <Avatar alt={user?.name} src={user?.image} /> :
+                                                    <Avatar sx={{ bgcolor: colors["lime.400"] }} alt={user?.name} />
+                                            }
                                         </IconButton>
                                     </Tooltip>
                                     <Menu

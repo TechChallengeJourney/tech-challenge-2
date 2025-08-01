@@ -2,7 +2,7 @@
 title: 'O futuro dos investimentos digitais no Brasil'
 description: 'Explore como a tecnologia está revolucionando o mercado financeiro brasileiro e as oportunidades que surgem para investidores modernos.'
 pubDate: 'Jan 15 2024'
-heroImage: 'https://readdy.ai/api/search-image?query=modern%20digital%20investment%20technology%20Brazil%20financial%20market%20with%20clean%20professional%20background%20showcasing%20digital%20banking%20interfaces%20and%20financial%20charts%20in%20a%20sophisticated%20office%20environment&width=800&height=400&seq=blog-featured&orientation=landscape'
+image: 'https://readdy.ai/api/search-image?query=modern%20digital%20investment%20technology%20Brazil%20financial%20market%20with%20clean%20professional%20background%20showcasing%20digital%20banking%20interfaces%20and%20financial%20charts%20in%20a%20sophisticated%20office%20environment&width=800&height=400&seq=blog-featured&orientation=landscape'
 ---
 
 Nos últimos anos, a tecnologia tem desempenhado um papel revolucionário na transformação do mercado financeiro no Brasil. Ferramentas digitais avançadas, inteligência artificial, big data e plataformas inovadoras estão mudando a forma como investidores e instituições realizam operações, tornam seus processos mais eficientes e acessíveis, além de facilitar a tomada de decisão.
