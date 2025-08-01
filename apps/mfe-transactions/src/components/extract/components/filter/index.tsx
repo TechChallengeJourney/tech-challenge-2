@@ -119,14 +119,14 @@ export default function FilterExtract({ toggleDrawer }: FilterExtractProps) {
         <BytebankDatePickerController name="endDate" label="Data final" />
         <Box
           display="flex"
-          justifyContent="space-between"
+          justifyContent="flex-end"
         >
           <BytebankButton
             label="Confirmar"
             color="secondary"
             variant="contained"
             type="submit"
-            style={{ marginTop: 16 }}
+            style={{ marginTop: 16, marginRight: 16 }}
           />
           <BytebankButton
             label="Limpar"
