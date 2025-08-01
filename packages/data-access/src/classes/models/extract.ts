@@ -21,7 +21,7 @@ export interface ExtractFilter {
     page?: number
     limit?: number
     categoryId?: string
-    minValue?: number
+    minValue?: number | string
     maxValue?: number
     startDate?: string
     endDate?: string
