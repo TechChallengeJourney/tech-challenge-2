@@ -1,8 +1,8 @@
 import { FC, useEffect, useRef, useState } from 'react';
 import { Box, Container } from '@mui/material';
-import { BytebankCard, BytebankButton, BytebankText, SnackbarData, BytebankIllustration, BytebankInputController, BytebankSnackbar } from '@repo/ui';
-import { useTheme } from '@repo/utils';
-import { getUserAddress, updateUser, updateUserProfileImage, useUser } from '@repo/data-access';
+import { BytebankCard, BytebankButton, BytebankText, SnackbarData, BytebankIllustration, BytebankInputController, BytebankSnackbar, BytebankSelectController } from '@repo/ui';
+import { formatCPF, useTheme, validateCPF } from '@repo/utils';
+import { getUserAddress, STATES_LIST, updateUser, updateUserProfileImage, useUser } from '@repo/data-access';
 import { FormProvider, useForm } from 'react-hook-form';
 import "./profile.scss";
 
@@ -22,7 +22,7 @@ interface ProfileFormValues {
 
 const BytebankProfilePage: FC<BytebankProfileProps> = () => {
     const [hasUserImage, setHasUserImage] = useState(false);
-    const { colors } = useTheme();
+    const { isDarkMode, colors } = useTheme();
     const { user, setUser, loading } = useUser();
     const [snackbarData, setSnackbarData] = useState<SnackbarData | null>(null);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -51,6 +51,8 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
     const handleSubmit = async (e: any) => {
         const formData = userMethods.getValues();
 
+        console.log(userMethods)
+
         const body = {
             name: formData.name,
             email: formData.email,
@@ -75,6 +77,8 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
 
             if (request.data['passwordUpdated']) {
                 handlePasswrodUpdatedModal()
+            } else {
+                handleUserUpdatedModal()
             }
         } else {
             setSnackbarData({
@@ -99,6 +103,22 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
         setSnackbarOpen(true);
     };
 
+    const handleProfileImageUpdatedModal = () => {
+        setSnackbarData({
+            status: "success",
+            message: "Foto de perfil atualizada com sucesso"
+        })
+        setSnackbarOpen(true);
+    };
+
+    const handleUserUpdatedModal = () => {
+        setSnackbarData({
+            status: "success",
+            message: "Dados atualizados com sucesso"
+        })
+        setSnackbarOpen(true);
+    };
+
     const closeSnackbar = () => { setSnackbarOpen(false); setSnackbarData(null); };
 
     const updateImage = async (e: any) => {
@@ -109,6 +129,8 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
             if (!user) throw new Error('É necessário user id');
 
             const data = await updateUserProfileImage(user?._id, file)
+
+            handleProfileImageUpdatedModal()
 
             setUser(data)
             e.target.value = '';
@@ -149,21 +171,21 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                 </BytebankText>
             </Box>
 
-            <Box width={'100%'} display={'flex'} gap={4}>
+            <Box width={'100%'} display={'flex'} gap={4} className="content">
                 <BytebankCard styles={{
                     width: "30%",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
                     padding: "16px 0 48px"
-                }}>
+                }} className="image-section">
                     <Box padding='1.25rem'>
                         <BytebankText variant='lg' color={colors['lime.highcontrast']} textTransform='capitalize' fontWeight='bold'>{user?.name}</BytebankText>
                     </Box>
-                    <Box flexGrow={1} px={'60px'}>
+                    <Box flexGrow={1} px={'60px'} maxWidth={'445px'} >
                         {hasUserImage ?
                             <BytebankIllustration className="user-image" src={user?.image} alt="Imagem de perfil do usuário" /> :
-                            <BytebankIllustration name="user-circle-icon" type="png" alt="Imagem padrão de usuário" />
+                            <BytebankIllustration className={isDarkMode ? "darkmode-user-image" : ''} name="user-circle-icon" type="png" alt="Imagem padrão de usuário" />
                         }
 
                     </Box>
@@ -180,6 +202,9 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                             label="Editar foto"
                             variant={"outlined"}
                             color={"primary"}
+                            sx={{
+                                mt: 3
+                            }}
                         />
                     </Box>
                 </BytebankCard>
@@ -187,44 +212,61 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                 <BytebankCard styles={{
                     flex: "1",
                     padding: "36px 40px"
-                }}>
+                }} className="form-section">
                     <Box pb={4}>
-                        <BytebankText variant='lg' color={colors['lime.highcontrast']} textTransform='capitalize' fontWeight='bold'>Dados pessoais</BytebankText>
+                        <BytebankText variant='md' color={colors['lime.highcontrast']} textTransform='capitalize' fontWeight='bold'>Dados pessoais</BytebankText>
                     </Box>
 
                     <FormProvider {...userMethods}>
                         <form onSubmit={userMethods.handleSubmit(handleSubmit)}>
-                            <Box display="flex" gap={3}>
-                                <Box width="50%">
+                            <Box display="flex" gap={3} sx={{ flexDirection: { xs: "column", md: "row"}}}>
+                                <Box sx={{ width: { xs: "100%", md: "50%"}}}>
                                     <BytebankInputController
                                         name="name"
                                         autoComplete="name"
                                         type="text"
                                         label="Nome completo"
                                         placeholder="Digite seu nome"
+                                        rules={{
+                                            required: "Nome é obrigatório",
+                                        }}
                                     />
                                 </Box>
-                                <Box width="50%">
+                                <Box sx={{ width: { xs: "100%", md: "50%"}}}>
                                     <BytebankInputController
                                         name="email"
                                         autoComplete="email"
                                         type="email"
                                         label="E‑mail"
                                         placeholder="Digite seu e‑mail"
+                                        rules={{
+                                            required: "E-mail é obrigatório",
+                                            pattern: {
+                                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                                message: "E-mail inválido"
+                                            }
+                                        }}
                                     />
                                 </Box>
                             </Box>
 
-                            <Box display="flex" gap={3} pt={2}>
-                                <Box width="20%">
+                            <Box display="flex" gap={3} pt={2} sx={{ flexDirection: { xs: "column", md: "row"}}}>
+                                <Box sx={{ width: { xs: "100%", md: "20%"}}}>
                                     <BytebankInputController
                                         name="document"
                                         type="text"
-                                        label="RG / CPF"
-                                        placeholder="Digite seu RG ou CPF"
+                                        label="CPF"
+                                        placeholder="Digite seu CPF"
+                                        rules={{
+                                            validate: validateCPF,
+                                        }}
+                                        onBlur={(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+                                            const formatted = formatCPF(e.target.value);
+                                            userMethods.setValue("document", formatted, { shouldValidate: true });
+                                        }}
                                     />
                                 </Box>
-                                <Box width="35%">
+                                <Box sx={{ width: { xs: "100%", md: "35%"}}}>
                                     <BytebankInputController
                                         name="address"
                                         type="text"
@@ -232,7 +274,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                                         placeholder="Rua, número, etc."
                                     />
                                 </Box>
-                                <Box width="15%">
+                                <Box sx={{ width: { xs: "100%", md: "15%"}}}>
                                     <BytebankInputController
                                         name="city"
                                         type="text"
@@ -240,15 +282,18 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                                         placeholder="Digite sua cidade"
                                     />
                                 </Box>
-                                <Box width="15%">
-                                    <BytebankInputController
+                                <Box sx={{ width: { xs: "100%", md: "15%"}}}>
+                                    <BytebankSelectController
+                                        color='primary'
                                         name="state"
-                                        type="text"
                                         label="Estado"
-                                        placeholder="SP, RJ..."
+                                        options={STATES_LIST.map(state => ({
+                                            value: state.name,
+                                            label: state.acronym
+                                        }))}
                                     />
                                 </Box>
-                                <Box width="15%">
+                                <Box sx={{ width: { xs: "100%", md: "15%"}}}>
                                     <BytebankInputController
                                         name="complement"
                                         type="text"
@@ -260,8 +305,8 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                             <Box pt={'40px'}>
                                 <BytebankText variant='md' color={colors['lime.highcontrast']} textTransform='capitalize' fontWeight='bold'>Atualizar senha</BytebankText>
                             </Box>
-                            <Box display="flex" gap={3} pt={2}>
-                                <Box width="50%">
+                            <Box display="flex" gap={3} pt={2} sx={{ flexDirection: { xs: "column", md: "row"}}}>
+                                <Box sx={{ width: { xs: "100%", md: "50%"}}}>
                                     <BytebankInputController
                                         name="password"
                                         autoComplete="new-password"
@@ -270,7 +315,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                                         placeholder="Digite sua senha"
                                     />
                                 </Box>
-                                <Box width="50%">
+                                <Box sx={{ width: { xs: "100%", md: "50%"}}}>
                                     <BytebankInputController
                                         name="newPassword"
                                         autoComplete="new-password"

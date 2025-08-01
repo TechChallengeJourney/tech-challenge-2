@@ -5,10 +5,11 @@ import { BytebankCardsPage } from "./pages/cards/cards";
 import NotFound from './pages/not-found/not-found';
 import Profile from './pages/profile/profile';
 import { AuthGuard } from './guards/auth.guard';
+import { PublicGuard } from './guards/public.guard';
 
 const AppRoutes = () => (
   <Routes>
-    <Route path="/" element={<BytebankHomePage />} />
+    <Route path="/" element={<PublicGuard component={BytebankHomePage} />} />
     <Route
       path="/dashboard"
       element={<AuthGuard component={BytebankDashboardPage} />}
