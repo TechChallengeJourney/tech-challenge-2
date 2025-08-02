@@ -223,6 +223,7 @@ function TransactionForm({ type }: TransactionFormProps) {
         marginY="1rem"
         display="flex"
         justifyContent="flex-start"
+        flexWrap="wrap"
         gap="0.875rem"
       >
         {localCategories.slice(0, 3).map(({ label, value }) => (
@@ -325,7 +326,7 @@ export function BytebankTransactionCard() {
       methodId: "",
       creditCard: "",
       categoryId: "",
-      createdAt: format(new Date(), "yyyy-MM-dd"),
+      createdAt: "",
       value: "",
       type: "income",
       file: null,
@@ -334,7 +335,7 @@ export function BytebankTransactionCard() {
 
   return (
     <BytebankCard>
-      <Box sx={{ width: "100%" }} padding="2rem">
+      <Box sx={{ width: "100%" }} padding={{xs: 2, sm: 2, md:4}}>
         <BytebankText variant="md" fontWeight="700">
           Nova Transação
         </BytebankText>

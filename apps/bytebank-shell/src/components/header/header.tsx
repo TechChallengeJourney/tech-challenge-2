@@ -12,6 +12,7 @@ import {
     Toolbar,
     Tooltip,
     Typography,
+    useMediaQuery,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
@@ -235,10 +236,10 @@ export function BytebankHeader() {
                                 </Box>
                                 <Box sx={{ display: { xs: "flex", md: "none" } }}>
                                     <Box display={'flex'}>
-                                        <IconButton size="large" color="inherit" onClick={() => setOpenRegisterModal(true)}>
+                                        <IconButton aria-label="Criar uma conta" size="large" color="inherit" onClick={() => setOpenRegisterModal(true)}>
                                             <AppRegistrationRoundedIcon></AppRegistrationRoundedIcon>
                                         </IconButton>
-                                        <IconButton size="large" color="inherit" onClick={() => setOpenLoginModal(true)}>
+                                        <IconButton aria-label="Entrar em sua conta" size="large" color="inherit" onClick={() => setOpenLoginModal(true)}>
                                             <LoginIcon></LoginIcon>
                                         </IconButton>
                                     </Box>

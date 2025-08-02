@@ -58,7 +58,12 @@ export const BytebankWidgetDrawer = ({ openDrawer, onClose }: { openDrawer: bool
                                             </Box>
                                             <Box>
                                                 <FormControlLabel
-                                                    label={''}
+                                                    sx={{
+                                                        ".MuiFormControlLabel-label": {
+                                                            display: "none"
+                                                        }
+                                                    }}
+                                                    label={name}
                                                     control={
                                                         <Switch
                                                             checked={value}

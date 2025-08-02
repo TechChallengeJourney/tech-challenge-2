@@ -51,6 +51,7 @@ export const BytebankNewCardBank = ({
             height: 48,
             mb: 2,
           }}
+          aria-label="Criar um novo cartão"
         >
           <AddIcon fontSize="large" />
         </IconButton>

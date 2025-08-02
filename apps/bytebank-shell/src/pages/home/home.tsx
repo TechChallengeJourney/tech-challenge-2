@@ -172,7 +172,8 @@ const BytebankHomePage = () => {
                       styles={{ borderColor: colors["lime.100"] }}
                     >
                       <Box
-                        minHeight={"22em"}
+                        minHeight={"21em"}
+                        px={4}
                         p={4}
                         gap={2}
                         color={colors["lime.100"]}

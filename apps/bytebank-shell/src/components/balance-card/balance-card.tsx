@@ -1,5 +1,5 @@
 import { VisibilityRounded, VisibilityOff } from "@mui/icons-material";
-import { Box, Typography, Skeleton } from "@mui/material";
+import { Box, Typography, Skeleton, IconButton } from "@mui/material";
 import { useFinancialData, useUser } from "@repo/data-access";
 import { BytebankCard } from "@repo/ui";
 import { useTheme } from "@repo/utils";
@@ -41,7 +41,7 @@ export const BytebankBalanceCard = () => {
       minHeight={"15em"}
     >
       <BytebankCard styles={backgroundStyle}>
-        <Box display={"flex"} flexDirection={"column"} p={4}>
+        <Box display={"flex"} flexDirection={"column"} p={{xs: 2, sm: 2, md:4}}>
           <Typography color={"textPrimary"} fontWeight={"bold"} variant="lg">
             {`Bem-vindo(a), ${user?.name?.split(" ")[0] ?? "usuário"}!`}
           </Typography>
@@ -50,7 +50,7 @@ export const BytebankBalanceCard = () => {
           </Typography>
         </Box>
 
-        <Box display={"flex"} flexDirection={"column"} p={4}>
+        <Box display={"flex"} flexDirection={"column"} p={{xs: 2, sm: 2, md:4}}>
           <Box display={"flex"} alignContent={"center"} gap={1}>
             <Typography
               color={"textPrimary"}
@@ -60,8 +60,25 @@ export const BytebankBalanceCard = () => {
               Saldo
             </Typography>
             <Box
+              tabIndex={0}
+              aria-label={visible ? "Ocultar saldo" : "Mostrar saldo"}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setVisible((v) => !v);
+                }
+              }}
+              role="button"
               onClick={() => setVisible(!visible)}
-              style={{ cursor: "pointer" }}
+              px="4px"
+              sx={{
+                cursor: "pointer",
+                outline: "none",
+                '&:focus': {
+                  background: colors["background.accent"],
+                  borderRadius: '4px',
+                }
+              }}
               display={"flex"}
               alignItems={"center"}
             >
