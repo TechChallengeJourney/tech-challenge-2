@@ -185,8 +185,8 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                     </Box>
                     <Box flexGrow={1} px={2} maxWidth={'445px'} >
                         {hasUserImage ?
-                            <Box width={'100%'} minWidth={'20em'} minHeight={'20em'} borderRadius={'50%'} sx={{ background: `url(${user?.image}) center center / cover` }}></Box> :
-                            <Box width={'100%'} minWidth={'20em'} minHeight={'20em'} borderRadius={'50%'} bgcolor={isDarkMode ? colors['lime.200'] : colors['lime.200']} display='flex' justifyContent='center' alignItems='center'>
+                            <Box width={'100%'} minWidth={'17em'} minHeight={'17em'} borderRadius={'50%'} sx={{ background: `url(${user?.image}) center center / cover` }}></Box> :
+                            <Box width={'100%'} minWidth={'17em'} minHeight={'17em'} borderRadius={'50%'} bgcolor={isDarkMode ? colors['lime.200'] : colors['lime.200']} display='flex' justifyContent='center' alignItems='center'>
                                 <CameraEnhanceRoundedIcon fontSize={'large'} sx={{fontSize: '100pt'}}/>
                             </Box>
                         }
@@ -220,7 +220,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                     </Box>
                     <FormProvider {...userMethods}>
                         <form onSubmit={userMethods.handleSubmit(handleSubmit)}>
-                            <Box display="flex" gap={3} sx={{ flexDirection: { xs: "column", md: "row" } }}>
+                            <Box display="flex" gap={{xs: 1, sm: 2, md:3}} sx={{ flexDirection: { xs: "column", md: "row" } }}>
                                 <Box sx={{ width: { xs: "100%", md: "50%" } }}>
                                     <BytebankInputController
                                         name="name"
@@ -251,7 +251,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                                 </Box>
                             </Box>
 
-                            <Box display="flex" gap={3} pt={2} sx={{ flexDirection: { xs: "column", md: "row" } }}>
+                            <Box display="flex" gap={{xs: 1, sm: 2, md:3}} pt={{xs: 0, sm: 1, md:2}} sx={{ flexDirection: { xs: "column", md: "row" } }}>
                                 <Box sx={{ width: { xs: "100%", md: "20%" } }}>
                                     <BytebankInputController
                                         name="document"
@@ -303,10 +303,10 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                                     />
                                 </Box>
                             </Box>
-                            <Box pt={'40px'}>
+                            <Box pt={{xs: 2, sm: 2, md:4}}>
                                 <BytebankText variant='md' color={colors['lime.highcontrast']} textTransform='capitalize' fontWeight='bold'>Atualizar senha</BytebankText>
                             </Box>
-                            <Box display="flex" gap={3} pt={2} sx={{ flexDirection: { xs: "column", md: "row" } }}>
+                            <Box display="flex" gap={{xs: 0, sm: 0, md:3}} pt={{xs: 1, sm: 1, md:2}} sx={{ flexDirection: { xs: "column", md: "row" } }}>
                                 <Box sx={{ width: { xs: "100%", md: "50%" } }}>
                                     <BytebankInputController
                                         name="password"
