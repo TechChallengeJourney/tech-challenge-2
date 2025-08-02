@@ -326,7 +326,7 @@ export function BytebankTransactionCard() {
       methodId: "",
       creditCard: "",
       categoryId: "",
-      createdAt: format(new Date(), "yyyy-MM-dd"),
+      createdAt: "",
       value: "",
       type: "income",
       file: null,
