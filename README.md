@@ -7,6 +7,7 @@ Bem-vindo ao projeto de estudo **Bytebank**, uma aplicação moderna desenvolvid
 ## 🚀 Começando
 
 Estas instruções vão te ajudar a rodar o projeto localmente e explorar as funcionalidades que implementamos neste projeto, que são elas:
+
 - Possibilidade de criar um novo usuário e logar na aplicação com **autenticação**;
 - Criar, editar e excluir uma transação registrada;
 - Filtrar o extrato;
@@ -46,6 +47,7 @@ Execute o comando abaixo para iniciar o servidor de desenvolvimento:
 ```bash
 yarn run dev
 ```
+
 Acesse http://localhost:3000 no seu navegador para visualizar o projeto.
 
 ## Rodar a API
@@ -65,6 +67,10 @@ Para visualizar o Design System do projeto, utilizamos o Storybook para exibir e
 cd apps/docs
 yarn run storybook
 ```
+
+## 🎨 Acessibilidade
+
+[![Assista no YouTube](https://img.youtube.com/vi/25bLFFlW_PM/hqdefault.jpg)](https://youtu.be/25bLFFlW_PM)
 
 ## Links Úteis
 
