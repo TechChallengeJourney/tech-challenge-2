@@ -20,7 +20,7 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
 
   return (
     <>
-      <Box width={'100%'} px={4} pb={2} display={'flex'} flexDirection={'column'} gap={2}>
+      <Box width={'100%'} px={{xs: 1, sm: 2, md: 4}} pb={2} display={'flex'} flexDirection={'column'} gap={2}>
         <Box>
           <BytebankBalanceCard />
         </Box>
@@ -50,7 +50,7 @@ const BytebankDashboardPage: FC<BytebankDashboardProps> = () => {
         </Box>
         <Box>
 
-          <Box display="grid" gridTemplateColumns="1fr 2fr " gap={2} sx={{ gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr 2fr' } }}>
+          <Box display="grid" gridTemplateColumns="1fr 2fr " gap={2} sx={{ gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr 2fr' }}}>
             <Box>
               <BytebankTransactionCard />
             </Box>

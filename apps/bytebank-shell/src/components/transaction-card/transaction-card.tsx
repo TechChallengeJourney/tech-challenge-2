@@ -335,7 +335,7 @@ export function BytebankTransactionCard() {
 
   return (
     <BytebankCard>
-      <Box sx={{ width: "100%" }} padding="2rem">
+      <Box sx={{ width: "100%" }} padding={{xs: 2, sm: 2, md:4}}>
         <BytebankText variant="md" fontWeight="700">
           Nova Transação
         </BytebankText>

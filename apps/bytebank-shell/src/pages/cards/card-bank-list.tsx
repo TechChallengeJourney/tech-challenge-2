@@ -67,23 +67,23 @@ export const BytebankCardList: React.FC<BytebankCardContainerProps> = ({
       {!loading && !error && hasCards && (
         <Box
           display="flex"
-          gap={4}
+          gap={{xs: 2, sm: 2, md:4}}
           flexDirection={{ xs: "column", md: "row" }}
           alignItems={{ xs: "center", md: "stretch" }}
           justifyContent={{ xs: "center", md: "flex-start" }}
-          m="26px"
+          m={{xs: 2, sm: 2, md:4}}
         >
           <Box
             flex={1}
             sx={{ width: "100%", maxWidth: 350 }}
-            mt={{ xs: "20px" }}
-            mr={{ md: "32px" }}
+            mt={{ xs: 2 }}
+            mr={{xs: 0, sm: 2, md:4}}
           >
             <CardHeader variant={currentCard?.variant} />
             <CardVisual card={currentCard} />
           </Box>
 
-          <Box flex={2} alignSelf="center">
+          <Box flex={2} alignSelf={{xs: "stretch", sm: "center", md: "center"}}>
             <CardNavigation onPrev={handlePrev} onNext={handleNext} cards={cards} />
             <CardDetails card={currentCard} />
             <CardActions

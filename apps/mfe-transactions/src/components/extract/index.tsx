@@ -140,12 +140,12 @@ export function BytebankExtract() {
     <>
       <BytebankCard styles={{ height: "100%" }}>
         <Box>
-          <Box p={4} pb={0}>
+          <Box p={{xs: 2, sm: 2, md:4}} pb={0}>
             <BytebankText fontWeight={"bold"} variant={"md"}>
               Histórico de transações
             </BytebankText>
           </Box>
-          <Box width={"100%"} display="flex" justifyContent="flex-end" px={4}>
+          <Box width={"100%"} display="flex" justifyContent="flex-end" px={{xs: 2, sm: 2, md:4}}>
             <IconButton
               color="primary"
               onClick={() => setOpenFilter(true)}
@@ -163,7 +163,7 @@ export function BytebankExtract() {
           {/* Lista de extratos */}
           {isLoading ? (
             <Box>
-              <Box px={4}>
+              <Box px={{xs: 2, sm: 2, md:4}}>
                 <Skeleton
                   width={40}
                   variant="text"
@@ -183,7 +183,7 @@ export function BytebankExtract() {
               <Box my={2}>
                 <BytebankDivider type="horizontal" />
               </Box>
-              <Box px={4}>
+              <Box px={{xs: 2, sm: 2, md:4}}>
                 <Skeleton
                   width={40}
                   variant="text"
@@ -215,7 +215,7 @@ export function BytebankExtract() {
                     justifyContent={"space-between"}
                     alignItems={"center"}
                   >
-                    <Box pl={4} py={2}>
+                    <Box pl={{xs: 2, sm: 2, md:4}} py={2}>
                       <Box
                         display={"flex"}
                         flexDirection="row"

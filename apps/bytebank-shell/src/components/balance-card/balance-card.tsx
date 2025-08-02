@@ -41,7 +41,7 @@ export const BytebankBalanceCard = () => {
       minHeight={"15em"}
     >
       <BytebankCard styles={backgroundStyle}>
-        <Box display={"flex"} flexDirection={"column"} p={4}>
+        <Box display={"flex"} flexDirection={"column"} p={{xs: 2, sm: 2, md:4}}>
           <Typography color={"textPrimary"} fontWeight={"bold"} variant="lg">
             {`Bem-vindo(a), ${user?.name?.split(" ")[0] ?? "usuário"}!`}
           </Typography>
@@ -50,7 +50,7 @@ export const BytebankBalanceCard = () => {
           </Typography>
         </Box>
 
-        <Box display={"flex"} flexDirection={"column"} p={4}>
+        <Box display={"flex"} flexDirection={"column"} p={{xs: 2, sm: 2, md:4}}>
           <Box display={"flex"} alignContent={"center"} gap={1}>
             <Typography
               color={"textPrimary"}

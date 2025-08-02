@@ -43,7 +43,7 @@ export const BytebankCardsPage: React.FC = () => {
         <BytebankBalanceCard />
 
         <Box
-          mt="32px"
+          mt={{xs: 2, sm: 2, md:4}}
           width="100%"
           display="flex"
           justifyContent={{ xs: "center", md: "center", lg: "left" }}
@@ -56,7 +56,7 @@ export const BytebankCardsPage: React.FC = () => {
 
         <Box
           display="flex"
-          flexDirection={{ xs: "column", lg: "row" }} // linha no desktop
+          flexDirection={{ xs: "column", lg: "row" }}
           alignItems="flex-start"
           width="100%"
           gap={2}

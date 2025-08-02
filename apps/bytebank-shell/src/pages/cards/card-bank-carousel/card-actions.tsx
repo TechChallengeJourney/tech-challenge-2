@@ -110,7 +110,7 @@ export const CardActions = ({
 
   return (
     <Box
-      mt={{ xs: 3, md: 3 }}
+      mt={{ xs: 2, md: 3 }}
       display="flex"
       flexDirection="column"
       alignItems="center"

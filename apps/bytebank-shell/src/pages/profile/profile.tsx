@@ -163,7 +163,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
 
     return (
         <Container maxWidth="xl" sx={{ marginBottom: '5vw' }}>
-            <Box width={'100%'} pt={4} mb={4} display={'flex'} flexDirection={'column'} gap={1}>
+            <Box width={'100%'} pt={{xs: 2, sm: 2, md:4}} mb={{xs: 2, sm: 2, md:4}} display={'flex'} flexDirection={'column'} gap={1}>
                 <BytebankText variant="xxl" fontWeight={'bolder'} align="center">
                     Meu perfil
                 </BytebankText>
@@ -213,12 +213,11 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
 
                 <BytebankCard styles={{
                     flex: "1",
-                    padding: 4,
                 }} className="form-section">
-                    <Box pb={4}>
+                    <Box p={{ xs: 2, sm: 2, md: 4 }}>
+                    <Box pb={{ xs: 2, sm: 2, md: 4 }}>
                         <BytebankText variant='md' color={colors['lime.highcontrast']} textTransform='capitalize' fontWeight='bold'>Dados pessoais</BytebankText>
                     </Box>
-
                     <FormProvider {...userMethods}>
                         <form onSubmit={userMethods.handleSubmit(handleSubmit)}>
                             <Box display="flex" gap={3} sx={{ flexDirection: { xs: "column", md: "row" } }}>
@@ -339,7 +338,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                             </Box>
                         </form>
                     </FormProvider>
-
+                    </Box>
                 </BytebankCard>
             </Box>
             <BytebankSnackbar open={snackbarOpen} data={snackbarData} onClose={closeSnackbar} />
