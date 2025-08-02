@@ -35,8 +35,11 @@ export type BytebankInputProps = Omit<TextFieldProps, "onChange" | "value"> & {
 };
 
 function formatCurrency(value: string) {
-  const numeric = value.replace(/\D/g, "");
-  const number = Number(numeric) / 100;
+  // Verifica se o valor já é um número com ponto decimal
+  const number = parseFloat(value);
+
+  if (isNaN(number)) return "";
+
   return number.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
