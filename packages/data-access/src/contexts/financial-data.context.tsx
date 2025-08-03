@@ -100,8 +100,17 @@ export const FinancialDataProvider: React.FC<{ children: React.ReactNode }> = ({
     api
       .get<ExtractProps>("/transactions", { params: queryParams })
       .then((res) => {
-        const extract = res.data;
         getCategories();
+        if (!res.data || !res.data.data) {
+          setFinancialData({
+            total_value: 0,
+            extract: null,
+          });
+          setIsLoading(false);
+          return;
+        }
+        const extract = res.data;
+        
 
         setFinancialData((prev) => ({
           ...prev,
