@@ -47,7 +47,17 @@ Execute o comando abaixo para iniciar o servidor de desenvolvimento:
 ```bash
 yarn run dev
 ```
+Para visualizar como o projeto ficaria no ambiente de produção, basta seguir essas alternativas:
 
+- Utilizando Docker:
+```bash
+docker-compose build
+docker-compose up
+```
+- Utilizando TurboRepo:
+```bash
+yarn run preview:all
+```
 Acesse http://localhost:3000 no seu navegador para visualizar o projeto.
 
 ## Rodar a API
