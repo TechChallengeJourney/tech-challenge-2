@@ -15,11 +15,11 @@ Estas instruções vão te ajudar a rodar o projeto localmente e explorar as fun
 - Visualizar e customizar widgets;
 - Editar perfil do usuário;
 - Visualizar e excluir cartões vinculados a sua conta;
-- Acessar o nosso blog.
+- Explore o nosso [Blog](https://bytebank-blog.vercel.app/) desenvolvido em **Astro** e **React**. Para o layout, foi utilizado os componentes do nosso Design System para manter a consistência visual das aplicações e também aplicamos a estratégia de SSG (Static Site Generation).
 
 ### Pré-requisitos
 
-Certifique-se de ter o [Node.js](https://nodejs.org/) instalado na sua máquina.
+Certifique-se de ter o [Node.js](https://nodejs.org/) e [Yarn](https://yarnpkg.com/) instalado na sua máquina.
 
 ---
 
@@ -61,7 +61,7 @@ docker-compose up
 
 ## 🎨 Estilização
 
-Para visualizar o Design System do projeto, utilizamos o Storybook para exibir e demonstrar as definições de layout e componentes, foi baseado neste Figma (https://www.figma.com/design/ZeXkGB9NhAr5ypgpgF1gWf/Bytebank---Redesign?node-id=118-103&t=hyMOJlYGyckL9kYm-1). E para conferir a documentação dos componenentes do nosso Design System, utilize os comandos:
+Para visualizar o Design System do projeto, utilizamos o Storybook para exibir e demonstrar as definições de layout e componentes, foi baseado neste protótipo no [Figma](https://www.figma.com/design/ZeXkGB9NhAr5ypgpgF1gWf/Bytebank---Redesign?node-id=118-103&t=hyMOJlYGyckL9kYm-1). E para conferir a documentação dos componenentes do nosso Design System, utilize os comandos:
 
 ```bash
 cd apps/docs
@@ -71,6 +71,19 @@ yarn run storybook
 ## 🎨 Acessibilidade
 
 [![Assista no YouTube](https://img.youtube.com/vi/25bLFFlW_PM/hqdefault.jpg)](https://youtu.be/25bLFFlW_PM)
+
+## 🛠️ Arquitetura de Infraestrutura
+
+### Backend: API
+Para o backend do Bytebank, optamos por utilizar a **AWS (Amazon Web Services)** como provedor de nuvem, especificamente os serviços **ECR (Elastic Container Registry)** e **ECS (Elastic Container Service)**.
+
+### Frontend: Aplicação Principal e Microfrontends
+Para a aplicação principal e seus microfrontends, adotamos a plataforma Vercel.
+
+- [Aplicação Principal](https://bytebank-demo.vercel.app/)
+- [Microfrontend - Widgets de Investimentos](https://bytebank-investments.vercel.app/)
+- [Microfrontend - Transações](https://bytebank-transactions.vercel.app/)
+- [Blog do Bytebank](https://bytebank-blog.vercel.app/)
 
 ## Links Úteis
 
