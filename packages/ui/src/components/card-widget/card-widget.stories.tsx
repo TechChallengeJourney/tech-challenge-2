@@ -1,7 +1,6 @@
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import { Meta, StoryObj } from "@storybook/react";
 import { CardWidget } from "./card-widget";
-import { Box } from "@mui/material";
 import * as DocBlock from '@storybook/blocks';
 
 const meta = {
@@ -52,14 +51,3 @@ export const MonthlyExpense: Story = {
     icon: <CreditCardIcon />,
   },
 };
-
-// export const AllWidgetsInRow: Story = {
-//   render: () => (
-//     <Box display="flex" gap={5}>
-//       <CardWidget title="Total de Cartões" value="4" icon={<CreditCardIcon />} />
-//       <CardWidget title="Limite total" value="R$2.000,00" icon={<CreditCardIcon />} />
-//       <CardWidget title="Limite usado" value="R$450,00" icon={<CreditCardIcon />} />
-//       <CardWidget title="Gasto mensal" value="R$450,00" icon={<CreditCardIcon />} />
-//     </Box>
-//   ),
-// };
