@@ -215,7 +215,7 @@ export function BytebankMonthlyResumeWidget({ userId }: { userId: string }) {
             py={4}
           >
             <BytebankIllustration
-              name={"empty"}
+              name={"no-dashboard"}
               variant={"lg"}
             ></BytebankIllustration>
             <BytebankText

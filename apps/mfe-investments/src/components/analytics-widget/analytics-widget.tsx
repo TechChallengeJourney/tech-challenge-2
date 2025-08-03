@@ -128,9 +128,9 @@ export function BytebankAnalyticsWidget({ userId }: { userId: string }) {
             py={4}
           >
             <BytebankIllustration
-              name={"empty"}
+              name={"no-dashboard"}
               variant={"lg"}
-            ></BytebankIllustration>
+            />
             <BytebankText variant="sm" color="textSecondary">
               Não foi possível carregar os dados da análise financeira. <br />
               Tente criar uma nova transação ou recarregar a página.

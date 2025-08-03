@@ -18,7 +18,7 @@ export const CardEmptyState: React.FC<CardEmptyStateProps> = ({text}) => {
       height="350px"
     >
       <BytebankIllustration
-        name={"empty"}
+        name={"no-cards"}
         variant={"lg"}
       ></BytebankIllustration>
       <BytebankText variant="sm" color="textSecondary">

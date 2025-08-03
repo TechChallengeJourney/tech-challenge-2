@@ -2,6 +2,7 @@ import {
   BytebankCard,
   BytebankDivider,
   BytebankDrawer,
+  BytebankIllustration,
   BytebankPagination,
   BytebankSnackbar,
   BytebankText,
@@ -37,7 +38,7 @@ export function BytebankExtract() {
   const [anchorEls, setAnchorEls] = useState<{
     [key: string]: HTMLElement | null;
   }>({});
-    const { isDarkMode, colors } = useTheme();
+  const { isDarkMode, colors } = useTheme();
 
   useEffect(() => {
     const getTransactions = () => {
@@ -140,12 +141,12 @@ export function BytebankExtract() {
     <>
       <BytebankCard styles={{ height: "100%" }}>
         <Box>
-          <Box p={{xs: 2, sm: 2, md:4}} pb={0}>
+          <Box p={{ xs: 2, sm: 2, md: 4 }} pb={0}>
             <BytebankText fontWeight={"bold"} variant={"md"}>
               Histórico de transações
             </BytebankText>
           </Box>
-          <Box width={"100%"} display="flex" justifyContent="flex-end" px={{xs: 2, sm: 2, md:4}}>
+          <Box width={"100%"} display="flex" justifyContent="flex-end" px={{ xs: 2, sm: 2, md: 4 }}>
             <IconButton
               color="primary"
               onClick={() => setOpenFilter(true)}
@@ -163,7 +164,7 @@ export function BytebankExtract() {
           {/* Lista de extratos */}
           {isLoading ? (
             <Box>
-              <Box px={{xs: 2, sm: 2, md:4}}>
+              <Box px={{ xs: 2, sm: 2, md: 4 }}>
                 <Skeleton
                   width={40}
                   variant="text"
@@ -183,7 +184,7 @@ export function BytebankExtract() {
               <Box my={2}>
                 <BytebankDivider type="horizontal" />
               </Box>
-              <Box px={{xs: 2, sm: 2, md:4}}>
+              <Box px={{ xs: 2, sm: 2, md: 4 }}>
                 <Skeleton
                   width={40}
                   variant="text"
@@ -215,7 +216,7 @@ export function BytebankExtract() {
                     justifyContent={"space-between"}
                     alignItems={"center"}
                   >
-                    <Box pl={{xs: 2, sm: 2, md:4}} py={2}>
+                    <Box pl={{ xs: 2, sm: 2, md: 4 }} py={2}>
                       <Box
                         display={"flex"}
                         flexDirection="row"
@@ -226,7 +227,7 @@ export function BytebankExtract() {
                           {itens.type !== "income" ? (
                             <Box
                               display="flex"
-                              color={ isDarkMode ? colors['grey.200'] : colors['grey.900']}
+                              color={isDarkMode ? colors['grey.200'] : colors['grey.900']}
                               alignItems="center"
                               sx={{
                                 backgroundColor: isDarkMode ? colors['grey.900'] : colors['grey.200'],
@@ -292,7 +293,7 @@ export function BytebankExtract() {
                       <Box
                         key={index}
                         width="100%"
-                        pr={{xs: 1, md: 3}}
+                        pr={{ xs: 1, md: 3 }}
                         flexDirection="row"
                         justifyContent="space-between"
                         boxSizing="border-box"
@@ -356,7 +357,10 @@ export function BytebankExtract() {
                   alignItems={"center"}
                   gap={2}
                 >
-                  <ErrorOutlineIcon color="error" sx={{ fontSize: "50px" }} />
+                  <BytebankIllustration
+                    name={"no-data"}
+                    variant={"lg"}
+                  ></BytebankIllustration>
                   <BytebankText variant={"sm"}>
                     Não encontramos nenhuma transação, que tal criar uma nova?
                   </BytebankText>
