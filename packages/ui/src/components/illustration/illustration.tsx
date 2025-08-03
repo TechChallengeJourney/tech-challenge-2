@@ -55,6 +55,7 @@ export function BytebankIllustration({
         src={name ? path : src}
         alt={alt}
         style={{
+          minWidth: variant === "auto" ? "100%" : fixedWidth,
           maxWidth: width ? width : (variant === "auto" ? "100%" : fixedWidth),
           maxHeight: height ? height : "auto",
         }}
