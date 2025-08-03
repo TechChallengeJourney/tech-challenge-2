@@ -59,19 +59,6 @@ docker-compose build
 docker-compose up
 ```
 
-## 🎨 Estilização
-
-Para visualizar o Design System do projeto, utilizamos o Storybook para exibir e demonstrar as definições de layout e componentes, foi baseado neste protótipo no [Figma](https://www.figma.com/design/ZeXkGB9NhAr5ypgpgF1gWf/Bytebank---Redesign?node-id=118-103&t=hyMOJlYGyckL9kYm-1). E para conferir a documentação dos componenentes do nosso Design System, utilize os comandos:
-
-```bash
-cd apps/docs
-yarn run storybook
-```
-
-## 🎨 Acessibilidade
-
-[![Assista no YouTube](https://img.youtube.com/vi/25bLFFlW_PM/hqdefault.jpg)](https://youtu.be/25bLFFlW_PM)
-
 ## 🛠️ Arquitetura de Infraestrutura
 
 ### Backend: API
@@ -84,6 +71,21 @@ Para a aplicação principal e seus microfrontends, adotamos a plataforma Vercel
 - [Microfrontend - Widgets de Investimentos](https://bytebank-investments.vercel.app/)
 - [Microfrontend - Transações](https://bytebank-transactions.vercel.app/)
 - [Blog do Bytebank](https://bytebank-blog.vercel.app/)
+  
+## 🎨 Estilização
+
+Para visualizar o Design System do projeto, utilizamos o Storybook para exibir e demonstrar as definições de layout e componentes, foi baseado neste protótipo no [Figma](https://www.figma.com/design/ZeXkGB9NhAr5ypgpgF1gWf/Bytebank---Redesign?node-id=118-103&t=hyMOJlYGyckL9kYm-1). E para conferir a documentação dos componenentes do nosso Design System, utilize os comandos:
+
+```bash
+cd apps/docs
+yarn run storybook
+```
+
+## 🎨 Acessibilidade
+
+Desenvolvemos um vídeo para demonstrar a acessibilidade das funcionalidades da nossa aplicação.
+[![Assista no YouTube](https://img.youtube.com/vi/25bLFFlW_PM/hqdefault.jpg)](https://youtu.be/25bLFFlW_PM)
+
 
 ## Links Úteis
 
