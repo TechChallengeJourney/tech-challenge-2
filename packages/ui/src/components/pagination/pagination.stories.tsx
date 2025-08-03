@@ -2,7 +2,7 @@ import { StoryFn, Meta } from '@storybook/react';
 import { BytebankPagination, BytebankPaginationProps } from './pagination';
 
 export default {
-  title: 'Components/BytebankPagination',
+  title: 'Components/Pagination',
   component: BytebankPagination,
   argTypes: {
     totalPages: { control: 'number' },

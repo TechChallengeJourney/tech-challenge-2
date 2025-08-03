@@ -2,22 +2,32 @@ import CreditCardIcon from "@mui/icons-material/CreditCard";
 import { Meta, StoryObj } from "@storybook/react";
 import { CardWidget } from "./card-widget";
 import { Box } from "@mui/material";
+import * as DocBlock from '@storybook/blocks';
 
-const meta: Meta<typeof CardWidget> = {
+const meta = {
   title: "Components/CardWidget",
   component: CardWidget,
   tags: ["autodocs"],
-  args: {
-    title: "Limite total",
-    value: "R$2.000,00",
-    icon: <CreditCardIcon />,
-  },
-};
+  parameters: {
+           docs: {
+          page: () =>
+            <>
+            <DocBlock.Title />
+            <DocBlock.Description />
+            
+            <DocBlock.Primary />
+            <DocBlock.Controls />
+  
+            <DocBlock.Title>Variações</DocBlock.Title>
+            <DocBlock.Stories />
+            </>
+        }
+      }
+  } satisfies Meta<typeof CardWidget>;
 
 export default meta;
-type Story = StoryObj<typeof CardWidget>;
 
-export const Default: Story = {};
+type Story = StoryObj<typeof CardWidget>;
 
 export const totalCards: Story = {
   args: {
@@ -43,13 +53,13 @@ export const MonthlyExpense: Story = {
   },
 };
 
-export const AllWidgetsInRow: Story = {
-  render: () => (
-    <Box display="flex" gap={5}>
-      <CardWidget title="Total de Cartões" value="4" icon={<CreditCardIcon />} />
-      <CardWidget title="Limite total" value="R$2.000,00" icon={<CreditCardIcon />} />
-      <CardWidget title="Limite usado" value="R$450,00" icon={<CreditCardIcon />} />
-      <CardWidget title="Gasto mensal" value="R$450,00" icon={<CreditCardIcon />} />
-    </Box>
-  ),
-};
+// export const AllWidgetsInRow: Story = {
+//   render: () => (
+//     <Box display="flex" gap={5}>
+//       <CardWidget title="Total de Cartões" value="4" icon={<CreditCardIcon />} />
+//       <CardWidget title="Limite total" value="R$2.000,00" icon={<CreditCardIcon />} />
+//       <CardWidget title="Limite usado" value="R$450,00" icon={<CreditCardIcon />} />
+//       <CardWidget title="Gasto mensal" value="R$450,00" icon={<CreditCardIcon />} />
+//     </Box>
+//   ),
+// };
