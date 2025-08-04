@@ -20,7 +20,7 @@ type BlogPageProps = {
 export default function BlogPage({ posts }: BlogPageProps) {
     const { colors } = useTheme();
     const featuredPost = {
-        id: 1,
+        id: 'futuro-dos-investimentos',
         title: "O futuro dos investimentos digitais no Brasil",
         excerpt:
             "Explore como a tecnologia está revolucionando o mercado financeiro brasileiro e as oportunidades que surgem para investidores modernos.",
