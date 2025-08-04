@@ -10,7 +10,7 @@ export interface BytebankIllustrationProps {
    * @type 'sm' | 'md' |'lg' | 'auto'
    * @default md
    */
-  variant?: "sm" | "md" | "lg" | "auto";
+  variant?: "sm" | "md" | "lg" | "auto" | "fixed";
   type?: "svg" | "png" | "gif";
   width?: string;
   height?: string;
@@ -45,7 +45,8 @@ export function BytebankIllustration({
     <Box
       className={className}
       sx={{
-        width: variant === "auto" ? "100%" : fixedWidth,
+        width: variant === "auto" ? "100%" : fixedWidth ?? width,
+        height: variant === "fixed" ? height : height ?? (variant === "auto" ? "100%" : height),
         maxWidth: "100%",
         display: "flex",
         justifyContent,

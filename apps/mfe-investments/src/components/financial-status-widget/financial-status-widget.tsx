@@ -102,8 +102,9 @@ export function BytebankFinancialStatusWidget({ userId }: { userId: string }) {
                 }
                 justifyContent={"end"}
                 type={"gif"}
-                width="140px"
-                height="140px"
+                variant="fixed"
+                width="10em"
+                height="10em"
               ></BytebankIllustration>
             </Box>
           </>
