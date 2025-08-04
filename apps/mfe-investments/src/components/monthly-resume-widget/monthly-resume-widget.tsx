@@ -170,7 +170,7 @@ export function BytebankMonthlyResumeWidget({ userId }: { userId: string }) {
   }, [userId, extract]);
 
   const renderLoading = () =>
-    isLoading ? (
+    !widgetData && isLoading ? (
       <Box
         display={"flex"}
         justifyContent="center"
