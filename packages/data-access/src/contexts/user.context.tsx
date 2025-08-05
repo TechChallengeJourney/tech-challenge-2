@@ -32,6 +32,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } else {
       setUser(null);
       setToken(null);
+      sessionStorage.removeItem("filterParams");
     }
     setLoading(false);
   }, [sessionUser, sessionToken, loading]);
