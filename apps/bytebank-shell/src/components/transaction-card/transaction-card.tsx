@@ -47,7 +47,9 @@ interface OptionsFields {
 function TransactionForm({ type }: TransactionFormProps) {
   const { fetchTransactions, categories } = useFinancialData();
   const [localCategories, setLocalCategories] = useState<OptionsFields[]>([]);
-  const { control, handleSubmit, setValue, reset } = useFormContext();
+  const { control, handleSubmit, setValue, reset, formState } =
+    useFormContext();
+  const { isValid } = formState;
   const [methods, setMethods] = useState([]);
   const filterMethods = formatDataByType(methods, type);
   const [cards, setCards] = useState<OptionsFields[]>([]);
@@ -91,7 +93,7 @@ function TransactionForm({ type }: TransactionFormProps) {
   };
 
   const onSubmit = async (data: any) => {
-    console.log(new Date(data.createdAt).toISOString())
+    console.log(new Date(data.createdAt).toISOString());
     const formData = new FormData();
     if (user?._id) formData.append("userId", user?._id);
     formData.append("value", data.value);
@@ -280,6 +282,7 @@ function TransactionForm({ type }: TransactionFormProps) {
           label="Concluir"
           variant="contained"
           color="primary"
+          disabled={!isValid}
           onClick={handleSubmit(onSubmit)}
         />
       </Box>
@@ -319,9 +322,8 @@ function TransactionForm({ type }: TransactionFormProps) {
 }
 
 export function BytebankTransactionCard() {
-  const [activeTab, setActiveTab] = useState("income");
-
   const methods = useForm({
+    mode: "onChange",
     defaultValues: {
       methodId: "",
       creditCard: "",
@@ -333,9 +335,12 @@ export function BytebankTransactionCard() {
     },
   });
 
+  const { setValue, watch, reset } = methods;
+  const activeTab = watch("type");
+
   return (
     <BytebankCard>
-      <Box sx={{ width: "100%" }} padding={{xs: 2, sm: 2, md:4}}>
+      <Box sx={{ width: "100%" }} padding={{ xs: 2, sm: 2, md: 4 }}>
         <BytebankText variant="md" fontWeight="700">
           Nova Transação
         </BytebankText>
@@ -345,7 +350,20 @@ export function BytebankTransactionCard() {
               { label: "Entrada", id: "income" },
               { label: "Saída", id: "expense" },
             ]}
-            onChangeTab={(i) => setActiveTab(i)}
+            onChangeTab={(i) => {
+              if (i !== activeTab) {
+                setValue("type", i);
+                reset({
+                  methodId: "",
+                  creditCard: "",
+                  categoryId: "",
+                  createdAt: "",
+                  value: "",
+                  type: i,
+                  file: null,
+                });
+              }
+            }}
           >
             <FormProvider {...methods}>
               <TransactionForm type={activeTab} />
