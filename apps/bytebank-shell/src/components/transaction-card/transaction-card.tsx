@@ -47,7 +47,8 @@ interface OptionsFields {
 function TransactionForm({ type }: TransactionFormProps) {
   const { fetchTransactions, categories } = useFinancialData();
   const [localCategories, setLocalCategories] = useState<OptionsFields[]>([]);
-  const { control, handleSubmit, setValue, reset } = useFormContext();
+  const { control, handleSubmit, setValue, reset, formState } = useFormContext();
+  const {isValid} = formState;
   const [methods, setMethods] = useState([]);
   const filterMethods = formatDataByType(methods, type);
   const [cards, setCards] = useState<OptionsFields[]>([]);
@@ -280,6 +281,7 @@ function TransactionForm({ type }: TransactionFormProps) {
           label="Concluir"
           variant="contained"
           color="primary"
+          disabled={!isValid}
           onClick={handleSubmit(onSubmit)}
         />
       </Box>
@@ -319,9 +321,8 @@ function TransactionForm({ type }: TransactionFormProps) {
 }
 
 export function BytebankTransactionCard() {
-  const [activeTab, setActiveTab] = useState("income");
-
   const methods = useForm({
+    mode: "onChange",
     defaultValues: {
       methodId: "",
       creditCard: "",
@@ -332,6 +333,9 @@ export function BytebankTransactionCard() {
       file: null,
     },
   });
+
+const { setValue, watch, reset } = methods;
+const activeTab = watch("type"); // ← agora vem do RHF
 
   return (
     <BytebankCard>
@@ -345,7 +349,20 @@ export function BytebankTransactionCard() {
               { label: "Entrada", id: "income" },
               { label: "Saída", id: "expense" },
             ]}
-            onChangeTab={(i) => setActiveTab(i)}
+            onChangeTab={(i) => {
+            if (i !== activeTab) {
+                  setValue("type",i);
+                  reset({
+                    methodId: "",
+                    creditCard: "",
+                    categoryId: "",
+                    createdAt: "",
+                    value: "",
+                    type: i,
+                    file: null,
+                  });
+                }
+          }}
           >
             <FormProvider {...methods}>
               <TransactionForm type={activeTab} />
