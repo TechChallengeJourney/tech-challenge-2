@@ -32,6 +32,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
     const fileInputRef = useRef<HTMLInputElement | null>(null);
 
     const userMethods = useForm<ProfileFormValues>({
+        mode: "onChange",
         defaultValues: {
             name: user?.name || '',
             email: user?.email || '',
@@ -44,6 +45,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
             complement: '',
         },
     });
+    const { isDirty, isValid } = userMethods.formState;
 
     const handleEditClick = () => {
         fileInputRef.current?.click();
@@ -51,8 +53,6 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
 
     const handleSubmit = async (e: any) => {
         const formData = userMethods.getValues();
-
-        console.log(userMethods)
 
         const body = {
             name: formData.name,
@@ -160,6 +160,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
 
         getData();
     }, [user, userMethods]);
+
 
     return (
         <Container maxWidth="xl" sx={{ marginBottom: '5vw' }}>
@@ -334,6 +335,7 @@ const BytebankProfilePage: FC<BytebankProfileProps> = () => {
                                     color="primary"
                                     variant="contained"
                                     loading={isLoading}
+                                    disabled={!isDirty || !isValid}
                                 />
                             </Box>
                         </form>
